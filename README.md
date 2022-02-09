@@ -1,4 +1,5 @@
 # idsw2
-Ingeniería del Software 2
+Ingeniería del Software 2 UNEATLANTICO
 
-Más cosas en la [wiki](https://github.com/mmasias/idsw2/wiki)
+* [Temario](temario)
+* [Proyectos por abordar](proyectos)
