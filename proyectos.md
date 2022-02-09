@@ -1,5 +1,6 @@
 * [pyBatalla](proyectos/pyBatalla.md)
 * [pyAspiradora](proyectos/pyAspiradora.md)
+* [pyColas](proyectos/pyColas.md)
 * [pyAscensores](proyectos/pyAscensores.md)
 * [pyPillaPilla](proyectos/pyPillaPilla.md)
 * [pyLaberinto](proyectos/pyLaberinto.md)
