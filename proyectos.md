@@ -27,4 +27,4 @@ Este punto está abierto a ajustes en función de la evolución de la asignatura
 * [pyPillaPilla](proyectos/pyPillaPilla.md)
 * ***[pyLaberinto](proyectos/pyLaberinto.md)***
 * [pyGallinero](proyectos/pyGallinero.md)
-* [pyMaquinasExpendedoras](proyectos/pyMaquinasExpendedoras.md)
+* ***[pyMaquinasExpendedoras](proyectos/pyMaquinasExpendedoras.md)***
