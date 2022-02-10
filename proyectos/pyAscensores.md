@@ -3,18 +3,18 @@
 
 
 ```
-Personas esperando                               Personas en la planta
-
-Planta  3  _____  [|4|]    | |     | |     | |   __3__ 
-Planta  2  ___2_   | |     | |     | |     | |   __4__
-Planta  1  _____   | |     | |    [|2|]    | |   __2__
-Planta  B  _____   | |    [|0|]    | |     | |   __4__
-Planta -1  _____   | |     | |     | |     | |   __1__
-Planta -2  _____   | |     | |     | |    [|1|]  __0__
-Planta -3  ___1_   | |     | |     | |     | |   __1__
- 
-                 /--------- Ascensores ---------/
-
+            Personas                                    Personas
+           esperando                                    en la planta
+       
+Planta  3    _____     [|4|]    | |     | |     | |     __3__ 
+Planta  2    ___2_      | |     | |     | |     | |     __4__
+Planta  1    _____      | |     | |    [|2|]    | |     __2__
+Planta  B    _____      | |    [|0|]    | |     | |     __4__
+Planta -1    _____      | |     | |     | |     | |     __1__
+Planta -2    _____      | |     | |     | |    [|1|]    __0__
+Planta -3    ___1_      | |     | |     | |     | |     __1__
+                       /--------- Ascensores ---------/
+   
 ```
 
 Las personas que llegan a la universidad hacen uso de los ascensores. Cada persona sabe a que planta va a ir, cuánto tiempo estará en esa planta, luego de lo cual tendrán que irse.
