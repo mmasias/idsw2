@@ -1,0 +1,18 @@
+```
+ 3  _____  [|4|]    | |     | |     | |   __3__ 
+ 2  ___2_   | |     | |     | |     | |   __4__
+ 1  _____   | |     | |    [|2|]    | |   __2__
+ B  _____   | |    [|0|]    | |     | |   __4__
+-1  _____   | |     | |     | |     | |   __1__
+-2  _____   | |     | |     | |    [|1|]  __0__
+-3  ___1_   | |     | |     | |     | |   __1__
+```
+
+Las personas que llegan a la universidad hacen uso de los ascensores. Cada persona sabe a que planta va a ir, cuánto tiempo estará en esa planta, luego de lo cual tendrán que irse.
+
+Modele un día en la U.
+
+Los ascensores tienen una capacidad máxima de 6 personas.
+
+En un momento determinado del tiempo, un ascensor está subiendo, bajando o parado.
+
