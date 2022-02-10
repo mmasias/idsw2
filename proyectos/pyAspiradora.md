@@ -1,7 +1,19 @@
+# pyAspiradora
+
 Defina e implemente una manera de representar la superficie (por ejemplo, un rectángulo de 8x7), incluyendo zonas limpias y sucias.
 
-![](../images/universo.png)
+```
++------------------------------------------+
+|ooo · ooo ·  ·  ·  ·  ·  · ooo ·  ·  · ooo|
+|ooo ·  ·  ·  ·  ·  · ooooooooo ·  ·  · ooo|
+| ·  · oooooo ·  ·  · ooo · ooo ·  ·  · ooo|
+| ·  ·  ·  ·  ·  · ooo ·  · ooo ·  ·  · ooo|
+| ·  ·  ·  ·  ·  ·  · ooo · ooo ·  ·  · ooo|
+| ·  · ooo · (o) ·  · ooo · ooo ·  ·  · ooo|
+|ooo · ooo ·  ·  ·  · ooo · ooo ·  ·  · ooo|
++------------------------------------------+
 
+```
 Coloque la aspiradora en la superficie y dótela de movimiento. El movimiento es aleatorio en las ocho direcciones, con la misma probabilidad en cada dirección. Asuma que el terreno no está exageradamente sucio, de modo que la aspiradora puede moverse libremente, limitada únicamente por las cuatro paredes.
 
 Agregue a la aspiradora la capacidad de limpiar la superficie, de modo que cuando pase sobre una zona sucia, esta pase a estar limpia.

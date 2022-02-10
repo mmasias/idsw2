@@ -13,7 +13,7 @@ El resultado final será un conjunto de versiones de la misma aplicación, cada 
 
 ## Los no funcionales ;)
 
-Las primeras iteraciones han de presentarse en la forma más ***vanilla*** posible. De hecho, la evolución en la medida de lo posible se ha de mantener de esa forma. 
+Las primeras iteraciones han de presentarse en la forma más ***[plain vanilla](https://en.wikipedia.org/wiki/Plain_vanilla)***. Se sugiere firmemente que la evolución se mantenga en esta forma. 
 
 Este punto está abierto a ajustes en función de la evolución de la asignatura y el proyecto.
 
@@ -23,8 +23,8 @@ Este punto está abierto a ajustes en función de la evolución de la asignatura
 * ***[pyBatalla](proyectos/pyBatalla.md)***
 * ***[pyAspiradora](proyectos/pyAspiradora.md)***
 * ***[pyColas](proyectos/pyColas.md)***
-* [pyAscensores](proyectos/pyAscensores.md)
+* ***[pyAscensores](proyectos/pyAscensores.md)***
 * [pyPillaPilla](proyectos/pyPillaPilla.md)
-* [pyLaberinto](proyectos/pyLaberinto.md)
+* ***[pyLaberinto](proyectos/pyLaberinto.md)***
 * [pyGallinero](proyectos/pyGallinero.md)
 * [pyMaquinasExpendedoras](proyectos/pyMaquinasExpendedoras.md)
