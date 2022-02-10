@@ -1,3 +1,5 @@
+2DO: Modelar el paso de un día en la U...
+
 ```
  3  _____  [|4|]    | |     | |     | |   __3__ 
  2  ___2_   | |     | |     | |     | |   __4__
@@ -10,9 +12,8 @@
 
 Las personas que llegan a la universidad hacen uso de los ascensores. Cada persona sabe a que planta va a ir, cuánto tiempo estará en esa planta, luego de lo cual tendrán que irse.
 
-Modele un día en la U.
-
-Los ascensores tienen una capacidad máxima de 6 personas.
+Los ascensores tienen una capacidad máxima de 6 personas. Si el ascensor está lleno, solo pueden bajar personas, salvo que en la planta en la que bajan suba un número igual o menor de personas.
 
 En un momento determinado del tiempo, un ascensor está subiendo, bajando o parado.
 
+Cuando una persona llama a un ascensor, va el que está más cerca y al que le pilla de paso.
