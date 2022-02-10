@@ -4,9 +4,10 @@ A lo largo de la asignatura han de ir evolucionando, mediante la aplicación de 
 
 ## Forma de trabajo
 
-* Repositorio de github por grupo
-* Tiempo de trabajo
-* Exposición
+* Repositorio de github por grupo.
+* Al menos un commit por principio.
+* Tiempo de trabajo.
+* Exposición.
 
 ## Proyectos
 
