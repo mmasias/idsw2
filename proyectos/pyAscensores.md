@@ -1,11 +1,11 @@
-2DO: Modelar el paso de un día en la U...
+# pyAscensores
 
-
+Modelar el paso de un día en la U...
 
 ```
-            Personas                                    Personas
-           esperando                                    en la planta
-       
+           Personas                                    Personas
+          esperando                                    en la planta
+
 Planta  3    _____     [|4|]    | |     | |     | |     __3__ 
 Planta  2    ___2_      | |     | |     | |     | |     __4__
 Planta  1    _____      | |     | |    [|2|]    | |     __2__
@@ -13,7 +13,7 @@ Planta  B    _____      | |    [|0|]    | |     | |     __4__
 Planta -1    _____      | |     | |     | |     | |     __1__
 Planta -2    _____      | |     | |     | |    [|1|]    __0__
 Planta -3    ___1_      | |     | |     | |     | |     __1__
-                       /--------- Ascensores ---------/
+                       /--------- Ascensores ------/
    
 ```
 

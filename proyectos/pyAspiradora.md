@@ -1,5 +1,6 @@
-Defina e implemente una manera de representar la superficie (por ejemplo, un rectángulo de 8x7), incluyendo zonas limpias y sucias.
+# pyAspiradora
 
+Defina e implemente una manera de representar la superficie (por ejemplo, un rectángulo de 8x7), incluyendo zonas limpias y sucias.
 
 ```
 +------------------------------------------+
