@@ -13,10 +13,11 @@ El resultado final será un conjunto de versiones de la misma aplicación, cada 
 
 ## Proyectos
 
-* [pyBatalla](proyectos/pyBatalla.md)
-* [pyAspiradora](proyectos/pyAspiradora.md)
-* [pyColas](proyectos/pyColas.md)
+* ***[pyBatalla](proyectos/pyBatalla.md)***
+* ***[pyAspiradora](proyectos/pyAspiradora.md)***
+* ***[pyColas](proyectos/pyColas.md)***
 * [pyAscensores](proyectos/pyAscensores.md)
 * [pyPillaPilla](proyectos/pyPillaPilla.md)
 * [pyLaberinto](proyectos/pyLaberinto.md)
 * [pyGallinero](proyectos/pyLaberinto.md)
+* [pyMaquinasExpendedoras](proyectos/pyMaquinasExpendedoras.md)
