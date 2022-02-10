@@ -8,8 +8,15 @@ El resultado final será un conjunto de versiones de la misma aplicación, cada 
 
 * Un repo por grupo.
 * Al menos un commit por cada principio.
-* Tiempo de trabajo.
+* Tiempo de trabajo: a aplicar luego de la clase de los principios indicados.
 * Exposición.
+
+## Los no funcionales ;)
+
+Las primeras iteraciones han de presentarse en la forma más ***vanilla*** posible. De hecho, la evolución en la medida de lo posible se ha de mantener de esa forma. 
+
+Este punto está abierto a ajustes en función de la evolución de la asignatura y el proyecto.
+
 
 ## Proyectos
 
