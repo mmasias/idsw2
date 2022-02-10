@@ -2,7 +2,7 @@
 
 El centro comercial CF de El Alisal trabaja de 9 de la mañana a 9 de la noche vendiendo diversos artículos. Para la gestión de la venta dispone de 4 cajas que van atendiendo a los clientes, que a su vez van situándose en cola conforme concluyen sus compras esperando una caja vacía que les atienda.
 
-![](../images/colas.png)
+<kbd>![](../images/colas.png)</kbd>
 
 Un estudio previo determinó que la probabilidad de llegada de un cliente nuevo a la cola se estima entre el 0 y el 40% por minuto.
 
