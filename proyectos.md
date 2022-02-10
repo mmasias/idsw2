@@ -19,5 +19,5 @@ El resultado final será un conjunto de versiones de la misma aplicación, cada 
 * [pyAscensores](proyectos/pyAscensores.md)
 * [pyPillaPilla](proyectos/pyPillaPilla.md)
 * [pyLaberinto](proyectos/pyLaberinto.md)
-* [pyGallinero](proyectos/pyLaberinto.md)
+* [pyGallinero](proyectos/pyGallinero.md)
 * [pyMaquinasExpendedoras](proyectos/pyMaquinasExpendedoras.md)
