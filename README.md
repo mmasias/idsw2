@@ -3,7 +3,7 @@ Repo de materiales y proyectos de la asignatura **Ingeniería del Software II** 
 
 ## Curso [21][22]
 * [Temario](temario.md)
-* [Proyectos por abordar](proyectos.md)
+* [Proyectos que abordaremos:](proyectos.md): Ascensores, aspiradora, laberinto, batallas, et al...
 * [Grupos](grupos.md)
 
 ## Algunos links
