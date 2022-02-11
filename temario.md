@@ -11,7 +11,6 @@
   * Cliente - Servidor
   * Tuberías y filtros
 ## Análisis orientado a objetos
-* Principios de análisis
 * Principios de análisis	
 * Métodos de análisis	
 * Análisis del dominio	
