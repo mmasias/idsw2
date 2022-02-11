@@ -1,7 +1,11 @@
 # idsw2
-Repo de materiales y proyectos de la asignatura Ingeniería del Software II de la Universidad Europea del Atlántico. 
+Repo de materiales y proyectos de la asignatura **Ingeniería del Software II** de la Universidad Europea del Atlántico. 
 
 ## Curso [21][22]
 * [Temario](temario.md)
 * [Proyectos por abordar](proyectos.md)
 * [Grupos](grupos.md)
+
+## Algunos links
+* [PlantUML](http://www.plantuml.com) / [PlantText](http://www.planttext.com)
+
