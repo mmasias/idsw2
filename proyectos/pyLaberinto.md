@@ -1,6 +1,6 @@
 # pyLaberinto
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/CREnNKLTmqQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+[Vídeo en Youtube](https://www.youtube.com/embed/CREnNKLTmqQ)
 
 ## Tipos de terreno & caracterísicas
 
@@ -16,7 +16,7 @@
 |Aguas turbulentas|Sí, en bote|2:1|
 |Montañas|Si, con alfombra voladora|1:1|
 
- Se ha de implementar el ciclo de día / noche, incluyendo una representación del cielo y el sol.
+ Se ha de implementar el ciclo de día / noche, incluyendo una representación del cielo, del sol y de la reducción del campo de visión durante la noche.
 
 ## Transporte
 Los medios de transporte son:
@@ -28,7 +28,7 @@ Los medios de transporte son:
 
 ## NPCs
 
-## Generador de mapa
+## Ejemplo de un generador de mapa
 
 [Mapa en Google Spreadsheet](https://docs.google.com/spreadsheets/d/1T5UmyhdSU-Wn9zvgflbkldfbs4UWuRUDgouS8b5IqUI/edit?usp=sharing)
 
