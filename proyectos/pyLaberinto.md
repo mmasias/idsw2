@@ -1,5 +1,7 @@
 # pyLaberinto
 
+Implemente un mapa con las características de juego mostradas en el vídeo debajo.
+
 [Vídeo en Youtube](https://www.youtube.com/embed/CREnNKLTmqQ)
 
 ## Tipos de terreno & caracterísicas
