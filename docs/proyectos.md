@@ -22,11 +22,11 @@ Este punto está abierto a ajustes en función de la evolución de la asignatura
 
 ## Proyectos
 
-* ***[pyBatalla](proyectos/pyBatalla.md)***
-* ***[pyAspiradora](proyectos/pyAspiradora.md)***
-* ***[pyColas](proyectos/pyColas.md)***
-* ***[pyAscensores](proyectos/pyAscensores.md)***
-* [pyPillaPilla](proyectos/pyPillaPilla.md)
-* ***[pyLaberinto](proyectos/pyLaberinto.md)***
-* [pyGallinero](proyectos/pyGallinero.md)
-* ***[pyMaquinasExpendedoras](proyectos/pyMaquinasExpendedoras.md)***
+* ***[pyBatalla](../proyectos/pyBatalla.md)***
+* ***[pyAspiradora](../proyectos/pyAspiradora.md)***
+* ***[pyColas](../proyectos/pyColas.md)***
+* ***[pyAscensores](../proyectos/pyAscensores.md)***
+* [pyPillaPilla](../proyectos/pyPillaPilla.md)
+* ***[pyLaberinto](../proyectos/pyLaberinto.md)***
+* [pyGallinero](../proyectos/pyGallinero.md)
+* ***[pyMaquinasExpendedoras](../proyectos/pyMaquinasExpendedoras.md)***
