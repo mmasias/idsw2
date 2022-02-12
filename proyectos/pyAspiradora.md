@@ -45,7 +45,7 @@ Implemente la capacidad de “guiar” a la aspiradora, por si vemos que está i
 Implemente la capacidad de "percibir" la zona más sucia, de modo que la aspiradora pueda dirigir la limpieza en lugar de limpiar de modo aleatorio.
 
 ## Ideas extras
-
+```
 ***~~Represente la vista con emojis
 💩😸⬜🪑🦼🟨🟫⬛
 ⬜🟨🟨🟨🟨⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜
@@ -58,4 +58,5 @@ Implemente la capacidad de "percibir" la zona más sucia, de modo que la aspirad
 ⬜⬜⬜🪑🪑🪑⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜
 ⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜
 ⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜~~***
+```
 
