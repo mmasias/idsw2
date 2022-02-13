@@ -1,5 +1,5 @@
 # idsw2
-Repo de materiales y proyectos de la asignatura **Ingeniería del Software II** de la [Universidad Europea del Atlántico](https://www.uneatlantico.es). 
+Repo de materiales y proyectos de la asignatura **Ingeniería del Software II** del (Grado de Ingeniería Informática)[https://www.uneatlantico.es/escuela-politecnica-superior/estudios-grado-oficial-en-ingenieria-informatica] la [Universidad Europea del Atlántico](https://www.uneatlantico.es). 
 
 ## Curso [21][22]
 * [Temario](docs/temario.md)
