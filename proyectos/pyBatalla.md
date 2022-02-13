@@ -13,16 +13,18 @@ puntos respectivamente.
 ||Ataque|% éxito|
 |-|-|-|
 |Arma 1|7|50%|
-|Arma 1|15|25%|
-|Arma 1|30|12%|
+|Arma 2|15|25%|
+|Arma 3|30|12%|
+
+Las armas sufren un proceso de desgaste (10% de desgaste cada 10 golpes), conforme se van utilizando. La efectividad del arma es proporcional a su desgaste. 
 
 ### Armas Vampiresa
 
 ||Ataque|% éxito|
 |-|-|-|
-|Arma 1|5|90%|
-|Arma 1|10|60%|
-|Arma 1|20|40%|
+|Ataque 1|5|90%|
+|Ataque 2|10|60%|
+|Ataque 3|20|40%|
 
 ## Defensa
 
@@ -35,7 +37,7 @@ La Heroína no puede atacar cuando se defiende.
 
 ## Desarrollo del juego
 
-El usuario controla las acciones de la Heroína, pudiendo elegir el arma en cada turno de batalla.
+El usuario controla las acciones de la Heroína, pudiendo elegir el arma o defenderse en cada turno de batalla.
 
 El programa controla las acciones de la vampiresa, eligiendo aleatoriamente el ataque que realiza. Los tres ataques
 tienen la misma probabilidad de ser elegidos.
