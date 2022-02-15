@@ -9,8 +9,8 @@ Se ha de implementar un sistema que permita gestionar las máquinas expendedoras
 
 Estas máquinas expendedoras permiten pagar con los siguientes billetes (otras denominaciones no son aceptadas):
 
-|Cantidad en Máquina 1	|Cantidad en Máquina 2	|Cantidad en Máquina 3|
-|-|-|-|
+|Billete o Moneda|Cantidad en Máquina 1	|Cantidad en Máquina 2	|Cantidad en Máquina 3|
+|-|-|-|-|
 |20 €	|3	|3	|3  |
 |10 €	|1	|2	|1  |
 |5 €	|2	|3	|3  |
