@@ -11,7 +11,7 @@ El resultado final será un conjunto de versiones de la misma aplicación, cada 
 
 Se ha de plantear un conjunto breve de herramientas de requisitado, como referencia para el desarrollo del proyecto, en la forma de diagrama(s) que describan el ***modelo del dominio***:
 
-* Diagramas de clases *&& ||* Diagramas de objetos
+* Diagramas de clases *&& ||* diagramas de objetos
 * Diagramas de estados
 
 La solución avanzada hasta la fecha y su código fuente.
@@ -19,7 +19,7 @@ La solución avanzada hasta la fecha y su código fuente.
 ### Forma de trabajo
 
 * Una rama (y dentro de esa rama, una carpeta) del repo principal por grupo
-* Al menos un commit por cada entrega.
+* Hacer un pull request a la rama de su grupo.
 * Tiempo de trabajo: a aplicar luego de la clase de los principios indicados.
 * Exposición.
 
