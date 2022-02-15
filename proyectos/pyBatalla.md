@@ -39,8 +39,7 @@ La Heroína no puede atacar cuando se defiende.
 
 El usuario controla las acciones de la Heroína, pudiendo elegir el arma o defenderse en cada turno de batalla.
 
-El programa controla las acciones de la vampiresa, eligiendo aleatoriamente el ataque que realiza. Los tres ataques
-tienen la misma probabilidad de ser elegidos.
+El programa controla las acciones de la vampiresa, eligiendo aleatoriamente el ataque que realiza. Los tres ataques tienen la misma probabilidad de ser elegidos.
 
 ### Desmayos
 
@@ -53,3 +52,7 @@ La Heroína cuenta con la posibilidad de beber una poción que le permita recupe
 Para que esta poción haga efecto ha de pasar un tiempo de 3 turnos, durante los cuales la Heroína no puede ni atacar ni defenderse, aunque sí recibe ataques. 
 
 Pasado el tiempo, si ha sobrevivido, la Heroína recupera su energía.
+
+### Horda de vampiresas
+
+Extienda su programa para que la Heroína sea atacada por una horda de 3 vampiresas. En este caso, la Heroína amplía su energía inicial a 250 puntos.
