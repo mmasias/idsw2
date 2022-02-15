@@ -1,4 +1,4 @@
-Durante la asignatura se desarrollará un proyecto por grupo, abordad, ***inicialmente*** de forma libre, con los conocimientos que tengan los alumnos (en grupos de 3 o 4 personas). 
+Durante la asignatura se desarrollará un proyecto por grupo, abordado ***inicialmente*** con los conocimientos que tengan los alumnos (en grupos de 3 o 4 personas). 
 
 A lo largo de la asignatura han de ir ***evolucionando***, mediante la aplicación de los conceptos de análisis y diseño que [vayamos viendo](temario.md) en la misma. 
 
