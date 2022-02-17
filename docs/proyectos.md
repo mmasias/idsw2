@@ -9,7 +9,7 @@ El resultado final será un conjunto de versiones de la misma aplicación, cada 
 
 > **Fecha:** 24/02/2022
 
-Se ha de plantear un conjunto breve de herramientas de requisitado, como referencia para el desarrollo del proyecto, en la forma de diagrama(s) que describan el ***modelo del dominio***:
+Se ha de plantear un conjunto muy breve de herramientas de requisitado, como referencia para el desarrollo del proyecto, en la forma de diagrama(s) que describan el ***modelo del dominio***:
 
 * Diagramas de clases *&& ||* diagramas de objetos
 * Diagramas de estados
