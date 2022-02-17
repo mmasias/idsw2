@@ -1,15 +1,25 @@
-Los proyectos a desarrollar serán abordados, ***inicialmente*** de forma libre, con los conocimientos que tengan los alumnos (en grupos de 3 o 4 personas). 
+Durante la asignatura se desarrollará un proyecto por grupo, abordado ***inicialmente*** con los conocimientos que tengan los alumnos (en grupos de 3 o 4 personas). 
 
-Se ha de plantear un diagrama que nos describa el ***modelo del dominio*** como referencia para el desarrollo del proyecto.
-
-A lo largo de la asignatura han de ir evolucionando, mediante la aplicación de los conceptos de análisis y diseño que se vayan viendo en la misma. 
+A lo largo de la asignatura han de ir ***evolucionando***, mediante la aplicación de los conceptos de análisis y diseño que [vayamos viendo](temario.md) en la misma. 
 
 El resultado final será un conjunto de versiones de la misma aplicación, cada una evolucionada según un principio aprendido.
 
-## Forma de trabajo
+## Entregas
+### Primera entrega / presentación
 
-* Un repo por grupo.
-* Al menos un commit por cada principio.
+> **Fecha:** 24/02/2022
+
+Se ha de plantear un conjunto muy breve de herramientas de requisitado, como referencia para el desarrollo del proyecto, en la forma de diagrama(s) que describan el ***modelo del dominio***:
+
+* Diagramas de clases *&& ||* diagramas de objetos
+* Diagramas de estados
+
+La solución avanzada hasta la fecha y su código fuente.
+
+### Forma de trabajo
+
+* Una rama (y dentro de esa rama, una carpeta) del repo principal por grupo
+* Hacer un pull request a la rama de su grupo.
 * Tiempo de trabajo: a aplicar luego de la clase de los principios indicados.
 * Exposición.
 
@@ -22,11 +32,11 @@ Este punto está abierto a ajustes en función de la evolución de la asignatura
 
 ## Proyectos
 
-* ***[pyBatalla](../proyectos/pyBatalla.md)***
-* ***[pyAspiradora](../proyectos/pyAspiradora.md)***
-* ***[pyColas](../proyectos/pyColas.md)***
-* ***[pyAscensores](../proyectos/pyAscensores.md)***
-* [pyPillaPilla](../proyectos/pyPillaPilla.md)
-* ***[pyLaberinto](../proyectos/pyLaberinto.md)***
-* [pyGallinero](../proyectos/pyGallinero.md)
-* ***[pyMaquinasExpendedoras](../proyectos/pyMaquinasExpendedoras.md)***
+* [pyBatalla](../proyectos/pyBatalla.md)
+* [pyAspiradora](../proyectos/pyAspiradora.md)
+* [pyColas](../proyectos/pyColas.md)
+* [pyAscensores](../proyectos/pyAscensores.md)
+* [pyLaberinto](../proyectos/pyLaberinto.md)
+* [pyMaquinasExpendedoras](../proyectos/pyMaquinasExpendedoras.md)
+
+
