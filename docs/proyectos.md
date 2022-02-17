@@ -5,12 +5,12 @@ A lo largo de la asignatura han de ir ***evolucionando***, mediante la aplicaci�
 El resultado final será un conjunto de versiones de la misma aplicación, cada una evolucionada según un principio aprendido.
 
 ### Forma de trabajo
-> He preparado un usuario de pruebas (Ibuprofeno Fernández) que ha seguido los lineamientos indicados en esta sección. Pueden explorar su repo (y el fork que ha hecho de este repo) en https://github.com/ibuprofenofernandez/idsw2
-* Fork (no clon!) del repo principal (https://github.com/mmasias/idsw2). 
-* En su repo, una carpeta dentro de la carpeta /proyectos conteniendo su trabajo.
-  * La organización de su carpeta de trabajo se deja a libre elección, pero siempre dentro de un esquema lógico (si se ve necesario, lo reorganizamos). 
+> He preparado un usuario de pruebas (Ibuprofeno Fernández) que ha seguido los lineamientos que se indican a continuación. Pueden explorar su repo (así como su fork de la repo de la asignatura) en https://github.com/ibuprofenofernandez/idsw2
+* Fork del repo principal (https://github.com/mmasias/idsw2). 
+* Ya en su repo, una carpeta dentro de la carpeta /proyectos conteniendo su trabajo.
+  * La organización de su carpeta de trabajo se deja a libre elección, pero siempre dentro de un esquema lógico (si en un momento de la revisión se ve necesario, ya lo reorganizaremos). 
   * Una sugerencia podría ser una carpeta para la documentación, otra para el código de su solución.  
-* Cuando tengan avances, hacer desde su fork un pull request al repo de la asignatura, apuntando a la rama de su grupo.
+* Cuando tengan avances, desde su fork realizan un pull request al repo de la asignatura, apuntando a la rama de su grupo.
 * Tiempo de trabajo: a aplicar luego de la clase de los principios indicados. Para cada entrega iremos indicando tiempos.
 * Exposición.
 
@@ -25,6 +25,8 @@ Se ha de plantear un conjunto breve de herramientas de requisitado, como referen
 * Diagramas de estados
 
 La solución avanzada hasta la fecha y su código fuente.
+
+Se sugiere el uso de [PlantUML](https://plantuml.com/es/) para los diagramas.
 
 ## Los no funcionales ;)
 
