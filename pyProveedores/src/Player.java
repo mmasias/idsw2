@@ -7,5 +7,24 @@ public abstract class Player implements Drawable {
         this.position = position;
     }
 
-    public abstract void Move();
+    public Position getPosition() {
+        return position;
+    }
+
+    public void Move(Direction direction, int amount) {
+        switch (direction) {
+            case UP:
+                this.position.setY(position.getY() - amount);
+                break;
+            case DOWN:
+                position.setY(position.getY() + amount);
+                break;
+            case LEFT:
+                position.setX(position.getX() - amount);
+                break;
+            case RIGHT:
+                position.setX(position.getX() + amount);
+                break;
+        }
+    }
 }

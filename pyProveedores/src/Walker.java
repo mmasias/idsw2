@@ -4,11 +4,6 @@ public class Walker extends Player {
     }
 
     @Override
-    public void Move() {
-
-    }
-
-    @Override
     public String getAvatar() {
         return "UnU";
     }
