@@ -1,3 +1,6 @@
+package structures.classes;
+
+import structures.enums.Direction;
 import structures.interfaces.Drawable;
 
 public abstract class Player implements Drawable {
@@ -26,5 +29,9 @@ public abstract class Player implements Drawable {
                 position.setX(position.getX() + amount);
                 break;
         }
+    }
+
+    public Player getPlayerType(PlayerType playerType) {
+        
     }
 }
