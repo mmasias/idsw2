@@ -1,12 +1,12 @@
 package structures.classes;
 
-public class Walker extends Player {
-    public Walker(Position position) {
+public class Horse extends Player {
+    public Horse(Position position) {
         super(position);
     }
 
     @Override
     public String getAvatar() {
-        return "WnW";
+        return "HnH";
     }
 }

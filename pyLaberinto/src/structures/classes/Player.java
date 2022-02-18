@@ -39,11 +39,11 @@ public abstract class Player implements Drawable {
     public Player getPlayerType(PlayerType playerType, Position position) {
         switch (playerType) {
             case BOAT:
-                return new Walker(position);
+                return new Boat(position);
             case HORSE:
-                return new Walker(position);
+                return new Horse(position);
             case CARPET:
-                return new Walker(position);
+                return new Carpet(position);
             case WALKER:
                 return new Walker(position);
             default:
