@@ -1,6 +1,7 @@
 package structures.classes;
 
 import structures.enums.Direction;
+import structures.enums.PlayerType;
 import structures.interfaces.Drawable;
 
 public abstract class Player implements Drawable {
@@ -35,7 +36,18 @@ public abstract class Player implements Drawable {
         }
     }
 
-//    public Player getPlayerType(PlayerType playerType) {
-//
-//    }
+    public Player getPlayerType(PlayerType playerType, Position position) {
+        switch (playerType) {
+            case BOAT:
+                return new Walker(position);
+            case HORSE:
+                return new Walker(position);
+            case CARPET:
+                return new Walker(position);
+            case WALKER:
+                return new Walker(position);
+            default:
+                return null;
+        }
+    }
 }
