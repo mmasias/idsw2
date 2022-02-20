@@ -1,0 +1,2 @@
+Además de los PDFs contenidos en esta carpeta, a continuación links a artículos online:
+* [Computer science vs Software engineering](https://interestingengineering.com/computer-science-vs-software-engineering-how-are-they-different)
