@@ -10,4 +10,5 @@ Repo de materiales y proyectos de la asignatura **Ingeniería del Software II** 
 * [PlantUML](http://www.plantuml.com) / [PlantText](http://www.planttext.com)
 * [Personalización de consola Windows](https://www.hanselman.com/blog/my-ultimate-powershell-prompt-with-oh-my-posh-and-the-windows-terminal)
 ### Lecturas recomendadas
+PDFs de lecturas recomendadas en la [carpeta de este repo](./lecturas/). Además, a continuación links a artículos online:
 * [Computer science vs Software engineering](https://interestingengineering.com/computer-science-vs-software-engineering-how-are-they-different)
