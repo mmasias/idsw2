@@ -8,6 +8,6 @@ Repo de materiales y proyectos de la asignatura **Ingeniería del Software II** 
 
 ## Algunos links
 * [PlantUML](http://www.plantuml.com) / [PlantText](http://www.planttext.com)
-* [Personalización de consola Windows](https://www.hanselman.com/blog/my-ultimate-powershell-prompt-with-oh-my-posh-and-the-windows-terminal)
+* Personalización de consolas: [Windows](https://www.hanselman.com/blog/my-ultimate-powershell-prompt-with-oh-my-posh-and-the-windows-terminal) / [Mac](https://ohmyposh.dev/docs/macos)
 ## Lecturas recomendadas
 PDFs de lecturas recomendadas en la [carpeta de este repo](./lecturas/).
