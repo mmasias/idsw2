@@ -220,13 +220,15 @@ Incluso aunque ninguna avance tecnológico prometa dar el tipo de resultado mág
 
 Todos los ataques tecnológicos a los accidentes en el proceso del software están limitados fundamentalmente por la ecuación de la productividad:
 
-
+![](../images/noSilverBulletEquation.png)
 
 Si, como creo, los componentes conceptuales de la tarea están ocupando ahora la mayoría del tiempo, entonces ninguna actividad sobre las partes necesarias del trabajo que consistan simplemente en la expresión de los conceptos dará grandes ganancias de productividad.
 
 Deberíamos centrarnos en aquellos ataques sobre la esencia del problema del software, la formulación de estructuras conceptuales complejas. Afortunadamente, algunos de estos ataques son prometedores.
 
-**Comprar vs construir.** La solución más radical para construir software es no hacerlo.
+### Comprar vs construir
+
+La solución más radical para construir software es no hacerlo.
 
 Cada día esto es más fácil, ya que más y más vendedores ofrecen más y mejor software de una asombrosa variedad de aplicaciones. Mientras los ingenieros de software hemos trabajo en la metodología de producirlo, la revolución del PC ha creado no uno, sino muchos mercados masivos para el software. Cada revista mensual, ordenada por tipo de máquina, anuncia y revisa docenas de productos a precios por debajo de los cientos de Euros. Las fuentes más especializadas ofrecen productos muy potentes para los mercados de las estaciones de trabajo y el mercado Unix. Incluso herramientas de software y entornos pueden comprarse sin problemas. Yo mismo he propuesto un mercado para módulos individuales [9]
 
@@ -246,7 +248,9 @@ Muchos usuarios operan ahora sus propios ordenadores con diversas aplicaciones s
 
 Creo que la más potente estrategia de productividad del software para muchas organizaciones de hoy es equipar a los trabajadores intelectuales que están en primera linea con PCs y programas generalistas de hoja de cálculo, ficheros, dibujo y proceso de textos y dejar que se las apañen. La misma estrategia, con paquetes de estadística y matemáticas y algunas capacidades simples de programación, funcionarían con centenares de científicos de laboratorio.
 
-**Refinamiento de requisitos y prototipado rápido.** La parte más dura de hacer software es, precisamente, decidir lo que hacer. Ninguna otra de las partes en que se divide este trabajo es tan difícil como establecer los requisitos técnicos detallados, incluyendo todas las interfaces con la personas, las máquinas y los otros sistemas de software. Ninguna otra parte del trabajo destroza tanto el resultado final si se hace mal. Ninguna otra parte resulta tan díficil de rectificar a posteriori.
+### Refinamiento de requisitos y prototipado rápido
+
+La parte más dura de hacer software es, precisamente, decidir lo que hacer. Ninguna otra de las partes en que se divide este trabajo es tan difícil como establecer los requisitos técnicos detallados, incluyendo todas las interfaces con la personas, las máquinas y los otros sistemas de software. Ninguna otra parte del trabajo destroza tanto el resultado final si se hace mal. Ninguna otra parte resulta tan díficil de rectificar a posteriori.
 
 Por tanto, la función más importante que realiza el diseñador de software para el cliente es la extracción iterativa y el refinamiento de los requisitos del producto. La verdas es que el cliente no sabe lo que quiere. El cliente normalmente no sabe que preguntas deben ser respondidas, y casi nunca ha pensado en los detalles del problema necesarios para la especificación. Incluso la simple respuesta ("Haz que el nuevo software trabaje como nuestro viejo sistema de procesado manual de la información") es de hecho demasiado simple. Uno nunca quiere exactamente eso. Es más, los sistemas de software complejos son cosas que actúan, se mueven, que trabajan. La dinámica de esa acción son difíciles de imaginar. Por tanto, al planificar cualquier actividad de diseño de software, es necesario permitir un trabajo iterativo extensivo entre el cliente y el diseñador como parte de la definición del sistema.
 
@@ -258,7 +262,9 @@ Un prototipo de software es uno que simula las interfaces más importantes e imp
 
 Gran parte del procedimiento de adquisición de software de hoy en día descansa en asumir que uno puede especificar de forma satisfactoria un sistema por anticipado, pagar lo necesario para que se construya, tenerlo construido e instalarlo. Creo que asumir esto es algo fundamentalmente erroneo, y que muchos problemas relativos a la adquisición de software se deben a esa falacia. A partir de ese momento, no podrán ser solucionados sin revisiones de sus fundamentos, revisiones que implican desarrollo iterativo y especificación de prototipos y productos.
 
-Desarrollo incremental: hacer crecer en vez de construir software. Todavía recuerdo la sacudida que sentí en 1958 cuando escuche por primera vez a un amigo hablando de construir un programa, como algo opuesto a escribirlo. Como en un fogonazo, el cambió mi forma de ver el proceso del software. La metáfora era potente y precisa. Hoy comprendemos mejor como se asemeja la construcción del software a otros procesos de contrucción y usamos libremente otros elementos de la metáfora, tales como especificaciones, ensamblaje de componentes, y andamiaje (scaffolding).
+### Desarrollo incremental: hacer crecer en lugar de construir software
+
+Todavía recuerdo la sacudida que sentí en 1958 cuando escuche por primera vez a un amigo hablando de construir un programa, como algo opuesto a escribirlo. Como en un fogonazo, el cambió mi forma de ver el proceso del software. La metáfora era potente y precisa. Hoy comprendemos mejor como se asemeja la construcción del software a otros procesos de contrucción y usamos libremente otros elementos de la metáfora, tales como especificaciones, ensamblaje de componentes, y andamiaje (scaffolding).
 
 La metáfora de la construcción ha sobrevivido a su utilidad. Es el momento de cambiar una vez más. Si, como yo creo, las escructuras conceptuales que construimos hoy son demasiado complicadas para ser especificadas de forma precisa de forma temprana, y demasiado complejas para ser construidas sin fallos, debemos tomar una aproximación radicalmente diferente
 
@@ -272,7 +278,9 @@ Los efectos en la moral son asombrosos. El entusiasmo salta cuando hay un sitema
 
 Los mismos beneficios se obsevan tanto en proyectos enormes como en los más pequeños. [11]
 
-**Grandes diseñadores.** La cuestión central sobre como mejorar el arte del software se centra, como siempre, en la gente.
+### Grandes diseñadores
+
+La cuestión central sobre como mejorar el arte del software se centra, como siempre, en la gente.
 
 Podemos conseguir buenos diseños siguiendo prácticas buenas en lugar de pobres. Las buenas prácticas de diseño pueden enseñarse. Los programadores están entre los más inteligentes entre la población, por lo que pueden aprender buenas prácticas. A partir de ahora, uno de los mayores obligación en USA debería ser promulgar prácticas buenas y modernas. Nuevos curriculums, nueva literatura, nuevas organizaciones tales com el Software Engineering Institute, todas deberían enfocarse en subir el nivel de nuestras prácticas de uno pobre a otro bueno. Esto es completamente apropiado.
 
@@ -282,11 +290,19 @@ Las diferencias no son menores: son similares a las diferencias entre Salieri y 
 
 Una pequeña mirada retrospectiva muestra que aunque mucho software bueno y útil ha sido diseñado por comités y fabricado como parte de proyectos con varios apartados, aquellos sistemas de software que tienen fans excitados y apasionados son aquellos que son el producto de uno o sólo unos pocos diseñadores excelentes. Pensemos en Unix, APL, Pascal, Modula, Smalltalk, incluso Fortran; y comparámoslos con Cobol, PL/I, Algol, MVS/370, y MS-DOS. (Vea la Tabla 1.)
 
+Exitante|No exitante|
+-|-|
+Unix | Cobol
+APL | PL/1
+Pascal | Algol
+Modula | MVS/370
+Smalltalk | MS-DOS
+Fortran | 
+***Tabla 1***
+
 Por tanto, aunque apoyo fuertemente los esfuerzos actuales para la transferencia de tecnología y la formación, creo que el esfuerzo individual más importante que podemos hacer es desarrollar las formas de que surgan grandes diseñadores.
 
 Ninguna organización dedicada al software puede ignorar este desafío. Los buenos gestores, aunque escasos, no lo son tanto como los buenos diseñadores. Los diseñadores y gestores excelentes son incluso más raros. La mayoría de las organizaciones realizan esfuerzos considerables buscando y cultivando a sus gestores; no conozco a ninguna que realice esfuerzos equivalentes para encontrar y desarrollar a los diseñadores excelentes de los que depende en última instancia la excelencia técnica de los productos.
-
-Tabla 1. Software Excitante Vs. Util pero No excitante. Excitante No Excitante Unix Cobol APL PL/I Pascal Algol Modula MVS/370 Smalltalk MS-DOS Fortran -
 
 Mi primera propuesta es que las organizaciones de software debe determinar y proclamar que los diseñadores excelentes son tan importantes para su éxito como los gestores excelentes, y que deben esperar ser recompensados y arropados de la misma forma. No sólo en el salario, sino el resto de los requisitos -- tamaño de la oficina, mobiliario, equipamiento, gastos para viajes, personal de apoyo -- deben ser equivalentes.
 
@@ -297,8 +313,8 @@ Como desarrollar a los diseñadores excelentes? El espacio no me permite una dis
 * Idear y mantener un plan de desarrollo de carrera para cada una de las jovenes promesas, incluyendo aprendizaje junto a diseñadores excelentes cuidadosamente seleccionados, episodios de educación formal avanzada y cursillos, todo entrelazado con asignación de diseños solitarios y liderazgo técnico.
 * Dar oportunidades para que los diseñadores en desarrollo interactúen y se estimulen con otros.
 
-AcknowledgmentsI thank Gordon Bell, Bruce Buchanan, Rick Hayes-Roth, Robert Patrick, and, most especially, David Parnas for their insights and stimulating ideas, and Rebekah Bierly for the technical production of this article.
 
+---
 REFERENCES
 
 [1]
