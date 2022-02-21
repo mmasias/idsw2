@@ -40,7 +40,6 @@ de la estructura proceden los estados no previstos|agujeros de seguridad|
     * Compiten entre ellos.
     * *& los no funcionales...*
 
-
 ---
 
 # Software: complejidad
@@ -48,12 +47,12 @@ de la estructura proceden los estados no previstos|agujeros de seguridad|
 * Por el tamaño de los sistemas (a.k.a. líneas de código).
 * Por los equipos heterogéneos.
 
-
 ---
 
 # Software: complejidad
 ## A causa de la flexibilidad
 * Por la flexibilidad que ofrece para expresar procesos tanto triviales como complejos.
+
 ---
 
 # Software: complejidad
