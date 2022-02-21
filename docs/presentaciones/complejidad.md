@@ -1,6 +1,5 @@
 ---
 marp: true
-
 ---
 # Software: complejidad
 
@@ -11,11 +10,14 @@ La complejidad del software es una propiedad esencial, no accidental.
 ---
 # Software: complejidad
 
-* De la complejidad procede la dificultad de comunicación entre los miembros del equipo, que conduce a productos defectuosos, sobrecostes y retrasos. 
-* De la complejidad procede la dificultad de enumerar, y aún más comprender, todos los posibles estados del programa, y de hay procede la falta de fiabilidad. 
-* De la complejidad de la función procede la dificultad de llamar a la función, lo que hace difícil de usar al programa. 
-* De la complejidad de la estructura procede la dificultad en extender el programa para realizar nuevas funciones sin crear efectos laterales. 
-* De la complejidad de la estructura proceden los estados no previstos que se convierten en agujeros en la seguridad.
+
+De la complejidad...|Que lleva / conduce / produce|
+-|-|
+procede la dificultad de comunicación entre los miembros del equipo|productos defectuosos, sobrecostes y retrasos|
+procede la dificultad de enumerar, y aún más comprender, todos los posibles estados del programa|falta de fiabilidad|
+de las funciones procede la dificultad de llamar a las funciones|dificulta usar el programa|
+de la estructura procede la dificultad de extender el programa sin crear efectos laterales no deseados||
+de la estructura proceden los estados no previstos|agujeros de seguridad|
 
 ---
 # Software: complejidad
