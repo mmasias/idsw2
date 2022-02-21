@@ -1,6 +1,6 @@
 ---
 marp: true
-paginate: true
+
 ---
 # Software: complejidad
 
@@ -17,7 +17,6 @@ La complejidad del software es una propiedad esencial, no accidental.
 * De la complejidad de la estructura procede la dificultad en extender el programa para realizar nuevas funciones sin crear efectos laterales. 
 * De la complejidad de la estructura proceden los estados no previstos que se convierten en agujeros en la seguridad.
 
-
 ---
 # Software: complejidad
 
@@ -27,8 +26,28 @@ La complejidad del software es una propiedad esencial, no accidental.
 * Al caracterizar el comportamiento de sistemas discretos
 * Las limitaciones de la capacidad humana
 
-
 ---
 
 # Software: complejidad
 ## Del dominio del problema
+
+---
+
+# Software: complejidad
+## De administrar el proceso de desarrollo
+---
+
+# Software: complejidad
+## A causa de la flexibilidad
+---
+
+# Software: complejidad
+## Al caracterizar el comportamiento de sistemas discretos
+
+---
+
+# Software: complejidad
+## Las limitaciones de la capacidad humana
+
+---
+
