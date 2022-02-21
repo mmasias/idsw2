@@ -1,6 +1,6 @@
 package structures.classes.surfaces;
 
-import structures.classes.Player;
+import structures.classes.players.Player;
 
 public class Wall extends Surface {
     public Wall() {

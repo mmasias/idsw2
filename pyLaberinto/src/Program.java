@@ -1,10 +1,21 @@
+import structures.classes.Maze;
+import structures.classes.Position;
+import structures.classes.players.Player;
+import structures.classes.surfaces.Surface;
+import structures.enums.PlayerType;
 import structures.interfaces.Drawable;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class Program {
     public static void main(String[] args) {
-        System.out.println("I work");
+        Maze maze = new Maze(generateMaze(), Player.getPlayerType(PlayerType.WALKER, new Position(9, 23)));
+        maze.printMaze();
+        System.out.println();
+        maze.printFullMaze();
     }
 
     public static List<List<Drawable>> generateMaze() {
@@ -75,7 +86,20 @@ public class Program {
                 {6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6}
         };
 
-        return null;
+//        List<List<Drawable>> maze = new ArrayList<List<Drawable>>();
+//
+//        for (int y = 0; y < mazeTemplate[y].length; y++) {
+//            List<Drawable> list = new ArrayList<Drawable>();
+//            for (int x = 0; x < mazeTemplate[y][x]; x++) {
+//                list.add()
+//            }
+//        }
+
+        return IntStream.range(0, mazeTemplate.length).mapToObj(el -> {
+            return IntStream.of(mazeTemplate[el]).mapToObj(elem -> {
+                return (Drawable) Surface.getSurface(elem);
+            }).collect(Collectors.toList());
+        }).collect(Collectors.toList());
     }
 }
 
