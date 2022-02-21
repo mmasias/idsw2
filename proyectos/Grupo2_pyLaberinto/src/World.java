@@ -1,5 +1,6 @@
+package src;
+
 public class World{
-    
     static int[][] maze = {
         {3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3},
         {3,3,3,3,3,3,3,7,7,2,2,3,3,3,3,3,3,3,2,2,3,3,3,3,3,3,3,3,3,3,3,3,3,2,2,2,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3},
@@ -145,4 +146,59 @@ public class World{
         {3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3},
         {3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3}
     };
+
+    static int row = 0;
+	static int column = 0;
+	static int actualRow=57;
+	static int actualColumn=27;
+    static int viewport = 8;
+    static int torch = 100;
+
+    public static void showMaze() {
+        for (row=0; row<maze.length; row = row+1) {
+            if ((actualRow+viewport>=row)&&(actualRow-viewport<=row)) {
+                System.out.print("\033[0;30;44m" + "   " + "\033[0m");
+                for (column=0; column<maze[row].length; column = column+1) {
+                    
+                    if (row==actualRow && column==actualColumn) {
+                        System.out.print("_O_");
+                    } else if((actualColumn+viewport>=column)&&(actualColumn-viewport<=column)) {
+                        if ((Math.pow(actualRow-row,2)+Math.pow(actualColumn-column,2))<=(Math.pow(torch,2))) {
+                            if      (maze[row][column]==0){
+                                System.out.print("\033[0;37;40m" + "/#\\" + "\033[0m");
+                            }	
+                            else if (maze[row][column]==1){
+                                System.out.print("\033[1;37;40m" + "]=[" + "\033[0m");
+                            }	
+                            else if (maze[row][column]==2){
+                                System.out.print("\033[3;34;1;90m" + ".:'" + "\033[0m");
+                            }	
+                            else if (maze[row][column]==3){
+                                System.out.print("\033[3;34;0;104m" + " ~ " + "\033[0m");
+                            }	
+                            else if (maze[row][column]==4){
+                                System.out.print("\033[1;32;1;92m" + ". '" + "\033[0m");
+                            }	
+                            else if (maze[row][column]==5){
+                                System.out.print("\033[0;37;40m" + "[#]" + "\033[0m");
+                            }
+                            else if (maze[row][column]==6){
+                                System.out.print("\033[1;32;1;92m" + ":::" + "\033[0m");
+                            }	
+                            else if (maze[row][column]==7){
+                                System.out.print("\033[0;31;42m" + "*" + "\033[0m" + "\033[1;30;42m" + "Y" + "\033[0m" + "\033[0;31;42m" + "*" + "\033[0m");
+                            }
+                            else if (maze[row][column]==9){
+                                System.out.print("\033[0;37;40m" + "/" + "\033[0m" +"\033[0;37;40m" + "\\" + "\033[0m" + "\033[1;37;40m" + "^" + "\033[0m");
+                            }
+                        } else {
+                            System.out.print("\033[0;30;40m" + " . " + "\033[0m");
+                        }
+                    }
+                }
+                System.out.println("\033[0;30;44m" + "   " + "\033[0m");
+            }
+        }
+        System.out.print("\033[0;30;44m" + "   " + "\033[0m");for(int i=0;i<=viewport*2;i=i+1){System.out.print("\033[0;30;44m" + "   " + "\033[0m");}System.out.println("\033[0;30;44m" + "   " + "\033[0m");	
+    }
 }
