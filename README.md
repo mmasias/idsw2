@@ -7,7 +7,7 @@ Repo de materiales y proyectos de la asignatura **Ingeniería del Software II** 
 * [Grupos](docs/grupos.md)
 
 ## Algunos links
-* [PlantUML](http://www.plantuml.com) / [PlantText](http://www.planttext.com)
+* [PlantUML](http://www.plantuml.com) / [PlantText](http://www.planttext.com) / [Mermaid](https://github.com/mermaid-js/mermaid)
 * Personalización de consolas: [Windows](https://www.hanselman.com/blog/my-ultimate-powershell-prompt-with-oh-my-posh-and-the-windows-terminal) / [Mac](https://ohmyposh.dev/docs/macos)
 ## Lecturas recomendadas
 PDFs de lecturas recomendadas en la [carpeta de este repo](./lecturas/).
