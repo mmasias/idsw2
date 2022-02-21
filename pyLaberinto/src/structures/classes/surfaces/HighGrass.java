@@ -1,6 +1,7 @@
 package structures.classes.surfaces;
 
-import structures.classes.Player;
+import structures.classes.players.Horse;
+import structures.classes.players.Player;
 
 public class HighGrass extends Surface {
     public HighGrass() {
@@ -9,7 +10,6 @@ public class HighGrass extends Surface {
 
     @Override
     public boolean canAdvance(Player player) {
-//        return player instanceof Horse;
-        return false;
+        return player instanceof Horse;
     }
 }

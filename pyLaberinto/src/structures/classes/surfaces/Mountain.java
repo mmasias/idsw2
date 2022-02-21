@@ -1,6 +1,7 @@
 package structures.classes.surfaces;
 
-import structures.classes.Player;
+import structures.classes.players.Carpet;
+import structures.classes.players.Player;
 
 public class Mountain extends Surface{
     public Mountain() {
@@ -9,7 +10,6 @@ public class Mountain extends Surface{
 
     @Override
     public boolean canAdvance(Player player) {
-//        return player instanceof Carpet;
-        return false;
+        return player instanceof Carpet;
     }
 }
