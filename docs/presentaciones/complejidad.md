@@ -32,15 +32,28 @@ de la estructura proceden los estados no previstos|agujeros de seguridad|
 
 # Software: complejidad
 ## Del dominio del problema
+* Modelado de un problema viene de la mano de requisitos.
+* A los requisitos ya los conocermos: 
+    * Son complejos de determinar.
+    * Se contradicen.
+    * Cambian.
+    * Compiten entre ellos.
+    * *& los no funcionales...*
+
 
 ---
 
 # Software: complejidad
 ## De administrar el proceso de desarrollo
+* Por el tamaño de los sistemas (a.k.a. líneas de código).
+* Por los equipos heterogéneos.
+
+
 ---
 
 # Software: complejidad
 ## A causa de la flexibilidad
+* Por la flexibilidad que ofrece para expresar procesos tanto triviales como complejos.
 ---
 
 # Software: complejidad
