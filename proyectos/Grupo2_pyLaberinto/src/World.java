@@ -161,7 +161,15 @@ public class World{
                 for (column=0; column<maze[row].length; column = column+1) {
                     
                     if (row==actualRow && column==actualColumn) {
-                        System.out.print("_O_");
+                        if (Characters.boat == false && Characters.horse == false && Characters.flyingCarpet == false) {
+                            System.out.print("_O_");
+                        } else if (Characters.boat == true) {
+                            System.out.print(":_;");
+                        } else if (Characters.horse == true) {
+                            System.out.print("_/*");
+                        } else if (Characters.flyingCarpet == true) {
+                            System.out.print("|_|");
+                        }
                     } else if((actualColumn+viewport>=column)&&(actualColumn-viewport<=column)) {
                         if ((Math.pow(actualRow-row,2)+Math.pow(actualColumn-column,2))<=(Math.pow(torch,2))) {
                             if      (maze[row][column]==0){
