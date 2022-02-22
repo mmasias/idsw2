@@ -1,53 +1,92 @@
 package structures.classes.time;
 
-import java.util.Date;
+import java.util.Arrays;
+import java.util.Calendar;
+//import java.util.Scanner;
 
 public class Time {
-    private int sunArray[] = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0};
-    private Date time;
-    private int playerMove = 0;
+    private static int sunArray[] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1};
+    private static int sanArray[] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+    private static int playerMove = 0;
+    private static Calendar day = Calendar.getInstance();
 
-
-    public static void main(String args[]) {
-        Calendar day = Calendar.getInstance();
-        day.set(Calendar.MILLISECOND, 0);
-        day.set(Calendar.SECOND, 0);
-        day.set(Calendar.MINUTE, 0);
-        day.set(Calendar.HOUR_OF_DAY, 0);
-        System.out.println(day.getTime());
-    }
-
-    Date d = cal.getTime();
-
-    public int[] moveSun(){
-        if (hourPas(1)){
-            int save,length=17;
-            save=sunArray[0];
-            for(int i=0;i<length-1;i++)
-            {
-                sunArray[i]=sunArray[i+1];
-            }
-            sunArray[i] =save;
+    public static int[] moveSun() {
+        int i, save, length = 13;
+        save = sunArray[0];
+        for (i = 0; i < length - 1; i++) {
+            sunArray[i] = sunArray[i + 1];
         }
+        sunArray[i] = save;
+        System.out.println(Arrays.toString(sunArray));
         return sunArray;
     }
 
-    public boolean hourPas(int move){
-        acumMove = acumMove + move;
-        if (acumMove == 12){
-            acumMove = 0;
-            return true;
-        } else {
-            return false;
-        }
+    public static int[] moveSan() {
+        System.out.println(Arrays.toString(sanArray));
+        return sanArray;
     }
 
-    public int countTime(){
+    public static void hourPas(int move) {
+        playerMove = playerMove + move;
+        // while validando hora xd uwu
+        if (playerMove == 12) {
+            playerMove = 0;
+            int hourPlus = day.get(Calendar.HOUR_OF_DAY);
+            day.set(Calendar.HOUR_OF_DAY, hourPlus + 1);
+            day.set(Calendar.MINUTE, 0);
+            //	printHour();
+            if (day.get(Calendar.HOUR_OF_DAY) > 19 || day.get(Calendar.HOUR_OF_DAY) < 7) {
+                moveSan();
+            } else {
+                moveSun();
+            }
+        } else {
+            int minutePlus = day.get(Calendar.MINUTE);
+            day.set(Calendar.MINUTE, minutePlus + 5);
+            //	printHour();
+            if (day.get(Calendar.HOUR_OF_DAY) > 19 || day.get(Calendar.HOUR_OF_DAY) < 7) {
+                System.out.println(Arrays.toString(sanArray));
+            } else {
+                System.out.println(Arrays.toString(sunArray));
+            }
+        }
 
+    }
+
+    public static void printHour() {
+        System.out.println("[" + day.get(Calendar.HOUR_OF_DAY) + "]" + "h" + "[" + day.get(Calendar.MINUTE) + "]m");
+    }
+
+    public static int setTime() {
+        day.set(Calendar.HOUR_OF_DAY, 7);
+        day.set(Calendar.MINUTE, 0);
+        day.set(Calendar.SECOND, 0);
+        //System.out.println(day.get(Calendar.HOUR_OF_DAY) + " " + day.get(Calendar.MINUTE));
         return 0;
     }
 
-}
+    public static void main(String[] args) {
+        //System.out.println("Uwi");
+        setTime();
+        //Scanner myScan = new Scanner(System.in); // Create a Scanner objectw
 
-// constructor de time que implemente eso
-// método de incremento de tiempo junto con el sol si cambia de hora
+        //System.out.println("AVANZA Crack");
+        //System.out.println(Arrays.toString(sunArray));
+        while (true) {
+            hourPas(1);
+            printHour();
+            //		String myScaned = myScan.nextLine(); // Read user input
+            try {
+                Thread.sleep(100);
+            } catch (InterruptedException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+            //	if (myScaned.equalsIgnoreCase("W")) {
+
+
+            //		}
+        }
+
+    }
+}
