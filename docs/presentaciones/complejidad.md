@@ -10,6 +10,13 @@ La complejidad del software es una propiedad esencial, no accidental.
 ---
 # Software: complejidad
 
+Los matemáticos crean teorías basadas en axiomas, suposiciones para cosas indiscutiblemente verdaderas. 
+
+Los arquitectos de software también construyen axiomas, pero el mundo del software es más blando que el de las matemáticas: las cosas fundamentales continúan cambiando a un ritmo rápido en el mundo del software.
+
+---
+# Software: complejidad
+
 De la complejidad...|Que lleva / conduce / produce|
 -|-|
 procede la dificultad de comunicación entre los miembros del equipo|productos defectuosos, sobrecostes y retrasos|
@@ -53,9 +60,8 @@ de la estructura proceden los estados no previstos|agujeros de seguridad|
 # Software: complejidad
 ## Al caracterizar el comportamiento de sistemas discretos
 
+
 ---
 # Software: complejidad
 ## Las limitaciones de la capacidad humana
 * El número de objetos que un humano promedio puede tener en la memoria es 7 ± 2 (*[Ley de Miller](https://es.wikipedia.org/wiki/El_m%C3%A1gico_n%C3%BAmero_siete,_m%C3%A1s_o_menos_dos)*)
-
-
