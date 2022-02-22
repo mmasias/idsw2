@@ -1,0 +1,38 @@
+@startuml
+class Time {
+  -Date secs
+}
+enum Direction {
+  UP
+  DOWN
+  LEFT
+  RIGHT
+}
+class Position {
+  int x
+  int y
+}
+interface Drawable{
+  +String getAvatar()
+}
+abstract Player {
+  +void Move(Direction direction, int amount)
+  #Position position
+}
+class Horse
+class Boat
+class Carpet
+class Walker
+Interface Surface {
+  #Bool walkable
+
+
+}
+
+Player --|> Drawable
+Surface --|> Drawable
+Boat --|> Player
+Horse --|> Player
+Carpet --|> Player
+Walker --|> Player
+@enduml
