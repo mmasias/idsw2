@@ -17,7 +17,7 @@ public class Maze {
     }
 
     public void printMaze() {
-        List<List<Drawable>> mazeToPrint = this.getMazeToPrint();
+        final List<List<Drawable>> mazeToPrint = this.getMazeToPrint();
 
         IntStream.range(0, mazeToPrint.size()).forEach(y -> {
             IntStream.range(0, mazeToPrint.get(0).size()).forEach(x -> {
@@ -28,13 +28,15 @@ public class Maze {
     }
 
     private List<List<Drawable>> getMazeToPrint() {
-        return IntStream.range(0, this.maze.size()).filter(el -> {
-            return el >= this.player.getPosition().getY() - 8 && el <= this.player.getPosition().getY() + 8;
-        }).mapToObj(el -> {
-            return IntStream.range(0, this.maze.get(0).size()).filter(elem -> {
-                return elem >= this.player.getPosition().getX() - 8 && elem <= this.player.getPosition().getX() + 8;
-            }).mapToObj(elem -> {
-                return this.maze.get(el).get(elem);
+        final int maxXIndex = this.player.getPosition().getX() + 8;
+        final int minXIndex = this.player.getPosition().getX() - 8;
+        final int maxYIndex = this.player.getPosition().getY() - 8;
+        final int minYIndex = this.player.getPosition().getY() + 8;
+
+        return IntStream.range(maxYIndex, minYIndex + 1).mapToObj(y -> {
+            return IntStream.range(minXIndex, maxXIndex + 1).mapToObj(x -> {
+                if (y < 0 || x < 0 || y >= this.maze.size() || x >= this.maze.get(0).size()) return Surface.getSurface(6);
+                else return this.maze.get(y).get(x);
             }).collect(Collectors.toList());
         }).collect(Collectors.toList());
     }
@@ -50,10 +52,9 @@ public class Maze {
 
     public void tryAdvance(String direction, int amount) {
         Position nextPosition = this.getNextPosition(direction, amount);
-        if(((Surface) this.maze.get(nextPosition.getY()).get(nextPosition.getX())).canAdvance(this.player) && (nextPosition.getX() < 0 || nextPosition.getY() < 0)) {
+        if(((Surface) this.maze.get(nextPosition.getY()).get(nextPosition.getX())).canAdvance(this.player) && (nextPosition.getX() > 0 && nextPosition.getY() > 0 && nextPosition.getX() < this.maze.get(0).size() && nextPosition.getY() < this.maze.size())) {
             this.player.setPosition(nextPosition);
         }
-        printMaze();
     }
 
     private Position getNextPosition(String direction, int amount) {
@@ -62,25 +63,41 @@ public class Maze {
         switch (direction) {
             case "w":
                 position.setY(position.getY() - amount);
+                break;
             case "a":
                 position.setX(position.getX() - amount);
+                break;
             case "s":
-                position.setY(position.getY() - amount);
+                position.setY(position.getY() + amount);
+                break;
             case "d":
                 position.setX(position.getX() + amount);
+                break;
             case "q":
                 position.setY(position.getY() - amount);
                 position.setX(position.getX() - amount);
+                break;
             case "e":
                 position.setX(position.getX() + amount);
                 position.setY(position.getY() - amount);
+                break;
             case "z":
                 position.setX(position.getX() - amount);
                 position.setY(position.getY() + amount);
+                break;
             case "c":
                 position.setX(position.getX() + amount);
                 position.setY(position.getY() + amount);
+                break;
         }
         return position;
+    }
+
+    public Player getPlayer() {
+        return player;
+    }
+
+    public void setPlayer(Player player) {
+        this.player = player;
     }
 }

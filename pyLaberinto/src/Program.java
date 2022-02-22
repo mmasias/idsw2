@@ -22,20 +22,21 @@ public class Program {
 
     public static void main(String[] args) {
         try {
-            Player player = Player.getPlayerType(PlayerType.WALKER, new Position(9, 23));
+            Player player = Player.getPlayerType(PlayerType.WALKER, new Position(9, 50));
             Maze maze = new Maze(generateMaze(), player);
 
-            game(player, maze);
+            game(maze);
         } catch (InputMismatchException exception) {
             System.out.println(ANSI_RED_BACKGROUND + ANSI_BLACK + exception.getMessage() + ANSI_RESET);
         }
     }
 
-    public static void game(Player player, Maze maze) {
+    public static void game(Maze maze) {
         final Scanner scanner = new Scanner(System.in);
 
         while (true) {
             final String nextMovementText = ANSI_GREEN_BACKGROUND + "Next movement: [w] [a] [s] [d] [q] [e] [z] [c] " + ANSI_RESET + "    " + "\n" + "    " + ANSI_CYAN_BACKGROUND;
+            final Player player = maze.getPlayer();
             String selection = "";
             maze.printMaze();
 
@@ -53,9 +54,12 @@ public class Program {
             selection = scanner.nextLine();
 
             if (selection.equals("w") || selection.equals("a") || selection.equals("s") || selection.equals("d") || selection.equals("q") || selection.equals("e") || selection.equals("z") || selection.equals("c")) {
-                System.out.println("Moved: " + selection + "!");
+                maze.tryAdvance(selection, 1);
             } else if (selection.equals("b") || selection.equals("f") || selection.equals("h") || selection.equals("l")) {
-                System.out.println("Changed player: " + selection + "!");
+                if (selection.equals("b")) maze.setPlayer(Player.getPlayerType(PlayerType.BOAT, new Position(player.getPosition().getX(), player.getPosition().getY())));
+                else if (selection.equals("f")) maze.setPlayer(Player.getPlayerType(PlayerType.CARPET, new Position(player.getPosition().getX(), player.getPosition().getY())));
+                else if (selection.equals("l")) maze.setPlayer(Player.getPlayerType(PlayerType.WALKER, new Position(player.getPosition().getX(), player.getPosition().getY())));
+                else if (selection.equals("h")) maze.setPlayer(Player.getPlayerType(PlayerType.HORSE, new Position(player.getPosition().getX(), player.getPosition().getY())));
             } else if (selection.equals("x")) {
                 System.exit(0);
             } else {
@@ -66,17 +70,9 @@ public class Program {
 
     public static List<List<Drawable>> generateMaze() {
 
-        //0 Ground
-        //1 LowGrass
-        //2 MidGrass
-        //3 HighGrass
-        //4 Sand
-        //5 Mountain
-        //6 Wall
-        //7 Water
-        //8 TroubledWaters
+        //0 -> Ground, 1 -> LowGrass, 2 -> MidGrass, 3 -> HighGrass, 4 -> Sand, 5 -> Mountain, 6 -> Wall, 7 -> Water, 8 -> TroubledWaters
 
-        int[][] mazeTemplate = {
+        final int[][] mazeTemplate = {
                 {6, 2, 2, 2, 2, 2, 2, 1, 1, 6, 1, 1, 1, 1, 6, 1, 1, 1, 6, 1, 1, 1, 1, 4, 4, 7, 7, 7, 7, 7, 7, 6, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 2, 2, 2, 2, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 6, 0, 0, 0, 0, 6},
                 {6, 2, 2, 2, 2, 2, 2, 1, 1, 6, 1, 1, 1, 1, 6, 1, 1, 1, 6, 1, 1, 1, 1, 4, 4, 7, 7, 7, 7, 7, 7, 6, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 2, 2, 2, 2, 2, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 0, 0, 0, 0, 6},
                 {6, 2, 2, 2, 2, 2, 2, 1, 1, 6, 1, 1, 1, 1, 6, 1, 1, 1, 6, 1, 1, 1, 1, 4, 4, 7, 7, 7, 7, 7, 7, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 4, 4, 1, 1, 1, 6, 0, 0, 0, 0, 0, 0, 0, 6, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 6},
@@ -131,15 +127,6 @@ public class Program {
                 {6, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 5, 5, 5, 5, 5, 5, 5, 5, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 6, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 6},
                 {6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6}
         };
-
-//        List<List<Drawable>> maze = new ArrayList<List<Drawable>>();
-//
-//        for (int y = 0; y < mazeTemplate[y].length; y++) {
-//            List<Drawable> list = new ArrayList<Drawable>();
-//            for (int x = 0; x < mazeTemplate[y][x]; x++) {
-//                list.add()
-//            }
-//        }
 
         return IntStream.range(0, mazeTemplate.length).mapToObj(el -> {
             return IntStream.of(mazeTemplate[el]).mapToObj(elem -> {

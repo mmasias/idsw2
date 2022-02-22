@@ -3,8 +3,9 @@ package structures.classes.surfaces;
 import structures.classes.players.Player;
 
 public class Wall extends Surface {
-    public Wall() {
-        super("[ ]");
+    @Override
+    public String getAvatar() {
+        return "[ ]";
     }
 
     @Override

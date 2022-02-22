@@ -4,8 +4,9 @@ import structures.classes.players.Player;
 import structures.classes.players.Walker;
 
 public class LowGrass extends Surface {
-    public LowGrass() {
-        super("...");
+    @Override
+    public String getAvatar() {
+        return "...";
     }
 
     @Override
