@@ -1,11 +1,15 @@
 package structures.classes.surfaces;
 
-import structures.classes.Player;
-import structures.classes.Walker;
+import structures.classes.players.Player;
+import structures.classes.players.Walker;
 
 public class MidGrass extends Surface {
-    public MidGrass() {
-        super(":::");
+
+    public static final String GREEN_BOLD_BRIGHT = "\033[1;92m";
+    public static final String RESET = "\033[0m";
+    @Override
+    public String getAvatar() {
+        return GREEN_BOLD_BRIGHT + ":::" + RESET;
     }
 
     @Override
