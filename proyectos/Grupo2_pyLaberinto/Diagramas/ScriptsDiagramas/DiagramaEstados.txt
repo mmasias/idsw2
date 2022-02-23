@@ -1,0 +1,9 @@
+@startuml
+
+[*] --> IniciarJuego
+IniciarJuego --> MoverPersonaje
+MoverPersonaje --> MoverPersonaje : Jugar
+MoverPersonaje --> Salir
+Salir -->[*]
+
+@endumll
