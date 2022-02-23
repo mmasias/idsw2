@@ -5,7 +5,7 @@ import java.util.Calendar;
 
 public class Time {
     private static int sunArray[] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1};
-    private static int sanArray[] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+    private static int showNoSun[] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
     private static int playerMove = 0;
     private static Calendar day = Calendar.getInstance();
 
@@ -22,9 +22,9 @@ public class Time {
     }
 
     // function that shows the array of no sun
-    public static int[] moveSan() {
-        System.out.println(Arrays.toString(sanArray));
-        return sanArray;
+    public static int[] showNoSun() {
+        System.out.println(Arrays.toString(showNoSun));
+        return showNoSun;
     }
 
     //function that receives move of player and adds the time passed
@@ -37,7 +37,7 @@ public class Time {
             day.set(Calendar.HOUR_OF_DAY, hourPlus + 1);
             day.set(Calendar.MINUTE, 0);
             if (day.get(Calendar.HOUR_OF_DAY) > 19 || day.get(Calendar.HOUR_OF_DAY) < 7) {
-                moveSan();
+                showNoSun();
             } else {
                 moveSun();
             }
@@ -46,7 +46,7 @@ public class Time {
             day.set(Calendar.MINUTE, minutePlus + 5);
             //	printHour();
             if (day.get(Calendar.HOUR_OF_DAY) > 19 || day.get(Calendar.HOUR_OF_DAY) < 7) {
-                System.out.println(Arrays.toString(sanArray));
+                System.out.println(Arrays.toString(showNoSun));
             } else {
                 System.out.println(Arrays.toString(sunArray));
             }
