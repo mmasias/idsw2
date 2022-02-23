@@ -68,7 +68,7 @@ public class Colors {
             START + BLACK_BOLD + GREEN_BACKGROUND + "Y" + RESET +
             START + RED + GREEN_BACKGROUND + "*" + RESET;
 
-    public static final int ID_HEAVY_WATER =11;
+    public static final int ID_HEAVY_WATER = 11;
     public static final String HEAVY_WATER = START + BLUE_BACKGROUND + "'~'" + RESET;
 
     public static final int ID_MOUNTAIN = 9;
