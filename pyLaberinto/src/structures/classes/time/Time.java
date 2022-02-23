@@ -2,83 +2,66 @@ package structures.classes.time;
 
 import java.util.Arrays;
 import java.util.Calendar;
+import java.util.stream.IntStream;
 
 public class Time {
-    private static int sunArray[] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1};
-    private static int showNoSun[] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-    private static int playerMove = 0;
-    private static Calendar day = Calendar.getInstance();
+    private int sunArray[] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1};
+    private int playerMove = 0;
+    private Calendar day = Calendar.getInstance();
 
-    // function that moves the sun one to the left
-    public static int[] moveSun() {
-        int i, save, length = 13;
-        save = sunArray[0];
-        for (i = 0; i < length - 1; i++) {
-            sunArray[i] = sunArray[i + 1];
+    public Time() {
+        this.setTime();
+    }
+
+    private void moveSun() {
+        int i, save;
+        save = this.sunArray[0];
+        for (i = 0; i < sunArray.length - 1; i++) {
+            this.sunArray[i] = this.sunArray[i + 1];
         }
-        sunArray[i] = save;
-        System.out.println(Arrays.toString(sunArray));
-        return sunArray;
+        this.sunArray[i] = save;
     }
 
-    // function that shows the array of no sun
-    public static int[] showNoSun() {
-        System.out.println(Arrays.toString(showNoSun));
-        return showNoSun;
-    }
-
-    //function that receives move of player and adds the time passed
-    // moves the sun if an hour has passed
-    public static void hourPas(int move) {
-        playerMove = playerMove + move;
-        if (playerMove == 12) {
-            playerMove = 0;
-            int hourPlus = day.get(Calendar.HOUR_OF_DAY);
-            day.set(Calendar.HOUR_OF_DAY, hourPlus + 1);
-            day.set(Calendar.MINUTE, 0);
-            if (day.get(Calendar.HOUR_OF_DAY) > 19 || day.get(Calendar.HOUR_OF_DAY) < 7) {
-                showNoSun();
-            } else {
-                moveSun();
-            }
+    public void showSky() {
+        if (this.isNightTime()) {
+            IntStream.range(0, 17).forEach(el -> System.out.print("\033[44m" + "   " + "\u001B[0m"));
         } else {
-            int minutePlus = day.get(Calendar.MINUTE);
-            day.set(Calendar.MINUTE, minutePlus + 5);
-            //	printHour();
-            if (day.get(Calendar.HOUR_OF_DAY) > 19 || day.get(Calendar.HOUR_OF_DAY) < 7) {
-                System.out.println(Arrays.toString(showNoSun));
-            } else {
-                System.out.println(Arrays.toString(sunArray));
-            }
+            IntStream.range(0, 2).forEach(el -> System.out.print("\033[44m" + "   " + "\u001B[0m"));
+            IntStream.range(0, this.sunArray.length).forEach(index -> System.out.print(this.sunArray[index] == 0 ? "\033[44m" + "   " + "\u001B[0m" : "\033[43m" + " O " + "\u001B[0m"));
+            IntStream.range(0, 2).forEach(el -> System.out.print("\033[44m" + "   " + "\u001B[0m"));
         }
-
+        System.out.println();
     }
 
-    // function that prints the actual hours and minutes of the day
-    public static void printHour() {
+    public void increaseTime(int move) {
+        this.playerMove = this.playerMove + move;
+        if (this.playerMove == 12) {
+            this.playerMove = 0;
+            int currentHour = this.day.get(Calendar.HOUR_OF_DAY);
+            this.day.set(Calendar.HOUR_OF_DAY, currentHour + 1);
+            this.day.set(Calendar.MINUTE, 0);
+            if (!isNightTime()) this.moveSun();
+        } else {
+            int currentMinute = this.day.get(Calendar.MINUTE);
+            this.day.set(Calendar.MINUTE, currentMinute + 5);
+        }
+    }
+
+    public void showTime() {
         System.out.println("[" + day.get(Calendar.HOUR_OF_DAY) + "]" + "h" + "[" + day.get(Calendar.MINUTE) + "]m");
     }
 
-    //function to set the initial time
-    public static int setTime() {
+    public boolean isNightTime() {
+        return this.day.get(Calendar.HOUR_OF_DAY) > 19 || this.day.get(Calendar.HOUR_OF_DAY) < 7;
+    }
+
+    public boolean isVisionReduced() {
+        return this.day.get(Calendar.HOUR_OF_DAY) > 17 || this.day.get(Calendar.HOUR_OF_DAY) < 9;
+    }
+
+    private void setTime() {
         day.set(Calendar.HOUR_OF_DAY, 7);
         day.set(Calendar.MINUTE, 0);
         day.set(Calendar.SECOND, 0);
-        return 0;
-    }
-
-    //main to test the rest of the functions
-    public static void main(String[] args) {
-        setTime();
-        while (true) {
-            hourPas(1);
-            printHour();
-            try {
-                Thread.sleep(100);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }
-
     }
 }
