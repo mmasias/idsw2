@@ -5,7 +5,6 @@ import structures.classes.surfaces.Surface;
 import structures.enums.PlayerType;
 import structures.interfaces.Drawable;
 
-import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -37,6 +36,8 @@ public class Program {
             final String nextMovementText = ANSI_GREEN_BACKGROUND + "Next movement: [w] [a] [s] [d] [q] [e] [z] [c] " + ANSI_RESET + "    " + "\n" + "    " + ANSI_CYAN_BACKGROUND;
             final Player player = maze.getPlayer();
             String selection = "";
+            maze.getTime().showSky();
+            maze.getTime().showTime();
             maze.printMaze();
 
             if (player instanceof Walker)
@@ -50,6 +51,7 @@ public class Program {
             else
                 System.exit(1);
 
+            System.out.println();
             selection = scanner.nextLine();
 
             if (selection.equals("w") || selection.equals("a") || selection.equals("s") || selection.equals("d") || selection.equals("q") || selection.equals("e") || selection.equals("z") || selection.equals("c")) {
