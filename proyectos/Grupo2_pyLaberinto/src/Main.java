@@ -48,7 +48,7 @@ public class Main {
 						World.actualRow = World.actualRow - 1;
 					}
 				} else if (Characters.boat == true) {
-					if (World.maze[World.actualRow - 1][World.actualColumn] == 3) {
+					if (World.maze[World.actualRow - 1][World.actualColumn] == 3 || World.maze[World.actualRow - 1][World.actualColumn] == 8) {
 						World.actualRow = World.actualRow - 1;
 					}
 				} else if (Characters.horse == true) {
@@ -66,7 +66,7 @@ public class Main {
 						World.actualRow = World.actualRow + 1;
 					}
 				} else if (Characters.boat == true) {
-					if (World.maze[World.actualRow + 1][World.actualColumn] == 3) {
+					if (World.maze[World.actualRow + 1][World.actualColumn] == 3 || World.maze[World.actualRow - 1][World.actualColumn] == 8) {
 						World.actualRow = World.actualRow + 1;
 					}
 				} else if (Characters.horse == true) {
@@ -84,7 +84,7 @@ public class Main {
 						World.actualColumn = World.actualColumn - 1;
 					}
 				} else if (Characters.boat == true) {
-					if (World.maze[World.actualRow][World.actualColumn - 1] == 3) {
+					if (World.maze[World.actualRow][World.actualColumn - 1] == 3 || World.maze[World.actualRow - 1][World.actualColumn] == 8) {
 						World.actualColumn = World.actualColumn - 1;
 					}
 				} else if (Characters.horse == true) {
@@ -102,7 +102,7 @@ public class Main {
 						World.actualColumn = World.actualColumn + 1;
 					}
 				} else if (Characters.boat == true) {
-					if (World.maze[World.actualRow][World.actualColumn + 1] == 3) {
+					if (World.maze[World.actualRow][World.actualColumn + 1] == 3 || World.maze[World.actualRow - 1][World.actualColumn] == 8) {
 						World.actualColumn = World.actualColumn + 1;
 					}
 				} else if (Characters.horse == true) {
