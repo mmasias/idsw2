@@ -5,7 +5,7 @@ import java.util.Calendar;
 //import java.util.Scanner;
 
 public class Time {
-    private static int sunArray[] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1};
+    private static int sunArray[] = {1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
     private static int sanArray[] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
     private static int playerMove = 0;
     private static Calendar day = Calendar.getInstance();
@@ -28,7 +28,6 @@ public class Time {
 
     public static void hourPas(int move) {
         playerMove = playerMove + move;
-        // while validando hora xd uwu
         if (playerMove == 12) {
             playerMove = 0;
             int hourPlus = day.get(Calendar.HOUR_OF_DAY);
@@ -68,6 +67,8 @@ public class Time {
     public static void main(String[] args) {
         //System.out.println("Uwi");
         setTime();
+
+        //Scanner en main para fingir interaccion del usuario
         //Scanner myScan = new Scanner(System.in); // Create a Scanner objectw
 
         //System.out.println("AVANZA Crack");
