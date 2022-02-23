@@ -6,7 +6,7 @@ import structures.classes.players.Walker;
 public class Ground extends Surface {
     @Override
     public String getAvatar() {
-        return "  ";
+        return "   ";
     }
 
     @Override
