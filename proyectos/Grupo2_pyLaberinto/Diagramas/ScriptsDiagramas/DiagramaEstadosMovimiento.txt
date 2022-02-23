@@ -1,0 +1,18 @@
+@startuml
+state MoverPersonaje{
+[*] --> A_pie: Predeterminado
+state terreno <<choice>>
+A_pie -[bold,#green]-> terreno
+terreno -[bold,#green]-> A_caballo : Cesped__Alto
+terreno -[bold,#green]-> En_barco : Aguas/Aguas_Turbulentas
+terreno -[bold,#green]-> Alfombra_Voladora : Montañas
+A_caballo -[bold,#red]-> terreno
+En_barco -[bold,#red]-> terreno
+Alfombra_Voladora -[bold,#red]-> terreno
+
+terreno -[bold,#red]-> A_pie : Suelo/Arena/Cesped_Bajo/Cesped_Medio
+
+}
+terreno -->Salir
+Salir-->[*]
+@enduml
