@@ -93,10 +93,8 @@ public class World{
 	static int column = 0;
 	static int actualRow=57;
 	static int actualColumn=27;
-    static int viewport = 8;
-    static int torch = 100;
 
-    public static void showMaze() {
+    public static void showMaze(int torch, int viewport) {
         for (row=0; row<maze.length; row = row+1) {
             if ((actualRow+viewport>=row)&&(actualRow-viewport<=row)) {
                 System.out.print(Colors.BLOCK);
