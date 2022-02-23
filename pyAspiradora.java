@@ -56,7 +56,7 @@ class pyAspiradora{
 
         while (true){
             int move = (int)(Math.random()*8);
-            if(xVacuum + moves[move][0] < 0 || xVacuum + moves[move][0] > map[0].length || yVacuum + moves[move][0] < 0 || yVacuum + moves[move][0] > map.length) continue;
+            if(xVacuum + moves[move][0] < 0 || xVacuum + moves[move][0] >= map[0].length || yVacuum + moves[move][0] < 0 || yVacuum + moves[move][1] >= map.length) continue;
             xVacuum += moves[move][0];
             yVacuum += moves[move][1];
             map[yVacuum][xVacuum] = Math.max(0,map[yVacuum][xVacuum]-1);
@@ -82,5 +82,6 @@ class pyAspiradora{
             }
             System.out.println();
         }
+        System.out.println();
     }
 }
