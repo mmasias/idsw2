@@ -7,6 +7,12 @@ marp: true
 ---
 ### Idea
 # ¿Cuándo una idea es buena?
+# ¿Cómo sé que una idea es buena?
+
+---
+### Idea
+# Resuelve un problema
+
 
 ---
 ### Idea
@@ -31,5 +37,9 @@ Las buenas ideas inspiran, despiertan, descolocan
 ### Idea
 # Transmiten
 
+
+---
+### Idea
+# Es escalable
 
 
