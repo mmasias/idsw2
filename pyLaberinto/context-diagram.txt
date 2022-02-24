@@ -1,0 +1,70 @@
+@startuml
+class Time {
+  #int sunArray[]
+  #int playerMove 
+  #Calendar day
+  + moveSun()
+  + showSky()
+  + increaseTime(int move)
+  + showTime()
+  + isNightTime()
+  + isVisionReduced()
+  + setTime()
+}
+class Maze {
+  #List<List<Drawable>> maze
+  #Player player
+  #Time time
+  + void printMaze()
+  + List<List<Drawable>> getMazeToPrint() 
+  + increaseTime(int move)
+  + List<List<Drawable>> reduceVision(List<List<Drawable>> mazeToReduce, final int range)
+  + void printFullMaze()
+  + tryAdvance(String direction, int amount)
+  + getNextPosition(String direction, int amount)
+  + Player getPlayer()
+  + void setPlayer(Player player)
+  + Time getTime()
+}
+class Position {
+  #int x
+  #int y
+  +getX()
+  +setX(int x)
+  +getY()
+  +setY(int y)
+}
+interface Drawable{
+  +String getAvatar()
+}
+abstract Player {
+  +void Move(Direction direction, int amount)
+  #Position position
+}
+class Horse
+class Boat
+class Carpet
+class Walker
+abstract Surface {
+  +boolean canAdvance(Player player)
+  +getSurface(int type)
+}
+
+Player --|> Drawable
+Surface --|> Drawable
+Surface <|-- Ground
+Surface <|-- HighGrass
+Surface <|-- LowGrass
+Surface <|-- MidGrass
+Surface <|-- Mountain
+Surface <|-- Sand
+Surface <|-- TroubledWaters
+Surface <|-- Wall
+Surface <|-- Water
+
+
+Boat --|> Player
+Horse --|> Player
+Carpet --|> Player
+Walker --|> Player
+@enduml
