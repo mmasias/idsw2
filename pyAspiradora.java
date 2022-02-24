@@ -91,14 +91,14 @@ class pyAspiradora {
                 continue;
             xVacuum += moves[move][0];
             yVacuum += moves[move][1];
-            steps = steps++;
+            steps = steps+1;
             if (map[yVacuum][xVacuum] > 0) {
                 bolsa++;
             }
 
             map[yVacuum][xVacuum] = Math.max(0, map[yVacuum][xVacuum] - 1);
-            percentage = (float)((steps / superficie) * 100);
-            bateria = 100 - percentage;
+            percentage = (float)((1 / superficie) * 100);
+            bateria = bateria - percentage;
             System.out.println("Batería: " + bateria + "%");
             if (apariciones > 0) {
                 gato.moverGato(moves, map);
@@ -134,6 +134,7 @@ class pyAspiradora {
                     String input = reader.readLine();
                     if(input.equals("si")){
                         bateria = 100;
+                         continue;
                     }else if (input.equals("no")){
                         System.exit(0);
                     } else {

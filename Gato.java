@@ -39,13 +39,13 @@ public class Gato {
 
     public void moverGato(int[][] moves, int[][] map) {
         int move = (int) (Math.random() * 8);
-        if (this.posX + moves[move][0] > 0 || this.posX + moves[move][0] <= map[0].length
-                || this.posY + moves[move][0] > 0 || this.posY + moves[move][1] <= map.length) {
+        if (this.posX + moves[move][0] > 0 || this.posX + moves[move][0] < map[0].length
+                || this.posY + moves[move][1] > 0 || this.posY + moves[move][1] < map.length) {
             this.posX += moves[move][0];
             this.posY += moves[move][1];
             setPosX(this.posX);
             setPosY(this.posY);
-            if (map[this.posY][this.posX] + 1 <= 4) {
+            if (map[this.posY][this.posX] + 1 < 4) {
                 map[this.posY][this.posX] = map[this.posY][this.posX] + 1;
             }
         }
