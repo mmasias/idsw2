@@ -1,0 +1,9 @@
+@startuml
+class mapa
+class Aspiradora
+class suciedad
+
+suciedad <|-- Aspiradora : elimina
+mapa <|-- suciedad: del 
+
+@enduml
