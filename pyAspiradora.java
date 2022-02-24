@@ -1,6 +1,7 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 
 class pyAspiradora {
 
@@ -58,8 +59,7 @@ class pyAspiradora {
                 apareceGato = (int) (Math.random() * 10) + 1;
                 apariciones = apareceGato <= 5 ? gato.getApariciones() : 0;
             }
-
-            int move = (int) (Math.random() * 8);
+            int move = findDirtiestZone();
             if (xVacuum + moves[move][0] < 0 || xVacuum + moves[move][0] >= map[0].length
                     || yVacuum + moves[move][0] < 0 || yVacuum + moves[move][1] >= map.length)
                 continue;
@@ -101,4 +101,37 @@ class pyAspiradora {
         System.out.println();
     }
 
+    public static int findDirtiestZone() {
+        ArrayList<Double> zones = new ArrayList<Double>();
+        zones.add(getZoneAvg(new Coord(0, yVacuum), new Coord(xVacuum, yVacuum + 1)));
+        zones.add(getZoneAvg(new Coord(0, yVacuum), new Coord(xVacuum, map[0].length)));
+        zones.add(getZoneAvg(new Coord(xVacuum, 0), new Coord(xVacuum + 1, yVacuum)));
+        zones.add(getZoneAvg(new Coord(xVacuum, yVacuum + 1), new Coord(xVacuum + 1, map[0].length)));
+        zones.add(getZoneAvg(new Coord(xVacuum + 1, 0), new Coord(map.length, yVacuum)));
+        zones.add(getZoneAvg(new Coord(xVacuum + 1, yVacuum), new Coord(map.length, yVacuum + 1)));
+        zones.add(getZoneAvg(new Coord(xVacuum + 1, yVacuum + 1), new Coord(map.length, map[0].length)));
+        int zoneMove = 0;
+
+        for (int i = 0; i < zones.size(); i++) {
+            if (zones.get(i) > zones.get(zoneMove))
+                zoneMove = i;
+        }
+        if (zones.get(zoneMove) == 0)
+            return (int) (Math.random() * 8);
+        return zoneMove;
+    }
+
+    public static double getZoneAvg(Coord upperLeft, Coord lowerRight) {
+        int filthyLvlSum = 0;
+        int tiles = 0;
+        for (int row = upperLeft.getRow(); row < lowerRight.getRow(); row++) {
+            for (int col = upperLeft.getCol(); col < lowerRight.getCol(); col++) {
+                filthyLvlSum += map[row][col];
+                tiles++;
+            }
+        }
+        if (tiles == 0)
+            return 0;
+        return filthyLvlSum / tiles;
+    }
 }
