@@ -1,0 +1,9 @@
+@startuml
+hide empty description
+[*] --> SelectProduct
+
+SelectProduct -> EnterMoney
+
+EnterMoney -> GetProduct
+GetProduct --> [*]
+@enduml

@@ -1,6 +1,6 @@
 # Ingeniería del Software II
 ## Introducción al análisis y diseño orientado a objetos
-* Paradigmas de programación
+* [Paradigmas de programación](./temas/paradigmasDeProgramacion.md)
 * Definiciones
   * Diseño
   * Arquitectura

@@ -1,0 +1,14 @@
+@startuml
+title ObjectDiagram
+class VendingMachine{
+Products[]
+}
+class Product{
+name
+price
+quantity
+}
+class Money{
+quantity
+}
+@enduml
