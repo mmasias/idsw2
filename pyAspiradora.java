@@ -39,7 +39,7 @@ class pyAspiradora {
     static int yVacuum = 12;
     static float steps = 0;
     static float superficie = 3125;
-    static float percentage;  
+    static float percentage;
     static float bateria = 100;
     static int bolsa;
     static String respuesta;
@@ -57,26 +57,6 @@ class pyAspiradora {
                 { 1, 0 },
                 { 1, 1 }
         };
-
-         while (bateria <= 0) {
-            System.out.println("La batería se ha agotado. Es hora de recargar.");
-            System.out.println("Desea recargar?");
-            BufferedReader reader = new BufferedReader(
-                new InputStreamReader(System.in));
-                
-                try {
-                    String input = reader.readLine();
-                    if(input.equals("si")){
-                        bateria = 100;
-                    }else if (input.equals("no")){
-                        System.exit(0);
-                    } else {
-                        System.out.println("Tiene que responder si o no.");
-                    };
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-        }
         gato.setApariciones(5);
         int apariciones = 0;
         int apareceGato = 0;
@@ -91,13 +71,13 @@ class pyAspiradora {
                 continue;
             xVacuum += moves[move][0];
             yVacuum += moves[move][1];
-            steps = steps+1;
+            steps = steps + 1;
             if (map[yVacuum][xVacuum] > 0) {
                 bolsa++;
             }
 
             map[yVacuum][xVacuum] = Math.max(0, map[yVacuum][xVacuum] - 1);
-            percentage = (float)((1 / superficie) * 100);
+            percentage = (float) ((1 / superficie) * 100);
             bateria = bateria - percentage;
             System.out.println("Batería: " + bateria + "%");
             if (apariciones > 0) {
@@ -107,46 +87,49 @@ class pyAspiradora {
 
             if (bolsa >= 200) {
                 System.out.println("La bolsa de basura esta llena.");
-            System.out.println("Desea vaciarla?");
-            BufferedReader reader = new BufferedReader(
-            new InputStreamReader(System.in));
-        
-            try {
-                String input = reader.readLine();
-                if(input.equals("si")) {
-                    System.out.println("Vaciando...");
-                    bolsa = 0;
-                } else if (input.equals("no")){
-                    System.exit(0);;
-                } else {
-                    System.out.println("Tiene que responder si o no.");
-                };
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            } else if (bateria <= 0) {
-                System.out.println("La batería se ha agotado. Es hora de recargar.");
-            System.out.println("Desea recargar?");
-            BufferedReader reader = new BufferedReader(
-                new InputStreamReader(System.in));
-                
+                System.out.println("Desea vaciarla?");
+                BufferedReader reader = new BufferedReader(
+                        new InputStreamReader(System.in));
+
                 try {
                     String input = reader.readLine();
-                    if(input.equals("si")){
+                    if (input.equals("si")) {
+                        System.out.println("Vaciando...");
+                        bolsa = 0;
+                    } else if (input.equals("no")) {
+                        System.exit(0);
+                        ;
+                    } else {
+                        System.out.println("Tiene que responder si o no.");
+                    }
+                    ;
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            } else if (bateria <= 0) {
+                System.out.println("La batería se ha agotado. Es hora de recargar.");
+                System.out.println("Desea recargar?");
+                BufferedReader reader = new BufferedReader(
+                        new InputStreamReader(System.in));
+
+                try {
+                    String input = reader.readLine();
+                    if (input.equals("si")) {
                         bateria = 100;
-                         continue;
-                    }else if (input.equals("no")){
+                        continue;
+                    } else if (input.equals("no")) {
                         System.exit(0);
                     } else {
                         System.out.println("Tiene que responder si o no.");
-                    };
+                    }
+                    ;
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
             } else {
                 printMap(apareceGato);
             }
-            
+
             BufferedReader reader = new BufferedReader(
                     new InputStreamReader(System.in));
 
