@@ -39,8 +39,9 @@ public class Gato {
 
     public void moverGato(int[][] moves, int[][] map) {
         int move = (int) (Math.random() * 8);
-        if (this.posX + moves[move][0] > 0 || this.posX + moves[move][0] < map[0].length
-                || this.posY + moves[move][1] > 0 || this.posY + moves[move][1] < map.length) {
+        boolean isGoingToMove = this.posX + moves[move][0] > 0 || this.posX + moves[move][0] < map[0].length
+                || this.posY + moves[move][0] > 0 || this.posY + moves[move][1] < map.length;
+        if (isGoingToMove) {
             this.posX += moves[move][0];
             this.posY += moves[move][1];
             setPosX(this.posX);
