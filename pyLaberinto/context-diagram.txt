@@ -67,4 +67,8 @@ Boat --|> Player
 Horse --|> Player
 Carpet --|> Player
 Walker --|> Player
+
+Maze *--> Time
+Player *--> Position
+Maze *--> Player
 @enduml
