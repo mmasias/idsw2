@@ -18,7 +18,7 @@
 ```
 ---
 ## Diagrama de objetos, una luminaria
-![link a la imagen](//www.plantuml.com/plantuml/png/LOun3eCm34LtJc6nmm4O44F7IgtK4nXmfLH9Z9nawEqRd50f7jz__lOI8afCpdQyVcYBqBzvOvZWdfpnA0Pxm00dx23FPHqaWJrcyP59PBKgRCJ0RXMyqVE_y3f9gIrXMun2UrkhI2NzRHZcwz84nkgVC6jUiIgbUu93-9kRYr8hnh79zxHHYIjLGSys-mlvFJdx0m00)
+![link a la imagen](https://www.plantuml.com/plantuml/png/LOun3eCm34LtJc6nmm4O44F7IgtK4nXmfLH9Z9nawEqRd50f7jz__lOI8afCpdQyVcYBqBzvOvZWdfpnA0Pxm00dx23FPHqaWJrcyP59PBKgRCJ0RXMyqVE_y3f9gIrXMun2UrkhI2NzRHZcwz84nkgVC6jUiIgbUu93-9kRYr8hnh79zxHHYIjLGSys-mlvFJdx0m00)
 ```
 @startuml
     object "foco : Luminaria" as foco
@@ -33,7 +33,7 @@
 ```
 ---
 ## Diagrama de objetos, dos luminarias
-![link a la imagen](//www.plantuml.com/plantuml/png/XP1Fpe8m4CNttoacx27vkcH1MBWqqSG3cA7Kf8PsIFyiF9Bdy6BY54qQ45c-ztll3MrzG1UY6VvW-gYxAXcWk92ayp_Ki8z6MtGQ2q0FBpdZHkKyMPp0mwG4OceMCz2JwHpkrF4JEB72WMJcnUXKdzUojBnIh5ufjjOvizZd28UXB9ltNzIW1sw7XlrPPYJbQXWTzL6gHAI6gjgoHRuGq7JwSRS_fyHw6O-j0onpHNe_zczA1im0yOLebUsZ6Pu0)
+![link a la imagen](https://www.plantuml.com/plantuml/png/XP1Fpe8m4CNttoacx27vkcH1MBWqqSG3cA7Kf8PsIFyiF9Bdy6BY54qQ45c-ztll3MrzG1UY6VvW-gYxAXcWk92ayp_Ki8z6MtGQ2q0FBpdZHkKyMPp0mwG4OceMCz2JwHpkrF4JEB72WMJcnUXKdzUojBnIh5ufjjOvizZd28UXB9ltNzIW1sw7XlrPPYJbQXWTzL6gHAI6gjgoHRuGq7JwSRS_fyHw6O-j0onpHNe_zczA1im0yOLebUsZ6Pu0)
 ```
 @startuml
     object "foco_1 : Luminaria" as foco
