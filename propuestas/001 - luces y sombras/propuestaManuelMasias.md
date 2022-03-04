@@ -1,3 +1,8 @@
+## Modelar la sombra
+
+
+### Diagrama de clases
+```
 @startuml
     class Luminaria
     class Objeto
@@ -7,8 +12,10 @@
     Objeto --> Sombra
     Sombra --> Objeto
 @enduml
+```
 
-
+### Diagrama de objetos, una luminaria
+```
 @startuml
     object "foco : Luminaria" as foco
     object "persona : objeto" as persona
@@ -19,8 +26,10 @@
     foco ..> sombra: produce >
     sombra ..> pared: proyecta >
 @enduml
+```
 
-
+### Diagrama de objetos, dos luminarias
+```
 @startuml
     object "foco_1 : Luminaria" as foco
     object "persona : objeto" as persona
@@ -37,5 +46,5 @@
     sombra --> pared: proyecta >
     sombra2 --> pared: proyecta >
 @enduml
-
+```
 
