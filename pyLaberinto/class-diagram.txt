@@ -50,8 +50,8 @@ abstract Surface {
   +getSurface(int type)
 }
 
-Player --|> Drawable
-Surface --|> Drawable
+Drawable <|-- Player
+Drawable <|-- Surface
 Surface <|-- Ground
 Surface <|-- HighGrass
 Surface <|-- LowGrass
@@ -63,12 +63,12 @@ Surface <|-- Wall
 Surface <|-- Water
 
 
-Boat --|> Player
-Horse --|> Player
-Carpet --|> Player
-Walker --|> Player
+Player <|-- Boat 
+Player <|-- Horse
+Player <|-- Carpet
+Player <|-- Walker
 
 Maze *--> Time
-Player *--> Position
+Player *-right-> Position
 Maze *--> Player
 @enduml
