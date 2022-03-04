@@ -15,6 +15,11 @@ El resultado final será un conjunto de versiones de la misma aplicación, cada 
 * Exposición.
 
 ## Entregas
+### Segunda entrega / ajuste de diagramas / Primeras pinceladas de clean code
+> **Fecha:** 17/03/2022
+
+Con lo visto hasta el momento en clase, se han de ajustar los diagramas de modelo del dominio así como lo diagramas de clases u objetos que se hayan utilizado para dar forma previa a la solución planteada. Asimismo, vamos aplicando a nuestro código los principios de código limpio vistos en clase.
+
 ### Primera entrega / presentación
 
 > **Fecha:** 24/02/2022
