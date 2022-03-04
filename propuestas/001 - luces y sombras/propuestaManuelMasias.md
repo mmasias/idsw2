@@ -18,13 +18,13 @@
 ```
 ---
 ## Diagrama de objetos, una luminaria
-![link a la imagen](https://www.plantuml.com/plantuml/png/LOun3eCm34Ntdi9YXmDaG0mTE_GA1bo9Yc3a94DlN_e9bPmfUl_vsqFARBd4zKR7q_4jKwRcfPDIe4U9oyQsS4ESw0UTjOibtPW2I5PO5JenQHoDx_By3u2WjdvzCPlClXO84cvhs_xQ56XPSIVro2k6SdO7saq_H_EbeABhN3wNISwuKWXOw-O7sUOIroy0)
+![link a la imagen](//www.plantuml.com/plantuml/png/LOun3eCm34LtJc6nmm4O44F7IgtK4nXmfLH9Z9nawEqRd50f7jz__lOI8afCpdQyVcYBqBzvOvZWdfpnA0Pxm00dx23FPHqaWJrcyP59PBKgRCJ0RXMyqVE_y3f9gIrXMun2UrkhI2NzRHZcwz84nkgVC6jUiIgbUu93-9kRYr8hnh79zxHHYIjLGSys-mlvFJdx0m00)
 ```
 @startuml
     object "foco : Luminaria" as foco
-    object "persona : objeto" as persona
-    object "sombraDePersona : sombra" as sombra
-    object "pared : objeto" as pared
+    object "persona : Objeto" as persona
+    object "sombraDePersona : Sombra" as sombra
+    object "pared : Objeto" as pared
     foco --> persona: ilumina >
     persona --> sombra: proyecta >
     foco ..> sombra: produce >
@@ -33,15 +33,15 @@
 ```
 ---
 ## Diagrama de objetos, dos luminarias
-![link a la imagen](https://www.plantuml.com/plantuml/png/XP1D3e8m48NtdcB27XAxx8AmSEd26vYXrAI6TaX_5Xx9StWnmrHC6X1tvBtllJUq2n5zJ7Oy001GVzSgGdKZHTSZI3WdQnnwWnLWW5akk4dxG0v1iXA9gOzOW85ix_6aBzz0LZYGFyjYz7eeQrbQNoashnHxwvnPxNE4mr3NxV8N4ip8xT3E_Y8padCI9az3KZeJkQ5fzcnHBaIqlNaztTyfiLt6Ozi0oxc2tu_zXrOH2q3y83hjXcJ7Dm00)
+![link a la imagen](//www.plantuml.com/plantuml/png/XP1Fpe8m4CNttoacx27vkcH1MBWqqSG3cA7Kf8PsIFyiF9Bdy6BY54qQ45c-ztll3MrzG1UY6VvW-gYxAXcWk92ayp_Ki8z6MtGQ2q0FBpdZHkKyMPp0mwG4OceMCz2JwHpkrF4JEB72WMJcnUXKdzUojBnIh5ufjjOvizZd28UXB9ltNzIW1sw7XlrPPYJbQXWTzL6gHAI6gjgoHRuGq7JwSRS_fyHw6O-j0onpHNe_zczA1im0yOLebUsZ6Pu0)
 ```
 @startuml
     object "foco_1 : Luminaria" as foco
-    object "persona : objeto" as persona
-    object "sombraDePersona : sombra" as sombra
-    object "pared : objeto" as pared
+    object "persona : Objeto" as persona
+    object "sombraDePersona : Sombra" as sombra
+    object "pared : Objeto" as pared
     object "foco_2 : Luminaria" as foco2
-    object "sombraDePersona_2 : sombra" as sombra2
+    object "sombraDePersona_2 : Sombra" as sombra2
     foco --> persona: ilumina >
     persona --> sombra: produce >
     foco ..> sombra: produce >
