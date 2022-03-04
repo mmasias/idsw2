@@ -1,0 +1,32 @@
+@startuml
+abstract Player
+abstract Surface
+class Maze
+class Game
+class Position
+
+Maze *-- Surface
+
+Player <|-- Walker
+Player <|-- Carpet
+Player <|-- Boat
+Player <|-- Horse
+Player *-left- Position
+
+
+Surface .left. Player
+Surface <|-- Ground
+Surface <|-- HighGrass
+Surface <|-- LowGrass
+Surface <|-- MidGrass
+Surface <|-- Mountain
+Surface <|-- Sand
+Surface <|-- TroubledWaters
+Surface <|-- Wall
+Surface <|-- Water
+
+Game *-- Time
+Game *-- Maze
+Game *-- Player
+
+@enduml
