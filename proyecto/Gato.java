@@ -1,3 +1,4 @@
+package proyecto;
 public class Gato {
     int posX;
     int posY;
