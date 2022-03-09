@@ -1,3 +1,4 @@
+package proyecto;
 public class Coord {
     protected int row;
     protected int col;

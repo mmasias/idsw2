@@ -1,9 +1,15 @@
 @startuml
-class mapa
+class Mapa
 class Aspiradora
-class suciedad
+class Suciedad
+class Batería
+class Gato
+class Bolsa
 
-suciedad <|-- Aspiradora : elimina
-mapa <|-- suciedad: del 
+Aspiradora --> Suciedad : elimina
+Suciedad ..> Mapa: del
+Aspiradora --> Bolsa : tiene
+Aspiradora --> Batería : tiene
+Gato ..> Suciedad : produce
 
 @enduml
