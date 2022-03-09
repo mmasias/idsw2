@@ -1,7 +1,7 @@
 public class Gato {
     int posX;
     int posY;
-    String symbol = "\"^\"";
+    String symbol = "\uD83D\uDE3A";
     int apariciones;
 
     public Gato(int posX, int posY) {
@@ -39,8 +39,8 @@ public class Gato {
 
     public void moverGato(int[][] moves, int[][] map) {
         int move = (int) (Math.random() * 8);
-        if (this.posX + moves[move][0] > 0 || this.posX + moves[move][0] < map[0].length
-                || this.posY + moves[move][1] > 0 || this.posY + moves[move][1] < map.length) {
+        if ((this.posX + moves[move][0] > 0 || this.posX + moves[move][0] < map[0].length
+                || this.posY + moves[move][1] > 0 || this.posY + moves[move][1] < map.length) && (map[this.posY + moves[move][1]][this.posX + moves[move][0]] >=0)) {
             this.posX += moves[move][0];
             this.posY += moves[move][1];
             setPosX(this.posX);
