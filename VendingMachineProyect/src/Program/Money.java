@@ -5,7 +5,7 @@ public class Money {
 	private float value;
 	private int cuantity;
 	
-	public Money(float value, int cuantity) {
+	public Money(float value , int cuantity) {
 		this.value = value;
 		this.cuantity = cuantity;
 	}
@@ -26,6 +26,11 @@ public class Money {
 		this.cuantity = cuantity;
 	}
 	
+	public float getTotalValue() {
+		return getValue() * getCuantity();
+	}
+	
+	@Override
 	public String toString() {
 		return value + "€			" + cuantity;
 	}
