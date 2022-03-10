@@ -1,19 +1,32 @@
 @startuml
-title Domain Model
-class Product
-class Cost
-class Money
+title ObjectDiagram
+class Product{
+id
+name
+price
+quantity
+}
+class Money{
+value
+quantity
+}
 class Coin
 class Note
 class Cookies
 class Chocolates
 class Drink
 class Snack
-class Quantity
+class VendingMachine{
+Products[]
+Money[]
+}
+
+
 
 Product -- Cost : has a
-Product -r- Quantity : has a 
-Cost -- Money : is paid with
+VendingMachine -- Product : has a
+VendingMachine -- Money : has a
+Product -- Money : is paid with
 Money -- Coin : can be
 Money -- Note : can be
 Product -u- Cookies : can be

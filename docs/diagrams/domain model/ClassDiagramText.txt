@@ -1,0 +1,14 @@
+@startuml
+title Domain Model
+class Product
+class Value
+class Money
+class Quantity
+class Machine
+
+Machine -l- Product : has
+Product -l- Value : has a
+Product -l- Quantity : has a 
+Value -d- Money : is paid with
+Money -r- Quantity : has a
+@enduml

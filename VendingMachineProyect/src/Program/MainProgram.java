@@ -1,6 +1,17 @@
 package Program;
 
+import java.util.List;
 import java.util.Scanner;
+
+import Program.Products.*;
+import Program.MoneyTypes.*;
+
+/*
+ * -Cambiar las clases para adaptar a herencia
+ * -Añadir a cada producto especifico una descipcion
+ * -Modificar main
+ * 
+ * */
 
 public class MainProgram {
 
@@ -18,19 +29,19 @@ public class MainProgram {
 		try {
 			for(int i = 0; i<=2 ; i++) {
 				
-				Product[] products= {new Product ("Galletas" , 1.50f , 10) ,
-						new Product ("Chocolates" , 1.10f , 10),
-						new Product ("Bebida" , 1.05f , 10),
-						new Product ("Bocadillo" , 1.75f , 10)};
+				Product[] products= {new Cookie (1.50f , 10) ,
+						new Chocolate (1.10f , 10),
+						new Drink (1.05f , 10),
+						new Snack (1.75f , 10)};
 				
 				Money[] money = {new Money (20 , 3) ,
-						new Money (10 , 1) ,
-						new Money (5 , 2) ,
-						new Money (2 , 5) ,
-						new Money (1 , 10) ,
-						new Money (0.5f , 20) ,
-						new Money (0.2f , 20) ,
-						new Money (0.05f , 10) };
+						new Note (10 , 1) ,
+						new Note (5 , 2) ,
+						new Note (2 , 5) ,
+						new Note (1 , 10) ,
+						new Coin (0.5f , 20) ,
+						new Coin (0.2f , 20) ,
+						new Coin (0.05f , 10) };
 				
 				machines[i] = new VendingMachine(i+1 , products , money);
 				
@@ -55,24 +66,47 @@ public class MainProgram {
 		machineOp = sc.nextInt();
 		machineOp -= 1;
 		
-		System.out.println("Seleccione opcion");
-		System.out.println("1 - Revisar productos");
-		System.out.println("2 - Comprar producto");
-		System.out.println("3 - Revisar dinero");
-		System.out.println("Introducir opcion : ");
-		action = sc.nextInt();
 		
-		try {
-			if(action == 1) {
-				System.out.println(machines[machineOp].productString());
-			}else if (action == 2) {
-				
-			}else if (action == 3) {
-				System.out.println(machines[machineOp].moneyString());
+		
+		do {
+			System.out.println("Seleccione opcion");
+			System.out.println("1 - Revisar productos");
+			System.out.println("2 - Comprar producto");
+			System.out.println("3 - Revisar dinero");
+			System.out.println("4 - Salir");
+			System.out.println("Introducir opcion : ");
+			action = sc.nextInt();
+			
+			try {
+				if(action == 1) {
+					
+					System.out.println(machines[machineOp].productString());
+				}else if (action == 2) {
+					
+					System.out.println(machines[machineOp].productString());
+					List<Money> list = VendingMachine.IntroduceMoney();
+					System.out.println("Escribir producto deseado : ");
+					String product = sc.nextLine();
+					if(machines[machineOp].buyProduct(product , list)) {
+						System.out.println("Se ha comprado el producto");
+					}else {
+						System.out.println("No se ha realizado la compra");
+					}
+					
+				}else if (action == 3) {
+					
+					System.out.println(machines[machineOp].moneyString());
+				}else if(action == 4) {
+					break;
+				}else {
+					System.out.println("---------------------------------");
+					System.out.println("		NUMERO INVALIDO");
+					System.out.println("---------------------------------");
+				}
+			}catch (Exception e) {
+				System.out.println(e);
 			}
-		}catch (Exception e) {
-			System.out.println(e);
-		}
+		}while(true);
 		
 		
 		aux = sc.nextLine();
