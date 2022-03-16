@@ -1,0 +1,34 @@
+@startuml
+object "suelo : Terreno" as suelo
+object "arena : Terreno" as arena
+object "paredes : Terreno" as paredes 
+object "cespedBajo : Terreno" as cespedBajo
+object "cespedMedio : Terreno" as cespedMedio
+object "cespedAlto : Terreno" as cespedAlto
+object "aguas : Terreno" as aguas
+object "aguasTurbulentas : Terreno" as aguasTurbulentas
+object "montaña : Terreno" as montaña
+object laberinto 
+object personaje
+object "pie : Transporte" as pie
+object "caballo : Transporte" as caballo
+object "bote : Transporte" as bote
+object "alfombraVoladora : Transporte" as alfombraVoladora
+
+laberinto *--> personaje
+laberinto --> paredes
+
+personaje --> pie
+personaje -->caballo
+personaje --> bote
+personaje --> alfombraVoladora
+
+pie *--> suelo
+pie *--> arena
+pie *--> cespedBajo
+pie *--> cespedMedio
+caballo *--> cespedAlto
+bote *--> aguas
+bote *--> aguasTurbulentas
+alfombraVoladora *--> montaña
+@enduml
