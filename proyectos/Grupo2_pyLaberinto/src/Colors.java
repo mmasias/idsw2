@@ -2,12 +2,8 @@ package src;
 
 public class Colors {
 
-    // Zona de constantes ANSI para mejorar la visualización de gráficos ASCII
-
     public static final String RESET = "\033[0m"; // Text Reset
-    public static final String START = "\033["; // START de la cadena de color
-
-    // LETRA
+    public static final String START = "\033["; // START color chain
 
     // Regular
     public static final String BLACK = "0;30"; // BLACK
@@ -15,7 +11,7 @@ public class Colors {
     public static final String GREEN = "0;32"; // GREEN
     public static final String BLUE = "3;34"; // BLUE
 
-    // Negrita
+    // Bold
     public static final String BLACK_BOLD = "1;30"; // BLACK
     public static final String GREEN_BOLD = "1;32"; // GREEN
     public static final String YELLOW_BOLD = "1;33"; // YELLOW
@@ -23,8 +19,8 @@ public class Colors {
     public static final String BROWN_BOLD = "48;2;"; //BROWN
     public static final String WHITE_BOLD = "38;5;15;"; //WHITE
 
-    // FONDOS
-    // Normales
+    // BACKGROUNDS
+    // Normal
     public static final String BLACK_BACKGROUND = ";40m"; // BLACK
     public static final String GREEN_BACKGROUND = ";42m"; // GREEN
     public static final String BLUE_BACKGROUND = ";44m"; // BLUE
@@ -33,14 +29,14 @@ public class Colors {
     public static final String LIGHT_YELLOW_BACKGROUND = "48;5;247m"; // LIGHT YELLOW
     public static final String GREY_BACKGROUND = "48;5;239m"; // GREY
 
-    // Negrita & Alta intensidad
+    // Bold
     public static final String GREEN_BOLD_BRIGHT = ";1;92m"; // GREEN
 
-    // Alta intensidad
+    // High intensity
     public static final String BLUE_BACKGROUND_BRIGHT = ";0;104m"; // BLUE
     public static final String CYAN_BACKGROUND_BRIGHT = ";0;106m"; // CYAN
 
-    // Mosaicos
+    // Mosaic
     public static final String DARKNESS = START + BLACK + BLACK_BACKGROUND + " . " + RESET;
 
     public static final String BLOCK = START + BLACK + BLUE_BACKGROUND + "   " + RESET;
