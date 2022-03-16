@@ -4,12 +4,15 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args){
+
+		final Time time;
+		final Torch torch;
+		torch = new Torch();
+		time = new Time();
+
         Scanner enter = new Scanner(System.in);
 		String selection;
 		boolean EndGame = false;
-        int hour = 6;
-		int minutes = 55;
-		int torch = 100;
 		int viewport = 8;
 
 
@@ -17,42 +20,15 @@ public class Main {
 		System.out.flush();
 
         do {
-			minutes = minutes + 55;
-			if (minutes >= 60) {
-				hour = hour + 1;
-				minutes = 0;
-			}
-				if (hour==24){hour=0;}
 
-			if (hour == 4) {
-				torch = 3;
-			} else if (hour == 5) {
-				torch = 4;
-			} else if (hour == 6) {
-				torch = 5;
-			} else if (hour == 7) {
-				torch = 100;
-			} else if (hour == 17) {
-				torch = 10;
-			} else if (hour == 18) {
-				torch = 7;
-			} else if (hour == 19) {
-				torch = 5;
-			} else if (hour == 20) {
-				torch = 4;
-			} else if (hour == 21) {
-				torch = 3;
-			}
-			else if (hour == 22) {
-				torch = 2;
-			}
+			time.avanzarHora(torch);
 
 			System.out.print("\033[0;0H");System.out.flush();	
 			
 			System.out.print(Colors.BLOCK);for(int i=0;i<=viewport*2;i=i+1){System.out.print(Colors.BLOCK);}System.out.println(Colors.BLOCK);
 			System.out.print(Colors.BLOCK);
 
-			Sun.showSun(hour, minutes);
+			Sun.showSun(time.getHour(), time.getMinutes());
 
 			System.out.println(Colors.BLOCK);
 
@@ -62,10 +38,10 @@ public class Main {
 			}
 			System.out.println(Colors.BLOCK);
 
-            World.showMaze(torch, viewport);
+            World.showMaze(torch.getBrightness(), viewport);
 
 			System.out.print("Lat:[" + World.actualRow + "] Long:[" + World.actualColumn + "] - ");
-			System.out.println("[" + hour + "]h:[" + minutes + "]m     ");
+			System.out.println("[" + time.getHour() + "]h:[" + time.getMinutes() + "]m     ");
 			System.out.println();
 			System.out.println("Commands: w/a/s/d (f:exit) (b:boat) (c:horse) (x:Flying carpet)");
 			selection = enter.nextLine();
