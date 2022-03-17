@@ -5,16 +5,25 @@ class Suciedad
 class Batería
 class Gato
 class Bolsa
+class Objeto
 class Cuadro
+class Mueble
+class Silla
 
+Mapa *--> Cuadro : contiene
 
 Cuadro o--> Aspiradora 
 Cuadro o--> Gato 
-Cuadro o--> Suciedad
-Cuadro *--> Mapa
+Cuadro o..> Suciedad
+Cuadro o--> Objeto
+
 Aspiradora o--> Suciedad : elimina
 Aspiradora *--> Bolsa : tiene
 Aspiradora *--> Batería : tiene
+
 Gato o..> Suciedad : produce
+
+Objeto <|-- Mueble
+Objeto <|-- Silla
 
 @enduml
