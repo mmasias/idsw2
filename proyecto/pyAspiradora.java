@@ -59,7 +59,7 @@ class pyAspiradora {
                 { 1, 0 },
                 { 1, 1 }
         };
-        gato.setApariciones(5);
+        gato.setApariciones(15);
         int apariciones = 0;
         int apareceGato = 0;
         while (true) {
