@@ -1,0 +1,49 @@
+// DIAGRAMA DE ESTADOS ---------------
+@startuml
+
+[*] --> PantallaInicio: Entrar
+PantallaInicio --> [*] : Salir
+PantallaInicio: Menu de opciones
+
+Pausa -left-> PantallaInicio : Continuar
+PantallaInicio -> Jugar
+Fin -down-> PantallaInicio : Aceptar
+
+Jugar -> Fin
+Pausa -> Jugar
+Jugar -> Pausa
+
+@enduml
+
+// DIAGRAMA DE CLASES
+
+@startuml
+class Mundo{
+  {field} -dimension : int[]
+  {method} -setDimension (x,y)
+  {method} -setvisibilidad (l)
+}
+class Sol{
+ {field} - hora: Date
+}
+class Transporte{
+  {field} #tipo: String
+  {field} #velocidad: int
+  {field} #posicion: int[x,y]
+  {method} #setTipo (t)
+  {method} #getTipo ()
+  {method} #setVelocidad(v)
+  {method} #setPosicion(x,y)
+}
+class Superficie{
+  {field} -posicion: int[]
+  {field} +tipoSuperficie: String
+  {method} -setPosicion(x,y)
+  {method} +setTipoSuperficie(tipo)
+}
+class Jugador
+Mundo *-- Superficie
+Superficie *-- Transporte
+Transporte *-- Jugador
+Mundo <-- Sol
+@enduml
