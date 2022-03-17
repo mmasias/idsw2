@@ -36,56 +36,17 @@ class Sun{
 }
 
 class Colors{
-    ..Start and reset..
     public static final String RESET
     public static final String START
-    ..Regular colour..
-    public static final String BLACK 
-    public static final String RED 
-    public static final String GREEN 
-    public static final String BLUE 
-    ..Negrita..
-    public static final String BLACK_BOLD 
-    public static final String GREEN_BOLD 
-    public static final String YELLOW_BOLD 
-    public static final String BLUE_BOLD 
-    public static final String BROWN_BOLD 
-    public static final String WHITE_BOLD 
-    ..Fondos..
-    public static final String BLACK_BACKGROUND
-    public static final String GREEN_BACKGROUND 
-    public static final String BLUE_BACKGROUND 
-    public static final String BROWN_BACKGROUND 
-    public static final String DARK_GREEN_BACKGROUND 
-    public static final String LIGHT_YELLOW_BACKGROUND 
-    public static final String GREY_BACKGROUND
-    ..Negrita & Alta intensidad..
-    public static final String Color_BOLD_BRIGHT
-    ..Alta intensidad..
-    public static final String Color_BACKGROUND_BRIGHT
-    ..Mosaicos..
-    public static final String DARKNESS 
-    public static final String BLOCK 
-    public static final int ID_WALL
-    public static final String WALL 
+    public static final String Colour
+    public static final String Colour_BACKGROUND
+    public static final int ID_DARKNESS 
+    public static final int ID_WALL  
     public static final int ID_GRASS 
-    public static final String GRASS 
     public static final int ID_WATER 
-    public static final String WATER
-    public static final int ID_MEDIUM_GRASS 
-    public static final String MEDIUM_GRASS 
-    public static final int ID_SAND 
-    public static final String SAND
+    public static final int ID_SAND
     public static final int ID_FLOOR 
-    public static final String FLOOR 
-    public static final int ID_TALL_GRASS
-    public static final String TALL_GRASS 
-    public static final int ID_HEAVY_WATER 
-    public static final String HEAVY_WATER 
-    public static final int ID_MOUNTAIN 
-    public static final String MOUNTAIN 
-    public static final String SUN 
-    public static final String SKY 
+    public static final int ID_SUN 
 }
 }
 @enduml
