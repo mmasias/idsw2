@@ -31,8 +31,7 @@ public class Game {
                         + "Next movement: [w] [a] [s] [d] [q] [e] [z] [c] "
                         + Colors.RESET + "    " + "\n" + "    " + Colors.CYAN_BG;
                 String selection = "";
-                this.time.showSky();
-                this.time.showTime();
+                this.time.show();
                 printMaze();
 
                 if (player instanceof Walker)

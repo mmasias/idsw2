@@ -11,7 +11,9 @@ public class Time {
     private Calendar day = Calendar.getInstance();
 
     public Time() {
-        this.setTime();
+        day.set(Calendar.HOUR_OF_DAY, 7);
+        day.set(Calendar.MINUTE, 0);
+        day.set(Calendar.SECOND, 0);
     }
 
     private void moveSun() {
@@ -23,7 +25,12 @@ public class Time {
         this.sunArray[i] = save;
     }
 
-    public void showSky() {
+    public void show() {
+        this.showSky();
+        this.showTime();
+    }
+
+    private void showSky() {
         if (this.isNightTime()) {
             IntStream.range(0, 17).forEach(el -> System.out.print(Colors.BLUE_BG + "   " + Colors.RESET));
         } else {
@@ -51,7 +58,7 @@ public class Time {
         }
     }
 
-    public void showTime() {
+    private void showTime() {
         System.out.println("[" + day.get(Calendar.HOUR_OF_DAY) + "]" + "h" + "[" + day.get(Calendar.MINUTE) + "]m");
     }
 
@@ -61,11 +68,5 @@ public class Time {
 
     public boolean isVisionReduced() {
         return this.day.get(Calendar.HOUR_OF_DAY) > 17 || this.day.get(Calendar.HOUR_OF_DAY) < 9;
-    }
-
-    private void setTime() {
-        day.set(Calendar.HOUR_OF_DAY, 7);
-        day.set(Calendar.MINUTE, 0);
-        day.set(Calendar.SECOND, 0);
     }
 }
