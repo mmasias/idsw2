@@ -1,14 +1,12 @@
 package structures.classes.surfaces;
 
+import structures.classes.Colors;
 import structures.classes.players.Player;
 
 public class Wall extends Surface {
-    private static final String WHITE_BACKGROUND = "\033[47m";
-    private static final String TEXT_RESET = "\u001B[0m";
-
     @Override
     public String getAvatar() {
-        return WHITE_BACKGROUND + "[ ]" + TEXT_RESET;
+        return Colors.WHITE_BG + "[ ]" + Colors.RESET_BG;
     }
 
     @Override

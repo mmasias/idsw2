@@ -8,5 +8,7 @@ public class Boat extends Player {
     }
 
     @Override
-    public String getAvatar() { return "BnB";  }
+    public String getAvatar() {
+        return "BnB";
+    }
 }

@@ -1,16 +1,15 @@
 package structures.classes.surfaces;
 
+import structures.classes.Colors;
 import structures.classes.players.Player;
 import structures.classes.players.Walker;
 
-public class Sand extends Surface{
-    private static final String YELLOW_BACKGROUND = "\033[43m";
-    private static final String RESET = "\033[0m";
-
+public class Sand extends Surface {
     @Override
     public String getAvatar() {
-        return YELLOW_BACKGROUND+ "---" + RESET ;
+        return Colors.YELLOW_BG + "---" + Colors.RESET_BG;
     }
+
     @Override
     public boolean canAdvance(Player player) {
         return player instanceof Walker;

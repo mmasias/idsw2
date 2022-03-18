@@ -1,16 +1,19 @@
 package structures.classes.time;
 
-import java.util.Arrays;
 import java.util.Calendar;
 import java.util.stream.IntStream;
 
+import structures.classes.Colors;
+
 public class Time {
-    private int sunArray[] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1};
+    private int sunArray[] = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1 };
     private int playerMove = 0;
     private Calendar day = Calendar.getInstance();
 
     public Time() {
-        this.setTime();
+        day.set(Calendar.HOUR_OF_DAY, 7);
+        day.set(Calendar.MINUTE, 0);
+        day.set(Calendar.SECOND, 0);
     }
 
     private void moveSun() {
@@ -22,13 +25,20 @@ public class Time {
         this.sunArray[i] = save;
     }
 
-    public void showSky() {
+    public void show() {
+        this.showSky();
+        this.showTime();
+    }
+
+    private void showSky() {
         if (this.isNightTime()) {
-            IntStream.range(0, 17).forEach(el -> System.out.print("\033[44m" + "   " + "\u001B[0m"));
+            IntStream.range(0, 17).forEach(el -> System.out.print(Colors.BLUE_BG + "   " + Colors.RESET));
         } else {
-            IntStream.range(0, 2).forEach(el -> System.out.print("\033[44m" + "   " + "\u001B[0m"));
-            IntStream.range(0, this.sunArray.length).forEach(index -> System.out.print(this.sunArray[index] == 0 ? "\033[44m" + "   " + "\u001B[0m" : "\033[43m" + " O " + "\u001B[0m"));
-            IntStream.range(0, 2).forEach(el -> System.out.print("\033[44m" + "   " + "\u001B[0m"));
+            IntStream.range(0, 2).forEach(el -> System.out.print(Colors.BLUE_BG + "   " + Colors.RESET));
+            IntStream.range(0, this.sunArray.length).forEach(index -> System.out.print(
+                    this.sunArray[index] == 0 ? Colors.BLUE_BG + "   " + Colors.RESET
+                            : Colors.YELLOW_BG + " O " + Colors.RESET));
+            IntStream.range(0, 2).forEach(el -> System.out.print(Colors.BLUE_BG + "   " + Colors.RESET));
         }
         System.out.println();
     }
@@ -40,14 +50,15 @@ public class Time {
             int currentHour = this.day.get(Calendar.HOUR_OF_DAY);
             this.day.set(Calendar.HOUR_OF_DAY, currentHour + 1);
             this.day.set(Calendar.MINUTE, 0);
-            if (!isNightTime()) this.moveSun();
+            if (!isNightTime())
+                this.moveSun();
         } else {
             int currentMinute = this.day.get(Calendar.MINUTE);
             this.day.set(Calendar.MINUTE, currentMinute + 5);
         }
     }
 
-    public void showTime() {
+    private void showTime() {
         System.out.println("[" + day.get(Calendar.HOUR_OF_DAY) + "]" + "h" + "[" + day.get(Calendar.MINUTE) + "]m");
     }
 
@@ -57,11 +68,5 @@ public class Time {
 
     public boolean isVisionReduced() {
         return this.day.get(Calendar.HOUR_OF_DAY) > 17 || this.day.get(Calendar.HOUR_OF_DAY) < 9;
-    }
-
-    private void setTime() {
-        day.set(Calendar.HOUR_OF_DAY, 7);
-        day.set(Calendar.MINUTE, 0);
-        day.set(Calendar.SECOND, 0);
     }
 }

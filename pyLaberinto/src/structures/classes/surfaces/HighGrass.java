@@ -1,15 +1,13 @@
 package structures.classes.surfaces;
 
+import structures.classes.Colors;
 import structures.classes.players.Horse;
 import structures.classes.players.Player;
 
 public class HighGrass extends Surface {
-    private static final String GREEN_BACKGROUND_BRIGHT = "\033[0;102m";
-    private static final String RESET = "\033[0m";
-
     @Override
     public String getAvatar() {
-        return GREEN_BACKGROUND_BRIGHT +  "|||" + RESET ;
+        return Colors.GREEN_BRIGHT_BG + "|||" + Colors.RESET_BG;
     }
 
     @Override
