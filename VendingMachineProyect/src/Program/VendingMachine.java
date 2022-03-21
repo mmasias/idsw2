@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import Program.MoneyTypes.*;
+
 public class VendingMachine {
 	
 	private int machineNumber;
@@ -146,53 +148,65 @@ public class VendingMachine {
 	public static List<Money> IntroduceMoney() {
 		
 		List<Money> result = new ArrayList<Money>();
-		Scanner sc = new Scanner(System.in);
-		int aux;
+		Scanner scanner = new Scanner(System.in);
+		boolean IDontHaveToExit = true;
 		
+		do {
+			System.out.println("---------------------------------");
+			System.out.println("1 - Moneda");
+			System.out.println("2 - Billete");
+			System.out.println("3 - Ya esta");
+			System.out.println("Seleccionar opcion : ");
+			
+			int option = scanner.nextInt();
+			
+			IDontHaveToExit = IntroduceSingleMoney(option , result);
 		
-		System.out.println("Monedas de 0.05 : ");
-		aux = sc.nextInt();
-		if(aux > 0) {
-			result.add(new Money(0.05f , aux));
-		}
-		System.out.println("Monedas de 0.2 : ");
-		aux = sc.nextInt();
-		if(aux > 0) {
-			result.add(new Money(0.2f , aux));
-		}
-		/*System.out.println("Monedas de 0.5 : ");
-		aux = sc.nextInt();
-		if(aux > 0) {
-			result.add(new Money(0.5f , aux));
-		}
-		System.out.println("Monedas de 1 : ");
-		aux = sc.nextInt();
-		if(aux > 0) {
-			result.add(new Money(1 , aux));
-		}
-		System.out.println("Monedas de 2 : ");
-		aux = sc.nextInt();
-		if(aux > 0) {
-			result.add(new Money(2 , aux));
-		}
-		System.out.println("Billetes de 5 : ");
-		aux = sc.nextInt();
-		if(aux > 0) {
-			result.add(new Money(5 , aux));
-		}
-		System.out.println("Billetes de 10 : ");
-		aux = sc.nextInt();
-		if(aux > 0) {
-			result.add(new Money(10 , aux));
-		}
-		System.out.println("Billetes de 20 : ");
-		aux = sc.nextInt();
-		if(aux > 0) {
-			result.add(new Money(20 , aux));
-		}*/
+			
+		}while(IDontHaveToExit);
 		
-		
+		scanner.close();
 		return result;
+	}
+
+	private static boolean IntroduceSingleMoney(int option, List<Money> result) {
+		
+		float amount;
+		Scanner scanner = new Scanner(System.in);
+		
+		try {
+			
+			if(option == 1) {
+				
+				System.out.println("---------------------------------");
+				System.out.println("Valor de la moneda : ");
+				amount = scanner.nextFloat();
+				Coin e = new Coin(amount , 1);
+				result.add(e);
+				
+			}else if(option == 2) {
+				System.out.println("---------------------------------");
+				System.out.println("Valor del billete: ");
+				amount = scanner.nextFloat();
+				result.add(new Note(amount , 1));
+				
+			}else if(option == 3) {
+				scanner.close();
+				return false;
+			}else {
+				System.out.println("---------------------------------");
+				System.out.println("       NUMERO INCORRECTO");
+				System.out.println("---------------------------------");
+			}
+			
+		}catch(Exception e) {
+			System.out.println(e.getMessage());
+		}
+		
+		
+		scanner.close();
+		return true;
+		
 	}
 	
 
