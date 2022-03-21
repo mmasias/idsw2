@@ -1,36 +1,52 @@
 package isii.attacks;
 
+import javax.swing.JProgressBar;
+
 public class Attack {
 	
 	private final int damage;
 	private final int success;
-	private final int durability;
-	private final int spritesAttack;
+	private Durability durability;
+	private int countDurability;
 	
-	public Attack(int damage, int success, int durability, int spritesAttack) {
+	public Attack(int damage, int success, int durability, JProgressBar durabilityBar) {
 		this.damage = damage;
 		this.success = success;
-		this.durability = durability;
-		this.spritesAttack = spritesAttack;
+		this.durability = new Durability(durability, durabilityBar);
+		this.countDurability = 1;
 	}
 	
 	public int getDamage() {
-		return damage;
+		return (int)(damage * (getDurability().getDurability() / 100));
 	}
 	
-	public int getExito() {
+	public int getSuccess() {
 		return success;
 	}
 	
-	public int getDurability() {
+	public Durability getDurability() {
 		return durability;
 	}
 	
 	public Attack withAttack() {
-		return new Attack(this.damage, this.success, this.durability, this.spritesAttack);
+		return new Attack(damage, getSuccess(), getDurability().getDurability(), getDurability().getDurabilityBar());
 	}
-
-	public int getSpritesAttack() {
-		return spritesAttack;
+	
+	/**
+	 * Reduce la durabilidad del arma cada 10 golpes, es decir, 
+	 * el golpe 10 tiene la misma durabilidad, pero para el 11 esta mas gastada
+	 */
+	public void countDurability() {
+		if (countDurability != 10) {
+			countDurability++;
+		} else {
+			getDurability().reduceDurability();
+		}
+	}
+	
+	
+	@Override
+	public String toString() {
+		return "Damage: " + getDamage() + ", Success: " + getSuccess() + ", Durability: " + getDurability();
 	}
 }

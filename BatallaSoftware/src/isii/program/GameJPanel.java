@@ -7,10 +7,10 @@ import java.awt.Image;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import javax.swing.JProgressBar;
-
 import isii.attacks.Attack;
-import isii.characters.Heroine;
-import isii.characters.Vampiress;
+import isii.characters.Character;
+import isii.images.ImageHeroine;
+import isii.images.ImageVampiress;
 
 import java.awt.BorderLayout;
 import java.awt.event.MouseAdapter;
@@ -38,8 +38,9 @@ public class GameJPanel extends JPanel {
 	private ButtonPanel panelWeapon2 =  new ButtonPanel(image_buttonWeapon2);
 	private ButtonPanel panelWeapon3 =  new ButtonPanel(image_buttonWeapon3);
 	
-	private Heroine heroina = new Heroine(new Attack(7, 50, 100, 23), new Attack(15, 25, 100, 23), new Attack(30, 12, 100, 23));
-	private Vampiress vampiresa = new Vampiress(new Attack(5, 90, 100, 23), new Attack(10, 60, 100, 23), new Attack(20, 40, 100, 23));
+	private Character heroine;
+	private Character vampiress;
+	//private Vampiress vampiresa = new Vampiress(new Attack(5, 90, 100), new Attack(10, 60, 100), new Attack(20, 40, 100));
 	private ImageIcon background = new ImageIcon("Images\\background.png");
 	private int x;
 	private int y;
@@ -58,7 +59,17 @@ public class GameJPanel extends JPanel {
 	
 	private Graphics2D g2d;
 	
+	//Heroine
 	private JProgressBar heroineEnergyBar;
+	private JProgressBar heroineDurabilityBar_Weapon1;
+	private JProgressBar heroineDurabilityBar_Weapon2;
+	private JProgressBar heroineDurabilityBar_Weapon3;
+	
+	//Vampiress
+	private JProgressBar vampiressEnergyBar;
+	private JProgressBar vampiressDurabilityBar_Weapon1;
+	private JProgressBar vampiressDurabilityBar_Weapon2;
+	private JProgressBar vampiressDurabilityBar_Weapon3;
 
 	public GameJPanel(int x, int y, int width, int height) {
 		this.setLayout(null);
@@ -130,17 +141,70 @@ public class GameJPanel extends JPanel {
 		this.add(panelWeapon3);
 		
 		//Heroine energy
-		int widthEnergyBar = 395;
-		int heightEnergyBar = 25;
-		heroineEnergyBar = new JProgressBar(0, 150);
-		heroineEnergyBar.setValue(100);
-		heroineEnergyBar.setFont(new Font("Times New Roman", Font.BOLD, 15));
-		heroineEnergyBar.setForeground(Color.RED);
-		heroineEnergyBar.setStringPainted(true);
-		heroineEnergyBar.setBorderPainted(false);
-		heroineEnergyBar.setBackground(Color.WHITE);
-		heroineEnergyBar.setBounds((width / 2) - (widthEnergyBar / 2) + 728, (height / 2) - (heightEnergyBar / 2) + 212, widthEnergyBar, heightEnergyBar);
+		
+		/**
+		 * JProgressBar
+		 * Minimum
+		 * Maximum
+		 * Energy
+		 * Width
+		 * Height
+		 * Direction
+		 */
+		int maximumEnergyHeroine = 150;
+		heroineEnergyBar = new JProgressBar();
+		addAttributesProgressBar(heroineEnergyBar, 0, maximumEnergyHeroine, maximumEnergyHeroine, 395, 25, +728, 212, Color.RED); 
 		add(heroineEnergyBar);
+		
+		heroineDurabilityBar_Weapon1 = new JProgressBar();
+		heroineDurabilityBar_Weapon2 = new JProgressBar();
+		heroineDurabilityBar_Weapon3 = new JProgressBar();
+		
+		//Durability-Heroine ProgressBar
+		addAttributesProgressBar(heroineDurabilityBar_Weapon1, 0, 100, 100, 220, 25, +810, 317, Color.BLUE);
+		addAttributesProgressBar(heroineDurabilityBar_Weapon2, 0, 100, 100, 220, 25, +810, 347, Color.BLUE);
+		addAttributesProgressBar(heroineDurabilityBar_Weapon3, 0, 100, 100, 220, 25, +810, 379, Color.BLUE);
+		add(heroineDurabilityBar_Weapon1);
+		add(heroineDurabilityBar_Weapon2);
+		add(heroineDurabilityBar_Weapon3);
+		
+		//Create Heroine
+		int heroineX = 1000;
+		int heroineY = 120;
+		int heroineWidth = 400;
+		int heroineHeight = 400;
+		heroine = new Character(new Attack(7, 50, 100, heroineDurabilityBar_Weapon1), 
+				new Attack(15, 25, 100, heroineDurabilityBar_Weapon2), 
+				new Attack(30, 12, 100, heroineDurabilityBar_Weapon3), 
+				heroineX, heroineY, heroineWidth, heroineHeight, 
+				new ImageHeroine(heroineX, heroineY, heroineWidth, heroineHeight), maximumEnergyHeroine, heroineEnergyBar);
+		
+		//Vampiress energy
+		int maximumEnergyVampiress = 60;
+		vampiressEnergyBar = new JProgressBar();
+		addAttributesProgressBar(vampiressEnergyBar, 0, maximumEnergyVampiress, maximumEnergyVampiress, 395, 25, -728, 212, Color.RED);
+		add(vampiressEnergyBar);
+		
+		//Durability-Vampiress
+		vampiressDurabilityBar_Weapon1 = new JProgressBar();
+		vampiressDurabilityBar_Weapon2 = new JProgressBar();
+		vampiressDurabilityBar_Weapon3 = new JProgressBar();
+		addAttributesProgressBar(vampiressDurabilityBar_Weapon1, 0, 100, 100, 220, 25, -810 + 170, 317, Color.BLUE);
+		addAttributesProgressBar(vampiressDurabilityBar_Weapon2, 0, 100, 100, 220, 25, -810 + 170, 347, Color.BLUE);
+		addAttributesProgressBar(vampiressDurabilityBar_Weapon3, 0, 100, 100, 220, 25, -810 + 170, 379, Color.BLUE);
+		add(vampiressDurabilityBar_Weapon1);
+		add(vampiressDurabilityBar_Weapon2);
+		add(vampiressDurabilityBar_Weapon3);
+		
+		int vampiressX = 500;
+		int vampiressY = 260;
+		int vampiressWidth = 250;
+		int vampiressHeight = 250;
+		vampiress = new Character(new Attack(5, 90, 100, vampiressDurabilityBar_Weapon1), 
+				new Attack(10, 60, 100, vampiressDurabilityBar_Weapon2), 
+				new Attack(20, 40, 100, vampiressDurabilityBar_Weapon3), 
+				vampiressX, vampiressY, vampiressWidth, vampiressHeight, 
+				new ImageVampiress(vampiressX, vampiressY, vampiressWidth, vampiressHeight), maximumEnergyVampiress, vampiressEnergyBar);
 		
 	}
 	
@@ -148,30 +212,36 @@ public class GameJPanel extends JPanel {
 	 * Metedo sobre escrito para pintar los elementos que yo quiera en la pantalla
 	 */
 	@Override
-	public void paintComponent(Graphics g) {
+	public synchronized void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		g2d = (Graphics2D) g;
 		g2d.drawImage(background.getImage(), x, y, width, height, null);
-		if (numAttack == 0) heroina.paint(g2d);
+		if (numAttack == 0) heroine.paint(g2d);
 		else {
-			if (!heroina.isAttackFinish()) heroina.paintAttack(numAttack, g2d);
-			else enabledPanels();
+			if (!heroine.isAttackFinish()) heroine.paintAttack(numAttack, g2d);
+			else {
+				enabledPanels();
+			}
 		}
-		vampiresa.paint(g2d);
+		vampiress.paint(g2d);
 		//g2d.drawImage(image_actionPanel, (width / 2) - (actionPanelWidth / 2), 650, actionPanelWidth, actionPanelHeight, null);
 		g2d.drawImage(image_info_heroine, 0, 0, null);
 		this.repaint();
 	}
 	
 	
+	/*private synchronized void damageEnemy() {
+		heroina.getSuccessDamage(1);
+	}*/
+
 	public void setAttack(int numAttack) {
 		this.numAttack = numAttack;
 	}
 	
 	private void startAttack(int numAttack) {
 		setAttack(numAttack);
-		heroina.setAttackFinish(false);
-		heroina.startAttack(numAttack);
+		heroine.setAttackFinish(false);
+		heroine.startAttack(numAttack, vampiress.getEnergy());
 		
 	}
 	
@@ -213,6 +283,18 @@ public class GameJPanel extends JPanel {
 		panelWeapon1.setEnabled(false);
 		panelWeapon2.setEnabled(false);
 		panelWeapon3.setEnabled(false);
+	}
+	
+	private void addAttributesProgressBar(JProgressBar bar, int minimum, int maximum, int value, int width, int height, int x, int y, Color color) {
+		bar.setMinimum(minimum);
+		bar.setMaximum(maximum);
+		bar.setValue(value);
+		bar.setFont(new Font("Times New Roman", Font.BOLD, 15));
+		bar.setForeground(color);
+		bar.setStringPainted(true);
+		bar.setBorderPainted(false);
+		bar.setBackground(Color.WHITE);
+		bar.setBounds((this.width / 2) - (width / 2) + x, (this.height / 2) - (height / 2) + y, width, height);
 	}
 
 }
