@@ -41,7 +41,12 @@ public class Attack {
 			countDurability++;
 		} else {
 			getDurability().reduceDurability();
+			setCountDurability(1);
 		}
+	}
+	
+	private void setCountDurability(int num) {
+		this.countDurability = num;
 	}
 	
 	

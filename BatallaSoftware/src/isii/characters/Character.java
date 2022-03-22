@@ -1,7 +1,6 @@
 package isii.characters;
 
 import java.awt.Graphics2D;
-import javax.swing.JProgressBar;
 import isii.attacks.CharacterWeapon;
 import isii.images.ImageCharacter;
 import isii.attacks.Attack;
@@ -16,13 +15,12 @@ public class Character{
 	private final int WIDTH;
 	private final int HEIGHT;
 	
-	public Character(Attack ataque1, Attack ataque2, Attack ataque3, int x, int y, int width, int height, ImageCharacter imageCharacter, int energy, JProgressBar bar) { //TODO Añadir la clase imagen correspondiente (pasando la interfaz) y de ahi la clase
+	public Character(Attack ataque1, Attack ataque2, Attack ataque3, int x, int y, int width, int height, ImageCharacter imageCharacter, Energy energy) { 
 		this.X = x;
 		this.Y = y;
 		this.WIDTH = width;
 		this.HEIGHT = height;
-		this.energy = new Energy(energy, bar);
-		//this.weapon = new CharacterWeapon(ataque1, ataque2, ataque3, X, Y, WIDTH, HEIGHT, imageCharacetr);
+		this.energy = energy;
 		this.weapon = new CharacterWeapon(ataque1, ataque2, ataque3, imageCharacter);
 		new SwapImageHalt().start();
 	}

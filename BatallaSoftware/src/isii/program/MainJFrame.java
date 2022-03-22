@@ -5,6 +5,9 @@ import java.awt.Rectangle;
 import java.awt.Toolkit;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+
+import isii.JClass.ButtonPanel;
+
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Cursor;

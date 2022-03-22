@@ -5,10 +5,12 @@ import javax.swing.JProgressBar;
 public class Energy {
 	
 	private int energy;
+	private int limitEnergy;
 	private JProgressBar energyBar;
 	
-	public Energy(int energy, JProgressBar bar) {
+	public Energy(int energy, int limitEnergy, JProgressBar bar) {
 		this.energy = energy;
+		this.limitEnergy = limitEnergy;
 		this.energyBar = bar;
 	}
 	
@@ -24,6 +26,9 @@ public class Energy {
 		this.getEnergyBar().setValue(energy);
 	}
 	
+	public boolean isFainting() {
+		return getEnergy() <= this.limitEnergy ? true : false;
+	}
 	
 	/**
 	 * Metodo que sirve para actualizar la vida de un personaje.
