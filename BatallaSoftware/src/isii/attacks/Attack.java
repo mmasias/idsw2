@@ -17,7 +17,7 @@ public class Attack {
 	}
 	
 	public int getDamage() {
-		return (int)(damage * (getDurability().getDurability() / 100));
+		return (int)(damage * (getDurability().getDurability() / 100f));
 	}
 	
 	public int getSuccess() {
