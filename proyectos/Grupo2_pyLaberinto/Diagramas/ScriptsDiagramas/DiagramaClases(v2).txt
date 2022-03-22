@@ -1,0 +1,65 @@
+@startuml
+class Character{
+#Position position
+-string name
+-string CharacterRep
++move(Position position, int velocity)
++choose(string option)
+}
+class Position{
+-int x
+-int y
++getX()
++getY()
++setX()
++setY()
+}
+class Sun{
+#Color color
+#Time time
+-int sky
+-int[] sun
++void showSun(Time time, Color color)
++setBrightness(Time time)
++getBrightness()
+}
+class World{
+-int maze[][]
++void showMaze()
+}
+class Time{
+-int hour
+-int minutes
++void increaseTime()
++getHour()
++getMinutes()
+}
+class Surface{
++boolean tryToAdvance(Player player)
++getSurface(int type)
+}
+class Color
+class Main
+
+Surface <|-- Floor
+Surface <|-- Wall
+Surface <|-- Grass
+Surface <|-- Water
+Surface <|-- MediumGrass
+Surface <|-- Sand
+Surface <|-- TallGrass
+Surface <|-- HeavyWater
+Surface <|-- Mountain
+
+Surface -right-|> Color
+
+World *--> Surface
+
+Sun *--> Time
+
+Character *--> Position
+
+Main *--> Sun
+Main *--> Character
+Main *--> World
+@enduml
