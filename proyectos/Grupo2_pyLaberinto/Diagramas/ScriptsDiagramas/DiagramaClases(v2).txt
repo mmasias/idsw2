@@ -39,7 +39,16 @@ class Surface{
 +getSurface(int type)
 }
 class Color
-class Main
+
+class Main{
+#Character character
+#Sun sun
+#World world
+-int userEnter
++character.choose(userEnter)
++sun.showSun()
++world.showMaze()
+}
 
 Surface <|-- Floor
 Surface <|-- Wall
