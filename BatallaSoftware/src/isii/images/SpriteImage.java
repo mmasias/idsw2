@@ -1,4 +1,4 @@
-package isii.characters;
+package isii.images;
 
 import java.awt.Image;
 

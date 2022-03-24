@@ -1,4 +1,4 @@
-package isii.characters;
+package isii.images;
 
 import java.awt.Image;
 import java.util.ArrayList;
@@ -6,7 +6,7 @@ import java.util.List;
 
 import javax.swing.ImageIcon;
 
-public class ImageHeroine {
+public class ImageHeroine implements ImageCharacter{
 	
 	private Image image_heroine1 = new ImageIcon("Images\\Heroina\\Halt\\Heroine_1.png").getImage();
 	private Image image_heroine2 = new ImageIcon("Images\\Heroina\\Halt\\Heroine_2.png").getImage();
@@ -104,7 +104,8 @@ public class ImageHeroine {
 	 * @param num
 	 * @return
 	 */
-	public Image getImageHalt(int num) {
+	@Override
+	public synchronized Image getImageHalt(int num) {
 		if (num == 1) return image_heroine1;
 		else return image_heroine2;
 	}
@@ -116,11 +117,12 @@ public class ImageHeroine {
 	 * @return Image
 	 * @throws Exception 
 	 */
-	public SpriteImage getImage(int numAttack, int numSprite) throws Exception {
+	@Override
+	public synchronized SpriteImage getImage(int numAttack, int numSprite) {
 		if (numAttack == 1) return listAttacks1.get(numSprite - 1);
 		else if (numAttack == 2) return listAttacks2.get(numSprite - 1);
 		else if (numAttack == 3) return listAttacks3.get(numSprite - 1);
-		else throw new Exception();
+		else return null;
 	}
 	
 	/**
@@ -129,10 +131,11 @@ public class ImageHeroine {
 	 * @return
 	 * @throws Exception 
 	 */
-	public int getNumSprites(int numAttack) throws Exception  {
+	@Override
+	public synchronized int getNumSprites(int numAttack) {
 		if (numAttack == 1) return numSpritesAttack1;
 		else if (numAttack == 2) return numSpritesAttack2;
 		else if (numAttack == 3) return numSpritesAttack3;
-		else throw new Exception();
+		else return 0;
 	}
 }

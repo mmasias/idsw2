@@ -1,4 +1,4 @@
-package isii.program;
+package isii.JClass;
 
 import java.awt.Graphics;
 import java.awt.Image;
