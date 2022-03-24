@@ -1,12 +1,18 @@
 @startuml
-class Mapa
+class Mapa{
+    - Celda[][] suelo
+}
 class Aspiradora
 class Suciedad
 class Batería
 class Gato
 class Bolsa
 class Objeto
-class Celda
+class Celda {
+    - posX
+    - posY
+    - representacion
+}
 class Mueble
 class Silla
 
