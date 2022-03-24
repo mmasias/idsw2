@@ -22,7 +22,7 @@ state Aspiradora_No_Funcional {
     state restauracion <<fork>>
     Sin_Bateria --> restauracion
     Contenedor_Lleno --> restauracion
-    restauracion -left-> Aspiradora_Funcional : Cambio de componentes
+    restauracion -left-> Aspiradora_Funcional : Cambio de estado de los componentes
 
 }
 

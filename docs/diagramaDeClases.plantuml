@@ -1,6 +1,29 @@
 @startuml
-class Mapa{
+class Edificio {
+    - Habitacion habitacion
+    - Aspiradora aspiradora
+    + limpiarEdificio(Habitacion habitacion, Aspiradora aspiradora)
+    + main()
+}
+
+class Habitacion{
     - Celda[][] suelo
+    - Gato gato
+    - Mueble[] muebles
+    - Silla[] sillas
+    + {static} mostrarHabitacion(Celda[][] suelo)
+    + actualizarHabitacion(Celda[][] suelo)
+}
+class Celda {
+    - int posX
+    - int posY
+    - String representacion
+    + getPosX()
+    + setPosX(int posX)
+    + getPosY()
+    + setPosY(int posY)
+    + getRepresentacion()
+    + setRepresentacion(String representacion)
 }
 class Aspiradora
 class Suciedad
@@ -8,15 +31,10 @@ class Batería
 class Gato
 class Bolsa
 class Objeto
-class Celda {
-    - posX
-    - posY
-    - representacion
-}
 class Mueble
 class Silla
 
-Mapa *--> Celda : contiene
+Habitacion *--> Celda : contiene
 
 Celda o--> Aspiradora 
 Celda o--> Gato 
