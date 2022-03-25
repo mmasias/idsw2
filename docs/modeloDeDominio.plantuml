@@ -1,5 +1,5 @@
 @startuml
-class Mapa
+class Habitacion
 class Aspiradora
 class Suciedad
 class Batería
@@ -10,10 +10,9 @@ class Celda
 class Mueble
 class Silla
 
-Mapa *--> Celda : contiene
-
-Celda o--> Aspiradora 
-Celda o--> Gato 
+Habitacion *--> Celda : contiene
+Habitacion *--> Aspiradora
+Habitacion *--> Gato
 Celda o..> Suciedad
 Celda o--> Objeto
 
