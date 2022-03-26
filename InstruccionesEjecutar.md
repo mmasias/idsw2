@@ -4,4 +4,6 @@ Hay un problema al clonar el proyecto que es el siguiente. Cometemos el error de
 
 De esta forma el juego carga las imagenes y funcionaría correctamente.
 
+La main se llama MainJFrame.
+
 ¡Pruebalo y a disfrutar!
