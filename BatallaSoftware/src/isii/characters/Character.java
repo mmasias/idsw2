@@ -5,7 +5,7 @@ import isii.attacks.CharacterWeapon;
 import isii.images.ImageCharacter;
 import isii.attacks.Attack;
 
-public class Character{
+public abstract class Character{
 	
 	private CharacterWeapon weapon;
 	private Energy energy;
@@ -54,6 +54,10 @@ public class Character{
 	
 	public Energy getEnergy() {
 		return this.energy;
+	}
+	
+	public CharacterWeapon getCharacterWeapon() {
+		return this.weapon;
 	}
 	
 	/**

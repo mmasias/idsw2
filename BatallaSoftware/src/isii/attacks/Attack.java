@@ -16,8 +16,16 @@ public class Attack {
 		this.countDurability = 1;
 	}
 	
+	public Attack(int damage, int success) {
+		this.damage = damage;
+		this.success = success;
+		this.durability = null;
+		this.countDurability = 0;
+	}
+	
 	public int getDamage() {
-		return (int)(damage * (getDurability().getDurability() / 100f));
+		if (this.durability == null) return damage;
+		else return (int)(damage * (getDurability().getDurability() / 100f));
 	}
 	
 	public int getSuccess() {
@@ -26,10 +34,6 @@ public class Attack {
 	
 	public Durability getDurability() {
 		return durability;
-	}
-	
-	public Attack withAttack() {
-		return new Attack(damage, getSuccess(), getDurability().getDurability(), getDurability().getDurabilityBar());
 	}
 	
 	/**

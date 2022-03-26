@@ -6,7 +6,7 @@ import java.awt.Toolkit;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import isii.JClass.ButtonPanel;
+import isii.other.ButtonPanel;
 
 import java.awt.Color;
 import java.awt.Component;
@@ -198,7 +198,6 @@ public class MainJFrame extends JFrame {
 	}
 
 	private void menuPaneDimension(JPanel panelMenu) {
-		//dimensionScreen = Toolkit.getDefaultToolkit().getScreenSize();
 		paneSize(panelMenu, (int) (dimensionScreen.width * 0.45), (int) (dimensionScreen.height * 0.75)); // Menu WIDTH 45%, HEIGHT 75% of the window
 		paneLocation(panelMenu, (dimensionScreen.width / 2) - (panelMenu.getWidth() / 2), (dimensionScreen.height / 2) - (panelMenu.getHeight() / 2));
 	}

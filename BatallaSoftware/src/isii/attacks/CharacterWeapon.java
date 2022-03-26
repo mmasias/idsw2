@@ -19,9 +19,9 @@ public class CharacterWeapon {
 	public CharacterWeapon(Attack attack1, Attack attack2, Attack attack3, ImageCharacter imageCharacter) {
 		//this.imageCharacter = new ImageHeroine(X, Y, WIDTH, HEIGHT);
 		this.imageCharacter = imageCharacter;
-		this.attack1 = attack1.withAttack();
-		this.attack2 = attack2.withAttack();
-		this.attack3 = attack3.withAttack();
+		this.attack1 = attack1;
+		this.attack2 = attack2;
+		this.attack3 = attack3;
 	}
 	
 	/**
@@ -100,7 +100,7 @@ public class CharacterWeapon {
 			this.damage = weapon.getDamage();
 			this.success = weapon.getSuccess();
 			this.energy = energy;
-			weapon.countDurability();
+			if (weapon.getDurability() != null) weapon.countDurability();
 		}
 		
 		@Override
@@ -115,6 +115,7 @@ public class CharacterWeapon {
 		private void getSuccessDamage(int damage, int success, Energy energy) {
 			int probability = new Random().nextInt(101);
 			if (probability <= success) energy.setEnergy(damage, true);
+			else energy.setEnergyFinished(true);
 		}
 	}
 }

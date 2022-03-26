@@ -7,13 +7,25 @@ public class Energy {
 	private int energy;
 	private int limitEnergy;
 	private JProgressBar energyBar;
+	private boolean energyFinished;
+	private boolean characterDefend;
 	
 	public Energy(int energy, int limitEnergy, JProgressBar bar) {
 		this.energy = energy;
 		this.limitEnergy = limitEnergy;
 		this.energyBar = bar;
+		this.energyFinished = true;
+		this.characterDefend = false;
 	}
 	
+	public boolean isEnergyFinished() {
+		return energyFinished;
+	}
+
+	public void setEnergyFinished(boolean energyFinished) {
+		this.energyFinished = energyFinished;
+	}
+
 	public JProgressBar getEnergyBar() {
 		return this.energyBar;
 	}
@@ -30,6 +42,15 @@ public class Energy {
 		return getEnergy() <= this.limitEnergy ? true : false;
 	}
 	
+	public boolean isDead() {
+		if (getEnergy() <= 0) return true;
+		else return false;
+	}
+	
+	public void setCharacterDefend(boolean characterDefend) {
+		this.characterDefend = characterDefend;
+	}
+	
 	/**
 	 * Metodo que sirve para actualizar la vida de un personaje.
 	 * En caso de recibir daño, ponemos el valor reduced a true y significa quitarle el daño recibido.
@@ -40,7 +61,8 @@ public class Energy {
 	 */
 	public synchronized void setEnergy(int percentLife, boolean reduced) {
 		if (reduced) {
-			new ProgressDamage(this.energy - percentLife, true).start();
+			new ProgressDamage(characterDefend ? (this.energy - percentLife) - 5 : this.energy - percentLife, true).start();
+			setCharacterDefend(false);
 		} else {
 			new ProgressDamage(this.energy + percentLife, false).start();
 		}
@@ -61,6 +83,7 @@ public class Energy {
 			if (reduced) reducedEnergy();
 			else increaseEnergy();
 			energy = getEnergyBar().getValue();
+			setEnergyFinished(true);
 		}
 		
 		private synchronized void increaseEnergy() {
