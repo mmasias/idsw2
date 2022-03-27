@@ -7,13 +7,13 @@ import isii.attacks.Attack;
 
 public abstract class Character{
 	
-	private CharacterWeapon weapon;
+	protected CharacterWeapon weapon;
 	private Energy energy;
-	private boolean image = true;
-	private final int X;
-	private final int Y;
-	private final int WIDTH;
-	private final int HEIGHT;
+	protected boolean image = true;
+	protected final int X;
+	protected final int Y;
+	protected final int WIDTH;
+	protected final int HEIGHT;
 	
 	public Character(Attack ataque1, Attack ataque2, Attack ataque3, int x, int y, int width, int height, ImageCharacter imageCharacter, Energy energy) { 
 		this.X = x;
@@ -32,12 +32,6 @@ public abstract class Character{
 	 */
 	public void startAttack(int numAttack, Energy energy) {
 		weapon.startAttack(weapon.getAttack(numAttack) , numAttack, energy);
-	}
-	
-	public synchronized void paint(Graphics2D g) {
-		if (image) g.drawImage(weapon.getImageHalt(1), X, Y, WIDTH, HEIGHT, null);
-		else g.drawImage(weapon.getImageHalt(2), X, Y, WIDTH, HEIGHT, null);
-		
 	}
 	
 	public synchronized void paintAttack(int numAttack, Graphics2D g) {

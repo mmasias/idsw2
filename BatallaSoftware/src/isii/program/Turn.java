@@ -23,7 +23,7 @@ public class Turn {
 		this.turn = turn;
 	}
 	
-	public void changeTurn() {
+	public synchronized void changeTurn() {
 		if (getTurn() < numPlayers) addTurn();
 		else {
 			if (this.heroine.isDrinkPotion()) this.coundRounds();
@@ -35,7 +35,7 @@ public class Turn {
 		this.setTurn(this.getTurn() + 1);
 	}
 	
-	public void coundRounds() {
+	public synchronized void coundRounds() {
 		if (this.getRounds() < 2) this.rounds++;
 		else {
 			this.heroine.setDrinkPotion(false);

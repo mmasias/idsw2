@@ -10,9 +10,12 @@ public class ImageHeroine implements ImageCharacter{
 	
 	private Image image_heroine1 = new ImageIcon("Images\\Heroina\\Halt\\Heroine_1.png").getImage();
 	private Image image_heroine2 = new ImageIcon("Images\\Heroina\\Halt\\Heroine_2.png").getImage();
+	private Image image_heroineFainting = new ImageIcon("Images\\Heroina\\Halt\\desmayo.png").getImage();
+	private Image image_heroineDefend = new ImageIcon("Images\\Heroina\\HeroinaBloqueo.png").getImage();
 	private List<SpriteImage> listAttacks1 = new ArrayList<SpriteImage>();
 	private List<SpriteImage> listAttacks2 = new ArrayList<SpriteImage>();
 	private List<SpriteImage> listAttacks3 = new ArrayList<SpriteImage>();
+	private List<SpriteImage> listPotion = new ArrayList<SpriteImage>();
 	
 	/**
 	 * ATTACK 1 
@@ -58,9 +61,12 @@ public class ImageHeroine implements ImageCharacter{
 	private final int numSpritesAttack3StopMovingRight = 25;
 
 	public ImageHeroine(int X, int Y, int WIDTH, int HEIGHT) {
-		addListAttacks(numSpritesAttack1, numSpritesAttack1MovingLeft, numSpritesAttack1StopMovingLeft, numSpritesAttack1MovingRight, numSpritesAttack1StopMovingRight, "Images\\Heroina\\Attack_1\\HeroinaAtaque1-", ".png", listAttacks1, X, X, Y, WIDTH, HEIGHT, 150, 110);
-		addListAttacks(numSpritesAttack2, numSpritesAttack2MovingLeft, numSpritesAttack2StopMovingLeft, numSpritesAttack2MovingRight, numSpritesAttack2StopMovingRight, "Images\\Heroina\\Attack_2\\HeroinaAtaque2-", ".png", listAttacks2, X, X, Y, WIDTH, HEIGHT, 80, 50);
-		addListAttacks(numSpritesAttack3, numSpritesAttack3MovingLeft, numSpritesAttack3StopMovingLeft, numSpritesAttack3MovingRight, numSpritesAttack3StopMovingRight, "Images\\Heroina\\Attack_3\\HeroinaAtaque3-", ".png", listAttacks3, X, X, Y, WIDTH, HEIGHT, 170, 0);
+		addListAttacks(numSpritesAttack1, numSpritesAttack1MovingLeft, numSpritesAttack1StopMovingLeft, numSpritesAttack1MovingRight, numSpritesAttack1StopMovingRight, "Images\\Heroina\\Attack_1\\HeroinaAtaque1-", ".png", listAttacks1, X, X, Y, WIDTH, HEIGHT, 160, 120);
+		addListAttacks(numSpritesAttack2, numSpritesAttack2MovingLeft, numSpritesAttack2StopMovingLeft, numSpritesAttack2MovingRight, numSpritesAttack2StopMovingRight, "Images\\Heroina\\Attack_2\\HeroinaAtaque2-", ".png", listAttacks2, X, X, Y, WIDTH, HEIGHT, 110, 50);
+		addListAttacks(numSpritesAttack3, numSpritesAttack3MovingLeft, numSpritesAttack3StopMovingLeft, numSpritesAttack3MovingRight, numSpritesAttack3StopMovingRight, "Images\\Heroina\\Attack_3\\HeroinaAtaque3-", ".png", listAttacks3, X, X, Y, WIDTH, HEIGHT, 190, 0);
+		for (int i = 0; i < 12; i++) {
+			this.listPotion.add(new SpriteImage(new ImageIcon("Images\\Heroina\\Potion\\HeroinaPocion" + (i + 1) + ".png").getImage(), X, Y, WIDTH, HEIGHT));
+		}
 	}
 	
 	/**
@@ -123,6 +129,19 @@ public class ImageHeroine implements ImageCharacter{
 		else if (numAttack == 2) return listAttacks2.get(numSprite - 1);
 		else if (numAttack == 3) return listAttacks3.get(numSprite - 1);
 		else return null;
+	}
+	
+	public synchronized Image getImageDefend() {
+		return this.image_heroineDefend;
+	}
+	
+	public synchronized Image getImagePotion(int numSprite) { 
+		return listPotion.get(numSprite - 1).getImage();
+	}
+	
+	@Override
+	public synchronized Image getImageFainting() {
+		return this.image_heroineFainting;
 	}
 	
 	/**

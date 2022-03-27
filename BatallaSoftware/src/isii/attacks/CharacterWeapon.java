@@ -82,6 +82,10 @@ public class CharacterWeapon {
 		return imageCharacter.getImageHalt(numSprite);
 	}
 	
+	public synchronized ImageCharacter getImageCharacter() {
+		return this.imageCharacter;
+	}
+	
 	/**
 	 * Metodo que se encarga de cambiar el numero de la imagen para que de sensacion de animacion
 	 * public SwapImageAttack(int numAttack) 

@@ -94,6 +94,7 @@ public class GameJPanel extends JPanel {
 				if (turn.getTurn() == 0) {
 					heroine.setDrinkPotion(true);
 					heroine.setDoAction(true);
+					heroine.printAnimationPotion();
 					heroine.yourTurn(numAttack, heroine);
 					turn.changeTurn();
 					numAttack = newAttack();
@@ -157,10 +158,10 @@ public class GameJPanel extends JPanel {
 		this.repaint();
 	}
 	
-	private void paintHeroine(Graphics2D g) {
+	private synchronized void paintHeroine(Graphics2D g) {
 		if (turn.getTurn() == 0 && heroine.isDoAction()) {
 			if (!heroine.isAttackFinish()) heroine.paintAttack(numAttack, g);
-			else if (vampiress.getEnergy().isEnergyFinished()) {
+			else if (vampiress.getEnergy().isEnergyFinished() && heroine.getEnergy().isEnergyFinished()) {
 				turn.changeTurn();
 				numAttack = newAttack();
 				vampiress.yourTurn(numAttack, heroine);
@@ -169,15 +170,16 @@ public class GameJPanel extends JPanel {
 		else heroine.paint(g);
 	}
 	
-	private void paintVampiress(Graphics2D g) {
+	private synchronized void paintVampiress(Graphics2D g) {
 		if (turn.getTurn() == 1) {
 			if (!vampiress.isAttackFinish()) vampiress.paintAttack(numAttack, g);
-			else if (heroine.getEnergy().isEnergyFinished()) {
+			else if (heroine.getEnergy().isEnergyFinished() && vampiress.getEnergy().isEnergyFinished()) {
 				turn.changeTurn();
-				if (!heroine.isDrinkPotion()) {
+				heroine.setDefend(false);
+				if (!heroine.isDrinkPotion() && !heroine.getEnergy().isFainting()) {
 					heroine.setDoAction(false);
 					showAttackPanels(false);
-				}
+				} else heroine.yourTurn(numAttack, vampiress);
 			}
 			else vampiress.paint(g);
 		}

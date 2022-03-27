@@ -5,9 +5,8 @@ import java.awt.Rectangle;
 import java.awt.Toolkit;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-
+import isii.images.ImageMenu;
 import isii.other.ButtonPanel;
-
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Cursor;
@@ -18,9 +17,6 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.font.TextAttribute;
-import java.util.HashMap;
-import java.util.Map;
 import java.awt.Font;
 import java.awt.SystemColor;
 import java.awt.BorderLayout;
@@ -29,16 +25,20 @@ public class MainJFrame extends JFrame {
 
 	
 	private static final long serialVersionUID = 1L;
+	
+	private ImageMenu image = new ImageMenu();
+	
 	private JPanel gameContentPanel;
-	private JPanel menuPanel = new JPanel();
+	private ButtonPanel titlePanel = new ButtonPanel(image.getImageTitle());
+	private ButtonPanel menuPanel = new ButtonPanel(image.getImageBackground());
 	private GameJPanel gamePanel;
-	private JButton btn_newGame = new JButton("NEW GAME");
-	private JButton btn_continue = new JButton("CONTINUE");
-	private JButton btn_exit = new JButton("EXIT");
+	private JButton btn_newGame = new JButton();
+	private JButton btn_continue = new JButton();
+	private JButton btn_exit = new JButton();
 	private Dimension dimensionScreen;
-	private ButtonPanel panel_buttonNewGame = new ButtonPanel(new ImageIcon("Images\\fondoBotonRPG.png"));
-	private ButtonPanel panel_buttonContinue = new ButtonPanel(new ImageIcon("Images\\fondoBotonRPG.png"));
-	private ButtonPanel panel_buttonExit = new ButtonPanel(new ImageIcon("Images\\fondoBotonRPG.png"));
+	private ButtonPanel panel_buttonNewGame = new ButtonPanel(image.getImageButtonNewGame(false));
+	private ButtonPanel panel_buttonContinue = new ButtonPanel(image.getImageButtonContinue(false));
+	private ButtonPanel panel_buttonExit = new ButtonPanel(image.getImageButtonExit(false));
 	
 
 	/**
@@ -60,11 +60,13 @@ public class MainJFrame extends JFrame {
 	/**
 	 * Create the frame.
 	 */
+	@SuppressWarnings("deprecation")
 	public MainJFrame() {
 		//JFrame FULL SCREEN
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setExtendedState(MAXIMIZED_BOTH);
 		this.setUndecorated(true);
+		this.setCursor(Cursor.CROSSHAIR_CURSOR);
 		
 		//Window Panel
 		gameContentPanel = new JPanel();
@@ -92,12 +94,12 @@ public class MainJFrame extends JFrame {
 		btn_newGame.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseEntered(MouseEvent e) {
-				mouseButtonEntered(btn_newGame);
+				mouseButtonEnteredExit(panel_buttonNewGame, image.getImageButtonNewGame(true));
 			}
 			
 			@Override
 			public void mouseExited(MouseEvent e) {
-				mouseButtonExited(btn_newGame);
+				mouseButtonEnteredExit(panel_buttonNewGame, image.getImageButtonNewGame(false));
 			}
 		});
 		
@@ -105,7 +107,6 @@ public class MainJFrame extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				menuPanel.setVisible(false);
 				gamePanel.setVisible(true);
-				
 			}
 		});
 		
@@ -117,12 +118,12 @@ public class MainJFrame extends JFrame {
 		btn_continue.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseEntered(MouseEvent e) {
-				if (btn_continue.isEnabled()) mouseButtonEntered(btn_continue);
+				if (btn_continue.isEnabled()) mouseButtonEnteredExit(panel_buttonContinue, image.getImageButtonContinue(true));
 			}
 			
 			@Override
 			public void mouseExited(MouseEvent e) {
-				if (btn_continue.isEnabled()) mouseButtonExited(btn_continue);
+				if (btn_continue.isEnabled()) mouseButtonEnteredExit(panel_buttonContinue, image.getImageButtonContinue(true));
 			}
 		});
 		
@@ -133,11 +134,11 @@ public class MainJFrame extends JFrame {
 		btn_exit.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseEntered(MouseEvent e) {
-				mouseButtonEntered(btn_exit);
+				mouseButtonEnteredExit(panel_buttonExit, image.getImageButtonExit(true));
 			}
 			@Override
 			public void mouseExited(MouseEvent e) {
-				mouseButtonExited(btn_exit);
+				mouseButtonEnteredExit(panel_buttonExit, image.getImageButtonExit(false));
 			}
 		});
 		
@@ -150,47 +151,39 @@ public class MainJFrame extends JFrame {
 		//Button Play Panel
 		panel_buttonNewGame.setLayout(new BorderLayout(0, 0));
 		panel_buttonNewGame.setBackground(SystemColor.activeCaption);
-		panel_buttonNewGame.setBounds((int) Component.CENTER_ALIGNMENT + (int) (menuPanel.getWidth() * 0.25), (int) Component.CENTER_ALIGNMENT + (int) (menuPanel.getHeight() * 0.2), (int) (menuPanel.getWidth() * 0.5), (int) (menuPanel.getHeight() * 0.2));
+		panel_buttonNewGame.setBounds((dimensionScreen.width / 2) - ((int)(menuPanel.getWidth() * 0.2) / 2) - 200, (int) Component.CENTER_ALIGNMENT + (int) (menuPanel.getHeight() * 0.11) + 550, (int) (menuPanel.getWidth() * 0.2), (int) (menuPanel.getHeight() * 0.1));
 		panel_buttonNewGame.add(btn_newGame);
 		menuPanel.add(panel_buttonNewGame);
 		
 		//Button Continue Panel
 		panel_buttonContinue.setLayout(new BorderLayout(0, 0));
 		panel_buttonContinue.setBackground(SystemColor.activeCaption);
-		panel_buttonContinue.setBounds((int) Component.CENTER_ALIGNMENT + (int) (menuPanel.getWidth() * 0.25), (int) Component.CENTER_ALIGNMENT + panel_buttonNewGame.getY() + (int)(menuPanel.getHeight() * 0.21), (int) (menuPanel.getWidth() * 0.5), (int) (menuPanel.getHeight() * 0.2));
+		panel_buttonContinue.setBounds((dimensionScreen.width / 2) - ((int)(menuPanel.getWidth() * 0.2) / 2) - 200, (int) Component.CENTER_ALIGNMENT + panel_buttonNewGame.getY() + (int)(menuPanel.getHeight() * 0.11), (int) (menuPanel.getWidth() * 0.2), (int) (menuPanel.getHeight() * 0.1));
 		panel_buttonContinue.add(btn_continue);
 		menuPanel.add(panel_buttonContinue);
 		
 		//Button Exit Panel
 		panel_buttonExit.setLayout(new BorderLayout(0, 0));
 		panel_buttonExit.setBackground(SystemColor.activeCaption);
-		panel_buttonExit.setBounds((int) Component.CENTER_ALIGNMENT + (int) (menuPanel.getWidth() * 0.25), (int) Component.CENTER_ALIGNMENT + panel_buttonNewGame.getY() + (int)(menuPanel.getHeight() * 0.21) * 2, (int) (menuPanel.getWidth() * 0.5), (int) (menuPanel.getHeight() * 0.2));
+		panel_buttonExit.setBounds((dimensionScreen.width / 2) - ((int)(menuPanel.getWidth() * 0.2) / 2) - 200, (int) Component.CENTER_ALIGNMENT + panel_buttonNewGame.getY() + (int)(menuPanel.getHeight() * 0.11) * 2, (int) (menuPanel.getWidth() * 0.2), (int) (menuPanel.getHeight() * 0.1));
 		panel_buttonExit.add(btn_exit);
 		menuPanel.add(panel_buttonExit);
 		
+		titlePanel.setBounds((dimensionScreen.width / 2) - (1200 / 2) - 100, (dimensionScreen.height / 2) - (1200 / 2) - 50, 1200, 1200);
+		menuPanel.add(titlePanel);
 		
 	}
+	
+	/*@Override
+	public void paint(Graphics g) {
+		super.paintComponents(g);
+		g.drawImage(image.getImageTitle().getImage(), (dimensionScreen.width / 2) - (500 / 2), (dimensionScreen.height / 2) - (500 / 2), 500, 500, null);
+	}*/
 
-	//Underline text when mouse Entered
-	@SuppressWarnings("deprecation")
-	private void mouseButtonEntered(JButton button) {
-		Font font = button.getFont();
-		Map<TextAttribute, Object> attributes = new HashMap<>(font.getAttributes());
-		attributes.put(TextAttribute.UNDERLINE, TextAttribute.UNDERLINE_ON);
-		button.setFont(font.deriveFont(attributes));
-		this.setCursor(Cursor.HAND_CURSOR);
+	private void mouseButtonEnteredExit(ButtonPanel panel, ImageIcon imageIcon) {
+		panel.setImage(imageIcon);
 	}
 	
-	//Remove underline text when mouse Exit
-	@SuppressWarnings("deprecation")
-	private void mouseButtonExited(JButton button) {
-		Font font = button.getFont();
-		Map<TextAttribute, Object> attributes = new HashMap<>(font.getAttributes());
-		attributes.put(TextAttribute.UNDERLINE, -1);
-		button.setFont(font.deriveFont(attributes));
-		this.setCursor(Cursor.DEFAULT_CURSOR);
-	}
-
 	private void transparentButton(JButton button) {
 		button.setFocusPainted(false);
 		button.setBorderPainted(false);
@@ -198,8 +191,8 @@ public class MainJFrame extends JFrame {
 	}
 
 	private void menuPaneDimension(JPanel panelMenu) {
-		paneSize(panelMenu, (int) (dimensionScreen.width * 0.45), (int) (dimensionScreen.height * 0.75)); // Menu WIDTH 45%, HEIGHT 75% of the window
-		paneLocation(panelMenu, (dimensionScreen.width / 2) - (panelMenu.getWidth() / 2), (dimensionScreen.height / 2) - (panelMenu.getHeight() / 2));
+		paneSize(panelMenu, dimensionScreen.width, dimensionScreen.height); // Menu WIDTH 45%, HEIGHT 75% of the window
+		paneLocation(panelMenu, 0, 0);
 	}
 
 	private void paneSize(JPanel panel, int width, int height) {

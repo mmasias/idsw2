@@ -38,7 +38,7 @@ public class Energy {
 		this.getEnergyBar().setValue(energy);
 	}
 	
-	public boolean isFainting() {
+	public synchronized boolean isFainting() {
 		return getEnergy() <= this.limitEnergy ? true : false;
 	}
 	

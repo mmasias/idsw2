@@ -1,5 +1,6 @@
 package isii.characters;
 
+import java.awt.Graphics2D;
 import isii.attacks.Attack;
 import isii.images.ImageVampiress;
 import isii.other.Dimensions;
@@ -11,6 +12,11 @@ public class Enemy extends Character {
 				new ImageVampiress(Dimensions.enemyX, Dimensions.enemyY, Dimensions.enemyWidth, Dimensions.enemyHeight), energy);
 	}
 	
+	public synchronized void paint(Graphics2D g) {
+		if (image) g.drawImage(this.weapon.getImageHalt(1), X, Y, WIDTH, HEIGHT, null);
+		else g.drawImage(this.weapon.getImageHalt(2), X, Y, WIDTH, HEIGHT, null);
+	}
+	
 	public void yourTurn(int numAttack, Heroine heroine) {
 		if (this.getEnergy().isFainting()) recoverEnergy();
 		else attackEnemy(numAttack, heroine);
@@ -18,7 +24,6 @@ public class Enemy extends Character {
 	
 	private void attackEnemy(int numAttack, Heroine heroine) {
 		if (heroine.isDefend()) heroine.getEnergy().setCharacterDefend(true);
-		heroine.setDefend(false);
 		this.setAttackFinish(false);
 		heroine.getEnergy().setEnergyFinished(false);
 		this.startAttack(numAttack, heroine.getEnergy());

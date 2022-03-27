@@ -7,7 +7,7 @@ Dimensiones de la Heroina:
 
 Dimensiones de la Vampiresa:
 
-	X = 500;
-	Y = 260;
-	WIDTH = 250;
-	HEIGHT = 250;
+	X = 520;
+	Y = 120;
+	WIDTH = 400;
+	HEIGHT = 400;
