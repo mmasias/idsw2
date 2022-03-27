@@ -1,4 +1,6 @@
 @startuml
+scale 2
+class Edificio
 class Habitacion
 class Aspiradora
 class Suciedad
@@ -10,19 +12,25 @@ class Celda
 class Mueble
 class Silla
 
+Edificio *--> Habitacion
+
 Habitacion *--> Celda : contiene
 Habitacion *--> Aspiradora
-Habitacion *--> Gato
+Habitacion o--> Gato
+Habitacion *--> Objeto
+
 Celda o..> Suciedad
-Celda o--> Objeto
 
 Aspiradora o--> Suciedad : elimina
-Aspiradora *--> Bolsa : tiene
-Aspiradora *--> Batería : tiene
+Aspiradora *-u-> Bolsa : tiene
+Aspiradora *-l-> Batería : tiene
+Aspiradora ..> Celda
 
 Gato o..> Suciedad : produce
+Gato ..> Celda
 
-Objeto <|-- Mueble
-Objeto <|-- Silla
+Objeto <|-u- Mueble
+Objeto <|-r- Silla
+Objeto ..> Celda
 
 @enduml
