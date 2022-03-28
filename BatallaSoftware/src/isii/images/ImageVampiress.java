@@ -37,11 +37,11 @@ public class ImageVampiress implements ImageCharacter{
 	 * empieza a moverse a la derecha (23) 
 	 * y para de moverse a la derecha(28)
 	 */
-	private final int numSpritesAttack2 = 37;
-	private final int numSpritesAttack2MovingLeft = 18;
-	private final int numSpritesAttack2StopMovingLeft = 21;
-	private final int numSpritesAttack2MovingRight = 23;
-	private final int numSpritesAttack2StopMovingRight = 28;
+	private final int numSpritesAttack2 = 44;
+	private final int numSpritesAttack2MovingLeft = 17;
+	private final int numSpritesAttack2StopMovingLeft = 22;
+	private final int numSpritesAttack2MovingRight = 33;
+	private final int numSpritesAttack2StopMovingRight = 37;
 	
 	/**
 	 * ATTACK 3 
@@ -59,7 +59,7 @@ public class ImageVampiress implements ImageCharacter{
 
 	public ImageVampiress(int X, int Y, int WIDTH, int HEIGHT) {
 		addListAttacks(numSpritesAttack1, numSpritesAttack1MovingLeft, numSpritesAttack1StopMovingLeft, numSpritesAttack1MovingRight, numSpritesAttack1StopMovingRight, "Images\\Vampiress\\Attack_1\\VampiresaAtaque1-", ".png", listAttacks1, X, X, Y, WIDTH, HEIGHT, 90, 70);
-		addListAttacks(numSpritesAttack2, numSpritesAttack2MovingLeft, numSpritesAttack2StopMovingLeft, numSpritesAttack2MovingRight, numSpritesAttack2StopMovingRight, "Images\\Heroina\\Attack_2\\HeroinaAtaque2-", ".png", listAttacks2, X, X, Y, WIDTH, HEIGHT, 80, 50);
+		addListAttacks(numSpritesAttack2, numSpritesAttack2MovingLeft, numSpritesAttack2StopMovingLeft, numSpritesAttack2MovingRight, numSpritesAttack2StopMovingRight, "Images\\Vampiress\\Attack_2\\VampiresaAtaque2-", ".png", listAttacks2, X, X, Y, WIDTH, HEIGHT, 120, 100);
 		addListAttacks(numSpritesAttack3, numSpritesAttack3MovingLeft, numSpritesAttack3StopMovingLeft, numSpritesAttack3MovingRight, numSpritesAttack3StopMovingRight, "Images\\Heroina\\Attack_3\\HeroinaAtaque3-", ".png", listAttacks3, X, X, Y, WIDTH, HEIGHT, 170, 0);
 	}
 	
@@ -79,19 +79,19 @@ public class ImageVampiress implements ImageCharacter{
 	 * @param WIDTH
 	 * @param HEIGHT
 	 */
-	private void addListAttacks(int numSprites, int numSpritesMovingLeft, int numSpritesStopMovingLeft, int numSpritesMovingRight, int numSpritesStopMovingRight, String address, String extension, List<SpriteImage> listAttack, int X, int XFinal, int Y, int WIDTH, int HEIGHT, int stepsLeft, int stepsRight) {
+	private void addListAttacks(int numSprites, int numSpritesMovingLeft, int numSpritesStopMovingLeft, int numSpritesMovingRight, int numSpritesStopMovingRight, String address, String extension, List<SpriteImage> listAttack, int X, int XFinal, int Y, int WIDTH, int HEIGHT, int stepsRight, int stepsLeft) {
 		for (int i = 1; i < numSpritesMovingLeft; i++) {
 			listAttack.add(new SpriteImage(new ImageIcon(address + i + extension).getImage(), X, Y, WIDTH, HEIGHT));
 		}
 		for (int i = numSpritesMovingLeft; i < numSpritesStopMovingLeft; i++) {
-			XFinal += stepsLeft;
+			XFinal += stepsRight;
 			listAttack.add(new SpriteImage(new ImageIcon(address + i + extension).getImage(), XFinal, Y, WIDTH, HEIGHT));
 		}
 		for (int i = numSpritesStopMovingLeft; i < numSpritesMovingRight; i++) {
 			listAttack.add(new SpriteImage(new ImageIcon(address + i + extension).getImage(), XFinal, Y, WIDTH, HEIGHT));
 		}
 		for (int i = numSpritesMovingRight; i < numSpritesStopMovingRight; i++) {
-			XFinal -= stepsRight;
+			XFinal -= stepsLeft;
 			listAttack.add(new SpriteImage(new ImageIcon(address + i + extension).getImage(), XFinal, Y, WIDTH, HEIGHT));
 		}
 		for (int i = numSpritesStopMovingRight; i <= numSprites; i++) {

@@ -7,7 +7,16 @@ import javax.swing.ImageIcon;
 public class ImageGame {
 	
 	private Image background = new ImageIcon("Images\\background.png").getImage();
+	private ImageIcon background_settings = new ImageIcon("Images\\panel_settings.png");
+	
 	private Image image_info_heroine = new ImageIcon("Images\\panel_info_heroine.png").getImage();
+	private ImageIcon image_settings = new ImageIcon("Images\\Buttons\\Game\\Settings\\button_setting.png");
+	private ImageIcon image_settings_mouseEntered = new ImageIcon("Images\\Buttons\\Game\\Settings\\button_setting_mouseEntered.png");
+	
+	private ImageIcon image_buttonContinue_settings = new ImageIcon("Images\\Buttons\\Game\\Settings\\button_continueSetting.png");
+	private ImageIcon image_buttonContinue_settings_mouseEntered = new ImageIcon("Images\\Buttons\\Game\\Settings\\button_continueSetting_mouseEntered.png");
+	private ImageIcon image_buttonExit_settings = new ImageIcon("Images\\Buttons\\Game\\Settings\\button_exitSetting.png");
+	private ImageIcon image_buttonExit_settings_mouseEntered = new ImageIcon("Images\\Buttons\\Game\\Settings\\button_exitSetting_mouseEntered.png");
 	
 	private ImageIcon image_buttonAttacks = new ImageIcon("Images\\Buttons\\Game\\button_attacks.png");
 	private ImageIcon image_buttonAttacks_mouseEntered = new ImageIcon("Images\\Buttons\\Game\\button_attacks_mouseEntered.png");
@@ -40,8 +49,27 @@ public class ImageGame {
 		return this.background;
 	}
 	
+	public ImageIcon getImageBackgrounSettings() {
+		return this.background_settings;
+	}
+	
 	public Image getImageInfoHeroine() {
 		return this.image_info_heroine;
+	}
+	
+	public ImageIcon getImageButtonContinueSetting(boolean entered) {
+		if (entered) return this.image_buttonContinue_settings_mouseEntered;
+		else return this.image_buttonContinue_settings;
+	}
+	
+	public ImageIcon getImageButtonExitSetting(boolean entered) {
+		if (entered) return this.image_buttonExit_settings_mouseEntered;
+		else return this.image_buttonExit_settings;
+	}
+	
+	public ImageIcon getImageButtonSettings(boolean entered) {
+		if (entered) return this.image_settings_mouseEntered;
+		else return this.image_settings;
 	}
 	
 	public ImageIcon getImageButtonAttacks(boolean entered) {

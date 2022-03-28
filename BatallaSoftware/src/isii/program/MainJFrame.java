@@ -32,6 +32,7 @@ public class MainJFrame extends JFrame {
 	private ButtonPanel titlePanel = new ButtonPanel(image.getImageTitle());
 	private ButtonPanel menuPanel = new ButtonPanel(image.getImageBackground());
 	private GameJPanel gamePanel;
+	private ResultJPanel resultPanel;
 	private JButton btn_newGame = new JButton();
 	private JButton btn_continue = new JButton();
 	private JButton btn_exit = new JButton();
@@ -68,6 +69,7 @@ public class MainJFrame extends JFrame {
 		this.setUndecorated(true);
 		this.setCursor(Cursor.CROSSHAIR_CURSOR);
 		
+		dimensionScreen = Toolkit.getDefaultToolkit().getScreenSize();
 		//Window Panel
 		gameContentPanel = new JPanel();
 		gameContentPanel.setBackground(new Color(240, 128, 128));
@@ -75,17 +77,17 @@ public class MainJFrame extends JFrame {
 		setContentPane(gameContentPanel);
 		gameContentPanel.setLayout(null);
 		
-		dimensionScreen = Toolkit.getDefaultToolkit().getScreenSize();
-		gamePanel = new GameJPanel((dimensionScreen.width / 2) - (dimensionScreen.width / 2), (dimensionScreen.height / 2) - (dimensionScreen.height / 2), dimensionScreen.width, dimensionScreen.height);
-		gamePanel.setVisible(false);
-		gameContentPanel.add(gamePanel);
-		
-		
 		//Menu Panel
 		menuPanel.setLayout(null);
 		menuPanel.setBackground(SystemColor.activeCaption);
 		gameContentPanel.add(menuPanel);
 		this.menuPaneDimension(menuPanel);
+		
+		resultPanel = new ResultJPanel((dimensionScreen.width / 2) - (dimensionScreen.width / 2), (dimensionScreen.height / 2) - (dimensionScreen.height / 2), dimensionScreen.width, dimensionScreen.height, menuPanel, "YOU WIN");
+		resultPanel.setVisible(false);
+		gameContentPanel.add(resultPanel);
+		
+		gamePanel = new GameJPanel((dimensionScreen.width / 2) - (dimensionScreen.width / 2), (dimensionScreen.height / 2) - (dimensionScreen.height / 2), dimensionScreen.width, dimensionScreen.height, resultPanel);
 		
 		//Button NEW GAME
 		btn_newGame.setFont(new Font("Tahoma", Font.BOLD, 20));
@@ -106,7 +108,10 @@ public class MainJFrame extends JFrame {
 		btn_newGame.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				menuPanel.setVisible(false);
+				gamePanel = new GameJPanel((dimensionScreen.width / 2) - (dimensionScreen.width / 2), (dimensionScreen.height / 2) - (dimensionScreen.height / 2), dimensionScreen.width, dimensionScreen.height, resultPanel);
+				gameContentPanel.add(gamePanel);
 				gamePanel.setVisible(true);
+				//resultPanel.setVisible(true);
 			}
 		});
 		
