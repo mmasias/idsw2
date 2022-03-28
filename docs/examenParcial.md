@@ -7,7 +7,7 @@ Esta comparación debe incluir:
 * Código fuente de la versión original (incluyendo diagramas).
 * Smell codes detectados en las diferentes versiones y su solución.
 * Código fuente de la versión más reciente (incluyendo diagramas).
-* Métricas aplicadas a los diagramas de clases.
+* Métricas aplicadas al proyecto.
 
 ## Acerca de la entrega
 El trabajo se recibirá en este repositorio hasta el día lunes 25 de abril. 
