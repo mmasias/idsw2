@@ -15,6 +15,12 @@ El resultado final será un conjunto de versiones de la misma aplicación, cada 
 * Exposición.
 
 ## Entregas
+
+### Examen parcial
+> **Fecha** 28/04/2022
+
+Detalles del mismo, [En ]()
+
 ### Segunda entrega / ajuste de diagramas / Primeras pinceladas de clean code
 > **Fecha:** 17/03/2022
 
