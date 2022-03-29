@@ -3,6 +3,7 @@ package Program;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import java.util.Random;
 
 import Program.MoneyTypes.*;
 
@@ -11,11 +12,17 @@ public class VendingMachine {
 	private int machineNumber;
 	private Product[] products;
 	private Money[] money;
+	private boolean stuck;
+	private boolean broken;
+	private List<Administrator> administrators = new ArrayList();
 	
-	public VendingMachine(int machineNumber, Product[] products, Money[] money) {
+	public VendingMachine(int machineNumber, Product[] products, Money[] money, List<Administrator> administrators) {
 		this.machineNumber = machineNumber;
 		this.products = products;
 		this.money = money;
+		this.stuck = false;
+		this.broken = false;
+		this.administrators = administrators;
 	}
 
 	public int getMachineNumber() {
@@ -42,24 +49,47 @@ public class VendingMachine {
 		this.money = money;
 	}
 	
-	public boolean buyProduct(String product , List<Money> money) {
-		
-		
-		Double amount = calculeTotalValue(money);
-		//Sacar producto
-		
-		for(Product current : products) {
-			if(product.equals(current.getName()) && amount > current.getPrice()) {
-				
-				addMoney(money);
-				return true;
-			}
-		}
-		
-		return false;
-		
+	public boolean checkMachineBroken() {
+		return broken;
+	}
+
+	public void setBroken(boolean broken) {
+		this.broken = broken;
 	}
 	
+	public boolean checkMachineStuck() {
+		return broken;
+	}
+
+	public void setStuck(boolean stuck) {
+		this.stuck = stuck;
+	}
+	
+	public boolean buyProduct(String product , List<Money> money) {
+		
+		machineGetsStuck();
+		machineBreaksDown();
+		
+		if(!broken || !stuck ) {
+			Double amount = calculeTotalValue(money);
+			//Sacar producto
+			
+			for(Product current : products) {
+				if(product.equals(current.getName()) && amount > current.getPrice()) {
+					
+					addMoney(money);
+					return true;
+				}
+			}
+			
+			return false;
+		}else {
+			System.out.println("La máquina no se encuentra disponible");
+			return false;
+		}
+
+		
+	}
 	
 	
 	private void addMoney(List<Money> moneyList) {
@@ -71,6 +101,30 @@ public class VendingMachine {
 			}
 		}
 		
+	}
+	
+	public void machineGetsStuck() {
+		
+		Random random = new Random();
+		final int i = random.nextInt(99);
+		if(i > 97) {
+			this.stuck = true;
+		}
+		else {
+			this.stuck = false;
+		}
+	}
+	
+	public void machineBreaksDown() {
+		
+		Random random = new Random();
+		final int i = random.nextInt(99);
+		if(i > 96) {
+			this.broken = true;
+		}
+		else {
+			this.broken = false;
+		}
 	}
 
 	public String productString () {
@@ -105,6 +159,37 @@ public class VendingMachine {
 		return result;
 	}
 	
+	public void LogIn() {
+		
+		Scanner scanner = new Scanner(System.in);
+		
+		String result =  "---------------------------------\n";
+		result += "         Introduce tu usuario:";
+		result += "---------------------------------\n";
+		final String username = scanner.nextLine();
+		
+		result +=  "---------------------------------\n";
+		result += "         Introduce tu contraseña:";
+		result += "---------------------------------\n";
+		final String password = scanner.nextLine();
+		
+		scanner.close();
+		System.out.println(result);	
+		
+		checkLogIn(username, password);
+	}
+	
+	private boolean checkLogIn(String username, String password) {
+		
+		boolean result = false;
+		for(Administrator a : administrators) {
+			if(username.equals(a.getUsername()) && password.equals(a.getPassword())) {
+				result = true;
+			}
+		}
+		return result;
+	}
+
 	public String toString() {
 		
 		String result = "---------------------------------\n"
@@ -132,6 +217,35 @@ public class VendingMachine {
 		for(Money current : money) {
 			result += current.toString() + "\n";
 		}
+		
+		return result;
+	}
+	
+	public String machineStuckString () {
+		
+		String result =  "---------------------------------\n";
+		result += "         La máquina se ha atascado, por favor agitela para desatascarla ";
+		result += "---------------------------------\n";
+
+		
+		return result;
+	}
+	
+	public String unstuckMachineString () {
+		
+		
+		String result =  "---------------------------------\n";
+		result += "         El técnico ha arreglado la máquina con éxito			";
+		result += "---------------------------------\n";
+			
+		return result;
+	}
+	
+	public String machineBrokenString () {
+		
+		String result =  "---------------------------------\n";
+		result += "         La máquina se ha averiado, por favor espere a que un técnico venga a desatascarla 		";
+		result += "---------------------------------\n";
 		
 		return result;
 	}

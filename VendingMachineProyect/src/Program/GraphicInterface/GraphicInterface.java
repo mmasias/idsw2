@@ -48,7 +48,6 @@ public class GraphicInterface extends JFrame {
 		setContentPane(contentPane);
 		
 		JPanel backgroundPanel = new JPanel();
-		backgroundPanel.setVisible(false);
 		backgroundPanel.setBackground(new Color(255, 255, 255));
 		contentPane.add(backgroundPanel, BorderLayout.CENTER);
 		backgroundPanel.setLayout(null);
@@ -58,7 +57,7 @@ public class GraphicInterface extends JFrame {
 		titlePanel.setBounds(0, 0, 783, 149);
 		backgroundPanel.add(titlePanel);
 		
-		JLabel lblTitle = new JLabel("VENIDNG MACHINE\r\n");
+		JLabel lblTitle = new JLabel("VENIDING MACHINE\r\n");
 		lblTitle.setHorizontalAlignment(SwingConstants.CENTER);
 		lblTitle.setFont(new Font("Roboto Black", Font.PLAIN, 52));
 		titlePanel.add(lblTitle);
@@ -97,6 +96,7 @@ public class GraphicInterface extends JFrame {
 		panel.add(btnAdminMenu);
 		
 		JPanel MachinesPanel = new JPanel();
+		MachinesPanel.setVisible(false);
 		contentPane.add(MachinesPanel, BorderLayout.WEST);
 	}
 }

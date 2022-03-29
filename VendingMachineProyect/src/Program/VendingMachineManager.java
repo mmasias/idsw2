@@ -2,6 +2,8 @@ package Program;
 
 import Program.Products.*;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
@@ -36,8 +38,15 @@ public class VendingMachineManager {
 						new Coin(0.5f, 20), 
 						new Coin(0.2f, 20), 
 						new Coin(0.05f, 10) };
+				
+				List<Administrator> administrators = new ArrayList<Administrator>(Arrays.asList(
+						new Administrator("Jesús", "Saro", "jesus.saro", "12345"),
+						new Administrator("Ruben", "Gutierrez", "ruben.gutierrez", "12345"),
+						new Administrator("Luis", "Collado", "luis.collado", "12345"),
+						new Administrator("Diego Carlos", "Lopez", "dieog.lopez", "12345")
+				));
 
-				operativeMachines[arrayIndex] = new VendingMachine(arrayIndex + 1, currentMachineProducts, currentMachineMoney);
+				operativeMachines[arrayIndex] = new VendingMachine(arrayIndex + 1, currentMachineProducts, currentMachineMoney, administrators);
 
 			}
 		}catch(ValueIncorrectException e) {
@@ -93,7 +102,8 @@ public class VendingMachineManager {
 	private static final int CHECK_PRODUCTS_OPTION = 1;
 	private static final int BUY_PRODUCTS_OPTION = 2;
 	private static final int CHECK_MONEY_OPTION = 3;
-	private static final int EXIT_OPTION = 4;
+	private static final int LOGIN_OPTION = 4;
+	private static final int EXIT_OPTION = 5;
 
 	private static boolean ChooseOptionConcretMachine(VendingMachine[] operativeMachines, int machineOption) {
 
@@ -103,7 +113,8 @@ public class VendingMachineManager {
 		System.out.println("1 - Revisar productos");
 		System.out.println("2 - Comprar producto");
 		System.out.println("3 - Revisar dinero");
-		System.out.println("4 - Salir");
+		System.out.println("4 - Logearse como Admin");
+		System.out.println("5 - Salir");
 		System.out.println("Introducir opcion : ");
 
 		int optionChosen;
@@ -123,6 +134,10 @@ public class VendingMachineManager {
 		} else if (optionChosen == CHECK_MONEY_OPTION) {
 
 			System.out.println(operativeMachines[machineOption].moneyString());
+
+		} else if (optionChosen == LOGIN_OPTION) {
+
+			operativeMachines[machineOption].LogIn();
 
 		} else if (optionChosen == EXIT_OPTION) {
 
