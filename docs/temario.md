@@ -4,7 +4,10 @@
 
 
 
-## Introducción al análisis y diseño 
+## Repaso de Ingeniería del Software I
+* ***Proceso del Software***
+* ***Disciplina de requisitos***
+* ***RUP***
 
 ## Análisis 
 * ***Principios de análisis***	
