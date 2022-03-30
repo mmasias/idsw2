@@ -10,10 +10,13 @@ public class Administrator {
 	
 	private String password;
 	
-	public Administrator (String name, String surname, String username, String password) {
+	private boolean logedIn;
+	
+	public Administrator (String name, String surname, String username, String password, boolean logedIn) {
 		this.name = name;
 		this.surname = surname;
 		this.username = username;
+		this.logedIn = logedIn;
 	}
 	
 	
@@ -48,4 +51,16 @@ public class Administrator {
 	public void setPassword(String password) {
 		this.password = password;
 	}
+
+
+	public boolean isLogedIn() {
+		return logedIn;
+	}
+
+
+	public void setLogedIn(boolean logedIn) {
+		this.logedIn = logedIn;
+	}
+	
+	
 }

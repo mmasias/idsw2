@@ -4,13 +4,13 @@ public class Product {
 	
 	private String name;
 	private float price;
-	private int cuantity;
+	private int quantity;
 	
 	
 	public Product(String name, float price, int cuantity) {
 		this.name = name;
 		this.price = price;
-		this.cuantity = cuantity;
+		this.quantity = cuantity;
 	}
 
 
@@ -35,16 +35,16 @@ public class Product {
 
 
 	public int getCuantity() {
-		return cuantity;
+		return quantity;
 	}
 
 
 	public void setCuantity(int cuantity) {
-		this.cuantity = cuantity;
+		this.quantity = cuantity;
 	}
 	
 	public String toString() {
-		return name + "			" + cuantity;
+		return name + "			" + quantity;
 	}
 	
 

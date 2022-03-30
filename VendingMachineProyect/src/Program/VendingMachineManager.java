@@ -40,10 +40,10 @@ public class VendingMachineManager {
 						new Coin(0.05f, 10) };
 				
 				List<Administrator> administrators = new ArrayList<Administrator>(Arrays.asList(
-						new Administrator("Jesús", "Saro", "jesus.saro", "12345"),
-						new Administrator("Ruben", "Gutierrez", "ruben.gutierrez", "12345"),
-						new Administrator("Luis", "Collado", "luis.collado", "12345"),
-						new Administrator("Diego Carlos", "Lopez", "dieog.lopez", "12345")
+						new Administrator("Jesús", "Saro", "jesus.saro", "12345", false),
+						new Administrator("Ruben", "Gutierrez", "ruben.gutierrez", "12345", false),
+						new Administrator("Luis", "Collado", "luis.collado", "12345", false),
+						new Administrator("Diego Carlos", "Lopez", "dieog.lopez", "12345", false)
 				));
 
 				operativeMachines[arrayIndex] = new VendingMachine(arrayIndex + 1, currentMachineProducts, currentMachineMoney, administrators);
@@ -104,17 +104,33 @@ public class VendingMachineManager {
 	private static final int CHECK_MONEY_OPTION = 3;
 	private static final int LOGIN_OPTION = 4;
 	private static final int EXIT_OPTION = 5;
+	private static final int REFILL_PRODUCTS_OPTION = 6;
+	private static final int REFILL_MONEY_OPTION = 7;
+	private static final int REPAIR_MACHINE_OPTION = 8;
+	
 
 	private static boolean ChooseOptionConcretMachine(VendingMachine[] operativeMachines, int machineOption) {
 
+		final boolean someonelogedIn = operativeMachines[machineOption].checkIfSomeoneLogedIn();
 		
 		
 		System.out.println("Seleccione opcion");
 		System.out.println("1 - Revisar productos");
 		System.out.println("2 - Comprar producto");
 		System.out.println("3 - Revisar dinero");
-		System.out.println("4 - Logearse como Admin");
-		System.out.println("5 - Salir");
+		if(!someonelogedIn) {
+			System.out.println("4 - Logearse como Admin");
+		}
+		
+		if(someonelogedIn) {
+			System.out.println("5 - Salir y deslogearse");
+			System.out.println("6 - Rellenar productos");
+			System.out.println("7 - Rellenar fondos (Sin implementar)");
+			System.out.println("8 - Reparar máquina");
+		}else {
+			System.out.println("5 - Salir");
+		}
+		
 		System.out.println("Introducir opcion : ");
 
 		int optionChosen;
@@ -137,10 +153,24 @@ public class VendingMachineManager {
 
 		} else if (optionChosen == LOGIN_OPTION) {
 
-			operativeMachines[machineOption].LogIn();
+			System.out.println(operativeMachines[machineOption].LogIn());
 
-		} else if (optionChosen == EXIT_OPTION) {
+		} else if (optionChosen == REFILL_PRODUCTS_OPTION && someonelogedIn) {
 
+			operativeMachines[machineOption].refillProduct();
+
+		}  else if (optionChosen == REFILL_MONEY_OPTION && someonelogedIn) {
+
+			//operativeMachines[machineOption].();
+
+		}  else if (optionChosen == REPAIR_MACHINE_OPTION && someonelogedIn) {
+
+			operativeMachines[machineOption].repairMachineString();
+
+		}  else if (optionChosen == EXIT_OPTION) {
+			if(someonelogedIn) {
+				operativeMachines[machineOption].logOutAdminLogedIn();
+			}
 			return false;
 
 		} else {

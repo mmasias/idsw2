@@ -14,7 +14,7 @@ public class VendingMachine {
 	private Money[] money;
 	private boolean stuck;
 	private boolean broken;
-	private List<Administrator> administrators = new ArrayList();
+	private List<Administrator> administrators = new ArrayList<Administrator>();
 	
 	public VendingMachine(int machineNumber, Product[] products, Money[] money, List<Administrator> administrators) {
 		this.machineNumber = machineNumber;
@@ -91,6 +91,35 @@ public class VendingMachine {
 		
 	}
 	
+	public void refillMoney() {
+		
+	}
+	
+	public void refillProduct() {
+		
+		productString();
+		
+		final Scanner scanner = new Scanner(System.in);
+		
+		System.out.println("Escribir producto deseado : ");
+		final String product = scanner.nextLine();
+		
+		for(Product current : products) {
+			
+			if(product.equals(current.getName())) {
+				
+				int quantity = 0;
+				do {
+					System.out.println("Escribir la cantidad a rellenar del producto: ");
+					quantity = scanner.nextInt();
+					
+				}while(quantity <= 0);	
+				current.setCuantity(quantity);
+			}
+		}
+		scanner.close();
+	}
+	
 	
 	private void addMoney(List<Money> moneyList) {
 		for(Money currentList : moneyList) {
@@ -103,12 +132,41 @@ public class VendingMachine {
 		
 	}
 	
+	public boolean checkIfSomeoneLogedIn() {
+		boolean logedIn = false;
+		for(Administrator a : administrators) {
+			if(a.isLogedIn()) {
+				logedIn = true;
+			}
+		}
+		return logedIn;
+	}
+	
+	public Administrator getAdministratorLogedIn() {
+		Administrator result = null;
+		for(Administrator a : administrators) {
+			if(a.isLogedIn()) {
+				result = a;
+			}
+		}
+		return result;
+	}
+	
+	public void logOutAdminLogedIn() {
+		for(Administrator a : administrators) {
+			if(a.isLogedIn()) {
+				a.setLogedIn(false);
+			}
+		}
+	}
+	
 	public void machineGetsStuck() {
 		
 		Random random = new Random();
 		final int i = random.nextInt(99);
 		if(i > 97) {
 			this.stuck = true;
+			machineStuckString();
 		}
 		else {
 			this.stuck = false;
@@ -121,6 +179,7 @@ public class VendingMachine {
 		final int i = random.nextInt(99);
 		if(i > 96) {
 			this.broken = true;
+			machineBrokenString();
 		}
 		else {
 			this.broken = false;
@@ -129,7 +188,7 @@ public class VendingMachine {
 
 	public String productString () {
 		String result = "---------------------------------\n"
-				+ "         Maquina"+machineNumber
+				+ "         Maquina "+machineNumber
 				+"\n---------------------------------\n";
 		
 		result += "---------------------------------\n";
@@ -159,24 +218,31 @@ public class VendingMachine {
 		return result;
 	}
 	
-	public void LogIn() {
+	public String LogIn() {
 		
-		Scanner scanner = new Scanner(System.in);
+		final Scanner scanner = new Scanner(System.in);
 		
 		String result =  "---------------------------------\n";
-		result += "         Introduce tu usuario:";
+		result += "         Introduce tu usuario:\n";
 		result += "---------------------------------\n";
+		System.out.print(result);
 		final String username = scanner.nextLine();
 		
-		result +=  "---------------------------------\n";
-		result += "         Introduce tu contraseña:";
-		result += "---------------------------------\n";
+		String result2 =  "---------------------------------\n";
+		result2 += "         Introduce tu contraseña:\n";
+		result2 += "---------------------------------\n";
+		System.out.print(result2);
 		final String password = scanner.nextLine();
 		
 		scanner.close();
 		System.out.println(result);	
 		
-		checkLogIn(username, password);
+		final boolean correctLogIn = checkLogIn(username, password);
+		if(correctLogIn) {
+			return "Bienvenido " + getAdministratorLogedIn().getName() + getAdministratorLogedIn().getSurname() + "!";
+		}else{
+			return "Lo sentimos, pero el usuario o contraseña que has introducido es incorrecto";
+		}
 	}
 	
 	private boolean checkLogIn(String username, String password) {
@@ -185,6 +251,7 @@ public class VendingMachine {
 		for(Administrator a : administrators) {
 			if(username.equals(a.getUsername()) && password.equals(a.getPassword())) {
 				result = true;
+				a.setLogedIn(true);
 			}
 		}
 		return result;
@@ -193,7 +260,7 @@ public class VendingMachine {
 	public String toString() {
 		
 		String result = "---------------------------------\n"
-				+ "         Maquina"+machineNumber
+				+ "         Maquina "+machineNumber
 				+"\n---------------------------------\n";
 		
 		result += "---------------------------------\n";
@@ -233,11 +300,18 @@ public class VendingMachine {
 	
 	public String unstuckMachineString () {
 		
-		
 		String result =  "---------------------------------\n";
-		result += "         El técnico ha arreglado la máquina con éxito			";
+		result += "         La máquina se ha atascado, por favor agitela para desatascarla ";
 		result += "---------------------------------\n";
-			
+
+		final Scanner scanner = new Scanner(System.in);
+		
+		System.out.println("Pulsa cualquier tecla para desatascar la máquina");
+		result += "---------------------------------\n";
+		scanner.nextLine();
+		
+		scanner.close();
+		
 		return result;
 	}
 	
@@ -249,6 +323,27 @@ public class VendingMachine {
 		
 		return result;
 	}
+	
+	public String repairMachineString () {
+		
+		String result =  "---------------------------------\n";
+		result += "         Arreglando la máquina			";
+		result += "---------------------------------\n";
+		try {
+			Thread.sleep(5000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		result +=  "---------------------------------\n";
+		result += "         El técnico ha arreglado la máquina con éxito			";
+		result += "---------------------------------\n";
+			
+		return result;
+	}
+	
+
 	
 	public static Double calculeTotalValue(List<Money> moneyList) {
 		
@@ -262,7 +357,7 @@ public class VendingMachine {
 	public static List<Money> IntroduceMoney() {
 		
 		List<Money> result = new ArrayList<Money>();
-		Scanner scanner = new Scanner(System.in);
+		final Scanner scanner = new Scanner(System.in);
 		boolean IDontHaveToExit = true;
 		
 		do {
@@ -286,7 +381,7 @@ public class VendingMachine {
 	private static boolean IntroduceSingleMoney(int option, List<Money> result) {
 		
 		float amount;
-		Scanner scanner = new Scanner(System.in);
+		final Scanner scanner = new Scanner(System.in);
 		
 		try {
 			

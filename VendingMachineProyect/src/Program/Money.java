@@ -3,11 +3,11 @@ package Program;
 public class Money {
 	
 	private float value;
-	private int cuantity;
+	private int quantity;
 	
 	public Money(float value , int cuantity) {
 		this.value = value;
-		this.cuantity = cuantity;
+		this.quantity = cuantity;
 	}
 
 	public float getValue() {
@@ -19,11 +19,11 @@ public class Money {
 	}
 
 	public int getCuantity() {
-		return cuantity;
+		return quantity;
 	}
 
 	public void setCuantity(int cuantity) {
-		this.cuantity = cuantity;
+		this.quantity = cuantity;
 	}
 	
 	public float getTotalValue() {
@@ -32,7 +32,7 @@ public class Money {
 	
 	@Override
 	public String toString() {
-		return value + "€			" + cuantity;
+		return value + "€			" + quantity;
 	}
 	
 
