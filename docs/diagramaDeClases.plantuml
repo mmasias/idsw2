@@ -24,7 +24,8 @@ abstract class Movimiento{
 class Aspiradora{
     - Bateria bateria
     - Bolsa bolsa
-    
+    + constructor()
+    + limpiar(Celda[][] suelo)
 }
 class Suciedad
 class Batería
