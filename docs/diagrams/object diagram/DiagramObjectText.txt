@@ -19,11 +19,9 @@ class Snack
 class VendingMachine{
 Products[]
 Money[]
+machineNumber
 }
 
-
-
-Product -- Cost : has a
 VendingMachine -- Product : has a
 VendingMachine -- Money : has a
 Product -- Money : is paid with
