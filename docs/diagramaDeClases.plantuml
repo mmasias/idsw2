@@ -9,10 +9,12 @@ class Edificio
 class Habitacion
 {
     - Celda[][] suelo
+    - Aspiradora aspiradora
+    - Gato gato
     - int ancho
     - int largo
     + constructor(int ancho, int largo)
-    + mostrarHabitacion(Celda[][] suelo)
+    + mostrarHabitacion()
 
 }
 abstract class Movimiento{
@@ -25,12 +27,27 @@ class Aspiradora{
     - Bateria bateria
     - Bolsa bolsa
     + constructor()
-    + limpiar(Celda[][] suelo)
+    + limpiar()
 }
-class Suciedad
-class Batería
+class Batería{
+    - int capacidad
+    - int cantidad
+    + constructor()
+    + cargar()
+    + descargar()
+}
 class Gato
-class Bolsa
+class Bolsa{
+    - int cantidad
+    + constructor()
+    + cargar()
+    + descargar()
+}
+class Suciedad{
+    - String[] nivelesDeSuciedad
+    + aumentarSuciedad()
+    + reducirSuciedad()
+}
 class Objeto
 class Celda
 class Sofa
