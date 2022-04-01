@@ -1,0 +1,79 @@
+@startuml
+scale 2
+class Edificio
+{
+    - Habitacion habitacion
+    - limpiarHabitacion(Habitacion habitacion)
+    + main()
+}
+class Habitacion
+{
+    - Celda[][] suelo
+    - Aspiradora aspiradora
+    - Gato gato
+    - int ancho
+    - int largo
+    + constructor(int ancho, int largo)
+    + mostrarHabitacion()
+
+}
+abstract class Movimiento{
+    # int posX
+    # int posY
+    # int[][] coordenadasDeMovimiento
+    # moverElemento(int posX, int posY)
+}
+class Aspiradora{
+    - Bateria bateria
+    - Bolsa bolsa
+    + constructor()
+    + limpiar()
+}
+class Batería{
+    - int capacidad
+    - int cantidad
+    + constructor()
+    + cargar()
+    + descargar()
+}
+class Gato
+class Bolsa{
+    - int cantidad
+    + constructor()
+    + cargar()
+    + descargar()
+}
+class Suciedad{
+    - String[] nivelesDeSuciedad
+    + aumentarSuciedad()
+    + reducirSuciedad()
+}
+class Objeto
+class Celda
+class Sofa
+class Silla
+
+Edificio *--> Habitacion
+
+Habitacion *--> Celda : contiene
+Habitacion *--> Aspiradora
+Habitacion o--> Gato
+Habitacion *--> Objeto
+
+Celda o..> Suciedad
+
+Aspiradora o--> Suciedad : elimina
+Aspiradora *-l-> Bolsa : tiene
+Aspiradora *-d-> Batería : tiene
+Aspiradora ..> Celda
+Aspiradora -u-|> Movimiento
+
+Gato o..> Suciedad : produce
+Gato ..> Celda
+Gato -u-|> Movimiento
+
+Objeto <|-- Sofa
+Objeto <|-- Silla
+Objeto ..> Celda
+
+@enduml

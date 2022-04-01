@@ -1,0 +1,35 @@
+@startuml
+scale 150
+
+object "salon: Mapa" as salon
+object "suelo1: Celda" as suelo1
+object "suelo2: Celda" as suelo2
+object "suelo3: Celda" as suelo3
+object "suelo4: Celda" as suelo4
+object "suelo5: Celda" as suelo5
+object "suelo6: Celda" as suelo6
+object "suelo7: Celda" as suelo7
+object "suelo8: Celda" as suelo8
+object "gato: Gato" as gato
+object "aspiradora: Aspiradora" as aspiradora
+object "mueble: Mueble" as mueble
+object "silla: Silla" as silla
+object "suciedad1: Suciedad" as suciedad1
+object "suciedad2: Suciedad" as suciedad2
+
+salon *--> suelo1
+salon *--> suelo2
+salon *--> suelo3
+salon *--> suelo4
+salon *--> suelo5
+salon *--> suelo6
+salon *--> suelo7
+salon *--> suelo8
+
+suelo1 o-d-> gato 
+suelo2 o-d-> mueble
+suelo3 o-d-> suciedad1
+suelo6 o-d-> aspiradora
+suelo8 o-d-> suciedad2
+suelo5 o-d-> silla
+@enduml
