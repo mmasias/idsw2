@@ -1,79 +1,99 @@
 @startuml
-scale 2
+scale 1
 class Edificio
 {
-    - Habitacion habitacion
-    - limpiarHabitacion(Habitacion habitacion)
-    + main()
+    - {static} Habitacion habitacion
+    + {static} areaConMayorSuciedadEnHabitacion()
+    + {static} main()
 }
 class Habitacion
 {
-    - Celda[][] suelo
-    - Aspiradora aspiradora
-    - Gato gato
+    - Dibujable[][] suelo
     - int ancho
     - int largo
     + constructor(int ancho, int largo)
+    + limpiarHabitacion()
     + mostrarHabitacion()
+    + suciedadTotal()
+    + areaConMayorSuciedad()
+    + suciedadRestante()
+}
 
+abstract class Dibujable{
+    - int posX
+    - int posY
+    - String simbolo
+    + dibujar()
+    + estaLibre()
 }
-abstract class Movimiento{
-    # int posX
-    # int posY
-    # int[][] coordenadasDeMovimiento
-    # moverElemento(int posX, int posY)
+
+abstract class Entidad extends Dibujable {
+    - int[][] coordenadasDeMovimiento
+    - Dibujable encimaDe
+    + mover(int posX, int posY)
+    + proximoMovimiento()
 }
-class Aspiradora{
+class Aspiradora extends Entidad{
     - Bateria bateria
     - Bolsa bolsa
+    - int pasos
     + constructor()
     + limpiar()
+    + bolsaLlena()
+    + cargaBateria()
+    + cargarBateria()
+    + vaciarBolsa()
+    + areaConMayorSuciedad()
 }
-class Batería{
-    - int capacidad
-    - int cantidad
+
+class Gato extends Entidad{
+    - bool estado
+    - int impaciencia
     + constructor()
-    + cargar()
-    + descargar()
+    + cambioEstado()
+    + ensuciar()
 }
-class Gato
-class Bolsa{
-    - int cantidad
+class Mueble extends Dibujable{
+    - Map<String, String> tipoDeMueble
     + constructor()
-    + cargar()
-    + descargar()
+    + getTipoDeMueble()
 }
-class Suciedad{
+
+class Suciedad extends Dibujable{
     - String[] nivelesDeSuciedad
+    - int nivelDeSuciedad
+    + constructor()
+    + getNivelDeSuciedad()
     + aumentarSuciedad()
     + reducirSuciedad()
 }
-class Objeto
-class Celda
-class Sofa
-class Silla
+
+class Batería{
+    - int carga
+    - int cantidad
+    + constructor()
+    + cargar()
+    + descargar()
+}
+
+class Bolsa{
+    - int capacidad
+    - int cantidad
+    + constructor()
+    + llenar()
+    + vaciar()
+}
+
 
 Edificio *--> Habitacion
 
-Habitacion *--> Celda : contiene
-Habitacion *--> Aspiradora
-Habitacion o--> Gato
-Habitacion *--> Objeto
-
-Celda o..> Suciedad
+Habitacion *--> Dibujable : contiene
 
 Aspiradora o--> Suciedad : elimina
 Aspiradora *-l-> Bolsa : tiene
 Aspiradora *-d-> Batería : tiene
-Aspiradora ..> Celda
-Aspiradora -u-|> Movimiento
+Aspiradora -u-> Edificio
 
 Gato o..> Suciedad : produce
-Gato ..> Celda
-Gato -u-|> Movimiento
-
-Objeto <|-- Sofa
-Objeto <|-- Silla
-Objeto ..> Celda
 
 @enduml
