@@ -10,6 +10,9 @@ public class ImageGame {
 	private ImageIcon background_settings = new ImageIcon("Images\\panel_settings.png");
 	
 	private Image image_info_heroine = new ImageIcon("Images\\panel_info_heroine.png").getImage();
+	private Image image_info_heroine_horde = new ImageIcon("Images\\panel_info_heroine_horda.png").getImage();
+	
+	
 	private ImageIcon image_settings = new ImageIcon("Images\\Buttons\\Game\\Settings\\button_setting.png");
 	private ImageIcon image_settings_mouseEntered = new ImageIcon("Images\\Buttons\\Game\\Settings\\button_setting_mouseEntered.png");
 	
@@ -53,8 +56,9 @@ public class ImageGame {
 		return this.background_settings;
 	}
 	
-	public Image getImageInfoHeroine() {
-		return this.image_info_heroine;
+	public Image getImageInfoHeroine(boolean horde) {
+		if (horde) return this.image_info_heroine_horde;
+		else return this.image_info_heroine;
 	}
 	
 	public ImageIcon getImageButtonContinueSetting(boolean entered) {
