@@ -1,0 +1,14 @@
+--Turno Heroina--
+
+- Si la heroina escoge beber la pocion, comprobar que esta bebiendo la pocion durante 3 turnos, solo puede recuperar vida si se desmaya, cambia de turno.
+- Si no esta bebiendo la pocion se puede desmayar, recupera vida en este caso y cambia de turno.
+- Si no ocurre ninguna de estas ataca y habilita la opcion de atacar, defenderse o curarse.
+
+- Cuando termine de atacar y la vampiresa haya asumido todo el daño es en ese momento cuando se cambia a su turno.
+
+--Turno Vampiresa--
+
+- Si la vampiresa esta desmayada, se cura, cambia de turno.
+- Si no ocurre nada ataca.
+
+- Cuando haya acabado de atacar y la heroina haya asumido su daño se pasa el turno.
