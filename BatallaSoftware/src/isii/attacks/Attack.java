@@ -2,6 +2,8 @@ package isii.attacks;
 
 import javax.swing.JProgressBar;
 
+import isii.attacks.durability.Durability;
+
 public class Attack {
 	
 	private final int damage;
@@ -51,6 +53,10 @@ public class Attack {
 	
 	private void setCountDurability(int num) {
 		this.countDurability = num;
+	}
+	
+	public Attack withAttackNotDurability() {
+		return new Attack(damage, success);
 	}
 	
 	

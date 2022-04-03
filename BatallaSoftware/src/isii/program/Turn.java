@@ -15,36 +15,35 @@ public class Turn {
 		this.heroine = heroine;
 	}
 	
-	public int getTurn() {
+	public synchronized int getTurn() {
 		return this.turn;
 	}
 	
-	public void setTurn(int turn) {
+	public synchronized void setTurn(int turn) {
 		this.turn = turn;
 	}
 	
 	public synchronized void changeTurn() {
-		if (getTurn() < numPlayers) addTurn();
+		if (getTurn() < numPlayers) this.addTurn();
 		else {
-			if (this.heroine.isDrinkPotion()) this.coundRounds();
-			setTurn(0);
+			if (this.heroine.isDrinkPotion()) this.coundRoundsToDrinkPotion();
+			this.setTurn(0);
 		}
 	}
 	
-	public void addTurn() {
+	public synchronized void addTurn() {
 		this.setTurn(this.getTurn() + 1);
 	}
 	
-	public synchronized void coundRounds() {
+	public synchronized void coundRoundsToDrinkPotion() {
 		if (this.getRounds() < 2) this.rounds++;
 		else {
-			this.heroine.setDrinkPotion(false);
-			this.heroine.recoverEnergy(this.heroine.getEnergy().getEnergyBar().getMaximum());
+			this.heroine.recoverEnergyPotion();
 			this.rounds = 0;
 		}
 	}
 	
-	public int getRounds() {
+	public synchronized int getRounds() {
 		return this.rounds;
 	}
 }

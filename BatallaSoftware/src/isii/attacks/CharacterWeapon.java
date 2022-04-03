@@ -3,9 +3,10 @@ package isii.attacks;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.util.Random;
-import isii.characters.Energy;
-import isii.images.ImageCharacter;
-import isii.images.SpriteImage;
+
+import isii.characters.energy.Energy;
+import isii.images.characters.ImageCharacter;
+import isii.images.characters.SpriteImage;
 
 public class CharacterWeapon {
 	

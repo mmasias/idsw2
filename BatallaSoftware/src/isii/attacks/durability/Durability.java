@@ -1,4 +1,4 @@
-package isii.attacks;
+package isii.attacks.durability;
 
 import javax.swing.JProgressBar;
 

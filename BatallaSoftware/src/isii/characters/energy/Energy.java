@@ -1,4 +1,4 @@
-package isii.characters;
+package isii.characters.energy;
 
 import javax.swing.JProgressBar;
 
@@ -18,7 +18,7 @@ public class Energy {
 		this.characterDefend = false;
 	}
 	
-	public boolean isEnergyFinished() {
+	public boolean isEnergyRecovered() {
 		return energyFinished;
 	}
 
@@ -87,17 +87,16 @@ public class Energy {
 		}
 		
 		private synchronized void increaseEnergy() {
-			for (int i = energy; i <= damageHit; i++) {
-				try { Thread.sleep(20); } catch (InterruptedException e) {}
-				setEnergyBar(i);
-			}
+			for (int i = energy; i <= damageHit; i++) timer(i);
 		}
 		
 		private synchronized void reducedEnergy() {
-			for (int i = energy; i >= damageHit; i--) {
-				try { Thread.sleep(20); } catch (InterruptedException e) {}
-				setEnergyBar(i);
-			}
+			for (int i = energy; i >= damageHit; i--) timer(i);
+		}
+		
+		private synchronized void timer(int i) {
+			try { Thread.sleep(20); } catch (InterruptedException e) {}
+			setEnergyBar(i);
 		}
 		
 	}

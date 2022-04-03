@@ -6,49 +6,53 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.util.Random;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import javax.swing.JProgressBar;
-
 import isii.attacks.Attack;
-import isii.characters.Enemy;
-import isii.characters.Energy;
+import isii.characters.Vampiress;
 import isii.characters.Heroine;
+import isii.characters.energy.Energy;
 import isii.images.ImageGame;
 import isii.other.ButtonPanel;
+import isii.other.Dimensions;
 
-public class GameJPanel extends JPanel {
-	
+public class GameController extends JPanel {
+
 	private static final long serialVersionUID = -1618637094370141321L;
 	
-	private Heroine heroine;
-	private Enemy vampiress;
+	protected Heroine heroine;
+	protected Vampiress vampiress_1, vampiress_2, vampiress_3;
 	
-	private Turn turn;
+	protected Turn turn;
 	
-	private int numAttack = 0;
-	private int energia = 150;
-	private int vampiressEnergia = 150;
+	protected int numAttack;
+	private int heroineEnergy;
+	private int vampiressEnergy;
+	protected int numPlayers;
 	
 	private JProgressBar heroineEnergyBar = new JProgressBar();
-	private JProgressBar vampiressEnergyBar = new JProgressBar();
+	private JProgressBar vampiress1EnergyBar = new JProgressBar();
+	private JProgressBar vampiress2EnergyBar = new JProgressBar();
+	private JProgressBar vampiress3EnergyBar = new JProgressBar();
 	
 	private JProgressBar heroineDurabilityBar_Weapon1 = new JProgressBar();
 	private JProgressBar heroineDurabilityBar_Weapon2 = new JProgressBar();
 	private JProgressBar heroineDurabilityBar_Weapon3 = new JProgressBar();
 	
-	private ImageGame image = new ImageGame();
-	private ButtonPanel panelAttacks, panelDefend, panelPotion, panelWeapon1, panelWeapon2, panelWeapon3, panelBack, panelSettings, backgroundSettings, panelContinueSetting, panelExitSetting;
+	protected ImageGame image = new ImageGame();
+	protected ButtonPanel panelAttacks, panelDefend, panelPotion, panelWeapon1, panelWeapon2, panelWeapon3, panelBack, panelSettings, backgroundSettings, panelContinueSetting, panelExitSetting;
+	
 	private int x, y, width, height;
 	private int xRec, yRec, widthRec = 836, heightRec = 79;
 	
-	private boolean openSettings = false;
+	protected boolean openSettings = false;
+	protected boolean horde;
 	
 	private Graphics2D g2d;
-	private ResultJPanel resultPanel;
-	
-	public GameJPanel(int x, int y, int width, int height, ResultJPanel resultPanel) {
+	protected ResultJPanel resultPanel;
+
+	public GameController(int x, int y, int width, int height, ResultJPanel resultPanel, boolean horde) {
 		this.setLayout(null);
 		this.x = x; this.y = y; this.width = width; this.height= height;
 		this.setBounds(x, y, width, height);
@@ -58,11 +62,16 @@ public class GameJPanel extends JPanel {
 		
 		this.resultPanel = resultPanel;
 		
-		//Panel Attacks
+		numAttack = 1;
+		vampiressEnergy = 60;
+		this.numPlayers = horde ? 4 : 2;
+		this.horde = horde;
+		this.heroineEnergy = horde ? 250 : 150;
+		
 		panelAttacks = new ButtonPanel(image.getImageButtonAttacks(false));
 		panelAttacks.setBounds(xRec, yRec, widthRec, heightRec);
 		addMouseListenerEnteredExit(panelAttacks, image.getImageButtonAttacks(true), image.getImageButtonAttacks(false));
-		panelAttacks.addMouseListener(new MouseAdapter() { //TODO Porfavor Marco del futuro quitame los actionListener del Constructor y metelos en un método, queda muy feo el codigo :) 
+		panelAttacks.addMouseListener(new MouseAdapter() { 
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				if (turn.getTurn() == 0  && !openSettings) {
@@ -76,39 +85,12 @@ public class GameJPanel extends JPanel {
 		panelDefend = new ButtonPanel(image.getImageButtonDefend(false));
 		panelDefend.setBounds(xRec, yRec + 89, widthRec, heightRec);
 		addMouseListenerEnteredExit(panelDefend, image.getImageButtonDefend(true), image.getImageButtonDefend(false));
-		panelDefend.addMouseListener(new MouseAdapter() { //TODO Porfavor Marco del futuro quitame los actionListener del Constructor y metelos en un método, queda muy feo el codigo :) 
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				if (turn.getTurn() == 0  && !openSettings) {
-					heroine.setDefend(true);
-					turn.changeTurn();
-					numAttack = newAttack();
-					vampiress.yourTurn(numAttack, heroine);
-					hideAllPanel();
-				}
-			}
-		});
 		this.add(panelDefend, -1);
-		
+				
 		//Panel Potion
 		panelPotion = new ButtonPanel(image.getImageButtonPotion(false));
 		panelPotion.setBounds(xRec, yRec + (2 * 89), widthRec, heightRec);
 		addMouseListenerEnteredExit(panelPotion, image.getImageButtonPotion(true), image.getImageButtonPotion(false));
-		panelPotion.addMouseListener(new MouseAdapter() { //TODO Porfavor Marco del futuro quitame los actionListener del Constructor y metelos en un método, queda muy feo el codigo :) 
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				if (turn.getTurn() == 0  && !openSettings) {
-					heroine.setDrinkPotion(true);
-					heroine.setDoAction(true);
-					heroine.printAnimationPotion();
-					heroine.yourTurn(numAttack, heroine);
-					turn.changeTurn();
-					numAttack = newAttack();
-					vampiress.yourTurn(numAttack, heroine);
-					hideAllPanel();
-				}
-			}
-		});
 		this.add(panelPotion, -1);
 		
 		//Panel Weapon 1
@@ -137,7 +119,7 @@ public class GameJPanel extends JPanel {
 		panelBack.setBounds((width / 2) - (161 / 2) + 400, (height / 2) - (44 / 2) + 500, 161, 44);
 		panelBack.setVisible(false);
 		addMouseListenerEnteredExit(panelBack, image.getImageButtomBack(true), image.getImageButtomBack(false));
-		panelBack.addMouseListener(new MouseAdapter() { //TODO Porfavor Marco del futuro quitame los actionListener del Constructor y metelos en un método, queda muy feo el codigo :) 
+		panelBack.addMouseListener(new MouseAdapter() { 
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				if (turn.getTurn() == 0  && !openSettings) {
@@ -151,7 +133,7 @@ public class GameJPanel extends JPanel {
 		panelSettings = new ButtonPanel(image.getImageButtonSettings(false));
 		panelSettings.setBounds((width / 2) - (60 / 2) + 900, (height / 2) - (60 / 2) - 490, 60, 60);
 		//addMouseListenerEnteredExit(panelSettings, image.getImageButtonSettings(true), image.getImageButtonSettings(false));
-		panelSettings.addMouseListener(new MouseAdapter() { //TODO Porfavor Marco del futuro quitame los actionListener del Constructor y metelos en un método, queda muy feo el codigo :) 
+		panelSettings.addMouseListener(new MouseAdapter() { 
 			@Override
 			public void mouseEntered(MouseEvent e) {
 				panelSettings.setImage(image.getImageButtonSettings(true));
@@ -170,7 +152,7 @@ public class GameJPanel extends JPanel {
 		
 		backgroundSettings = new ButtonPanel(image.getImageBackgrounSettings());
 		backgroundSettings.setLayout(null);
-		backgroundSettings.setBounds(0, 0, width, height);
+		backgroundSettings.setBounds(0, 0, width, height-1);
 		backgroundSettings.setVisible(false);
 		this.add(backgroundSettings, 0);
 		
@@ -189,7 +171,6 @@ public class GameJPanel extends JPanel {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				openSettings = false;
-				//panelContinueSetting.setVisible(false);
 				backgroundSettings.setVisible(false);
 			}
 		});
@@ -217,81 +198,81 @@ public class GameJPanel extends JPanel {
 		addAttributes();
 		createHeroine();
 		createVampiress();
-		
+		if (horde) createHorde();
 	}
-
+	
 	@Override
 	public synchronized void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		g2d = (Graphics2D) g;
 		g2d.drawImage(image.getImageBackground(), x, y, width, height, null);
-		if (heroine.getEnergy().isDead()) {
-			this.setVisible(false);
-			resultPanel.setText("GAME OVER");
-			resultPanel.setVisible(true);
-		} else if (vampiress.getEnergy().isDead()) {
-			this.setVisible(false);
-			resultPanel.setText("YOU WIN");
-			resultPanel.setVisible(true);
-		}
-		paintHeroine(g2d);
-		paintVampiress(g2d);
-		g2d.drawImage(image.getImageInfoHeroine(), 0, 0, null);
-		//if (openSettings) g2d.drawImage(image.getImageBackgrounSettings().getImage(), x, y, width, height, null);
+		paintCharacters(g2d);
+		g2d.drawImage(image.getImageInfoHeroine(horde), 0, 0, null);
+		if (openSettings) paintFillRect(g2d);
 		this.repaint();
 	}
 	
-	private synchronized void paintHeroine(Graphics2D g) {
-		if (turn.getTurn() == 0 && heroine.isDoAction()) {
-			if (!heroine.isAttackFinish()) heroine.paintAttack(numAttack, g);
-			else if (vampiress.getEnergy().isEnergyFinished() && heroine.getEnergy().isEnergyFinished()) {
-				turn.changeTurn();
-				numAttack = newAttack();
-				vampiress.yourTurn(numAttack, heroine);
-			} else heroine.paint(g);
-		}
-		else heroine.paint(g);
-	}
-	
-	private synchronized void paintVampiress(Graphics2D g) {
-		if (turn.getTurn() == 1) {
-			if (!vampiress.isAttackFinish()) vampiress.paintAttack(numAttack, g);
-			else if (heroine.getEnergy().isEnergyFinished() && vampiress.getEnergy().isEnergyFinished()) {
-				turn.changeTurn();
-				heroine.setDefend(false);
-				heroine.setDoAction(true);
-				if (!heroine.isDrinkPotion() && !heroine.getEnergy().isFainting()) {
-					heroine.setDoAction(false);
-					showAttackPanels(false);
-				} else heroine.yourTurn(numAttack, vampiress);
-			}
-			else vampiress.paint(g);
-		}
-		else vampiress.paint(g);
-	}
-	
-
-	private int newAttack() {
-		return new Random().nextInt(3) + 1;
+	private void paintCharacters(Graphics2D g) {
+		heroine.paint(g);
+		vampiress_1.paint(g);
+		if (horde) paintHordeMode(g);
 	}
 
+	private void paintHordeMode(Graphics2D g) {
+		vampiress_2.paint(g);
+		vampiress_3.paint(g);
+	}
+	
+	private void paintFillRect(Graphics2D g) {
+		g.setColor(new Color(26, 37, 39));
+		g.fillRect(width, (height - 10), -width, (height - 10));
+	}
+	
 	private void createHeroine() {
-		Attack attack1 = new Attack(7, 50, 100, heroineDurabilityBar_Weapon1);
+		Attack attack1 = new Attack(7, 50, 100, heroineDurabilityBar_Weapon1); //TODO Cambia el success a 50, 100 es para pruebas
 		Attack attack2 = new Attack(15, 25, 100, heroineDurabilityBar_Weapon2);
 		Attack attack3 = new Attack(30, 12, 100, heroineDurabilityBar_Weapon3);
-		Energy heroineEnergy = new Energy(energia, 30, heroineEnergyBar);
+		Energy heroineEnergy = new Energy(this.heroineEnergy, 30, heroineEnergyBar);
 		heroine = new Heroine(attack1, attack2, attack3, heroineEnergy);
-		turn = new Turn(2, heroine);
+		turn = new Turn(numPlayers, heroine);
 	}
 	
 	private void createVampiress() {
 		Attack attack1 = new Attack(5, 90);
 		Attack attack2 = new Attack(10, 60);
 		Attack attack3 = new Attack(20, 40);
-		Energy vampiressEnergy = new Energy(vampiressEnergia, 20, vampiressEnergyBar);
-		vampiress = new Enemy(attack1, attack2, attack3, vampiressEnergy);
+		Energy vampiressEnergy = new Energy(this.vampiressEnergy, 20, vampiress1EnergyBar);
+		vampiress_1 = new Vampiress(attack1, attack2, attack3, vampiressEnergy, Dimensions.enemy1Dimension());
 	}
-
+	
+	private void createHorde() {
+		Energy vampiressEnergy2 = new Energy(vampiressEnergy, 20, vampiress2EnergyBar);
+		vampiress_2 = new Vampiress(new Attack(5, 90), new Attack(10, 60), new Attack(20, 40), vampiressEnergy2, Dimensions.enemy2Dimension());
+		
+		Energy vampiressEnergy3 = new Energy(vampiressEnergy, 20, vampiress3EnergyBar);
+		vampiress_3 = new Vampiress(new Attack(5, 90), new Attack(10, 60), new Attack(20, 40), vampiressEnergy3, Dimensions.enemy3Dimension());
+	}
+	
+	protected synchronized void showAttackPanels(boolean show) {
+		showAttackPanels(panelAttacks, image.getImageButtonAttacks(false), !show);
+		showAttackPanels(panelDefend, image.getImageButtonDefend(false), !show);
+		showAttackPanels(panelPotion, image.getImageButtonPotion(false), !show);
+		showAttackPanels(panelWeapon1, image.getImageButtomWeapon(1), show);
+		showAttackPanels(panelWeapon2, image.getImageButtomWeapon(2), show);
+		showAttackPanels(panelWeapon3, image.getImageButtomWeapon(3), show);
+		showAttackPanels(panelBack, image.getImageButtomBack(false), show);
+	}
+	
+	protected synchronized void hideAllPanel() {
+		panelAttacks.setVisible(false);
+		panelDefend.setVisible(false);
+		panelPotion.setVisible(false);
+		panelWeapon1.setVisible(false);
+		panelWeapon2.setVisible(false);
+		panelWeapon3.setVisible(false);
+		panelBack.setVisible(false);
+	}
+	
 	private void mouseListenerHeroineButtoms(ButtonPanel panelWeapon, int nAttack, ImageIcon imageButtomWeaponMouseEntered, ImageIcon imageButtomWeapon) {
 		panelWeapon.addMouseListener(new MouseAdapter() {
 			@Override
@@ -302,18 +283,9 @@ public class GameJPanel extends JPanel {
 			public void mouseExited(MouseEvent e) {
 				if (turn.getTurn() == 0  && !openSettings) panelWeapon.setImage(imageButtomWeapon);
 			}
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				if (turn.getTurn() == 0  && !openSettings) {
-					heroine.setDoAction(true);
-					numAttack = nAttack;
-					heroine.yourTurn(numAttack, vampiress);
-					hideAllPanel();
-				}
-			}
 		});
 	}
-
+	
 	private void addMouseListenerEnteredExit(ButtonPanel panel, ImageIcon image_button_mouseEntered, ImageIcon image_button) {
 		panel.addMouseListener(new MouseAdapter() {
 			@Override
@@ -327,35 +299,15 @@ public class GameJPanel extends JPanel {
 		});
 	}
 	
-	private void showAttackPanels(boolean show) {
-		showAttackPanels(panelAttacks, image.getImageButtonAttacks(false), !show);
-		showAttackPanels(panelDefend, image.getImageButtonDefend(false), !show);
-		showAttackPanels(panelPotion, image.getImageButtonPotion(false), !show);
-		showAttackPanels(panelWeapon1, image.getImageButtomWeapon(1), show);
-		showAttackPanels(panelWeapon2, image.getImageButtomWeapon(2), show);
-		showAttackPanels(panelWeapon3, image.getImageButtomWeapon(3), show);
-		showAttackPanels(panelBack, image.getImageButtomBack(false), show);
-	}
-	
 	private void showAttackPanels(ButtonPanel panel, ImageIcon imageButtom, boolean show) {
 		panel.setVisible(show);
 		panel.setImage(imageButtom);
 	}
 	
-	private void hideAllPanel() {
-		panelAttacks.setVisible(false);
-		panelDefend.setVisible(false);
-		panelPotion.setVisible(false);
-		panelWeapon1.setVisible(false);
-		panelWeapon2.setVisible(false);
-		panelWeapon3.setVisible(false);
-		panelBack.setVisible(false);
-	}
-	
 	private void addAttributes() {
-		addAttributesProgressBar(heroineEnergyBar, 0, 150, energia, 395, 25, +728, 212, Color.RED);
-		addAttributesProgressBar(vampiressEnergyBar, 0, 60, vampiressEnergia, 395, 25, -728, 212, Color.RED);
-		add(vampiressEnergyBar);
+		addAttributesProgressBar(heroineEnergyBar, 0, heroineEnergy, heroineEnergy, 395, 25, +728, 212, Color.RED);
+		addAttributesProgressBar(vampiress1EnergyBar, 0, 60, vampiressEnergy, 395, 25, -728, 212, Color.RED);
+		add(vampiress1EnergyBar);
 		add(heroineEnergyBar);
 		
 		addAttributesProgressBar(heroineDurabilityBar_Weapon1, 0, 100, 100, 220, 25, +810, 317, Color.BLUE);
@@ -364,8 +316,17 @@ public class GameJPanel extends JPanel {
 		add(heroineDurabilityBar_Weapon1);
 		add(heroineDurabilityBar_Weapon2);
 		add(heroineDurabilityBar_Weapon3);
+		
+		if (horde) addAttributesHorde();
 	}
 	
+	private void addAttributesHorde() {
+		addAttributesProgressBar(vampiress2EnergyBar, 0, 60, vampiressEnergy, 395, 25, -728, 212 + 108, Color.RED);
+		addAttributesProgressBar(vampiress3EnergyBar, 0, 60, vampiressEnergy, 395, 25, -728, 212 + 218, Color.RED);
+		add(vampiress2EnergyBar);
+		add(vampiress3EnergyBar);
+	}
+
 	private void addAttributesProgressBar(JProgressBar bar, int minimum, int maximum, int value, int width, int height, int x, int y, Color color) {
 		bar.setMinimum(minimum);
 		bar.setMaximum(maximum);
