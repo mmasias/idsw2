@@ -5,6 +5,7 @@ class Edificio
     - {static} Habitacion habitacion
     + {static} areaConMayorSuciedadEnHabitacion()
     + {static} main()
+    + {static} esPosibleMoverseA(int x, int y)
 }
 class Habitacion
 {
@@ -17,17 +18,19 @@ class Habitacion
     + suciedadTotal()
     + areaConMayorSuciedad()
     + suciedadRestante()
+    + esTraspasable(int x, int y)
 }
 
-abstract class Dibujable{
+interface Dibujable{
     - int posX
     - int posY
+    - bool traspasable
     - String simbolo
     + dibujar()
-    + estaLibre()
+    
 }
 
-abstract class Entidad extends Dibujable {
+abstract class Entidad implements Dibujable {
     - int[][] coordenadasDeMovimiento
     - Dibujable encimaDe
     + mover(int posX, int posY)
@@ -53,13 +56,13 @@ class Gato extends Entidad{
     + cambioEstado()
     + ensuciar()
 }
-class Mueble extends Dibujable{
+class Mueble implements Dibujable{
     - Map<String, String> tipoDeMueble
     + constructor()
     + getTipoDeMueble()
 }
 
-class Suciedad extends Dibujable{
+class Suciedad implements Dibujable{
     - String[] nivelesDeSuciedad
     - int nivelDeSuciedad
     + constructor()
@@ -93,6 +96,7 @@ Aspiradora o--> Suciedad : elimina
 Aspiradora *-l-> Bolsa : tiene
 Aspiradora *-d-> Batería : tiene
 Aspiradora -u-> Edificio
+Entidad -u-> Edificio
 
 Gato o..> Suciedad : produce
 
