@@ -1,0 +1,103 @@
+@startuml
+scale 1
+class Edificio
+{
+    - {static} Habitacion habitacion
+    + {static} areaConMayorSuciedadEnHabitacion()
+    + {static} main()
+    + {static} esPosibleMoverseA(int x, int y)
+}
+class Habitacion
+{
+    - Dibujable[][] suelo
+    - int ancho
+    - int largo
+    + constructor(int ancho, int largo)
+    + limpiarHabitacion()
+    + mostrarHabitacion()
+    + suciedadTotal()
+    + areaConMayorSuciedad()
+    + suciedadRestante()
+    + esTraspasable(int x, int y)
+}
+
+interface Dibujable{
+    - int posX
+    - int posY
+    - bool traspasable
+    - String simbolo
+    + dibujar()
+    
+}
+
+abstract class Entidad implements Dibujable {
+    - int[][] coordenadasDeMovimiento
+    - Dibujable encimaDe
+    + mover(int posX, int posY)
+    + proximoMovimiento()
+}
+class Aspiradora extends Entidad{
+    - Bateria bateria
+    - Bolsa bolsa
+    - int pasos
+    + constructor()
+    + limpiar()
+    + bolsaLlena()
+    + cargaBateria()
+    + cargarBateria()
+    + vaciarBolsa()
+    + areaConMayorSuciedad()
+}
+
+class Gato extends Entidad{
+    - bool estado
+    - int impaciencia
+    + constructor()
+    + cambioEstado()
+    + ensuciar()
+}
+class Mueble implements Dibujable{
+    - Map<String, String> tipoDeMueble
+    + constructor()
+    + getTipoDeMueble()
+}
+
+class Suciedad implements Dibujable{
+    - String[] nivelesDeSuciedad
+    - int nivelDeSuciedad
+    + constructor()
+    + getNivelDeSuciedad()
+    + aumentarSuciedad()
+    + reducirSuciedad()
+}
+
+class Batería{
+    - int carga
+    - int cantidad
+    + constructor()
+    + cargar()
+    + descargar()
+}
+
+class Bolsa{
+    - int capacidad
+    - int cantidad
+    + constructor()
+    + llenar()
+    + vaciar()
+}
+
+
+Edificio *--> Habitacion
+
+Habitacion *--> Dibujable : contiene
+
+Aspiradora o--> Suciedad : elimina
+Aspiradora *-l-> Bolsa : tiene
+Aspiradora *-d-> Batería : tiene
+Aspiradora -u-> Edificio
+Entidad -u-> Edificio
+
+Gato o..> Suciedad : produce
+
+@enduml
