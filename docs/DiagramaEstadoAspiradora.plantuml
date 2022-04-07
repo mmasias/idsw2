@@ -1,7 +1,31 @@
 @startuml
-[*] --> Funcional
-Funcional --> Sin_Energia : Se acaba la energía
-Funcional --> Bolsa_Llena : La bolsa de basura se llena
-Sin_Energia --> Funcional : Aspiradora cargada
-Bolsa_Llena --> Funcional : Aspiradora es vaciada de la basura
+scale 150
+[*] --> Aspiradora_Funcional
+
+
+state Aspiradora_Funcional {
+    state fork_state <<fork>>
+    [*] --> fork_state : cumple
+    fork_state --> Bateria_Con_Carga
+    fork_state --> Contenedor_No_Lleno
+    fork_state --> Mapa_Con_Suciedad
+    Mapa_Con_Suciedad -down-> Aspiradora_No_Funcional : Puede provocar
+}
+
+state Aspiradora_No_Funcional {
+    state fork_state1 <<fork>>
+    [*] --> fork_state1 : cumple
+    fork_state1 --> Sin_Bateria
+    fork_state1 --> Contenedor_Lleno
+    fork_state1 --> Mapa_Limpio
+
+    state restauracion <<fork>>
+    Sin_Bateria --> restauracion
+    Contenedor_Lleno --> restauracion
+    restauracion -left-> Aspiradora_Funcional : Cambio de estado de los componentes
+
+}
+
+Mapa_Limpio --> [*] : Termina Limpieza
+
 @enduml
