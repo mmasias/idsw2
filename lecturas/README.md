@@ -1,5 +1,6 @@
 # Otras lecturas
 Además de los PDFs y lecturas contenidas en esta carpeta, a continuación links a artículos online:
+* [LePUS3, lenguage para modelar y visualizar programas orientados a objetos y patrones de diseño](https://en.wikipedia.org/wiki/LePUS3)
 * [Software Engineering Institute, Carnegie Mellon University](https://www.sei.cmu.edu/)
 * [Aprende GIT branching](https://learngitbranching.js.org/?locale=es_ES)
 * [Acerca de los diferentes tipos de merge.](https://rietta.com/blog/github-merge-types/)
