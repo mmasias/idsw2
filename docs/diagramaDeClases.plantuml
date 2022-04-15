@@ -63,7 +63,7 @@ class Mueble implements Dibujable{
 }
 
 class Suciedad implements Dibujable{
-    - String[] nivelesDeSuciedad
+    - String[] representacionesDeSuciedad
     - int nivelDeSuciedad
     + constructor()
     + getNivelDeSuciedad()
