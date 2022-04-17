@@ -10,15 +10,15 @@ import Program.MoneyTypes.*;
 public class VendingMachine {
 	
 	private int machineNumber;
-	private Product[] products;
-	private Money[] money;
+	private Product[] products;		//Es una Agregación entre VendingMachine y Prodcuts
+	private Money[] money;			//Es una Agregación entre VendingMachine y Money
 	private boolean stuck;
 	private boolean broken;
-	private List<Administrator> administrators = new ArrayList<Administrator>();
+	private List<Administrator> administrators = new ArrayList<Administrator>(); 	//Es una asociación entre VendingMachine
 	
 	public VendingMachine(int machineNumber, Product[] products, Money[] money, List<Administrator> administrators) {
 		this.machineNumber = machineNumber;
-		this.products = products;
+		this.products = products;				
 		this.money = money;
 		this.stuck = false;
 		this.broken = false;
@@ -332,7 +332,6 @@ public class VendingMachine {
 		try {
 			Thread.sleep(5000);
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		

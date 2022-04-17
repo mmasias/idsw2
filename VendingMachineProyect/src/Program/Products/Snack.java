@@ -4,8 +4,8 @@ import Program.Product;
 
 public class Snack extends Product{
 
-	public Snack(float price, int cuantity) {
-		super("Bocadillo" , price , cuantity);
+	public Snack(float price, int quantity) {
+		super("Bocadillo" , price , quantity);
 	}
 	
 //	@Override
