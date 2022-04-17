@@ -1,0 +1,6 @@
+@startuml
+
+(*) --> "Aparece gato"
+--> "Se mueve en la habitación"
+--> "Ensucia"
+--> "Al moverse mucho tiempo se va de la habitación"

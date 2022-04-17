@@ -9,9 +9,11 @@ class Edificio
 }
 class Habitacion
 {
-    - Dibujable[][] suelo
+    - Celda[][] suelo
     - int ancho
     - int largo
+    - Aspiradora aspiradora
+    - Gato gato
     + constructor(int ancho, int largo)
     + limpiarHabitacion()
     + mostrarHabitacion()
@@ -21,22 +23,21 @@ class Habitacion
     + esTraspasable(int x, int y)
 }
 
-interface Dibujable{
+class Celda{
     - int posX
     - int posY
-    - bool traspasable
-    - String simbolo
+    - Suciedad suciedad
+    + esTraspasable(int x, int y)
     + dibujar()
-    
 }
 
-abstract class Entidad implements Dibujable {
+interface Entidad {
     - int[][] coordenadasDeMovimiento
-    - Dibujable encimaDe
     + mover(int posX, int posY)
     + proximoMovimiento()
 }
-class Aspiradora extends Entidad{
+class Aspiradora implements Entidad{
+    + {static} String representacion
     - Bateria bateria
     - Bolsa bolsa
     - int pasos
@@ -49,20 +50,21 @@ class Aspiradora extends Entidad{
     + areaConMayorSuciedad()
 }
 
-class Gato extends Entidad{
+class Gato implements Entidad{
+    + {static} String representacion
     - bool estado
     - int impaciencia
     + constructor()
     + cambioEstado()
     + ensuciar()
 }
-class Mueble implements Dibujable{
+class Mueble{
     - Map<String, String> tipoDeMueble
     + constructor()
     + getTipoDeMueble()
 }
 
-class Suciedad implements Dibujable{
+class Suciedad {
     - String[] representacionesDeSuciedad
     - int nivelDeSuciedad
     + constructor()
@@ -90,13 +92,17 @@ class Bolsa{
 
 Edificio *--> Habitacion
 
-Habitacion *--> Dibujable : contiene
+Habitacion *-r-> Celda : contiene
+
+Celda ..> Aspiradora
+Celda ..> Gato
+Celda ..> Mueble
 
 Aspiradora o--> Suciedad : elimina
-Aspiradora *-l-> Bolsa : tiene
+Aspiradora *-d-> Bolsa : tiene
 Aspiradora *-d-> Batería : tiene
 Aspiradora -u-> Edificio
-Entidad -u-> Edificio
+
 
 Gato o..> Suciedad : produce
 
