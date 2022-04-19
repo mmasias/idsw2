@@ -12,10 +12,10 @@ Simule, hora por hora, tres días de la vida de dicho edificio.
 2 [#][#][#][#][#]
 1 [#][#][#][#][#]
 ```
-Probabilidad de ventana abierta/cerrada: 70% / 30%
+Probabilidad de ventana abierta/cerrada: 70% / 30% (por cada hora)
 
-Probabilidad de luz encendida/apagada: 60% / 40%
+Probabilidad de luz encendida/apagada: 60% / 40% (por cada hora)
 
-Probabilidad de caida de un rayo (y consiguiente avería en una columna): 25% en un día, una sola vez por día.
+Probabilidad de caida de un rayo (y consiguiente avería en una columna): 25% en un día, una sola vez por día. La columna queda estropeada hasta el día siguiente.
 
-Probabilidad de avería en una planta: 15% en un día, una vez por día.
+Probabilidad de avería en una planta: 15% en un día, una vez por día. La planta queda estropeada hasta el día siguiente.
