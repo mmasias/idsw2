@@ -4,13 +4,13 @@ Edificio de 7 plantas, con 5 pisos por planta. Cada piso puede estar con la vent
 Simule, hora por hora, tres días de la vida de dicho edificio.
 
 ```
-7 [X][X][X][X][X]           [x] Ventana cerrada 
-6 [X][.][.][.][X]           [0] Ventana abierta, luz encendida 
-5 [X][.][.][.][X]           [.] Ventana cerrada, luz apagada
-4 [0][0][0][.][X]
-3 [X][0][X][X][X]
-2 [X][X][X][X][X]
-1 [X][X][X][X][X]
+7 [#][#][#][#][#]           [#] Ventana cerrada 
+6 [#][.][.][.][#]           [O] Ventana abierta, luz encendida 
+5 [#][.][.][.][#]           [.] Ventana abierta, luz apagada
+4 [O][O][O][.][#]
+3 [#][O][#][#][#]
+2 [#][#][#][#][#]
+1 [#][#][#][#][#]
 ```
 Probabilidad de ventana abierta/cerrada: 70% / 30%
 
