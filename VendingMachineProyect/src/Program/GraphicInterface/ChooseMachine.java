@@ -43,7 +43,10 @@ public class ChooseMachine extends JFrame {
 	private static JPanel ChooseMachinePane;
 	private static JPanel PrintProductInformation;
 	private static JPanel IntroduceAmountPane;
-	
+	private static JPanel buyOrLogInPanel;
+	private static JPanel rechargeMoneyPanel;
+	private static JPanel rechargeProductsPanel;
+	private static JPanel ChooseRefillPanel;
 	
 	private JPanel contentPane;
 	private static VendingMachine currentVendingMachine;
@@ -94,15 +97,336 @@ public class ChooseMachine extends JFrame {
 		
 		SetIntroduceAmountPane();
 		
-		//Panel comprar o login
+		SetbuyOrLogInPanel();
 		
-		JPanel buyOrLogInPanel = new JPanel();
+		SetRechargeMoneyPanel();
+		
+		SetRechargeProductsPanel();		
+		
+		SetChooseRefillPanel();
+	}
+	
+	
+	private static JTextPane textPane;
+	//Method to initialice the content of choose machine window
+	
+	private void SetPrintProductInformation() {
+		
+				JLabel lblNewLabel_1 = new JLabel("Products information");
+				lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
+				lblNewLabel_1.setFont(new Font("Segoe UI Black", Font.BOLD, 25));
+				PrintProductInformation.add(lblNewLabel_1, BorderLayout.NORTH);
+				
+				JPanel MachineInformation = new JPanel();
+				PrintProductInformation.add(MachineInformation, BorderLayout.CENTER);
+				
+				textPane = new JTextPane();
+				MachineInformation.add(textPane);
+				
+				
+				JPanel ButtomsToMove = new JPanel();
+				PrintProductInformation.add(ButtomsToMove, BorderLayout.SOUTH);
+				ButtomsToMove.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
+				
+				JButton btnNewButton_10 = new JButton("Come back");
+				btnNewButton_10.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent arg0) {
+						ChooseMachinePane.setVisible(true);
+						PrintProductInformation.setVisible(false);
+						IntroduceAmountPane.setVisible(false);
+					}
+				});
+				ButtomsToMove.add(btnNewButton_10);
+				
+				JLabel lblNewLabel_3 = new JLabel("Product number");
+				ButtomsToMove.add(lblNewLabel_3);
+				
+				productsInformationText = new JTextField();
+				ButtomsToMove.add(productsInformationText);
+				productsInformationText.setColumns(10);
+				
+				JButton btnNewButton_11 = new JButton("Accept");
+				btnNewButton_11.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent arg0) {
+						
+						//Si el producto existe en la maquina , se pasa a la siguiente ventana
+						
+						int productId= Integer.parseInt(productsInformationText.getText());
+						productToBuy = currentVendingMachine.getSpecificProduct(productId);
+						if(productToBuy != null) {
+							ChooseMachinePane.setVisible(false);
+							PrintProductInformation.setVisible(false);
+							IntroduceAmountPane.setVisible(true);
+						}
+					}
+				});
+				ButtomsToMove.add(btnNewButton_11);
+		
+	}
+	
+	//Method to initialice the content of choose machine window
+	
+	private void SetChooseMachineWindow() {
+		ChooseMachinePane.setLayout(null);
+		
+		
+		JLabel lblNewLabel = new JLabel("Choose machine");
+		lblNewLabel.setBounds(287, 5, 209, 35);
+		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel.setFont(new Font("Segoe UI Black", Font.BOLD, 25));
+		ChooseMachinePane.add(lblNewLabel);
+		
+		JPanel MachineOptions = new JPanel();
+		MachineOptions.setBounds(271, 64, 263, 35);
+		ChooseMachinePane.add(MachineOptions);
+		
+		
+		
+		
+		JButton Machine1Button = new JButton("Machine 1");
+		Machine1Button.setBounds(5, 5, 81, 23);
+		Machine1Button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				ChooseMachinePane.setVisible(false);
+				PrintProductInformation.setVisible(true);
+				IntroduceAmountPane.setVisible(false);
+				
+				
+				currentVendingMachine = OperativeMachines[0];
+				textPane.setText(currentVendingMachine.toStringOnlyProducts());
+				System.out.println(currentVendingMachine);
+			}
+		});
+		MachineOptions.setLayout(null);
+		MachineOptions.add(Machine1Button);
+		
+		JButton Machine2Button = new JButton("Machine 2");
+		Machine2Button.setBounds(91, 5, 81, 23);
+		Machine2Button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				ChooseMachinePane.setVisible(false);
+				PrintProductInformation.setVisible(true);
+				IntroduceAmountPane.setVisible(false);
+				
+				currentVendingMachine = OperativeMachines[1];
+				System.out.println(currentVendingMachine);
+			}
+		});
+		MachineOptions.add(Machine2Button);
+		
+		JButton Machine3Button = new JButton("Machine 3");
+		Machine3Button.setBounds(177, 5, 81, 23);
+		Machine3Button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				ChooseMachinePane.setVisible(false);
+				PrintProductInformation.setVisible(true);
+				IntroduceAmountPane.setVisible(false);
+				
+				currentVendingMachine = OperativeMachines[2];
+				System.out.println(currentVendingMachine);
+			}
+		});
+		MachineOptions.add(Machine3Button);
+	}
+	
+	//Method to initialice the content of introduce amount window
+	
+	private void SetIntroduceAmountPane() {
+		IntroduceAmountPane.setLayout(null);
+		
+		JLabel lblNewLabel_1_1 = new JLabel("Introduce amount");
+		lblNewLabel_1_1.setBounds(0, 0, 790, 35);
+		lblNewLabel_1_1.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_1_1.setFont(new Font("Segoe UI Black", Font.BOLD, 25));
+		IntroduceAmountPane.add(lblNewLabel_1_1);
+		
+		JPanel Buttoms = new JPanel();
+		Buttoms.setBounds(0, 35, 790, 416);
+		IntroduceAmountPane.add(Buttoms);
+		
+		
+		//Almacen de dinero para meter a las maquinas
+		List<Money> moneyToIntroduce = new ArrayList<Money>();
+		
+		//----------------------------Botones de añadir dinero-----------------------------
+		
+		JButton btnNewButton = new JButton("0.05 Coin");
+		btnNewButton.setBounds(67, 49, 79, 23);
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				try {
+					SendMoneyToVendingMachine(new Coin(0.05f, 10) , moneyToIntroduce);
+				} catch (ValueIncorrectException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+			}
+
+			
+		});
+		Buttoms.setLayout(null);
+		Buttoms.add(btnNewButton);
+		
+		JButton btnNewButton_1 = new JButton("0.2 Coin");
+		btnNewButton_1.setBounds(67, 83, 73, 23);
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				try {
+					moneyToIntroduce.add(new Coin(0.2f, 1));
+					TotalAmountText.setText(VendingMachine.calculeTotalValue(moneyToIntroduce).toString());
+				} catch (ValueIncorrectException e) {
+					e.printStackTrace();
+				}
+			}
+		});
+		Buttoms.add(btnNewButton_1);
+		
+		JButton btnNewButton_2 = new JButton("0.5 Coin");
+		btnNewButton_2.setBounds(67, 117, 73, 23);
+		btnNewButton_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				try {
+					moneyToIntroduce.add(new Coin(0.5f, 1));
+					TotalAmountText.setText(VendingMachine.calculeTotalValue(moneyToIntroduce).toString());
+				} catch (ValueIncorrectException e) {
+					e.printStackTrace();
+				}
+			}
+		});
+		Buttoms.add(btnNewButton_2);
+		
+		JButton btnNewButton_3 = new JButton("1 Coin");
+		btnNewButton_3.setBounds(67, 151, 63, 23);
+		btnNewButton_3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				try {
+					moneyToIntroduce.add(new Coin(1, 1));
+					TotalAmountText.setText(VendingMachine.calculeTotalValue(moneyToIntroduce).toString());
+				} catch (ValueIncorrectException e) {
+					e.printStackTrace();
+				}
+			}
+		});
+		Buttoms.add(btnNewButton_3);
+		
+		JButton btnNewButton_4 = new JButton("2 Coin");
+		btnNewButton_4.setBounds(67, 193, 63, 23);
+		btnNewButton_4.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				try {
+					moneyToIntroduce.add(new Coin(2, 1));
+					TotalAmountText.setText(VendingMachine.calculeTotalValue(moneyToIntroduce).toString());
+				} catch (ValueIncorrectException e) {
+					e.printStackTrace();
+				}
+			}
+		});
+		Buttoms.add(btnNewButton_4);
+		
+		JButton btnNewButton_5 = new JButton("5 Note");
+		btnNewButton_5.setBounds(67, 233, 65, 23);
+		btnNewButton_5.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				try {
+					moneyToIntroduce.add(new Note(5, 1));
+					TotalAmountText.setText(VendingMachine.calculeTotalValue(moneyToIntroduce).toString());
+				} catch (ValueIncorrectException e) {
+					e.printStackTrace();
+				}
+			}
+		});
+		Buttoms.add(btnNewButton_5);
+		
+		JButton btnNewButton_6 = new JButton("10 Note");
+		btnNewButton_6.setBounds(67, 267, 71, 23);
+		btnNewButton_6.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				try {
+					moneyToIntroduce.add(new Note(10, 1));
+					TotalAmountText.setText(VendingMachine.calculeTotalValue(moneyToIntroduce).toString());
+				} catch (ValueIncorrectException e) {
+					e.printStackTrace();
+				}
+			}
+		});
+		Buttoms.add(btnNewButton_6);
+		
+		JButton btnNewButton_7 = new JButton("20 Note");
+		btnNewButton_7.setBounds(67, 306, 71, 23);
+		btnNewButton_7.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				try {
+					moneyToIntroduce.add(new Note(20, 1));
+					TotalAmountText.setText(VendingMachine.calculeTotalValue(moneyToIntroduce).toString());
+				} catch (ValueIncorrectException e) {
+					e.printStackTrace();
+				}
+			}
+		});
+		Buttoms.add(btnNewButton_7);
+		
+		//--------------------------------------------------------
+		
+		JPanel Total = new JPanel();
+		Total.setBounds(0, 451, 790, 33);
+		IntroduceAmountPane.add(Total);
+		Total.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
+		
+		JButton btnNewButton_8 = new JButton("Come back");
+		btnNewButton_8.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				ChooseMachinePane.setVisible(false);
+				PrintProductInformation.setVisible(true);
+				IntroduceAmountPane.setVisible(false);
+			}
+		});
+		Total.add(btnNewButton_8);
+		
+		JLabel lblNewLabel_2 = new JLabel("Total : ");
+		Total.add(lblNewLabel_2);
+		
+		TotalAmountText = new JTextField();
+		Total.add(TotalAmountText);
+		TotalAmountText.setColumns(10);
+		
+		JButton btnNewButton_9 = new JButton("Accept");
+		btnNewButton_9.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				double totalAmountIntroduced = Float.parseFloat(TotalAmountText.getText());
+				
+				if(totalAmountIntroduced >= productToBuy.getPrice()) {
+					currentVendingMachine.addMoney(moneyToIntroduce);
+					currentVendingMachine.removeProduct(productToBuy.getId());
+				}
+				
+				
+				
+			}
+		});
+		Total.add(btnNewButton_9);
+	}
+	
+	private void SendMoneyToVendingMachine(Money money, List<Money> moneyToIntroduce) throws ValueIncorrectException {
+		
+		moneyToIntroduce.add(money);
+		TotalAmountText.setText(VendingMachine.calculeTotalValue(moneyToIntroduce).toString());
+		
+	}
+	
+	//Sets the initial information for the buyOrLogIn Panel
+	private void SetbuyOrLogInPanel() {
+		
+		
+		//Panle settings
 		buyOrLogInPanel.setAlignmentX(Component.RIGHT_ALIGNMENT);
 		buyOrLogInPanel.setOpaque(true);
 		buyOrLogInPanel.setLocation(new Point(1, 5));
 		buyOrLogInPanel.setBackground(new Color(255, 255, 255));
-		contentPane.add(buyOrLogInPanel, "name_9769166799700");
 		
+		//Additional panel
 		JPanel titlePanel = new JPanel();
 		titlePanel.setVisible(false);
 		titlePanel.setBackground(new Color(30, 144, 255));
@@ -114,6 +438,7 @@ public class ChooseMachine extends JFrame {
 		lblTitle.setFont(new Font("Roboto Black", Font.PLAIN, 52));
 		titlePanel.add(lblTitle);
 		
+		//Additional panel
 		JPanel buyPanel = new JPanel();
 		buyPanel.setBackground(new Color(255, 255, 255));
 		buyPanel.setBorder(null);
@@ -157,15 +482,16 @@ public class ChooseMachine extends JFrame {
 					.addGap(130))
 		);
 		buyOrLogInPanel.setLayout(gl_buyOrLogInPanel);
+			
+	}
+	
+	
+	//Sets the initial information for the rechargeMoney Panel
+	private void SetRechargeMoneyPanel() {
 		
 		
-		
-		//Panel recargar dinero
-		
-		JPanel rechargeMoneyPanel = new JPanel();
 		rechargeMoneyPanel.setBackground(new Color(153, 204, 255));
 		rechargeMoneyPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
-		contentPane.add(rechargeMoneyPanel, "name_9907318158100");
 		rechargeMoneyPanel.setLayout(null);
 		
 		JPanel contentRechargeMoneyPanel = new JPanel();
@@ -323,14 +649,14 @@ public class ChooseMachine extends JFrame {
 		lblNewLabel_1.setFont(new Font("Roboto Black", Font.PLAIN, 60));
 		lblNewLabel_1.setBounds(114, -11, 539, 157);
 		titleRechargeMoneyPanel.add(lblNewLabel_1);
-		
-		//Panel recargar productos
-		
-		JPanel rechargeProductsPanel = new JPanel();
+	}
+	
+	//Sets the initial information for the rechargeProducts Panel
+	private void SetRechargeProductsPanel() {
 		rechargeProductsPanel.setLayout(null);
 		rechargeProductsPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		rechargeProductsPanel.setBackground(new Color(153, 204, 255));
-		contentPane.add(rechargeProductsPanel, "name_54518782135900");
+		
 		
 		JPanel contentRechargeMoneyPanel_1 = new JPanel();
 		contentRechargeMoneyPanel_1.setLayout(null);
@@ -444,296 +770,28 @@ public class ChooseMachine extends JFrame {
 	}
 	
 	
-	private static JTextPane textPane;
-	//Method to initialice the content of choose machine window
-	
-	private void SetPrintProductInformation() {
+	private void SetChooseRefillPanel() {
+		ChooseRefillPanel.setLayout(null);
 		
-				JLabel lblNewLabel_1 = new JLabel("Products information");
-				lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
-				lblNewLabel_1.setFont(new Font("Segoe UI Black", Font.BOLD, 25));
-				PrintProductInformation.add(lblNewLabel_1, BorderLayout.NORTH);
-				
-				JPanel MachineInformation = new JPanel();
-				PrintProductInformation.add(MachineInformation, BorderLayout.CENTER);
-				
-				textPane = new JTextPane();
-				MachineInformation.add(textPane);
-				
-				
-				JPanel ButtomsToMove = new JPanel();
-				PrintProductInformation.add(ButtomsToMove, BorderLayout.SOUTH);
-				ButtomsToMove.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
-				
-				JButton btnNewButton_10 = new JButton("Come back");
-				btnNewButton_10.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent arg0) {
-						ChooseMachinePane.setVisible(true);
-						PrintProductInformation.setVisible(false);
-						IntroduceAmountPane.setVisible(false);
-					}
-				});
-				ButtomsToMove.add(btnNewButton_10);
-				
-				JLabel lblNewLabel_3 = new JLabel("Product number");
-				ButtomsToMove.add(lblNewLabel_3);
-				
-				productsInformationText = new JTextField();
-				ButtomsToMove.add(productsInformationText);
-				productsInformationText.setColumns(10);
-				
-				JButton btnNewButton_11 = new JButton("Accept");
-				btnNewButton_11.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent arg0) {
-						
-						//Si el producto existe en la maquina , se pasa a la siguiente ventana
-						
-						int productId= Integer.parseInt(productsInformationText.getText());
-						productToBuy = currentVendingMachine.getSpecificProduct(productId);
-						if(productToBuy != null) {
-							ChooseMachinePane.setVisible(false);
-							PrintProductInformation.setVisible(false);
-							IntroduceAmountPane.setVisible(true);
-						}
-					}
-				});
-				ButtomsToMove.add(btnNewButton_11);
+		JLabel lblRefill = new JLabel("Choose what you would like to refill");
+		lblRefill.setHorizontalAlignment(SwingConstants.CENTER);
+		lblRefill.setFont(new Font("Segoe UI Black", Font.BOLD, 25));
+		lblRefill.setBounds(89, 5, 643, 35);
+		ChooseRefillPanel.add(lblRefill);
 		
+		JPanel RefillOptions = new JPanel();
+		RefillOptions.setLayout(null);
+		RefillOptions.setBounds(271, 64, 263, 35);
+		ChooseRefillPanel.add(RefillOptions);
+		
+		JButton btnMoney = new JButton("Money\r\n");
+		btnMoney.setBounds(5, 5, 81, 23);
+		RefillOptions.add(btnMoney);
+		
+		JButton btnProducts = new JButton("Products\r\n");
+		btnProducts.setBounds(172, 5, 81, 23);
+		RefillOptions.add(btnProducts);
 	}
-	
-	//Method to initialice the content of choose machine window
-	
-	private void SetChooseMachineWindow() {
-		
-		
-		JLabel lblNewLabel = new JLabel("Choose machine");
-		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel.setFont(new Font("Segoe UI Black", Font.BOLD, 25));
-		ChooseMachinePane.add(lblNewLabel);
-		
-		JPanel MachineOptions = new JPanel();
-		ChooseMachinePane.add(MachineOptions);
-		MachineOptions.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
-		
-		
-		
-		
-		JButton Machine1Button = new JButton("Machine 1");
-		Machine1Button.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				ChooseMachinePane.setVisible(false);
-				PrintProductInformation.setVisible(true);
-				IntroduceAmountPane.setVisible(false);
-				
-				
-				currentVendingMachine = OperativeMachines[0];
-				textPane.setText(currentVendingMachine.toStringOnlyProducts());
-				System.out.println(currentVendingMachine);
-			}
-		});
-		MachineOptions.add(Machine1Button);
-		
-		JButton Machine2Button = new JButton("Machine 2");
-		Machine2Button.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				ChooseMachinePane.setVisible(false);
-				PrintProductInformation.setVisible(true);
-				IntroduceAmountPane.setVisible(false);
-				
-				currentVendingMachine = OperativeMachines[1];
-				System.out.println(currentVendingMachine);
-			}
-		});
-		MachineOptions.add(Machine2Button);
-		
-		JButton Machine3Button = new JButton("Machine 3");
-		Machine3Button.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				ChooseMachinePane.setVisible(false);
-				PrintProductInformation.setVisible(true);
-				IntroduceAmountPane.setVisible(false);
-				
-				currentVendingMachine = OperativeMachines[2];
-				System.out.println(currentVendingMachine);
-			}
-		});
-		MachineOptions.add(Machine3Button);
-	}
-	
-	//Method to initialice the content of introduce amount window
-	
-	private void SetIntroduceAmountPane() {
-		
-		JLabel lblNewLabel_1_1 = new JLabel("Introduce amount");
-		lblNewLabel_1_1.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_1_1.setFont(new Font("Segoe UI Black", Font.BOLD, 25));
-		IntroduceAmountPane.add(lblNewLabel_1_1, BorderLayout.NORTH);
-		
-		JPanel Buttoms = new JPanel();
-		IntroduceAmountPane.add(Buttoms, BorderLayout.CENTER);
-		
-		
-		//Almacen de dinero para meter a las maquinas
-		List<Money> moneyToIntroduce = new ArrayList<Money>();
-		
-		//----------------------------Botones de añadir dinero-----------------------------
-		
-		JButton btnNewButton = new JButton("0.05 Coin");
-		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				
-				try {
-					SendMoneyToVendingMachine(new Coin(0.05f, 10) , moneyToIntroduce);
-				} catch (ValueIncorrectException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				
-			}
-
-			
-		});
-		Buttoms.add(btnNewButton);
-		
-		JButton btnNewButton_1 = new JButton("0.2 Coin");
-		btnNewButton_1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				try {
-					moneyToIntroduce.add(new Coin(0.2f, 1));
-					TotalAmountText.setText(VendingMachine.calculeTotalValue(moneyToIntroduce).toString());
-				} catch (ValueIncorrectException e) {
-					e.printStackTrace();
-				}
-			}
-		});
-		Buttoms.add(btnNewButton_1);
-		
-		JButton btnNewButton_2 = new JButton("0.5 Coin");
-		btnNewButton_2.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				try {
-					moneyToIntroduce.add(new Coin(0.5f, 1));
-					TotalAmountText.setText(VendingMachine.calculeTotalValue(moneyToIntroduce).toString());
-				} catch (ValueIncorrectException e) {
-					e.printStackTrace();
-				}
-			}
-		});
-		Buttoms.add(btnNewButton_2);
-		
-		JButton btnNewButton_3 = new JButton("1 Coin");
-		btnNewButton_3.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				try {
-					moneyToIntroduce.add(new Coin(1, 1));
-					TotalAmountText.setText(VendingMachine.calculeTotalValue(moneyToIntroduce).toString());
-				} catch (ValueIncorrectException e) {
-					e.printStackTrace();
-				}
-			}
-		});
-		Buttoms.add(btnNewButton_3);
-		
-		JButton btnNewButton_4 = new JButton("2 Coin");
-		btnNewButton_4.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				try {
-					moneyToIntroduce.add(new Coin(2, 1));
-					TotalAmountText.setText(VendingMachine.calculeTotalValue(moneyToIntroduce).toString());
-				} catch (ValueIncorrectException e) {
-					e.printStackTrace();
-				}
-			}
-		});
-		Buttoms.add(btnNewButton_4);
-		
-		JButton btnNewButton_5 = new JButton("5 Note");
-		btnNewButton_5.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				try {
-					moneyToIntroduce.add(new Note(5, 1));
-					TotalAmountText.setText(VendingMachine.calculeTotalValue(moneyToIntroduce).toString());
-				} catch (ValueIncorrectException e) {
-					e.printStackTrace();
-				}
-			}
-		});
-		Buttoms.add(btnNewButton_5);
-		
-		JButton btnNewButton_6 = new JButton("10 Note");
-		btnNewButton_6.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				try {
-					moneyToIntroduce.add(new Note(10, 1));
-					TotalAmountText.setText(VendingMachine.calculeTotalValue(moneyToIntroduce).toString());
-				} catch (ValueIncorrectException e) {
-					e.printStackTrace();
-				}
-			}
-		});
-		Buttoms.add(btnNewButton_6);
-		
-		JButton btnNewButton_7 = new JButton("20 Note");
-		btnNewButton_7.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				try {
-					moneyToIntroduce.add(new Note(20, 1));
-					TotalAmountText.setText(VendingMachine.calculeTotalValue(moneyToIntroduce).toString());
-				} catch (ValueIncorrectException e) {
-					e.printStackTrace();
-				}
-			}
-		});
-		Buttoms.add(btnNewButton_7);
-		
-		//--------------------------------------------------------
-		
-		JPanel Total = new JPanel();
-		IntroduceAmountPane.add(Total, BorderLayout.SOUTH);
-		Total.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
-		
-		JButton btnNewButton_8 = new JButton("Come back");
-		btnNewButton_8.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				ChooseMachinePane.setVisible(false);
-				PrintProductInformation.setVisible(true);
-				IntroduceAmountPane.setVisible(false);
-			}
-		});
-		Total.add(btnNewButton_8);
-		
-		JLabel lblNewLabel_2 = new JLabel("Total : ");
-		Total.add(lblNewLabel_2);
-		
-		TotalAmountText = new JTextField();
-		Total.add(TotalAmountText);
-		TotalAmountText.setColumns(10);
-		
-		JButton btnNewButton_9 = new JButton("Accept");
-		btnNewButton_9.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				
-				double totalAmountIntroduced = Float.parseFloat(TotalAmountText.getText());
-				
-				if(totalAmountIntroduced >= productToBuy.getPrice()) {
-					currentVendingMachine.addMoney(moneyToIntroduce);
-					currentVendingMachine.removeProduct(productToBuy.getId());
-				}
-				
-				
-				
-			}
-		});
-		Total.add(btnNewButton_9);
-	}
-	
-	private void SendMoneyToVendingMachine(Money money, List<Money> moneyToIntroduce) throws ValueIncorrectException {
-		
-		moneyToIntroduce.add(money);
-		TotalAmountText.setText(VendingMachine.calculeTotalValue(moneyToIntroduce).toString());
-		
-	}
-	
 	
 	//Method to initialice all the panels and set their settings
 	
@@ -763,8 +821,22 @@ public class ChooseMachine extends JFrame {
 		
 		IntroduceAmountPane = new JPanel();
 		contentPane.add(IntroduceAmountPane, "name_2929736620635600");
-		IntroduceAmountPane.setLayout(new BorderLayout(0, 0));
 		
+		//buyOrLoginPanel
+		buyOrLogInPanel = new JPanel();
+		contentPane.add(buyOrLogInPanel, "name_9769166799700");
+		
+		//rechargeMoneyPanel
+		rechargeMoneyPanel = new JPanel();
+		contentPane.add(rechargeMoneyPanel, "name_9907318158100");
+		
+		//rechargeProductsPanel
+		rechargeProductsPanel = new JPanel();
+		contentPane.add(rechargeProductsPanel, "name_54518782135900");
+		
+		//ChooseRefillPanel
+		ChooseRefillPanel = new JPanel();
+		contentPane.add(ChooseRefillPanel, "name_103733792689700");
 	}
 
 }
