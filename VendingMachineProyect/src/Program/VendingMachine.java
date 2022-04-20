@@ -14,7 +14,6 @@ public class VendingMachine {
 	private Money[] money;			//Es una Agregación entre VendingMachine y Money
 	private boolean stuck;
 	private boolean broken;
-	private List<Administrator> administrators = new ArrayList<Administrator>(); 	//Es una asociación entre VendingMachine
 	
 	public VendingMachine(int machineNumber, Product[] products, Money[] money, List<Administrator> administrators) {
 		this.machineNumber = machineNumber;
@@ -22,7 +21,6 @@ public class VendingMachine {
 		this.money = money;
 		this.stuck = false;
 		this.broken = false;
-		this.administrators = administrators;
 	}
 
 	public int getMachineNumber() {
@@ -132,34 +130,6 @@ public class VendingMachine {
 		
 	}
 	
-	public boolean checkIfSomeoneLogedIn() {
-		boolean logedIn = false;
-		for(Administrator a : administrators) {
-			if(a.isLogedIn()) {
-				logedIn = true;
-			}
-		}
-		return logedIn;
-	}
-	
-	public Administrator getAdministratorLogedIn() {
-		Administrator result = null;
-		for(Administrator a : administrators) {
-			if(a.isLogedIn()) {
-				result = a;
-			}
-		}
-		return result;
-	}
-	
-	public void logOutAdminLogedIn() {
-		for(Administrator a : administrators) {
-			if(a.isLogedIn()) {
-				a.setLogedIn(false);
-			}
-		}
-	}
-	
 	public void machineGetsStuck() {
 		
 		Random random = new Random();
@@ -218,44 +188,6 @@ public class VendingMachine {
 		return result;
 	}
 	
-	public String LogIn() {
-		
-		final Scanner scanner = new Scanner(System.in);
-		
-		String result =  "---------------------------------\n";
-		result += "         Introduce tu usuario:\n";
-		result += "---------------------------------\n";
-		System.out.print(result);
-		final String username = scanner.nextLine();
-		
-		String result2 =  "---------------------------------\n";
-		result2 += "         Introduce tu contraseña:\n";
-		result2 += "---------------------------------\n";
-		System.out.print(result2);
-		final String password = scanner.nextLine();
-		
-		scanner.close();
-		System.out.println(result);	
-		
-		final boolean correctLogIn = checkLogIn(username, password);
-		if(correctLogIn) {
-			return "Bienvenido " + getAdministratorLogedIn().getName() + getAdministratorLogedIn().getSurname() + "!";
-		}else{
-			return "Lo sentimos, pero el usuario o contraseña que has introducido es incorrecto";
-		}
-	}
-	
-	private boolean checkLogIn(String username, String password) {
-		
-		boolean result = false;
-		for(Administrator a : administrators) {
-			if(username.equals(a.getUsername()) && password.equals(a.getPassword())) {
-				result = true;
-				a.setLogedIn(true);
-			}
-		}
-		return result;
-	}
 
 	public String toString() {
 		

@@ -14,6 +14,7 @@ public class VendingMachineManager {
 
 	private static final int DIFERENCE_BETWEEN_ARRAY = 1;
 	private static final Scanner SCANNER = new Scanner(System.in);
+	private static List<Administrator> administrators = new ArrayList<Administrator>(); 	//Es una asociación entre VendingMachine
 
 	// This method creates three vending machines , adding all the products and the
 	// money
@@ -41,13 +42,6 @@ public class VendingMachineManager {
 						new Coin(0.05f, 10) 
 				};
 				
-				List<Administrator> administrators = new ArrayList<Administrator>(Arrays.asList(
-						new Administrator("Jesús", "Saro", "jesus.saro", "12345", false),
-						new Administrator("Ruben", "Gutierrez", "ruben.gutierrez", "12345", false),
-						new Administrator("Luis", "Collado", "luis.collado", "12345", false),
-						new Administrator("Diego Carlitos", "Lopez", "diego.lopez", "12345", false)
-				));
-
 				operativeMachines[arrayIndex] = new VendingMachine(arrayIndex + 1, currentMachineProducts, currentMachineMoney, administrators);
 
 			}
@@ -113,7 +107,7 @@ public class VendingMachineManager {
 
 	private static boolean ChooseOptionConcretMachine(VendingMachine[] operativeMachines, int machineOption) {
 
-		final boolean someonelogedIn = operativeMachines[machineOption].checkIfSomeoneLogedIn();
+		final boolean someonelogedIn = VendingMachineManager.checkIfSomeoneLogedIn();
 		
 		
 		System.out.println("Seleccione opcion");
@@ -155,7 +149,7 @@ public class VendingMachineManager {
 
 		} else if (optionChosen == LOGIN_OPTION) {
 
-			System.out.println(operativeMachines[machineOption].LogIn());
+			System.out.println(VendingMachineManager.LogInConsole());
 
 		} else if (optionChosen == REFILL_PRODUCTS_OPTION && someonelogedIn) {
 
@@ -171,7 +165,7 @@ public class VendingMachineManager {
 
 		}  else if (optionChosen == EXIT_OPTION) {
 			if(someonelogedIn) {
-				operativeMachines[machineOption].logOutAdminLogedIn();
+				VendingMachineManager.logOutAdminLogedIn();
 			}
 			return false;
 
@@ -203,5 +197,92 @@ public class VendingMachineManager {
 		}
 		
 	}
+	
+	//LogIn methods
+	
+	public static boolean checkIfSomeoneLogedIn() {
+		boolean logedIn = false;
+		for(Administrator a : administrators) {
+			if(a.isLogedIn()) {
+				logedIn = true;
+			}
+		}
+		return logedIn;
+	}
+	
+	public static Administrator getAdministratorLogedIn() {
+		Administrator result = null;
+		for(Administrator a : administrators) {
+			if(a.isLogedIn()) {
+				result = a;
+			}
+		}
+		return result;
+	}
+	
+	public static void logOutAdminLogedIn() {
+		for(Administrator a : administrators) {
+			if(a.isLogedIn()) {
+				a.setLogedIn(false);
+			}
+		}
+	}
+	
+	public static String LogIn(String username, char[] password) {
+		
+		
+		final boolean correctLogIn = checkLogIn(username, password);
+		if(correctLogIn) {
+			return "Bienvenido " + getAdministratorLogedIn().getName() + getAdministratorLogedIn().getSurname() + "!";
+		}else{
+			return "Lo sentimos, pero el usuario o contraseña que has introducido es incorrecto";
+		}
+	}
+	
+	public static String LogInConsole() {
+		
+		final Scanner scanner = new Scanner(System.in);
+		
+		String result =  "---------------------------------\n";
+		result += "         Introduce tu usuario:\n";
+		result += "---------------------------------\n";
+		System.out.print(result);
+		final String username = scanner.nextLine();
+		
+		String result2 =  "---------------------------------\n";
+		result2 += "         Introduce tu contraseña:\n";
+		result2 += "---------------------------------\n";
+		System.out.print(result2);
+		final String password = scanner.nextLine();
+		
+		scanner.close();
+		System.out.println(result);	
+		
+		final boolean correctLogIn = checkLogIn(username, password.toCharArray());
+		if(correctLogIn) {
+			return "Bienvenido " + getAdministratorLogedIn().getName() + getAdministratorLogedIn().getSurname() + "!";
+		}else{
+			return "Lo sentimos, pero el usuario o contraseña que has introducido es incorrecto";
+		}
+	}
+	
+	private static boolean checkLogIn(String username, char[] password) {
+		
+		boolean result = false;
+		for(Administrator a : administrators) {
+			if(username.equals(a.getUsername()) && Arrays.equals(password, a.getPassword())) {
+				result = true;
+				a.setLogedIn(true);
+			}
+		}
+		return result;
+	}
+	
+	//Sets the list of Administrators for all the machines
+	public static void setAdministrators(List<Administrator> list) {
+		VendingMachineManager.administrators = list;
+	}
+	
+	
 
 }

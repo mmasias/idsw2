@@ -36,9 +36,12 @@ import javax.swing.JToolBar;
 import javax.swing.JTextPane;
 import javax.swing.JList;
 import javax.swing.JTextField;
+import javax.swing.JPasswordField;
 
 public class ChooseMachine extends JFrame {
 	private static final long serialVersionUID = 3142390317093997510L;
+	
+	public static ChooseMachine frame;
 	
 	private static JPanel ChooseMachinePane;
 	private static JPanel PrintProductInformation;
@@ -47,6 +50,7 @@ public class ChooseMachine extends JFrame {
 	private static JPanel rechargeMoneyPanel;
 	private static JPanel rechargeProductsPanel;
 	private static JPanel ChooseRefillPanel;
+	private static JPanel LogInPanel;
 	
 	private JPanel contentPane;
 	private static VendingMachine currentVendingMachine;
@@ -67,7 +71,7 @@ public class ChooseMachine extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					ChooseMachine frame = new ChooseMachine();
+					frame = new ChooseMachine();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -104,10 +108,16 @@ public class ChooseMachine extends JFrame {
 		SetRechargeProductsPanel();		
 		
 		SetChooseRefillPanel();
+		
+		SetLogInPanel();
+		
 	}
 	
+
 	
 	private static JTextPane textPane;
+	private JTextField tfUsername;
+	private JPasswordField tfPassword;
 	//Method to initialice the content of choose machine window
 	
 	private void SetPrintProductInformation() {
@@ -128,15 +138,20 @@ public class ChooseMachine extends JFrame {
 				PrintProductInformation.add(ButtomsToMove, BorderLayout.SOUTH);
 				ButtomsToMove.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 				
-				JButton btnNewButton_10 = new JButton("Come back");
-				btnNewButton_10.addActionListener(new ActionListener() {
+				JButton btnComeBackProductInfo = new JButton("Come back");
+				btnComeBackProductInfo.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent arg0) {
 						ChooseMachinePane.setVisible(true);
 						PrintProductInformation.setVisible(false);
 						IntroduceAmountPane.setVisible(false);
+						buyOrLogInPanel.setVisible(false);
+						rechargeMoneyPanel.setVisible(false);
+						rechargeProductsPanel.setVisible(false);
+						ChooseRefillPanel.setVisible(false);
+						LogInPanel.setVisible(false);
 					}
 				});
-				ButtomsToMove.add(btnNewButton_10);
+				ButtomsToMove.add(btnComeBackProductInfo);
 				
 				JLabel lblNewLabel_3 = new JLabel("Product number");
 				ButtomsToMove.add(lblNewLabel_3);
@@ -157,6 +172,11 @@ public class ChooseMachine extends JFrame {
 							ChooseMachinePane.setVisible(false);
 							PrintProductInformation.setVisible(false);
 							IntroduceAmountPane.setVisible(true);
+							buyOrLogInPanel.setVisible(false);
+							rechargeMoneyPanel.setVisible(false);
+							rechargeProductsPanel.setVisible(false);
+							ChooseRefillPanel.setVisible(false);
+							LogInPanel.setVisible(false);
 						}
 					}
 				});
@@ -187,14 +207,29 @@ public class ChooseMachine extends JFrame {
 		Machine1Button.setBounds(5, 5, 81, 23);
 		Machine1Button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				ChooseMachinePane.setVisible(false);
-				PrintProductInformation.setVisible(true);
-				IntroduceAmountPane.setVisible(false);
-				
-				
-				currentVendingMachine = OperativeMachines[0];
-				textPane.setText(currentVendingMachine.toStringOnlyProducts());
-				System.out.println(currentVendingMachine);
+				boolean logedIn = VendingMachineManager.checkIfSomeoneLogedIn();
+				if(logedIn) {
+					ChooseMachinePane.setVisible(false);
+					PrintProductInformation.setVisible(false);
+					IntroduceAmountPane.setVisible(false);
+					buyOrLogInPanel.setVisible(false);
+					rechargeMoneyPanel.setVisible(false);
+					rechargeProductsPanel.setVisible(false);
+					ChooseRefillPanel.setVisible(true);
+					LogInPanel.setVisible(false);
+				}else {
+					ChooseMachinePane.setVisible(false);
+					PrintProductInformation.setVisible(true);
+					IntroduceAmountPane.setVisible(false);
+					buyOrLogInPanel.setVisible(false);
+					rechargeMoneyPanel.setVisible(false);
+					rechargeProductsPanel.setVisible(false);
+					ChooseRefillPanel.setVisible(false);
+					LogInPanel.setVisible(false);
+					currentVendingMachine = OperativeMachines[0];
+					textPane.setText(currentVendingMachine.toStringOnlyProducts());
+					System.out.println(currentVendingMachine);
+				}
 			}
 		});
 		MachineOptions.setLayout(null);
@@ -204,12 +239,29 @@ public class ChooseMachine extends JFrame {
 		Machine2Button.setBounds(91, 5, 81, 23);
 		Machine2Button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				ChooseMachinePane.setVisible(false);
-				PrintProductInformation.setVisible(true);
-				IntroduceAmountPane.setVisible(false);
-				
-				currentVendingMachine = OperativeMachines[1];
-				System.out.println(currentVendingMachine);
+				boolean logedIn = VendingMachineManager.checkIfSomeoneLogedIn();
+				if(logedIn) {
+					ChooseMachinePane.setVisible(false);
+					PrintProductInformation.setVisible(false);
+					IntroduceAmountPane.setVisible(false);
+					buyOrLogInPanel.setVisible(false);
+					rechargeMoneyPanel.setVisible(false);
+					rechargeProductsPanel.setVisible(false);
+					ChooseRefillPanel.setVisible(true);
+					LogInPanel.setVisible(false);
+				}else {
+					ChooseMachinePane.setVisible(false);
+					PrintProductInformation.setVisible(true);
+					IntroduceAmountPane.setVisible(false);
+					buyOrLogInPanel.setVisible(false);
+					rechargeMoneyPanel.setVisible(false);
+					rechargeProductsPanel.setVisible(false);
+					ChooseRefillPanel.setVisible(false);
+					LogInPanel.setVisible(false);
+					currentVendingMachine = OperativeMachines[1];
+					textPane.setText(currentVendingMachine.toStringOnlyProducts());
+					System.out.println(currentVendingMachine);
+				}
 			}
 		});
 		MachineOptions.add(Machine2Button);
@@ -218,15 +270,51 @@ public class ChooseMachine extends JFrame {
 		Machine3Button.setBounds(177, 5, 81, 23);
 		Machine3Button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				ChooseMachinePane.setVisible(false);
-				PrintProductInformation.setVisible(true);
-				IntroduceAmountPane.setVisible(false);
-				
-				currentVendingMachine = OperativeMachines[2];
-				System.out.println(currentVendingMachine);
+				boolean logedIn = VendingMachineManager.checkIfSomeoneLogedIn();
+				if(logedIn) {
+					ChooseMachinePane.setVisible(false);
+					PrintProductInformation.setVisible(false);
+					IntroduceAmountPane.setVisible(false);
+					buyOrLogInPanel.setVisible(false);
+					rechargeMoneyPanel.setVisible(false);
+					rechargeProductsPanel.setVisible(false);
+					ChooseRefillPanel.setVisible(true);
+					LogInPanel.setVisible(false);
+				}else {
+					ChooseMachinePane.setVisible(false);
+					PrintProductInformation.setVisible(true);
+					IntroduceAmountPane.setVisible(false);
+					buyOrLogInPanel.setVisible(false);
+					rechargeMoneyPanel.setVisible(false);
+					rechargeProductsPanel.setVisible(false);
+					ChooseRefillPanel.setVisible(false);
+					LogInPanel.setVisible(false);
+					currentVendingMachine = OperativeMachines[2];
+					textPane.setText(currentVendingMachine.toStringOnlyProducts());
+					System.out.println(currentVendingMachine);
+				}
 			}
 		});
 		MachineOptions.add(Machine3Button);
+		
+		JButton btnComeBackRefill = new JButton("Come back");
+		btnComeBackRefill.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ChooseMachinePane.setVisible(false);
+				PrintProductInformation.setVisible(false);
+				IntroduceAmountPane.setVisible(false);
+				buyOrLogInPanel.setVisible(true);
+				rechargeMoneyPanel.setVisible(false);
+				rechargeProductsPanel.setVisible(false);
+				ChooseRefillPanel.setVisible(false);
+				LogInPanel.setVisible(false);
+			}
+		});
+		btnComeBackRefill.setFont(new Font("Roboto Black", Font.PLAIN, 12));
+		btnComeBackRefill.setBorder(null);
+		btnComeBackRefill.setBackground(new Color(255, 51, 51));
+		btnComeBackRefill.setBounds(21, 426, 87, 35);
+		ChooseMachinePane.add(btnComeBackRefill);
 	}
 	
 	//Method to initialice the content of introduce amount window
@@ -374,15 +462,20 @@ public class ChooseMachine extends JFrame {
 		IntroduceAmountPane.add(Total);
 		Total.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		
-		JButton btnNewButton_8 = new JButton("Come back");
-		btnNewButton_8.addActionListener(new ActionListener() {
+		JButton btnComeBackIntroduceAmount = new JButton("Come back");
+		btnComeBackIntroduceAmount.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				ChooseMachinePane.setVisible(false);
 				PrintProductInformation.setVisible(true);
 				IntroduceAmountPane.setVisible(false);
+				buyOrLogInPanel.setVisible(false);
+				rechargeMoneyPanel.setVisible(false);
+				rechargeProductsPanel.setVisible(false);
+				ChooseRefillPanel.setVisible(false);
+				LogInPanel.setVisible(false);
 			}
 		});
-		Total.add(btnNewButton_8);
+		Total.add(btnComeBackIntroduceAmount);
 		
 		JLabel lblNewLabel_2 = new JLabel("Total : ");
 		Total.add(lblNewLabel_2);
@@ -428,7 +521,7 @@ public class ChooseMachine extends JFrame {
 		
 		//Additional panel
 		JPanel titlePanel = new JPanel();
-		titlePanel.setVisible(false);
+		titlePanel.setBounds(0, 0, 800, 141);
 		titlePanel.setBackground(new Color(30, 144, 255));
 		titlePanel.setLayout(null);
 		
@@ -440,49 +533,137 @@ public class ChooseMachine extends JFrame {
 		
 		//Additional panel
 		JPanel buyPanel = new JPanel();
+		buyPanel.setBounds(200, 185, 337, 149);
 		buyPanel.setBackground(new Color(255, 255, 255));
 		buyPanel.setBorder(null);
 		buyPanel.setForeground(new Color(255, 255, 255));
 		
-		JButton btnComprarMenu_1 = new JButton("BUY NOW!");
-		btnComprarMenu_1.setBorderPainted(false);
-		btnComprarMenu_1.setBackground(new Color(153, 204, 102));
-		btnComprarMenu_1.setBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(0, 0, 0)));
-		btnComprarMenu_1.setAlignmentY(Component.TOP_ALIGNMENT);
-		btnComprarMenu_1.setAlignmentX(Component.RIGHT_ALIGNMENT);
-		btnComprarMenu_1.setFont(new Font("Roboto", Font.PLAIN, 61));
-		buyPanel.add(btnComprarMenu_1);
+		JButton btnBuyMenu = new JButton("BUY NOW!");
+		btnBuyMenu.setBounds(25, 5, 287, 75);
+		btnBuyMenu.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ChooseMachinePane.setVisible(true);
+				PrintProductInformation.setVisible(false);
+				IntroduceAmountPane.setVisible(false);
+				buyOrLogInPanel.setVisible(false);
+				rechargeMoneyPanel.setVisible(false);
+				rechargeProductsPanel.setVisible(false);
+				ChooseRefillPanel.setVisible(false);
+				LogInPanel.setVisible(false);
+			}
+		});
+		buyPanel.setLayout(null);
+		btnBuyMenu.setBorderPainted(false);
+		btnBuyMenu.setBackground(new Color(153, 204, 102));
+		btnBuyMenu.setBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(0, 0, 0)));
+		btnBuyMenu.setAlignmentY(Component.TOP_ALIGNMENT);
+		btnBuyMenu.setAlignmentX(Component.RIGHT_ALIGNMENT);
+		btnBuyMenu.setFont(new Font("Roboto", Font.PLAIN, 61));
+		buyPanel.add(btnBuyMenu);
+		if(VendingMachineManager.checkIfSomeoneLogedIn()){
+			btnBuyMenu.setVisible(false);
+		}else {
+			btnBuyMenu.setVisible(true);
+		}
 		
-		JLabel lblNewLabel = new JLabel("Log-In as an Administrator");
-		lblNewLabel.setFont(new Font("Roboto", Font.PLAIN, 11));
-		buyPanel.add(lblNewLabel);
+		JLabel lblAdministrator = new JLabel("Log-In as an Administrator:\r\n");
+		lblAdministrator.setBounds(35, 86, 144, 14);
+		lblAdministrator.setFont(new Font("Roboto", Font.PLAIN, 11));
+		buyPanel.add(lblAdministrator);
+		
+		if(VendingMachineManager.checkIfSomeoneLogedIn()){
+			lblAdministrator.setVisible(false);
+		}else {
+			lblAdministrator.setVisible(true);
+		}
 		
 		JButton btnAdminMenu = new JButton("I'm an Administrator");
+		btnAdminMenu.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ChooseMachinePane.setVisible(false);
+				PrintProductInformation.setVisible(false);
+				IntroduceAmountPane.setVisible(false);
+				buyOrLogInPanel.setVisible(false);
+				rechargeMoneyPanel.setVisible(false);
+				rechargeProductsPanel.setVisible(false);
+				ChooseRefillPanel.setVisible(false);
+				LogInPanel.setVisible(true);
+			}
+		});
+		btnAdminMenu.setBounds(184, 85, 128, 17);
 
 		btnAdminMenu.setBackground(new Color(204, 255, 204));
 		btnAdminMenu.setBorderPainted(false);
 		btnAdminMenu.setBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(0, 0, 0)));
 		btnAdminMenu.setFont(new Font("Roboto", Font.PLAIN, 11));
 		buyPanel.add(btnAdminMenu);
-		GroupLayout gl_buyOrLogInPanel = new GroupLayout(buyOrLogInPanel);
-		gl_buyOrLogInPanel.setHorizontalGroup(
-			gl_buyOrLogInPanel.createParallelGroup(Alignment.LEADING)
-				.addComponent(titlePanel, GroupLayout.PREFERRED_SIZE, 783, GroupLayout.PREFERRED_SIZE)
-				.addGroup(Alignment.TRAILING, gl_buyOrLogInPanel.createSequentialGroup()
-					.addContainerGap(229, Short.MAX_VALUE)
-					.addComponent(buyPanel, GroupLayout.PREFERRED_SIZE, 337, GroupLayout.PREFERRED_SIZE)
-					.addGap(217))
-		);
-		gl_buyOrLogInPanel.setVerticalGroup(
-			gl_buyOrLogInPanel.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_buyOrLogInPanel.createSequentialGroup()
-					.addComponent(titlePanel, GroupLayout.PREFERRED_SIZE, 149, GroupLayout.PREFERRED_SIZE)
-					.addGap(51)
-					.addComponent(buyPanel, GroupLayout.PREFERRED_SIZE, 149, GroupLayout.PREFERRED_SIZE)
-					.addGap(130))
-		);
-		buyOrLogInPanel.setLayout(gl_buyOrLogInPanel);
-			
+		if(VendingMachineManager.checkIfSomeoneLogedIn()){
+			btnAdminMenu.setVisible(false);
+		}else {
+			btnAdminMenu.setVisible(true);
+		}
+		buyOrLogInPanel.setLayout(null);
+		buyOrLogInPanel.add(titlePanel);
+		buyOrLogInPanel.add(buyPanel);
+		
+		JButton btnLogOut = new JButton("Log out");
+		btnLogOut.setBounds(10, 466, 128, 17);
+		buyOrLogInPanel.add(btnLogOut);
+		btnLogOut.setFont(new Font("Roboto", Font.PLAIN, 11));
+		btnLogOut.setBorderPainted(false);
+		btnLogOut.setBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(0, 0, 0)));
+		btnLogOut.setBackground(new Color(255, 102, 102));
+		btnLogOut.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				VendingMachineManager.logOutAdminLogedIn();
+				SetbuyOrLogInPanel();
+			}
+		});
+		if(VendingMachineManager.checkIfSomeoneLogedIn()){
+			btnLogOut.setVisible(true);
+		}else {
+			btnLogOut.setVisible(false);
+		}
+		
+		JButton btnRefillMenu = new JButton("Refill");
+		btnRefillMenu.setFont(new Font("Roboto", Font.PLAIN, 11));
+		btnRefillMenu.setBorderPainted(false);
+		btnRefillMenu.setBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(0, 0, 0)));
+		btnRefillMenu.setBackground(new Color(153, 204, 102));
+		btnRefillMenu.setAlignmentY(0.0f);
+		btnRefillMenu.setAlignmentX(1.0f);
+		btnRefillMenu.setBounds(668, 466, 122, 17);
+		buyOrLogInPanel.add(btnRefillMenu);
+		btnRefillMenu.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ChooseMachinePane.setVisible(true);
+				PrintProductInformation.setVisible(false);
+				IntroduceAmountPane.setVisible(false);
+				buyOrLogInPanel.setVisible(false);
+				rechargeMoneyPanel.setVisible(false);
+				rechargeProductsPanel.setVisible(false);
+				ChooseRefillPanel.setVisible(false);
+				LogInPanel.setVisible(false);
+			}
+		});
+		if(VendingMachineManager.checkIfSomeoneLogedIn()){
+			btnRefillMenu.setVisible(true);
+		}else {
+			btnRefillMenu.setVisible(false);
+		}
+		
+		JLabel lblWelcomeUser = new JLabel("");
+		lblWelcomeUser.setFont(new Font("Roboto", Font.PLAIN, 11));
+		lblWelcomeUser.setBounds(200, 384, 337, 14);
+		buyOrLogInPanel.add(lblWelcomeUser);
+		if(VendingMachineManager.checkIfSomeoneLogedIn()){
+			lblWelcomeUser.setVisible(true);
+			Administrator logedIn = VendingMachineManager.getAdministratorLogedIn(); 
+			lblWelcomeUser.setText("Bienvenido " + logedIn.getName() + " "  + logedIn.getSurname() + "!");
+		}else {
+			lblWelcomeUser.setVisible(false);
+			lblWelcomeUser.setText("");
+		}
 	}
 	
 	
@@ -616,11 +797,13 @@ public class ChooseMachine extends JFrame {
 		lblMoneyQuantity.setBounds(82, 12, 51, 14);
 		contentRechargeMoneyPanel.add(lblMoneyQuantity);
 		
-		JLabel lblMachineMoney = new JLabel("Machine X");
+		JLabel lblMachineMoney = new JLabel("Machine ");
 		lblMachineMoney.setFont(new Font("Roboto Black", Font.PLAIN, 12));
 		lblMachineMoney.setBounds(706, 11, 67, 14);
 		contentRechargeMoneyPanel.add(lblMachineMoney);
-		//lblMachineMoney.setText("");
+		if(currentVendingMachine != null) {
+			lblMachineMoney.setText("Machine " + currentVendingMachine.getMachineNumber());
+		}
 		
 		JComboBox cbCurrency = new JComboBox();
 		cbCurrency.setModel(new DefaultComboBoxModel(new String[] {"0,05\u20AC", "0,2\u20AC", "0,5\u20AC", "1\u20AC", "2\u20AC", "5\u20AC", "10\u20AC", "20\u20AC"}));
@@ -638,6 +821,32 @@ public class ChooseMachine extends JFrame {
 		lbl€.setFont(new Font("Roboto Black", Font.PLAIN, 12));
 		lbl€.setBounds(639, 113, 17, 14);
 		contentRechargeMoneyPanel.add(lbl€);
+		
+		JButton btnComeBackMoney = new JButton("Come back");
+		btnComeBackMoney.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ChooseMachinePane.setVisible(false);
+				PrintProductInformation.setVisible(false);
+				IntroduceAmountPane.setVisible(false);
+				buyOrLogInPanel.setVisible(false);
+				rechargeMoneyPanel.setVisible(false);
+				rechargeProductsPanel.setVisible(false);
+				ChooseRefillPanel.setVisible(true);
+				LogInPanel.setVisible(false);
+			}
+		});
+		btnComeBackMoney.setFont(new Font("Roboto Black", Font.PLAIN, 12));
+		btnComeBackMoney.setBorder(null);
+		btnComeBackMoney.setBackground(new Color(255, 51, 51));
+		btnComeBackMoney.setBounds(577, 299, 87, 35);
+		contentRechargeMoneyPanel.add(btnComeBackMoney);
+		
+		JButton btnFinishMoney = new JButton("Finish\r\n");
+		btnFinishMoney.setFont(new Font("Roboto Black", Font.PLAIN, 12));
+		btnFinishMoney.setBorder(null);
+		btnFinishMoney.setBackground(new Color(51, 204, 0));
+		btnFinishMoney.setBounds(686, 299, 87, 35);
+		contentRechargeMoneyPanel.add(btnFinishMoney);
 		
 		JPanel titleRechargeMoneyPanel = new JPanel();
 		titleRechargeMoneyPanel.setLayout(null);
@@ -740,10 +949,13 @@ public class ChooseMachine extends JFrame {
 		lblQuantityProdcuts.setBounds(82, 12, 51, 14);
 		contentRechargeMoneyPanel_1.add(lblQuantityProdcuts);
 		
-		JLabel lblMachineP = new JLabel("Machine X");
+		JLabel lblMachineP = new JLabel("Machine ");
 		lblMachineP.setFont(new Font("Roboto Black", Font.PLAIN, 12));
 		lblMachineP.setBounds(706, 11, 67, 14);
 		contentRechargeMoneyPanel_1.add(lblMachineP);
+		if(currentVendingMachine != null) {
+			lblMachineP.setText("Machine " + currentVendingMachine.getMachineNumber());
+		}
 		
 		JComboBox cbProducts = new JComboBox();
 		cbProducts.setModel(new DefaultComboBoxModel(new String[] {"Cookies", "Chocolate", "Snack", "Drink"}));
@@ -756,6 +968,32 @@ public class ChooseMachine extends JFrame {
 		btnAddProduts.setBackground(new Color(153, 255, 153));
 		btnAddProduts.setBounds(708, 109, 65, 23);
 		contentRechargeMoneyPanel_1.add(btnAddProduts);
+		
+		JButton btnFinishProducts = new JButton("Finish\r\n");
+		btnFinishProducts.setFont(new Font("Roboto Black", Font.PLAIN, 12));
+		btnFinishProducts.setBorder(null);
+		btnFinishProducts.setBackground(new Color(51, 204, 0));
+		btnFinishProducts.setBounds(686, 299, 87, 35);
+		contentRechargeMoneyPanel_1.add(btnFinishProducts);
+		
+		JButton btnComeBackProducts = new JButton("Come back");
+		btnComeBackProducts.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ChooseMachinePane.setVisible(false);
+				PrintProductInformation.setVisible(false);
+				IntroduceAmountPane.setVisible(false);
+				buyOrLogInPanel.setVisible(false);
+				rechargeMoneyPanel.setVisible(false);
+				rechargeProductsPanel.setVisible(false);
+				ChooseRefillPanel.setVisible(true);
+				LogInPanel.setVisible(false);
+			}
+		});
+		btnComeBackProducts.setFont(new Font("Roboto Black", Font.PLAIN, 12));
+		btnComeBackProducts.setBorder(null);
+		btnComeBackProducts.setBackground(new Color(255, 51, 51));
+		btnComeBackProducts.setBounds(576, 299, 87, 35);
+		contentRechargeMoneyPanel_1.add(btnComeBackProducts);
 		
 		JPanel titleRechargeMoneyPanel_1 = new JPanel();
 		titleRechargeMoneyPanel_1.setLayout(null);
@@ -788,9 +1026,150 @@ public class ChooseMachine extends JFrame {
 		btnMoney.setBounds(5, 5, 81, 23);
 		RefillOptions.add(btnMoney);
 		
+		btnMoney.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ChooseMachinePane.setVisible(false);
+				PrintProductInformation.setVisible(false);
+				IntroduceAmountPane.setVisible(false);
+				buyOrLogInPanel.setVisible(false);
+				rechargeMoneyPanel.setVisible(true);
+				rechargeProductsPanel.setVisible(false);
+				ChooseRefillPanel.setVisible(false);
+				LogInPanel.setVisible(false);
+				SetRechargeMoneyPanel();
+			}
+		});
+		
 		JButton btnProducts = new JButton("Products\r\n");
 		btnProducts.setBounds(172, 5, 81, 23);
 		RefillOptions.add(btnProducts);
+		btnProducts.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ChooseMachinePane.setVisible(false);
+				PrintProductInformation.setVisible(false);
+				IntroduceAmountPane.setVisible(false);
+				buyOrLogInPanel.setVisible(false);
+				rechargeMoneyPanel.setVisible(false);
+				rechargeProductsPanel.setVisible(true);
+				ChooseRefillPanel.setVisible(false);
+				LogInPanel.setVisible(false);
+				SetRechargeProductsPanel();
+			}
+		});
+		
+		JButton btnComeBackRefill = new JButton("Come back");
+		btnComeBackRefill.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ChooseMachinePane.setVisible(true);
+				PrintProductInformation.setVisible(false);
+				IntroduceAmountPane.setVisible(false);
+				buyOrLogInPanel.setVisible(false);
+				rechargeMoneyPanel.setVisible(false);
+				rechargeProductsPanel.setVisible(false);
+				ChooseRefillPanel.setVisible(false);
+				LogInPanel.setVisible(false);
+			}
+		});
+		btnComeBackRefill.setFont(new Font("Roboto Black", Font.PLAIN, 12));
+		btnComeBackRefill.setBorder(null);
+		btnComeBackRefill.setBackground(new Color(255, 51, 51));
+		btnComeBackRefill.setBounds(10, 448, 87, 35);
+		ChooseRefillPanel.add(btnComeBackRefill);
+	}
+	
+	private void SetLogInPanel() {
+		
+		LogInPanel.setLayout(null);
+		LogInPanel.setBackground(Color.WHITE);
+		
+		
+		JPanel titlePanel = new JPanel();
+		titlePanel.setLayout(null);
+		titlePanel.setBackground(new Color(0, 153, 255));
+		titlePanel.setBounds(0, 0, 800, 95);
+		LogInPanel.add(titlePanel);
+		
+		JLabel lblTitle = new JLabel("ADMIN LOG-IN\r\n");
+		lblTitle.setFont(new Font("Roboto Black", Font.BOLD, 40));
+		lblTitle.setBounds(249, 24, 287, 48);
+		titlePanel.add(lblTitle);
+		
+		JPanel loginPanel = new JPanel();
+		loginPanel.setLayout(null);
+		loginPanel.setBorder(null);
+		loginPanel.setBackground(Color.WHITE);
+		loginPanel.setBounds(0, 76, 800, 407);
+		LogInPanel.add(loginPanel);
+		
+			
+		tfUsername = new JTextField();
+		tfUsername.setColumns(10);
+		tfUsername.setBounds(157, 145, 267, 23);
+		loginPanel.add(tfUsername);
+		
+		JLabel lblUsername = new JLabel("Username:");
+		lblUsername.setFont(new Font("Roboto Black", Font.PLAIN, 12));
+		lblUsername.setBounds(61, 148, 60, 15);
+		loginPanel.add(lblUsername);
+		
+		JLabel lblPassword = new JLabel("Password:");
+		lblPassword.setFont(new Font("Roboto Black", Font.PLAIN, 12));
+		lblPassword.setBounds(61, 198, 58, 15);
+		loginPanel.add(lblPassword);
+		
+		JLabel lblErrorLogIn = new JLabel("");
+		lblErrorLogIn.setForeground(new Color(204, 0, 0));
+		lblErrorLogIn.setFont(new Font("Roboto Black", Font.PLAIN, 11));
+		lblErrorLogIn.setBounds(61, 246, 595, 33);
+		loginPanel.add(lblErrorLogIn);
+		
+		JButton btnLogIn = new JButton("Log-In\r\n");
+		btnLogIn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				lblErrorLogIn.setText(VendingMachineManager.LogIn(tfUsername.getText(), tfPassword.getPassword()));
+				if(VendingMachineManager.checkIfSomeoneLogedIn()) {
+					ChooseMachinePane.setVisible(false);
+					PrintProductInformation.setVisible(false);
+					IntroduceAmountPane.setVisible(false);
+					buyOrLogInPanel.setVisible(true);
+					rechargeMoneyPanel.setVisible(false);
+					rechargeProductsPanel.setVisible(false);
+					ChooseRefillPanel.setVisible(false);
+					LogInPanel.setVisible(false);
+					SetbuyOrLogInPanel();
+				}else {
+
+				}
+			}
+		});
+		btnLogIn.setFont(new Font("Roboto Black", Font.PLAIN, 12));
+		btnLogIn.setBorder(null);
+		btnLogIn.setBackground(new Color(153, 255, 153));
+		btnLogIn.setBounds(569, 139, 86, 33);
+		loginPanel.add(btnLogIn);
+		
+		tfPassword = new JPasswordField();
+		tfPassword.setBounds(157, 195, 267, 23);
+		loginPanel.add(tfPassword);
+		
+		JButton btnComeBackLogIn = new JButton("Come back");
+		btnComeBackLogIn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ChooseMachinePane.setVisible(false);
+				PrintProductInformation.setVisible(false);
+				IntroduceAmountPane.setVisible(false);
+				buyOrLogInPanel.setVisible(true);
+				rechargeMoneyPanel.setVisible(false);
+				rechargeProductsPanel.setVisible(false);
+				ChooseRefillPanel.setVisible(false);
+				LogInPanel.setVisible(false);
+			}
+		});
+		btnComeBackLogIn.setFont(new Font("Roboto Black", Font.PLAIN, 12));
+		btnComeBackLogIn.setBorder(null);
+		btnComeBackLogIn.setBackground(new Color(255, 51, 51));
+		btnComeBackLogIn.setBounds(569, 183, 87, 35);
+		loginPanel.add(btnComeBackLogIn);
 	}
 	
 	//Method to initialice all the panels and set their settings
@@ -800,7 +1179,7 @@ public class ChooseMachine extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 816, 533);
 		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		contentPane.setBorder(null);
 		setContentPane(contentPane);
 		contentPane.setLayout(new CardLayout(0, 0));
 		
@@ -836,7 +1215,20 @@ public class ChooseMachine extends JFrame {
 		
 		//ChooseRefillPanel
 		ChooseRefillPanel = new JPanel();
-		contentPane.add(ChooseRefillPanel, "name_103733792689700");
+		contentPane.add(ChooseRefillPanel, "name_103733792689700");	
+		
+		//LogInPanel
+		LogInPanel = new JPanel();
+		contentPane.add(LogInPanel, "name_110877025816500");
+		
+		//Visibility of the Panels
+		ChooseMachinePane.setVisible(false);
+		PrintProductInformation.setVisible(false);
+		IntroduceAmountPane.setVisible(false);
+		buyOrLogInPanel.setVisible(true);
+		rechargeMoneyPanel.setVisible(false);
+		rechargeProductsPanel.setVisible(false);
+		ChooseRefillPanel.setVisible(false);
+		LogInPanel.setVisible(false);
 	}
-
 }

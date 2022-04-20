@@ -1,5 +1,8 @@
 package Program;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Scanner;
 
 /*
@@ -41,6 +44,12 @@ public class MainProgram {
 		VendingMachine OperativeMachines[] = new VendingMachine[3];
 		
 		OperativeMachines = VendingMachineManager.EnableMachines(OperativeMachines);
+		VendingMachineManager.setAdministrators(new ArrayList<Administrator>(Arrays.asList(
+						new Administrator("Jesús", "Saro", "jesus.saro", "12345", false),
+						new Administrator("Ruben", "Gutierrez", "ruben.gutierrez", "12345", false),
+						new Administrator("Luis", "Collado", "luis.collado", "12345", false),
+						new Administrator("Diego Carlitos", "Lopez", "diego.lopez", "12345", false)
+						)));
 		return OperativeMachines;
 	}
 	

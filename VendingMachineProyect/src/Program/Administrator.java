@@ -9,7 +9,7 @@ public class Administrator {
 	
 	private String username;
 	
-	private String password;
+	private char[] password;
 	
 	private boolean logedIn;
 	
@@ -18,6 +18,7 @@ public class Administrator {
 		this.name = name;
 		this.surname = surname;
 		this.username = username;
+		this.password = password.toCharArray();
 		this.logedIn = logedIn;
 	}
 	
@@ -34,7 +35,7 @@ public class Administrator {
 		return username;
 	}
 
-	public String getPassword() {
+	public char[] getPassword() {
 		return password;
 	}
 
@@ -51,7 +52,7 @@ public class Administrator {
 	}
 
 	public void setPassword(String password) {
-		this.password = password;
+		this.password = password.toCharArray();
 	}
 
 
