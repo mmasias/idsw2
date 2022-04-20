@@ -2,6 +2,7 @@ package Program;
 
 public class Administrator {
 
+	//Atributos que se usan para completar los datos del administrador
 	private String name;
 	
 	private String surname;
@@ -12,6 +13,7 @@ public class Administrator {
 	
 	private boolean logedIn;
 	
+	//Constructor de la clase
 	public Administrator (String name, String surname, String username, String password, boolean logedIn) {
 		this.name = name;
 		this.surname = surname;
@@ -19,7 +21,7 @@ public class Administrator {
 		this.logedIn = logedIn;
 	}
 	
-	
+	//Getters y setteres
 	public String getName() {
 		return name;
 	}

@@ -5,12 +5,13 @@ public class Product {
 	private String name;
 	private float price;
 	private int quantity;
+	private int id;
 	
-	
-	public Product(String name, float price, int cuantity) {
+	public Product(String name, float price, int cuantity , int id) {
 		this.name = name;
 		this.price = price;
 		this.quantity = cuantity;
+		this.id = id;
 	}
 
 
@@ -43,9 +44,21 @@ public class Product {
 		this.quantity = cuantity;
 	}
 	
+	public int getId() {
+		return id;
+	}
+
+
+	public void setId(int id) {
+		this.id = id;
+	}
+	
 	public String toString() {
 		return name + "			" + quantity;
 	}
 	
+	public String toStringShowingId() {
+		return name + "			" + id;
+	}
 
 }

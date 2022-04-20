@@ -14,8 +14,8 @@ public class Note extends Money{
 			
 		}
 	}
-
-	private boolean IncorrectValue(float value) {
+	
+	public static boolean IncorrectValue(float value) {
 		if(value == 20f || value == 10f || value == 5f ) {
 			return false;
 		}else {

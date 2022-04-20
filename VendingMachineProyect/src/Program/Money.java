@@ -34,6 +34,10 @@ public class Money {
 	public String toString() {
 		return value + "€			" + quantity;
 	}
+
+	public static boolean IncorrectValue(float value) {
+		return false;
+	}
 	
 
 }

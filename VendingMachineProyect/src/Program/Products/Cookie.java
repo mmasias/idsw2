@@ -4,8 +4,8 @@ import Program.Product;
 
 public class Cookie extends Product{
 
-	public Cookie(float price, int cuantity) {
-		super("Galletas" , price , cuantity);
+	public Cookie(float price, int quantity , int id) {
+		super("Galletas" , price , quantity , id);
 	}
 	
 //	@Override

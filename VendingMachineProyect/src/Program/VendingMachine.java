@@ -10,15 +10,15 @@ import Program.MoneyTypes.*;
 public class VendingMachine {
 	
 	private int machineNumber;
-	private Product[] products;
-	private Money[] money;
+	private Product[] products;		//Es una Agregación entre VendingMachine y Prodcuts
+	private Money[] money;			//Es una Agregación entre VendingMachine y Money
 	private boolean stuck;
 	private boolean broken;
-	private List<Administrator> administrators = new ArrayList<Administrator>();
+	private List<Administrator> administrators = new ArrayList<Administrator>(); 	//Es una asociación entre VendingMachine
 	
 	public VendingMachine(int machineNumber, Product[] products, Money[] money, List<Administrator> administrators) {
 		this.machineNumber = machineNumber;
-		this.products = products;
+		this.products = products;				
 		this.money = money;
 		this.stuck = false;
 		this.broken = false;
@@ -121,7 +121,7 @@ public class VendingMachine {
 	}
 	
 	
-	private void addMoney(List<Money> moneyList) {
+	public void addMoney(List<Money> moneyList) {
 		for(Money currentList : moneyList) {
 			for(Money currentArray : money) {
 				if(currentList.getValue() == currentArray.getValue()) {
@@ -288,6 +288,22 @@ public class VendingMachine {
 		return result;
 	}
 	
+	public String toStringOnlyProducts() {
+		
+		String result="---------------------------------\n";
+		result += "         Productos\n";
+		result += "---------------------------------\n";
+
+
+		result += "Nombre  			 Numero\n";
+		
+		for(Product current : products) {
+			result += current.toStringShowingId() + "\n";
+		}
+		
+		return result;
+	}
+	
 	public String machineStuckString () {
 		
 		String result =  "---------------------------------\n";
@@ -332,7 +348,6 @@ public class VendingMachine {
 		try {
 			Thread.sleep(5000);
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
@@ -352,6 +367,14 @@ public class VendingMachine {
 				.sum();
 		
 		return result;
+	}
+	
+	public void IntroduceListMoney(List<Money> moneyList) {
+		for(Money current : moneyList) {
+			if(!Money.IncorrectValue(current.getValue())) {
+				current.setCuantity(current.getCuantity()+1);
+			}
+		}
 	}
 
 	public static List<Money> IntroduceMoney() {
@@ -415,6 +438,27 @@ public class VendingMachine {
 		
 		scanner.close();
 		return true;
+		
+	}
+
+	public Product getSpecificProduct(int id) {
+
+		for(Product current : products) {
+			if(current.getId() == id) {
+				return current;
+			}
+		}
+		
+		return null;
+	}
+
+	public void removeProduct(int id) {
+		
+		for(Product current : products) {
+			if(current.getId() == id) {
+				current.setCuantity(current.getCuantity() - 1);
+			}
+		}
 		
 	}
 	

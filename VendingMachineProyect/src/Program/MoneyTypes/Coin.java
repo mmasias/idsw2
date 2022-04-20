@@ -15,7 +15,7 @@ public class Coin extends Money{
 		}
 	}
 	
-	private boolean IncorrectValue(float value) {
+	public static boolean IncorrectValue(float value) {
 		
 		if(value == 0.05f || value == 0.2f || value == 0.5f|| value == 1f || value == 2f ) {
 			return false;

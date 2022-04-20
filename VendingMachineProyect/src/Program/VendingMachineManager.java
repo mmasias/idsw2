@@ -24,10 +24,11 @@ public class VendingMachineManager {
 			for (int arrayIndex = 0; arrayIndex <= 2; arrayIndex++) {
 
 				Product[] currentMachineProducts = { 
-						new Cookie(1.50f, 10), 
-						new Chocolate(1.10f, 10), 
-						new Drink(1.05f, 10),
-						new Snack(1.75f, 10) };
+						new Cookie(1.50f, 10 , 1), 
+						new Chocolate(1.10f, 10 , 2), 
+						new Drink(1.05f, 10 , 3),
+						new Snack(1.75f, 10 , 4) 
+				};
 
 				Money[] currentMachineMoney = {
 						new Note(20, 3), 
@@ -37,13 +38,14 @@ public class VendingMachineManager {
 						new Coin(1, 10), 
 						new Coin(0.5f, 20), 
 						new Coin(0.2f, 20), 
-						new Coin(0.05f, 10) };
+						new Coin(0.05f, 10) 
+				};
 				
 				List<Administrator> administrators = new ArrayList<Administrator>(Arrays.asList(
 						new Administrator("Jesús", "Saro", "jesus.saro", "12345", false),
 						new Administrator("Ruben", "Gutierrez", "ruben.gutierrez", "12345", false),
 						new Administrator("Luis", "Collado", "luis.collado", "12345", false),
-						new Administrator("Diego Carlos", "Lopez", "dieog.lopez", "12345", false)
+						new Administrator("Diego Carlitos", "Lopez", "diego.lopez", "12345", false)
 				));
 
 				operativeMachines[arrayIndex] = new VendingMachine(arrayIndex + 1, currentMachineProducts, currentMachineMoney, administrators);
