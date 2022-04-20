@@ -3,21 +3,19 @@ package proyecto;
 public class Edificio {
     private Habitacion habitacion;
 
-    public Edificio(int ancho, int largo) {
-        this.habitacion = new Habitacion(ancho, largo);
+    public Edificio(Habitacion habitacion) {
+        this.habitacion = habitacion;
     }
 
     public static int areaConMayorSuciedadEnHabitacion() {
-        return habitacion.areaConMayorSuciedad();
+        return Habitacion.areaConMayorSuciedad();
     }
 
     public static boolean esPosibleMoverseA(int x, int y) {
-        return habitacion.esTraspasable(x, y);
+        return Habitacion.esTraspasable(x, y);
     }
 
-    public static void main(String[] args) {
-        new Edificio(50, 50);
-
+    private void limpiarEdificio() {
         habitacion.mostrarHabitacion();
 
         do {
@@ -27,5 +25,10 @@ public class Edificio {
         } while (habitacion.suciedadRestante() == 0);
 
         System.out.println("La limpieza ha terminado");
+    }
+
+    public static void main(String[] args) {
+        new Edificio(new Habitacion(50, 50)).limpiarEdificio();
+
     }
 }
