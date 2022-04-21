@@ -68,7 +68,7 @@ public class VendingMachine {
 		machineGetsStuck();
 		machineBreaksDown();
 		
-		if(!broken || !stuck ) {
+		if(!broken && !stuck ) {
 			Double amount = calculeTotalValue(money);
 			//Sacar producto
 			
@@ -292,24 +292,9 @@ public class VendingMachine {
 	
 
 	
-	public static Double calculeTotalValue(List<Money> moneyList) {
-		
-		Double result = moneyList.stream()
-				.mapToDouble(x -> x.getTotalValue())
-				.sum();
-		
-		return result;
-	}
-	
-	public void IntroduceListMoney(List<Money> moneyList) {
-		for(Money current : moneyList) {
-			if(!Money.IncorrectValue(current.getValue())) {
-				current.setCuantity(current.getCuantity()+1);
-			}
-		}
-	}
 
-	public static List<Money> IntroduceMoney() {
+
+	/*public static List<Money> IntroduceMoney() {
 		
 		List<Money> result = new ArrayList<Money>();
 		final Scanner scanner = new Scanner(System.in);
@@ -331,8 +316,81 @@ public class VendingMachine {
 		
 		scanner.close();
 		return result;
+	}*/
+	//DESUSO
+	public static Double calculeTotalValue(List<Money> moneyList) {
+		
+		Double result = moneyList.stream()
+				.mapToDouble(x -> x.getTotalValue())
+				.sum();
+		
+		return result;
+	}
+	
+	
+	public void IntroduceListMoney(List<Money> moneyList) {
+		for(Money current : moneyList) {
+			if(!Money.IncorrectValue(current.getValue())) {
+				current.setCuantity(current.getCuantity()+1);
+			}
+		}
+	}
+	
+	public int getQuantityOfSpecificCuerrencyType(Money[] money, float value) {
+		
+		int result = 0;
+		
+		for(Money c : money) {
+			if(c.getValue() == value) {
+				result += c.getCuantity();	
+			}
+		}
+		
+		return result;
+	}
+	
+	public float getTotalMoneyInMachine(Money[] money) {
+		
+		float result = 0;
+		
+		for(Money c : money) {
+			
+			result += (float) c.getValue() * c.getCuantity();	
+		}
+		
+		return result;
 	}
 
+	public boolean IntroduceMoney(float value, int quantity, Money[] money) {
+	
+		if((value == 0.05f || value == 0.2f || value == 0.5f || value == 1 || value == 2 || value == 5 || value == 10 || value == 20) && quantity > 0) {
+			for(Money m : money) {
+				if(m.getValue() == value) {
+					m.setCuantity(m.getCuantity() + quantity);
+				}
+			}
+			return true;
+			
+		}else {
+			return false;
+		}	
+	}
+	
+	public boolean RemoveMoney(float value, int quantity, Money[] money) {
+		
+		if((value == 0.05f || value == 0.2f || value == 0.5f || value == 1 || value == 2 || value == 5 || value == 10 || value == 20) && quantity < 0) {
+			for(Money m : money) {
+				if(m.getValue() == value) {
+					m.setCuantity(m.getCuantity() - quantity);
+				}
+			}
+			return true;
+			
+		}else {
+			return false;
+		}	
+	}
+	/*
 	private static boolean IntroduceSingleMoney(int option, List<Money> result) {
 		
 		float amount;
@@ -371,7 +429,7 @@ public class VendingMachine {
 		scanner.close();
 		return true;
 		
-	}
+	}*/
 
 	public Product getSpecificProduct(int id) {
 
@@ -383,7 +441,47 @@ public class VendingMachine {
 		
 		return null;
 	}
+	
+	public int getQuantityOfSpecificProduct(int id) {
 
+		for(Product current : products) {
+			if(current.getId() == id) {
+				return current.getCuantity();
+			}
+		}
+		
+		return 0;
+	}
+	
+	public int getTotalAmountProducts() {
+		int result = 0;
+		for(Product current : products) {
+			result += current.getCuantity();
+		}
+		
+		return result;
+	}
+
+	public void addProduct(int id, int quantity) {
+		
+		for(Product current : products) {
+			if(current.getId() == id) {
+				current.setCuantity(current.getCuantity() + quantity);
+			}
+		}
+		
+	}
+	
+	public void removeProduct(int id, int quantity) {
+		
+		for(Product current : products) {
+			if(current.getId() == id) {
+				current.setCuantity(current.getCuantity() - quantity);
+			}
+		}
+		
+	}
+	
 	public void removeProduct(int id) {
 		
 		for(Product current : products) {

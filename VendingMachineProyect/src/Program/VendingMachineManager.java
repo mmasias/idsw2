@@ -141,7 +141,7 @@ public class VendingMachineManager {
 
 		} else if (optionChosen == BUY_PRODUCTS_OPTION) {
 
-			VendingMachineManager.BuyProduct(operativeMachines , machineOption , optionChosen);
+			//VendingMachineManager.BuyProduct(operativeMachines , machineOption , optionChosen);
 
 		} else if (optionChosen == CHECK_MONEY_OPTION) {
 
@@ -181,7 +181,7 @@ public class VendingMachineManager {
 
 	}
 
-	private static void BuyProduct(VendingMachine[] operativeMachines, int machineOption, int optionChosen) {
+/*	private static void BuyProduct(VendingMachine[] operativeMachines, int machineOption, int optionChosen) {
 		
 		System.out.println(operativeMachines[machineOption].productString());
 		
@@ -196,7 +196,7 @@ public class VendingMachineManager {
 			System.out.println("No se ha realizado la compra");
 		}
 		
-	}
+	}*/
 	
 	//LogIn methods
 	
@@ -260,7 +260,7 @@ public class VendingMachineManager {
 		
 		final boolean correctLogIn = checkLogIn(username, password.toCharArray());
 		if(correctLogIn) {
-			return "Bienvenido " + getAdministratorLogedIn().getName() + getAdministratorLogedIn().getSurname() + "!";
+			return "Bienvenido " + getAdministratorLogedIn().getName() + " " + getAdministratorLogedIn().getSurname() + "!";
 		}else{
 			return "Lo sentimos, pero el usuario o contraseña que has introducido es incorrecto";
 		}
