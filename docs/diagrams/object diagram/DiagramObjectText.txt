@@ -20,11 +20,25 @@ class VendingMachine{
 Products[]
 Money[]
 machineNumber
+stuck
+broken
+List<Administrator> administrators
+}
+class VendingMachineManager{
+List<Administrator> administrators
+}
+class Administrator{
+name
+surname
+username
+password
+logedIn
 }
 
 VendingMachine -- Product : has a
 VendingMachine -- Money : has a
-Product -- Money : is paid with
+VendingMachine -- Administrator : has a
+VendingMachineManager -- VendingMachine : manages
 Money -- Coin : can be
 Money -- Note : can be
 Product -u- Cookies : can be
