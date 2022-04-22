@@ -140,7 +140,7 @@ public class VendingMachine {
 		
 		Random random = new Random();
 		final int i = random.nextInt(99);
-		if(i < 96) {								//Percentage --> 4%
+		if(i > 96) {								//Percentage --> 4%
 			this.setBroken(true);
 			machineBrokenString();
 		}
