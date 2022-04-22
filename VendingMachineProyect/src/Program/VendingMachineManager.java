@@ -71,6 +71,56 @@ public class VendingMachineManager {
 
 	}
 
+	
+	public static VendingMachine getMachineBroken() {
+		VendingMachine[] operativeMachines = MainProgram.getEnabledMachines();
+		for(VendingMachine m : operativeMachines) {
+			if(m.isBroken()) {
+				return m;
+			}
+		}
+		return null;
+	}
+	
+	public static VendingMachine[] getAllMachinseBroken() {
+		VendingMachine[] operativeMachines = MainProgram.getEnabledMachines();
+		VendingMachine[] result = new VendingMachine[operativeMachines.length];
+		int counter = 0;
+		for(VendingMachine m : operativeMachines) {
+			if(m.isBroken()) {
+				result[counter] = m;
+				counter++;
+			}
+		}
+		return result;
+	}
+	
+	public static int getNumberMachinesBroken() {
+		VendingMachine[] operativeMachines = MainProgram.getEnabledMachines();
+		int counter = 0;
+		for(VendingMachine m : operativeMachines) {
+			if(m.isBroken()) {
+				counter++;
+			}
+		}
+		return counter;
+	}
+	
+	public static boolean isThereAMachineBroken() {
+		VendingMachine[] operativeMachines = Program.GraphicInterface.ChooseMachine.OperativeMachines;
+		int counter = 0;
+		for(VendingMachine m : operativeMachines) {
+			if(m.isBroken()) {
+				counter++;
+			}
+		}
+		if(counter > 0) {
+			return true;
+		}else {
+			return false;
+		}
+	}
+	
 	private static int ChooseMachine() {
 
 		int result;

@@ -1,11 +1,8 @@
 package Program;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 import java.util.Random;
-
-import Program.MoneyTypes.*;
 
 public class VendingMachine {
 	
@@ -20,7 +17,7 @@ public class VendingMachine {
 		this.products = products;				
 		this.money = money;
 		this.stuck = false;
-		this.broken = false;
+		this.setBroken(false);
 	}
 
 	public int getMachineNumber() {
@@ -48,7 +45,7 @@ public class VendingMachine {
 	}
 	
 	public boolean checkMachineBroken() {
-		return broken;
+		return isBroken();
 	}
 
 	public void setBroken(boolean broken) {
@@ -56,7 +53,7 @@ public class VendingMachine {
 	}
 	
 	public boolean checkMachineStuck() {
-		return broken;
+		return isBroken();
 	}
 
 	public void setStuck(boolean stuck) {
@@ -65,10 +62,10 @@ public class VendingMachine {
 	
 	public boolean buyProduct(String product , List<Money> money) {
 		
-		machineGetsStuck();
+		//machineGetsStuck();
 		machineBreaksDown();
 		
-		if(!broken && !stuck ) {
+		if(!isBroken() && !stuck ) {
 			Double amount = calculeTotalValue(money);
 			//Sacar producto
 			
@@ -88,11 +85,7 @@ public class VendingMachine {
 
 		
 	}
-	
-	public void refillMoney() {
 		
-	}
-	
 	public void refillProduct() {
 		
 		productString();
@@ -134,7 +127,7 @@ public class VendingMachine {
 		
 		Random random = new Random();
 		final int i = random.nextInt(99);
-		if(i > 97) {
+		if(i > 97) {								//Percentage --> 3%
 			this.stuck = true;
 			machineStuckString();
 		}
@@ -147,14 +140,15 @@ public class VendingMachine {
 		
 		Random random = new Random();
 		final int i = random.nextInt(99);
-		if(i > 96) {
-			this.broken = true;
+		if(i < 96) {								//Percentage --> 4%
+			this.setBroken(true);
 			machineBrokenString();
 		}
 		else {
-			this.broken = false;
+			this.setBroken(false);
 		}
 	}
+	
 
 	public String productString () {
 		String result = "---------------------------------\n"
@@ -363,10 +357,14 @@ public class VendingMachine {
 
 	public boolean IntroduceMoney(float value, int quantity, Money[] money) {
 	
-		if((value == 0.05f || value == 0.2f || value == 0.5f || value == 1 || value == 2 || value == 5 || value == 10 || value == 20) && quantity > 0) {
+		if(value == 0.05f || value == 0.2f || value == 0.5f || value == 1 || value == 2 || value == 5 || value == 10 || value == 20) {
 			for(Money m : money) {
 				if(m.getValue() == value) {
-					m.setCuantity(m.getCuantity() + quantity);
+					if(quantity > 0) {
+						m.setCuantity(m.getCuantity() + quantity);
+					}else if(m.getCuantity() > quantity && quantity < 0 && m.getCuantity() > 0) {
+						m.setCuantity(m.getCuantity() + quantity);	
+					}
 				}
 			}
 			return true;
@@ -376,20 +374,6 @@ public class VendingMachine {
 		}	
 	}
 	
-	public boolean RemoveMoney(float value, int quantity, Money[] money) {
-		
-		if((value == 0.05f || value == 0.2f || value == 0.5f || value == 1 || value == 2 || value == 5 || value == 10 || value == 20) && quantity < 0) {
-			for(Money m : money) {
-				if(m.getValue() == value) {
-					m.setCuantity(m.getCuantity() - quantity);
-				}
-			}
-			return true;
-			
-		}else {
-			return false;
-		}	
-	}
 	/*
 	private static boolean IntroduceSingleMoney(int option, List<Money> result) {
 		
@@ -490,6 +474,10 @@ public class VendingMachine {
 			}
 		}
 		
+	}
+
+	public boolean isBroken() {
+		return broken;
 	}
 	
 
