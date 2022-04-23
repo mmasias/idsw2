@@ -70,7 +70,7 @@ public class VendingMachine {
 		Random random = new Random();
 		final int i = random.nextInt(99);
 		
-		if(i > 97) {								//Percentage --> 3%
+		if(i > 97) {								//Percentage --> 3%	
 			this.setStuck(true);
 		}
 		else {
@@ -231,6 +231,15 @@ public class VendingMachine {
 				}
 			}
 		}
-		
+	}
+	
+	public void removeMoney(List<Money> moneyList) {
+		for(Money currentList : moneyList) {
+			for(Money currentArray : money) {
+				if(currentList.getValue() == currentArray.getValue()) {
+					currentArray.setCuantity(currentArray.getCuantity() + currentList.getCuantity());
+				}
+			}
+		}
 	}
 }
