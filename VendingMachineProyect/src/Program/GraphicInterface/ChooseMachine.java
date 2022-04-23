@@ -14,11 +14,7 @@ import javax.swing.border.MatteBorder;
 import javax.swing.JLabel;
 import java.awt.Font;
 import java.awt.Point;
-import java.awt.TextField;
-
 import javax.swing.SwingConstants;
-
-import java.awt.FlowLayout;
 
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
@@ -82,7 +78,7 @@ public class ChooseMachine extends JFrame {
 	 */
 	public static void main(String[] args) {
 		
-		OperativeMachines = MainProgram.getEnabledMachines();
+		OperativeMachines = VendingMachineManager.getEnabledMachines();
 		
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -131,21 +127,23 @@ public class ChooseMachine extends JFrame {
 		
 	}
 	
-	public void reloadPanels(int input) {			//Intentar optimizar
+	public void reloadPanels(int input, boolean initialise) {			//Intentar optimizar
 		
-		InitializationOfPanels();
-		SetChooseMachineWindow();
-		SetPrintProductInformation();
-		SetIntroduceAmountPane();
-		SetbuyOrLogInPanel();
-		SetRechargeMoneyPanel();
-		SetRechargeProductsPanel();		
-		SetChooseRefillPanel();
-		SetLogInPanel();
-		SetMachineBrokenPanel();
-		
-		buyOrLogInPanel.setVisible(false);
-		
+		if(initialise) {
+			InitializationOfPanels();
+			SetChooseMachineWindow();
+			SetPrintProductInformation();
+			SetIntroduceAmountPane();
+			SetbuyOrLogInPanel();
+			SetRechargeMoneyPanel();
+			SetRechargeProductsPanel();		
+			SetChooseRefillPanel();
+			SetLogInPanel();
+			SetMachineBrokenPanel();
+		}
+
+		makeAllPanelsNotVisivble();
+				
 		if(input == 1) {
 			ChooseMachinePane.setVisible(true);
 
@@ -175,6 +173,17 @@ public class ChooseMachine extends JFrame {
 		}	
 	}
 	
+	private void makeAllPanelsNotVisivble() {
+		ChooseMachinePane.setVisible(false);
+		PrintProductInformation.setVisible(false);
+		IntroduceAmountPane.setVisible(false);
+		buyOrLogInPanel.setVisible(false);
+		rechargeMoneyPanel.setVisible(false);
+		rechargeProductsPanel.setVisible(false);
+		ChooseRefillPanel.setVisible(false);
+		LogInPanel.setVisible(false);
+		BrokenPanel.setVisible(false);
+	}
 
 	
 	private static JTextPane textPane;
@@ -206,40 +215,37 @@ public class ChooseMachine extends JFrame {
 				PrintProductInformation.add(ButtomsToMove);
 				
 				JButton btnComeBackProductInfo = new JButton("Come back");
-				btnComeBackProductInfo.setBounds(92, 5, 85, 23);
+				btnComeBackProductInfo.setBorder(null);
+				btnComeBackProductInfo.setBackground(new Color(255, 0, 0));
+				btnComeBackProductInfo.setFont(new Font("Roboto Black", Font.PLAIN, 11));
+				btnComeBackProductInfo.setBounds(10, 5, 116, 23);
 				btnComeBackProductInfo.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent arg0) {
-						ChooseMachinePane.setVisible(true);
-						PrintProductInformation.setVisible(false);
-						IntroduceAmountPane.setVisible(false);
-						buyOrLogInPanel.setVisible(false);
-						rechargeMoneyPanel.setVisible(false);
-						rechargeProductsPanel.setVisible(false);
-						ChooseRefillPanel.setVisible(false);
-						LogInPanel.setVisible(false);
-						BrokenPanel.setVisible(false);
+						reloadPanels(1, true);
 					}
 				});
 				ButtomsToMove.setLayout(null);
 				ButtomsToMove.add(btnComeBackProductInfo);
 				
 				JLabel lblNewLabel_3 = new JLabel("Product number");
-				lblNewLabel_3.setBounds(187, 9, 88, 14);
+				lblNewLabel_3.setBounds(136, 9, 116, 14);
 				ButtomsToMove.add(lblNewLabel_3);
 				
 				JTextField productsInformationText = new JTextField();
-				productsInformationText.setBounds(285, 6, 86, 20);
+				productsInformationText.setBounds(262, 6, 148, 20);
 				ButtomsToMove.add(productsInformationText);
 				productsInformationText.setColumns(10);
 				
-				JLabel lblMachineBroken = new JLabel("");
-				lblMachineBroken.setForeground(new Color(255, 0, 0));
-				lblMachineBroken.setFont(new Font("Roboto Black", Font.PLAIN, 11));
-				lblMachineBroken.setBounds(553, 5, 237, 23);
-				ButtomsToMove.add(lblMachineBroken);
+				JLabel lblMachineBrokenOrStucked = new JLabel("");
+				lblMachineBrokenOrStucked.setForeground(new Color(255, 0, 0));
+				lblMachineBrokenOrStucked.setFont(new Font("Roboto Black", Font.PLAIN, 11));
+				lblMachineBrokenOrStucked.setBounds(517, 5, 273, 23);
+				ButtomsToMove.add(lblMachineBrokenOrStucked);
 				
 				JButton btnNewButton_11 = new JButton("Accept");
-				btnNewButton_11.setBounds(420, 5, 104, 23);
+				btnNewButton_11.setBackground(new Color(102, 204, 51));
+				btnNewButton_11.setBorder(null);
+				btnNewButton_11.setBounds(420, 5, 87, 23);
 				btnNewButton_11.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent arg0) {
 						
@@ -250,33 +256,23 @@ public class ChooseMachine extends JFrame {
 							int productId= Integer.parseInt(text);
 							productToBuy = currentVendingMachine.getSpecificProduct(productId);
 							currentVendingMachine.machineBreaksDown();
-							if(productToBuy != null && !currentVendingMachine.isBroken()) {
+							currentVendingMachine.machineGetsStuck();
+							if(productToBuy != null && !currentVendingMachine.isBroken() && !currentVendingMachine.isStuck()) {
 								
-								ChooseMachinePane.setVisible(false);
-								PrintProductInformation.setVisible(false);
-								IntroduceAmountPane.setVisible(true);
-								buyOrLogInPanel.setVisible(false);
-								rechargeMoneyPanel.setVisible(false);
-								rechargeProductsPanel.setVisible(false);
-								ChooseRefillPanel.setVisible(false);
-								LogInPanel.setVisible(false);
-								BrokenPanel.setVisible(false);
+								reloadPanels(3, true);
 							}else if(currentVendingMachine.isBroken()) {
-								ChooseMachinePane.setVisible(false);
-								PrintProductInformation.setVisible(false);
-								IntroduceAmountPane.setVisible(false);
-								buyOrLogInPanel.setVisible(false);
-								rechargeMoneyPanel.setVisible(false);
-								rechargeProductsPanel.setVisible(false);
-								ChooseRefillPanel.setVisible(false);
-								LogInPanel.setVisible(false);
-								BrokenPanel.setVisible(true);
-								lblMachineBroken.setText("Lo sentimos pero esta máquina esta rota");
+								reloadPanels(8, true);
+								lblMachineBrokenOrStucked.setText("Lo sentimos pero esta máquina esta rota");
 								btnNewButton_11.setVisible(false);
 								productsInformationText.setVisible(false);
+								lblNewLabel_3.setVisible(false);
+							}else if(currentVendingMachine.isStuck()) {
+
+								lblMachineBrokenOrStucked.setText("La maquina se ha atascado , intentelo de nuevo");
+								
 							}
 						}catch(NumberFormatException e){
-							lblMachineBroken.setText("Introduce un número válido por favor");
+							lblMachineBrokenOrStucked.setText("Introduce un número válido por favor");
 						}
 					}
 				});
@@ -285,12 +281,14 @@ public class ChooseMachine extends JFrame {
 			if(currentVendingMachine != null && !currentVendingMachine.isBroken()) {
 				btnNewButton_11.setVisible(true);
 				productsInformationText.setVisible(true);
-				lblMachineBroken.setText("");
+				lblNewLabel_3.setVisible(true);
+				lblMachineBrokenOrStucked.setText("");
 
 			}else if(currentVendingMachine != null && currentVendingMachine.isBroken()){
-				lblMachineBroken.setText("Lo sentimos pero esta máquina esta rota");
+				lblMachineBrokenOrStucked.setText("Lo sentimos pero esta máquina esta rota");
 				btnNewButton_11.setVisible(false);
 				productsInformationText.setVisible(false);
+				lblNewLabel_3.setVisible(false);
 			}
 	}
 	
@@ -307,44 +305,29 @@ public class ChooseMachine extends JFrame {
 		ChooseMachinePane.add(lblNewLabel);
 		
 		JPanel MachineOptions = new JPanel();
-		MachineOptions.setBounds(233, 64, 342, 35);
+		MachineOptions.setBounds(179, 64, 462, 35);
 		ChooseMachinePane.add(MachineOptions);
 		
 		
 		
 		
 		JButton Machine1Button = new JButton("Machine 1");
-		Machine1Button.setBounds(5, 5, 101, 23);
+		Machine1Button.setFont(new Font("Roboto Black", Font.PLAIN, 11));
+		Machine1Button.setBackground(new Color(255, 204, 51));
+		Machine1Button.setBorder(null);
+		Machine1Button.setBounds(5, 5, 132, 23);
 		Machine1Button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				boolean logedIn = VendingMachineManager.checkIfSomeoneLogedIn();
 				if(logedIn) {
-					ChooseMachinePane.setVisible(false);
-					PrintProductInformation.setVisible(false);
-					IntroduceAmountPane.setVisible(false);
-					buyOrLogInPanel.setVisible(false);
-					rechargeMoneyPanel.setVisible(false);
-					rechargeProductsPanel.setVisible(false);
-					ChooseRefillPanel.setVisible(true);
-					LogInPanel.setVisible(false);
-					BrokenPanel.setVisible(false);
+					reloadPanels(6, true);
 					currentVendingMachine = OperativeMachines[0];
-					System.out.println(currentVendingMachine);
 					setLabelsForRefillMoney();
 					setLabelsForRefillProducts();
 				}else {
-					ChooseMachinePane.setVisible(false);
-					PrintProductInformation.setVisible(true);
-					IntroduceAmountPane.setVisible(false);
-					buyOrLogInPanel.setVisible(false);
-					rechargeMoneyPanel.setVisible(false);
-					rechargeProductsPanel.setVisible(false);
-					ChooseRefillPanel.setVisible(false);
-					LogInPanel.setVisible(false);
-					BrokenPanel.setVisible(false);
+					reloadPanels(2, true);
 					currentVendingMachine = OperativeMachines[0];
-					System.out.println(currentVendingMachine);
-					reloadPanels(2);
+					reloadPanels(2, true);
 					textPane.setText(currentVendingMachine.toStringOnlyProducts());
 				}
 			}
@@ -353,38 +336,25 @@ public class ChooseMachine extends JFrame {
 		MachineOptions.add(Machine1Button);
 		
 		JButton Machine2Button = new JButton("Machine 2");
-		Machine2Button.setBounds(116, 5, 103, 23);
+		Machine2Button.setFont(new Font("Roboto Black", Font.PLAIN, 11));
+		Machine2Button.setBorder(null);
+		Machine2Button.setBackground(new Color(153, 255, 255));
+		Machine2Button.setBounds(147, 5, 155, 23);
 		Machine2Button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				boolean logedIn = VendingMachineManager.checkIfSomeoneLogedIn();
 				if(logedIn) {
-					ChooseMachinePane.setVisible(false);
-					PrintProductInformation.setVisible(false);
-					IntroduceAmountPane.setVisible(false);
-					buyOrLogInPanel.setVisible(false);
-					rechargeMoneyPanel.setVisible(false);
-					rechargeProductsPanel.setVisible(false);
-					ChooseRefillPanel.setVisible(true);
-					LogInPanel.setVisible(false);
-					BrokenPanel.setVisible(false);
+					reloadPanels(6, true);
 					currentVendingMachine = OperativeMachines[1];
 					System.out.println(currentVendingMachine);
 					setLabelsForRefillMoney();
 					setLabelsForRefillProducts();
 					
 				}else {
-					ChooseMachinePane.setVisible(false);
-					PrintProductInformation.setVisible(true);
-					IntroduceAmountPane.setVisible(false);
-					buyOrLogInPanel.setVisible(false);
-					rechargeMoneyPanel.setVisible(false);
-					rechargeProductsPanel.setVisible(false);
-					ChooseRefillPanel.setVisible(false);
-					LogInPanel.setVisible(false);
-					BrokenPanel.setVisible(false);
+					reloadPanels(2, true);
 					currentVendingMachine = OperativeMachines[1];
 					System.out.println(currentVendingMachine);
-					reloadPanels(2);
+					reloadPanels(2, true);
 					textPane.setText(currentVendingMachine.toStringOnlyProducts());
 				}
 			}
@@ -392,37 +362,24 @@ public class ChooseMachine extends JFrame {
 		MachineOptions.add(Machine2Button);
 		
 		JButton Machine3Button = new JButton("Machine 3");
-		Machine3Button.setBounds(229, 5, 103, 23);
+		Machine3Button.setFont(new Font("Roboto Black", Font.PLAIN, 11));
+		Machine3Button.setBorder(null);
+		Machine3Button.setBackground(new Color(255, 153, 255));
+		Machine3Button.setBounds(312, 5, 140, 23);
 		Machine3Button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				boolean logedIn = VendingMachineManager.checkIfSomeoneLogedIn();
 				if(logedIn) {
-					ChooseMachinePane.setVisible(false);
-					PrintProductInformation.setVisible(false);
-					IntroduceAmountPane.setVisible(false);
-					buyOrLogInPanel.setVisible(false);
-					rechargeMoneyPanel.setVisible(false);
-					rechargeProductsPanel.setVisible(false);
-					ChooseRefillPanel.setVisible(true);
-					LogInPanel.setVisible(false);
-					BrokenPanel.setVisible(false);
+					reloadPanels(6, true);
 					currentVendingMachine = OperativeMachines[2];
 					System.out.println(currentVendingMachine);
-					//setLabelsForRefillMoney();
+					//setLabelsForRefillMoney();									//Duda
 					//setLabelsForRefillProducts();
 				}else {
-					ChooseMachinePane.setVisible(false);
-					PrintProductInformation.setVisible(true);
-					IntroduceAmountPane.setVisible(false);
-					buyOrLogInPanel.setVisible(false);
-					rechargeMoneyPanel.setVisible(false);
-					rechargeProductsPanel.setVisible(false);
-					ChooseRefillPanel.setVisible(false);
-					LogInPanel.setVisible(false);
-					BrokenPanel.setVisible(false);
+					reloadPanels(2, true);
 					currentVendingMachine = OperativeMachines[2];
 					System.out.println(currentVendingMachine);
-					reloadPanels(2);
+					reloadPanels(2, true);
 					textPane.setText(currentVendingMachine.toStringOnlyProducts());
 				}
 			}
@@ -432,15 +389,7 @@ public class ChooseMachine extends JFrame {
 		JButton btnComeBackRefill = new JButton("Come back");
 		btnComeBackRefill.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ChooseMachinePane.setVisible(false);
-				PrintProductInformation.setVisible(false);
-				IntroduceAmountPane.setVisible(false);
-				buyOrLogInPanel.setVisible(true);
-				rechargeMoneyPanel.setVisible(false);
-				rechargeProductsPanel.setVisible(false);
-				ChooseRefillPanel.setVisible(false);
-				LogInPanel.setVisible(false);
-				BrokenPanel.setVisible(false);
+				reloadPanels(0, true);
 			}
 		});
 		btnComeBackRefill.setFont(new Font("Roboto Black", Font.PLAIN, 12));
@@ -472,7 +421,7 @@ public class ChooseMachine extends JFrame {
 		//----------------------------Botones de añadir dinero-----------------------------
 		
 		JButton btnNewButton = new JButton("0.05 Coin");
-		btnNewButton.setBounds(67, 49, 79, 23);
+		btnNewButton.setBounds(67, 49, 108, 23);
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
@@ -491,7 +440,7 @@ public class ChooseMachine extends JFrame {
 		Buttoms.add(btnNewButton);
 		
 		JButton btnNewButton_1 = new JButton("0.2 Coin");
-		btnNewButton_1.setBounds(67, 83, 73, 23);
+		btnNewButton_1.setBounds(67, 83, 108, 23);
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				try {
@@ -505,7 +454,7 @@ public class ChooseMachine extends JFrame {
 		Buttoms.add(btnNewButton_1);
 		
 		JButton btnNewButton_2 = new JButton("0.5 Coin");
-		btnNewButton_2.setBounds(67, 117, 73, 23);
+		btnNewButton_2.setBounds(67, 117, 108, 23);
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				try {
@@ -519,7 +468,7 @@ public class ChooseMachine extends JFrame {
 		Buttoms.add(btnNewButton_2);
 		
 		JButton btnNewButton_3 = new JButton("1 Coin");
-		btnNewButton_3.setBounds(67, 151, 63, 23);
+		btnNewButton_3.setBounds(67, 151, 108, 23);
 		btnNewButton_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				try {
@@ -533,7 +482,7 @@ public class ChooseMachine extends JFrame {
 		Buttoms.add(btnNewButton_3);
 		
 		JButton btnNewButton_4 = new JButton("2 Coin");
-		btnNewButton_4.setBounds(67, 193, 63, 23);
+		btnNewButton_4.setBounds(67, 193, 108, 23);
 		btnNewButton_4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				try {
@@ -547,7 +496,7 @@ public class ChooseMachine extends JFrame {
 		Buttoms.add(btnNewButton_4);
 		
 		JButton btnNewButton_5 = new JButton("5 Note");
-		btnNewButton_5.setBounds(67, 233, 65, 23);
+		btnNewButton_5.setBounds(67, 233, 108, 23);
 		btnNewButton_5.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				try {
@@ -561,7 +510,7 @@ public class ChooseMachine extends JFrame {
 		Buttoms.add(btnNewButton_5);
 		
 		JButton btnNewButton_6 = new JButton("10 Note");
-		btnNewButton_6.setBounds(67, 267, 71, 23);
+		btnNewButton_6.setBounds(67, 267, 108, 23);
 		btnNewButton_6.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				try {
@@ -575,7 +524,7 @@ public class ChooseMachine extends JFrame {
 		Buttoms.add(btnNewButton_6);
 		
 		JButton btnNewButton_7 = new JButton("20 Note");
-		btnNewButton_7.setBounds(67, 306, 71, 23);
+		btnNewButton_7.setBounds(67, 306, 108, 23);
 		btnNewButton_7.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				try {
@@ -593,32 +542,34 @@ public class ChooseMachine extends JFrame {
 		JPanel Total = new JPanel();
 		Total.setBounds(0, 451, 790, 33);
 		IntroduceAmountPane.add(Total);
-		Total.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		
 		JButton btnComeBackIntroduceAmount = new JButton("Come back");
+		btnComeBackIntroduceAmount.setBackground(new Color(255, 0, 0));
+		btnComeBackIntroduceAmount.setBorder(null);
+		btnComeBackIntroduceAmount.setFont(new Font("Roboto Black", Font.PLAIN, 11));
+		btnComeBackIntroduceAmount.setBounds(10, 5, 128, 23);
 		btnComeBackIntroduceAmount.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				ChooseMachinePane.setVisible(false);
-				PrintProductInformation.setVisible(true);
-				IntroduceAmountPane.setVisible(false);
-				buyOrLogInPanel.setVisible(false);
-				rechargeMoneyPanel.setVisible(false);
-				rechargeProductsPanel.setVisible(false);
-				ChooseRefillPanel.setVisible(false);
-				LogInPanel.setVisible(false);
-				BrokenPanel.setVisible(false);
+				reloadPanels(2, true);
+				textPane.setText(currentVendingMachine.toStringOnlyProducts());
 			}
 		});
+		Total.setLayout(null);
 		Total.add(btnComeBackIntroduceAmount);
 		
 		JLabel lblNewLabel_2 = new JLabel("Total : ");
+		lblNewLabel_2.setBounds(202, 5, 174, 23);
 		Total.add(lblNewLabel_2);
 		
 		TotalAmountText = new JTextField();
+		TotalAmountText.setBounds(381, 6, 117, 20);
 		Total.add(TotalAmountText);
 		TotalAmountText.setColumns(10);
 		
 		JButton btnNewButton_9 = new JButton("Accept");
+		btnNewButton_9.setBorder(null);
+		btnNewButton_9.setBackground(new Color(51, 204, 51));
+		btnNewButton_9.setBounds(536, 5, 97, 23);
 		btnNewButton_9.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
@@ -627,10 +578,7 @@ public class ChooseMachine extends JFrame {
 				if(totalAmountIntroduced >= productToBuy.getPrice()) {
 					currentVendingMachine.addMoney(moneyToIntroduce);
 					currentVendingMachine.removeProduct(productToBuy.getId());
-				}
-				
-				
-				
+				}	
 			}
 		});
 		Total.add(btnNewButton_9);
@@ -676,15 +624,7 @@ public class ChooseMachine extends JFrame {
 		btnBuyMenu.setBounds(25, 5, 287, 75);
 		btnBuyMenu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ChooseMachinePane.setVisible(true);
-				PrintProductInformation.setVisible(false);
-				IntroduceAmountPane.setVisible(false);
-				buyOrLogInPanel.setVisible(false);
-				rechargeMoneyPanel.setVisible(false);
-				rechargeProductsPanel.setVisible(false);
-				ChooseRefillPanel.setVisible(false);
-				LogInPanel.setVisible(false);
-				BrokenPanel.setVisible(false);
+				reloadPanels(1, true);
 			}
 		});
 		buyPanel.setLayout(null);
@@ -706,15 +646,7 @@ public class ChooseMachine extends JFrame {
 		JButton btnAdminMenu = new JButton("I'm an Administrator");
 		btnAdminMenu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ChooseMachinePane.setVisible(false);
-				PrintProductInformation.setVisible(false);
-				IntroduceAmountPane.setVisible(false);
-				buyOrLogInPanel.setVisible(false);
-				rechargeMoneyPanel.setVisible(false);
-				rechargeProductsPanel.setVisible(false);
-				ChooseRefillPanel.setVisible(false);
-				LogInPanel.setVisible(true);
-				BrokenPanel.setVisible(false);
+				reloadPanels(7, true);
 			}
 		});
 		btnAdminMenu.setBounds(184, 85, 128, 17);
@@ -739,7 +671,7 @@ public class ChooseMachine extends JFrame {
 		btnLogOut.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				VendingMachineManager.logOutAdminLogedIn();
-				reloadPanels(0);
+				reloadPanels(0, true);
 			}
 		});
 
@@ -755,15 +687,7 @@ public class ChooseMachine extends JFrame {
 		buyOrLogInPanel.add(btnRefillMenu);
 		btnRefillMenu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ChooseMachinePane.setVisible(true);
-				PrintProductInformation.setVisible(false);
-				IntroduceAmountPane.setVisible(false);
-				buyOrLogInPanel.setVisible(false);
-				rechargeMoneyPanel.setVisible(false);
-				rechargeProductsPanel.setVisible(false);
-				ChooseRefillPanel.setVisible(false);
-				LogInPanel.setVisible(false);
-				BrokenPanel.setVisible(false);
+				reloadPanels(1, true);
 			}
 		});
 		
@@ -776,15 +700,7 @@ public class ChooseMachine extends JFrame {
 		btnFixMachine1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				currentVendingMachine = OperativeMachines[0];
-				ChooseMachinePane.setVisible(false);
-				PrintProductInformation.setVisible(false);
-				IntroduceAmountPane.setVisible(false);
-				buyOrLogInPanel.setVisible(false);
-				rechargeMoneyPanel.setVisible(false);
-				rechargeProductsPanel.setVisible(false);
-				ChooseRefillPanel.setVisible(false);
-				LogInPanel.setVisible(false);
-				BrokenPanel.setVisible(true);
+				reloadPanels(8, true);
 			}
 		});
 		btnFixMachine1.setFont(new Font("Roboto", Font.PLAIN, 11));
@@ -798,15 +714,7 @@ public class ChooseMachine extends JFrame {
 		btnFixMachine2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				currentVendingMachine = OperativeMachines[1];
-				ChooseMachinePane.setVisible(false);
-				PrintProductInformation.setVisible(false);
-				IntroduceAmountPane.setVisible(false);
-				buyOrLogInPanel.setVisible(false);
-				rechargeMoneyPanel.setVisible(false);
-				rechargeProductsPanel.setVisible(false);
-				ChooseRefillPanel.setVisible(false);
-				LogInPanel.setVisible(false);
-				BrokenPanel.setVisible(true);
+				reloadPanels(8, true);
 			}
 		});
 		btnFixMachine2.setFont(new Font("Roboto", Font.PLAIN, 11));
@@ -820,15 +728,7 @@ public class ChooseMachine extends JFrame {
 		btnFixMachine3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				currentVendingMachine = OperativeMachines[2];
-				ChooseMachinePane.setVisible(false);
-				PrintProductInformation.setVisible(false);
-				IntroduceAmountPane.setVisible(false);
-				buyOrLogInPanel.setVisible(false);
-				rechargeMoneyPanel.setVisible(false);
-				rechargeProductsPanel.setVisible(false);
-				ChooseRefillPanel.setVisible(false);
-				LogInPanel.setVisible(false);
-				BrokenPanel.setVisible(true);
+				reloadPanels(8, true);
 			}
 		});
 		btnFixMachine3.setFont(new Font("Roboto", Font.PLAIN, 11));
@@ -838,24 +738,13 @@ public class ChooseMachine extends JFrame {
 		btnFixMachine3.setBounds(316, 466, 128, 17);
 		buyOrLogInPanel.add(btnFixMachine3);
 		
-		boolean a = VendingMachineManager.checkIfSomeoneLogedIn();
-		boolean b = VendingMachineManager.isThereAMachineBroken();
+		//Make the fix buttons not visible
+		btnFixMachine1.setVisible(false);
+		btnFixMachine2.setVisible(false);
+		btnFixMachine3.setVisible(false);
 		
 		//User LogedIn or not
-		if(VendingMachineManager.checkIfSomeoneLogedIn()){
-			lblWelcomeUser.setVisible(true);
-			Administrator logedIn = VendingMachineManager.getAdministratorLogedIn(); 
-			lblWelcomeUser.setText("Bienvenido " + logedIn.getName() + " "  + logedIn.getSurname() + "!");
-			buyPanel.setVisible(false);
-			btnLogOut.setVisible(true);
-			btnRefillMenu.setVisible(true);
-			btnBuyMenu.setVisible(false);
-			lblAdministrator.setVisible(false);
-			btnAdminMenu.setVisible(false);
-			btnFixMachine1.setVisible(false);
-			btnFixMachine2.setVisible(false);
-			btnFixMachine3.setVisible(false);
-		}else if(VendingMachineManager.checkIfSomeoneLogedIn() && VendingMachineManager.isThereAMachineBroken()){
+		if(VendingMachineManager.checkIfSomeoneLogedIn() && VendingMachineManager.isThereAMachineBroken()){
 			lblWelcomeUser.setVisible(true);
 			Administrator logedIn = VendingMachineManager.getAdministratorLogedIn(); 
 			lblWelcomeUser.setText("Bienvenido " + logedIn.getName() + " "  + logedIn.getSurname() + "!");
@@ -874,6 +763,19 @@ public class ChooseMachine extends JFrame {
 			if(OperativeMachines[2].isBroken()){
 				btnFixMachine3.setVisible(true);
 			}
+		}else if(VendingMachineManager.checkIfSomeoneLogedIn()){
+			lblWelcomeUser.setVisible(true);
+			Administrator logedIn = VendingMachineManager.getAdministratorLogedIn(); 
+			lblWelcomeUser.setText("Bienvenido " + logedIn.getName() + " "  + logedIn.getSurname() + "!");
+			buyPanel.setVisible(false);
+			btnLogOut.setVisible(true);
+			btnRefillMenu.setVisible(true);
+			btnBuyMenu.setVisible(false);
+			lblAdministrator.setVisible(false);
+			btnAdminMenu.setVisible(false);
+			btnFixMachine1.setVisible(false);
+			btnFixMachine2.setVisible(false);
+			btnFixMachine3.setVisible(false);
 		}else {
 			lblWelcomeUser.setVisible(false);
 			lblWelcomeUser.setText("");
@@ -1115,15 +1017,7 @@ public class ChooseMachine extends JFrame {
 		JButton btnComeBackMoney = new JButton("Come back");
 		btnComeBackMoney.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ChooseMachinePane.setVisible(true);							//*Cambiar
-				PrintProductInformation.setVisible(false);
-				IntroduceAmountPane.setVisible(false);
-				buyOrLogInPanel.setVisible(false);
-				rechargeMoneyPanel.setVisible(false);
-				rechargeProductsPanel.setVisible(false);
-				ChooseRefillPanel.setVisible(false);
-				LogInPanel.setVisible(false);
-				BrokenPanel.setVisible(false);
+				reloadPanels(1, true);
 				tfMoney.setText("");
 			}
 		});
@@ -1136,15 +1030,7 @@ public class ChooseMachine extends JFrame {
 		JButton btnFinishMoney = new JButton("Finish\r\n");
 		btnFinishMoney.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ChooseMachinePane.setVisible(false);
-				PrintProductInformation.setVisible(false);
-				IntroduceAmountPane.setVisible(false);
-				buyOrLogInPanel.setVisible(true);
-				rechargeMoneyPanel.setVisible(false);
-				rechargeProductsPanel.setVisible(false);
-				ChooseRefillPanel.setVisible(false);
-				LogInPanel.setVisible(false);
-				BrokenPanel.setVisible(false);
+				reloadPanels(0, true);
 			}
 		});
 		btnFinishMoney.setFont(new Font("Roboto Black", Font.PLAIN, 12));
@@ -1353,15 +1239,7 @@ public class ChooseMachine extends JFrame {
 		JButton btnFinishProducts = new JButton("Finish\r\n");
 		btnFinishProducts.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ChooseMachinePane.setVisible(false);
-				PrintProductInformation.setVisible(false);
-				IntroduceAmountPane.setVisible(false);
-				buyOrLogInPanel.setVisible(true);
-				rechargeMoneyPanel.setVisible(false);
-				rechargeProductsPanel.setVisible(false);
-				ChooseRefillPanel.setVisible(false);
-				LogInPanel.setVisible(false);
-				BrokenPanel.setVisible(false);
+				reloadPanels(0, true);
 			}
 		});
 		btnFinishProducts.setFont(new Font("Roboto Black", Font.PLAIN, 12));
@@ -1373,15 +1251,7 @@ public class ChooseMachine extends JFrame {
 		JButton btnComeBackProducts = new JButton("Come back");
 		btnComeBackProducts.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ChooseMachinePane.setVisible(true);											//* CAMBIAR
-				PrintProductInformation.setVisible(false);
-				IntroduceAmountPane.setVisible(false);
-				buyOrLogInPanel.setVisible(false);
-				rechargeMoneyPanel.setVisible(false);
-				rechargeProductsPanel.setVisible(false);
-				ChooseRefillPanel.setVisible(false);
-				LogInPanel.setVisible(false);
-				BrokenPanel.setVisible(false);
+				reloadPanels(1, true);
 				tfProducts.setText("");
 			}
 		});
@@ -1412,9 +1282,6 @@ public class ChooseMachine extends JFrame {
 		lblTitleRechargeProdcuts.setBounds(57, -11, 658, 157);
 		titleRechargeMoneyPanel_1.add(lblTitleRechargeProdcuts);
 		
-		/*if(currentVendingMachine != null) {
-			setLabelsForRefillProducts();
-		}*/
 	}
 	
 	
@@ -1433,39 +1300,30 @@ public class ChooseMachine extends JFrame {
 		ChooseRefillPanel.add(RefillOptions);
 		
 		JButton btnMoney = new JButton("Money\r\n");
-		btnMoney.setBounds(5, 5, 81, 23);
+		btnMoney.setBorder(null);
+		btnMoney.setBackground(new Color(51, 204, 51));
+		btnMoney.setFont(new Font("Roboto Black", Font.PLAIN, 11));
+		btnMoney.setBounds(5, 5, 126, 23);
 		RefillOptions.add(btnMoney);
 		
 		btnMoney.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ChooseMachinePane.setVisible(false);
-				PrintProductInformation.setVisible(false);
-				IntroduceAmountPane.setVisible(false);
-				buyOrLogInPanel.setVisible(false);
-				rechargeMoneyPanel.setVisible(true);
-				rechargeProductsPanel.setVisible(false);
-				ChooseRefillPanel.setVisible(false);
-				LogInPanel.setVisible(false);
-				BrokenPanel.setVisible(false);
+				reloadPanels(4, true);
 				SetRechargeMoneyPanel();
 				setLabelsForRefillMoney();
 			}
 		});
 		
 		JButton btnProducts = new JButton("Products\r\n");
-		btnProducts.setBounds(172, 5, 81, 23);
+		btnProducts.setFont(new Font("Roboto Black", Font.PLAIN, 11));
+		btnProducts.setBackground(new Color(0, 153, 255));
+		btnProducts.setBorder(null);
+		btnProducts.setBounds(141, 5, 112, 23);
 		RefillOptions.add(btnProducts);
 		btnProducts.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ChooseMachinePane.setVisible(false);
-				PrintProductInformation.setVisible(false);
-				IntroduceAmountPane.setVisible(false);
-				buyOrLogInPanel.setVisible(false);
-				rechargeMoneyPanel.setVisible(false);
+				reloadPanels(5, true);
 				rechargeProductsPanel.setVisible(true);
-				ChooseRefillPanel.setVisible(false);
-				LogInPanel.setVisible(false);
-				BrokenPanel.setVisible(false);
 				SetRechargeProductsPanel();
 				setLabelsForRefillProducts();
 			}
@@ -1474,15 +1332,7 @@ public class ChooseMachine extends JFrame {
 		JButton btnComeBackRefill = new JButton("Come back");
 		btnComeBackRefill.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ChooseMachinePane.setVisible(true);
-				PrintProductInformation.setVisible(false);
-				IntroduceAmountPane.setVisible(false);
-				buyOrLogInPanel.setVisible(false);
-				rechargeMoneyPanel.setVisible(false);
-				rechargeProductsPanel.setVisible(false);
-				ChooseRefillPanel.setVisible(false);
-				LogInPanel.setVisible(false);
-				BrokenPanel.setVisible(false);
+				reloadPanels(1, true);
 			}
 		});
 		btnComeBackRefill.setFont(new Font("Roboto Black", Font.PLAIN, 12));
@@ -1543,7 +1393,7 @@ public class ChooseMachine extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				lblErrorLogIn.setText(VendingMachineManager.LogIn(tfUsername.getText(), tfPassword.getPassword()));
 				if(VendingMachineManager.checkIfSomeoneLogedIn()) {
-					reloadPanels(0);
+					reloadPanels(0, true);
 				}else {
 
 				}
@@ -1562,15 +1412,7 @@ public class ChooseMachine extends JFrame {
 		JButton btnComeBackLogIn = new JButton("Come back");
 		btnComeBackLogIn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ChooseMachinePane.setVisible(false);
-				PrintProductInformation.setVisible(false);
-				IntroduceAmountPane.setVisible(false);
-				buyOrLogInPanel.setVisible(true);
-				rechargeMoneyPanel.setVisible(false);
-				rechargeProductsPanel.setVisible(false);
-				ChooseRefillPanel.setVisible(false);
-				LogInPanel.setVisible(false);
-				BrokenPanel.setVisible(false);
+				reloadPanels(0, true);
 			}
 		});
 		btnComeBackLogIn.setFont(new Font("Roboto Black", Font.PLAIN, 12));
@@ -1596,6 +1438,7 @@ public class ChooseMachine extends JFrame {
 				currentVendingMachine.setBroken(false);
 				btnFixMachine.setVisible(false);
 				lblTitle.setText("The machine has been fixed!");
+				reloadPanels(0, true);
 			}
 		});
 		btnFixMachine.setBorder(null);
@@ -1607,15 +1450,7 @@ public class ChooseMachine extends JFrame {
 		JButton btnComeBackBroken = new JButton("Come back");
 		btnComeBackBroken.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ChooseMachinePane.setVisible(false);
-				PrintProductInformation.setVisible(false);
-				IntroduceAmountPane.setVisible(false);
-				buyOrLogInPanel.setVisible(true);
-				rechargeMoneyPanel.setVisible(false);
-				rechargeProductsPanel.setVisible(false);
-				ChooseRefillPanel.setVisible(false);
-				LogInPanel.setVisible(false);
-				BrokenPanel.setVisible(false);
+				reloadPanels(0, true);
 			}
 		});
 		btnComeBackBroken.setBorder(null);
@@ -1747,14 +1582,8 @@ public class ChooseMachine extends JFrame {
 		
 		
 		//Visibility of the Panels
-		ChooseMachinePane.setVisible(false);
-		PrintProductInformation.setVisible(false);
-		IntroduceAmountPane.setVisible(false);
+		makeAllPanelsNotVisivble();
 		buyOrLogInPanel.setVisible(true);
-		rechargeMoneyPanel.setVisible(false);
-		rechargeProductsPanel.setVisible(false);
-		ChooseRefillPanel.setVisible(false);
-		LogInPanel.setVisible(false);
-		BrokenPanel.setVisible(false);
+
 	}
 }

@@ -60,158 +60,95 @@ public class VendingMachine {
 		this.stuck = stuck;
 	}
 	
-	public boolean buyProduct(String product , List<Money> money) {
-		
-		//machineGetsStuck();
-		machineBreaksDown();
-		
-		if(!isBroken() && !stuck ) {
-			Double amount = calculeTotalValue(money);
-			//Sacar producto
-			
-			for(Product current : products) {
-				if(product.equals(current.getName()) && amount > current.getPrice()) {
-					
-					addMoney(money);
-					return true;
-				}
-			}
-			
-			return false;
-		}else {
-			System.out.println("La máquina no se encuentra disponible");
-			return false;
-		}
+	
 
-		
-	}
-		
-	public void refillProduct() {
-		
-		productString();
-		
-		final Scanner scanner = new Scanner(System.in);
-		
-		System.out.println("Escribir producto deseado : ");
-		final String product = scanner.nextLine();
-		
-		for(Product current : products) {
-			
-			if(product.equals(current.getName())) {
-				
-				int quantity = 0;
-				do {
-					System.out.println("Escribir la cantidad a rellenar del producto: ");
-					quantity = scanner.nextInt();
-					
-				}while(quantity <= 0);	
-				current.setCuantity(quantity);
-			}
-		}
-		scanner.close();
-	}
 	
-	
-	public void addMoney(List<Money> moneyList) {
-		for(Money currentList : moneyList) {
-			for(Money currentArray : money) {
-				if(currentList.getValue() == currentArray.getValue()) {
-					currentArray.setCuantity(currentArray.getCuantity() + currentList.getCuantity());
-				}
-			}
-		}
-		
-	}
+	//-------------METODOS DE MAQUINA ROTA Y MAQUINA ATASCADA-------------
 	
 	public void machineGetsStuck() {
 		
 		Random random = new Random();
 		final int i = random.nextInt(99);
+		
 		if(i > 97) {								//Percentage --> 3%
-			this.stuck = true;
-			machineStuckString();
+			this.setStuck(true);
 		}
 		else {
-			this.stuck = false;
+			this.setStuck(false);
 		}
+	}
+	
+	public boolean isStuck() {
+		return stuck;
 	}
 	
 	public void machineBreaksDown() {
 		
 		Random random = new Random();
 		final int i = random.nextInt(99);
-		if(i < 96) {								//Percentage --> 4%
+		if(i > 96) {								//Percentage --> 4%
 			this.setBroken(true);
-			machineBrokenString();
 		}
 		else {
 			this.setBroken(false);
 		}
 	}
 	
+	public boolean isBroken() {
+		return broken;
+	}
+	
+	
+	//-------------METODOS DE PRODUCTOS-------------
+	
+	public Product getSpecificProduct(int id) {
 
-	public String productString () {
-		String result = "---------------------------------\n"
-				+ "         Maquina "+machineNumber
-				+"\n---------------------------------\n";
-		
-		result += "---------------------------------\n";
-		result += "         Productos\n";
-		result += "---------------------------------\n";
 		for(Product current : products) {
-			result += current.toString() + "\n";
+			if(current.getId() == id) {
+				return current;
+			}
 		}
 		
+		return null;
+	}
+	
+	public int getQuantityOfSpecificProduct(int id) {
+
+		for(Product current : products) {
+			if(current.getId() == id) {
+				return current.getCuantity();
+			}
+		}
+		
+		return 0;
+	}
+	
+	public int getTotalAmountProducts() {
+		int result = 0;
+		for(Product current : products) {
+			result += current.getCuantity();
+		}
 		
 		return result;
 	}
-	
-	public String moneyString () {
-		
-		String result =  "---------------------------------\n";
-		result += "         Dinero\n";
-		result += "---------------------------------\n";
-		
-		result += "Valor  			 Cantidad\n";
-		
-		for(Money current : money) {
-			result += current.toString() + "\n";
-		}
-		
-		
-		return result;
-	}
-	
 
-	public String toString() {
-		
-		String result = "---------------------------------\n"
-				+ "         Maquina "+machineNumber
-				+"\n---------------------------------\n";
-		
-		result += "---------------------------------\n";
-		result += "         Productos\n";
-		result += "---------------------------------\n";
-
-
-		result += "Nombre  			 Cantidad\n";
+	public void addProduct(int id, int quantity) {
 		
 		for(Product current : products) {
-			result += current.toString() + "\n";
+			if(current.getId() == id) {
+				current.setCuantity(current.getCuantity() + quantity);
+			}
 		}
 		
+	}
+	
+	public void removeProduct(int id) {
 		
-		result += "---------------------------------\n";
-		result += "         Dinero\n";
-		result += "---------------------------------\n";
-		
-		result += "Valor  			 Cantidad\n";
-		
-		for(Money current : money) {
-			result += current.toString() + "\n";
-		}
-		
-		return result;
+		for(Product current : products) {
+			if(current.getId() == id) {
+				current.setCuantity(current.getCuantity() - 1);
+			}
+		}	
 	}
 	
 	public String toStringOnlyProducts() {
@@ -230,88 +167,8 @@ public class VendingMachine {
 		return result;
 	}
 	
-	public String machineStuckString () {
-		
-		String result =  "---------------------------------\n";
-		result += "         La máquina se ha atascado, por favor agitela para desatascarla ";
-		result += "---------------------------------\n";
+	//-------------METODOS DE DINERO-------------
 
-		
-		return result;
-	}
-	
-	public String unstuckMachineString () {
-		
-		String result =  "---------------------------------\n";
-		result += "         La máquina se ha atascado, por favor agitela para desatascarla ";
-		result += "---------------------------------\n";
-
-		final Scanner scanner = new Scanner(System.in);
-		
-		System.out.println("Pulsa cualquier tecla para desatascar la máquina");
-		result += "---------------------------------\n";
-		scanner.nextLine();
-		
-		scanner.close();
-		
-		return result;
-	}
-	
-	public String machineBrokenString () {
-		
-		String result =  "---------------------------------\n";
-		result += "         La máquina se ha averiado, por favor espere a que un técnico venga a desatascarla 		";
-		result += "---------------------------------\n";
-		
-		return result;
-	}
-	
-	public String repairMachineString () {
-		
-		String result =  "---------------------------------\n";
-		result += "         Arreglando la máquina			";
-		result += "---------------------------------\n";
-		try {
-			Thread.sleep(5000);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
-		
-		result +=  "---------------------------------\n";
-		result += "         El técnico ha arreglado la máquina con éxito			";
-		result += "---------------------------------\n";
-			
-		return result;
-	}
-	
-
-	
-
-
-	/*public static List<Money> IntroduceMoney() {
-		
-		List<Money> result = new ArrayList<Money>();
-		final Scanner scanner = new Scanner(System.in);
-		boolean IDontHaveToExit = true;
-		
-		do {
-			System.out.println("---------------------------------");
-			System.out.println("1 - Moneda");
-			System.out.println("2 - Billete");
-			System.out.println("3 - Ya esta");
-			System.out.println("Seleccionar opcion : ");
-			
-			int option = scanner.nextInt();
-			
-			IDontHaveToExit = IntroduceSingleMoney(option , result);
-		
-			
-		}while(IDontHaveToExit);
-		
-		scanner.close();
-		return result;
-	}*/
-	//DESUSO
 	public static Double calculeTotalValue(List<Money> moneyList) {
 		
 		Double result = moneyList.stream()
@@ -321,14 +178,6 @@ public class VendingMachine {
 		return result;
 	}
 	
-	
-	public void IntroduceListMoney(List<Money> moneyList) {
-		for(Money current : moneyList) {
-			if(!Money.IncorrectValue(current.getValue())) {
-				current.setCuantity(current.getCuantity()+1);
-			}
-		}
-	}
 	
 	public int getQuantityOfSpecificCuerrencyType(Money[] money, float value) {
 		
@@ -374,111 +223,14 @@ public class VendingMachine {
 		}	
 	}
 	
-	/*
-	private static boolean IntroduceSingleMoney(int option, List<Money> result) {
-		
-		float amount;
-		final Scanner scanner = new Scanner(System.in);
-		
-		try {
-			
-			if(option == 1) {
-				
-				System.out.println("---------------------------------");
-				System.out.println("Valor de la moneda : ");
-				amount = scanner.nextFloat();
-				Coin e = new Coin(amount , 1);
-				result.add(e);
-				
-			}else if(option == 2) {
-				System.out.println("---------------------------------");
-				System.out.println("Valor del billete: ");
-				amount = scanner.nextFloat();
-				result.add(new Note(amount , 1));
-				
-			}else if(option == 3) {
-				scanner.close();
-				return false;
-			}else {
-				System.out.println("---------------------------------");
-				System.out.println("       NUMERO INCORRECTO");
-				System.out.println("---------------------------------");
-			}
-			
-		}catch(Exception e) {
-			System.out.println(e.getMessage());
-		}
-		
-		
-		scanner.close();
-		return true;
-		
-	}*/
-
-	public Product getSpecificProduct(int id) {
-
-		for(Product current : products) {
-			if(current.getId() == id) {
-				return current;
-			}
-		}
-		
-		return null;
-	}
-	
-	public int getQuantityOfSpecificProduct(int id) {
-
-		for(Product current : products) {
-			if(current.getId() == id) {
-				return current.getCuantity();
-			}
-		}
-		
-		return 0;
-	}
-	
-	public int getTotalAmountProducts() {
-		int result = 0;
-		for(Product current : products) {
-			result += current.getCuantity();
-		}
-		
-		return result;
-	}
-
-	public void addProduct(int id, int quantity) {
-		
-		for(Product current : products) {
-			if(current.getId() == id) {
-				current.setCuantity(current.getCuantity() + quantity);
+	public void addMoney(List<Money> moneyList) {
+		for(Money currentList : moneyList) {
+			for(Money currentArray : money) {
+				if(currentList.getValue() == currentArray.getValue()) {
+					currentArray.setCuantity(currentArray.getCuantity() + currentList.getCuantity());
+				}
 			}
 		}
 		
 	}
-	
-	public void removeProduct(int id, int quantity) {
-		
-		for(Product current : products) {
-			if(current.getId() == id) {
-				current.setCuantity(current.getCuantity() - quantity);
-			}
-		}
-		
-	}
-	
-	public void removeProduct(int id) {
-		
-		for(Product current : products) {
-			if(current.getId() == id) {
-				current.setCuantity(current.getCuantity() - 1);
-			}
-		}
-		
-	}
-
-	public boolean isBroken() {
-		return broken;
-	}
-	
-
 }
