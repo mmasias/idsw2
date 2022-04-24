@@ -1,7 +1,12 @@
 package Program;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+
+import Program.MoneyTypes.Coin;
+import Program.MoneyTypes.Note;
+
 import java.util.Random;
 
 public class VendingMachine {
@@ -153,15 +158,16 @@ public class VendingMachine {
 	
 	public String toStringOnlyProducts() {
 		
-		String result="---------------------------------\n";
-		result += "         Productos\n";
-		result += "---------------------------------\n";
+		String result="------------------------------------------------------------------\n";
+		result +=     "         Productos											     \n";						
+		result += 	  "------------------------------------------------------------------\n";
 
 
-		result += "Nombre  			 Numero\n";
+		result += "         Nombre  		Numero  		Cantidad  		Precio\n";
 		
 		for(Product current : products) {
-			result += current.toStringShowingId() + "\n";
+			result += current.toStringShowingId()  + "		" + current.getCuantity() + "		" + current.getPrice() + " € \n";
+			
 		}
 		
 		return result;
@@ -211,7 +217,7 @@ public class VendingMachine {
 				if(m.getValue() == value) {
 					if(quantity > 0) {
 						m.setCuantity(m.getCuantity() + quantity);
-					}else if(m.getCuantity() > quantity && quantity < 0 && m.getCuantity() > 0) {
+					}else if(m.getCuantity() >= (quantity * -1) && quantity < 0 && m.getCuantity() > 0) {
 						m.setCuantity(m.getCuantity() + quantity);	
 					}
 				}
@@ -233,11 +239,50 @@ public class VendingMachine {
 		}
 	}
 	
+	public List<Money> floatToMoney(float moneyValue){
+		
+		List<Money> list = new ArrayList<Money>();
+		
+		if(moneyValue >= 20) {
+			list.add(new Money(20, (int) Math.floor(moneyValue / 20)));
+			moneyValue = moneyValue % 20;
+		}
+		if(moneyValue >= 10) {
+			list.add(new Money(10, (int) Math.floor(moneyValue / 10)));
+			moneyValue = moneyValue % 10;
+		}
+		if(moneyValue >= 5) {
+			list.add(new Money(5, (int) Math.floor(moneyValue / 5)));
+			moneyValue = moneyValue % 5;
+		}
+		if(moneyValue >= 2) {
+			list.add(new Money(2, (int) Math.floor(moneyValue / 2)));
+			moneyValue = moneyValue % 2;
+		}
+		if(moneyValue >= 1) {
+			list.add(new Money(1, (int) Math.floor(moneyValue / 1)));
+			moneyValue = moneyValue % 1;
+		}
+		if(moneyValue >= 0.5f) {
+			list.add(new Money(0.5f, (int) Math.floor(moneyValue / 0.5f)));
+			moneyValue = moneyValue % 0.5f;
+		}
+		if(moneyValue >= 0.2f) {
+			list.add(new Money(0.2f, (int) Math.floor(moneyValue / 0.2f)));
+			moneyValue = moneyValue % 0.2f;
+		}
+		if(moneyValue >= 0.05f) {
+			list.add(new Money(0.05f, (int) Math.floor(moneyValue / 0.05f)));
+			moneyValue = moneyValue % 0.05f;
+		}
+		return list;
+	}
+	
 	public void removeMoney(List<Money> moneyList) {
 		for(Money currentList : moneyList) {
 			for(Money currentArray : money) {
 				if(currentList.getValue() == currentArray.getValue()) {
-					currentArray.setCuantity(currentArray.getCuantity() + currentList.getCuantity());
+					currentArray.setCuantity(currentArray.getCuantity() - currentList.getCuantity());
 				}
 			}
 		}

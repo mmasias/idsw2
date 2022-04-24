@@ -208,7 +208,7 @@ public class ChooseMachine extends JFrame {
 				MachineInformation.setLayout(null);
 				
 				textPane = new JTextPane();
-				textPane.setBounds(91, 11, 629, 410);
+				textPane.setBounds(10, 11, 780, 410);
 				MachineInformation.add(textPane);
 				
 				
@@ -257,22 +257,28 @@ public class ChooseMachine extends JFrame {
 							final String text = productsInformationText.getText();
 							int productId= Integer.parseInt(text);
 							productToBuy = currentVendingMachine.getSpecificProduct(productId);
-							currentVendingMachine.machineBreaksDown();
-							currentVendingMachine.machineGetsStuck();
-							if(productToBuy != null && !currentVendingMachine.isBroken() && !currentVendingMachine.isStuck()) {
-								
-								reloadPanels(3, true);
-							}else if(currentVendingMachine.isBroken()) {
-								reloadPanels(8, true);
-								lblMachineBrokenOrStucked.setText("Lo sentimos pero esta máquina esta rota");
-								btnNewButton_11.setVisible(false);
-								productsInformationText.setVisible(false);
-								lblNewLabel_3.setVisible(false);
-							}else if(currentVendingMachine.isStuck()) {
+							
+							if(productToBuy != null && productToBuy.getCuantity() >= 1) {
+								currentVendingMachine.machineBreaksDown();
+								currentVendingMachine.machineGetsStuck();
+								if(productToBuy != null && !currentVendingMachine.isBroken() && !currentVendingMachine.isStuck()) {
+									
+									reloadPanels(3, true);
+								}else if(currentVendingMachine.isBroken()) {
+									reloadPanels(8, true);
+									lblMachineBrokenOrStucked.setText("Lo sentimos pero esta máquina esta rota");
+									btnNewButton_11.setVisible(false);
+									productsInformationText.setVisible(false);
+									lblNewLabel_3.setVisible(false);
+								}else if(currentVendingMachine.isStuck()) {
 
-								lblMachineBrokenOrStucked.setText("La maquina se ha atascado , intentelo de nuevo");
-								
+									lblMachineBrokenOrStucked.setText("La maquina se ha atascado , intentelo de nuevo");
+									
+								}
+							}else {
+								lblMachineBrokenOrStucked.setText("Lo sentimos pero no quedan existencias de ese producto");
 							}
+							
 						}catch(NumberFormatException e){
 							lblMachineBrokenOrStucked.setText("Introduce un número válido por favor");
 						}
@@ -416,13 +422,14 @@ public class ChooseMachine extends JFrame {
 		
 		//----------------------------Botones de añadir dinero-----------------------------
 		
-		JButton btnNewButton = new JButton("0.05 Coin");
+		JButton btnNewButton = new JButton("0.05 €");
 		btnNewButton.setBounds(67, 49, 108, 23);
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
 				try {
-					SendMoneyToVendingMachine(new Coin(0.05f, 10) , moneyToIntroduce);
+					moneyToIntroduce.add(new Coin(0.05f, 1));
+					TotalAmountText.setText(VendingMachine.calculeTotalValue(moneyToIntroduce).toString());
 				} catch (ValueIncorrectException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -435,7 +442,7 @@ public class ChooseMachine extends JFrame {
 		Buttoms.setLayout(null);
 		Buttoms.add(btnNewButton);
 		
-		JButton btnNewButton_1 = new JButton("0.2 Coin");
+		JButton btnNewButton_1 = new JButton("0.2 €");
 		btnNewButton_1.setBounds(67, 83, 108, 23);
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -449,7 +456,7 @@ public class ChooseMachine extends JFrame {
 		});
 		Buttoms.add(btnNewButton_1);
 		
-		JButton btnNewButton_2 = new JButton("0.5 Coin");
+		JButton btnNewButton_2 = new JButton("0.5 €");
 		btnNewButton_2.setBounds(67, 117, 108, 23);
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -463,7 +470,7 @@ public class ChooseMachine extends JFrame {
 		});
 		Buttoms.add(btnNewButton_2);
 		
-		JButton btnNewButton_3 = new JButton("1 Coin");
+		JButton btnNewButton_3 = new JButton("1 €");
 		btnNewButton_3.setBounds(67, 151, 108, 23);
 		btnNewButton_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -477,7 +484,7 @@ public class ChooseMachine extends JFrame {
 		});
 		Buttoms.add(btnNewButton_3);
 		
-		JButton btnNewButton_4 = new JButton("2 Coin");
+		JButton btnNewButton_4 = new JButton("2 €");
 		btnNewButton_4.setBounds(67, 193, 108, 23);
 		btnNewButton_4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -491,7 +498,7 @@ public class ChooseMachine extends JFrame {
 		});
 		Buttoms.add(btnNewButton_4);
 		
-		JButton btnNewButton_5 = new JButton("5 Note");
+		JButton btnNewButton_5 = new JButton("5 €");
 		btnNewButton_5.setBounds(67, 233, 108, 23);
 		btnNewButton_5.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -505,7 +512,7 @@ public class ChooseMachine extends JFrame {
 		});
 		Buttoms.add(btnNewButton_5);
 		
-		JButton btnNewButton_6 = new JButton("10 Note");
+		JButton btnNewButton_6 = new JButton("10 €");
 		btnNewButton_6.setBounds(67, 267, 108, 23);
 		btnNewButton_6.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -519,7 +526,7 @@ public class ChooseMachine extends JFrame {
 		});
 		Buttoms.add(btnNewButton_6);
 		
-		JButton btnNewButton_7 = new JButton("20 Note");
+		JButton btnNewButton_7 = new JButton("20 €");
 		btnNewButton_7.setBounds(67, 306, 108, 23);
 		btnNewButton_7.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -583,13 +590,16 @@ public class ChooseMachine extends JFrame {
 						currentVendingMachine.removeProduct(productToBuy.getId());
 						lblError.setText("");
 						reloadPanels(9, true);
-						int introducedMoney = 0;
+						float introducedMoney = 0;
 						for(Money m : moneyToIntroduce) {
 							introducedMoney += m.getValue();
 						}
 						final float moneyBack = introducedMoney - productToBuy.getPrice();
-						//currentVendingMachine.removeMoney(value, quantity, money)											Restar el dinero a devolvere
+						currentVendingMachine.removeMoney(currentVendingMachine.floatToMoney(moneyBack));
 						lblBoughtProduct.setText(productToBuy.getName() + " and your money back: " + moneyBack + " €");
+					}else {
+						final float leftToIntroduce = (float) (productToBuy.getPrice() - totalAmountIntroduced);
+						lblError.setText("Te quedan por introducir todavía: " + leftToIntroduce + " €");
 					}	
 				}catch(NumberFormatException nfe) {
 					lblError.setText("Introduce un número válido por favor");
@@ -1063,7 +1073,7 @@ public class ChooseMachine extends JFrame {
 		
 		lblQTotal = new JLabel("0");
 		lblQTotal.setFont(new Font("Roboto Black", Font.PLAIN, 12));
-		lblQTotal.setBounds(89, 331, 52, 14);
+		lblQTotal.setBounds(89, 331, 84, 14);
 		contentRechargeMoneyPanel.add(lblQTotal);
 		
 		JPanel titleRechargeMoneyPanel = new JPanel();

@@ -32,7 +32,6 @@ public class VendingMachineManager {
 						new Drink(1.05f, 10 , 3),
 						new Snack(1.75f, 10 , 4) 
 				};
-
 				Money[] currentMachineMoney = {
 						new Note(20, 3), 
 						new Note(10, 1), 
@@ -43,6 +42,27 @@ public class VendingMachineManager {
 						new Coin(0.2f, 20), 
 						new Coin(0.05f, 10) 
 				};
+				if(arrayIndex == 1) {
+					
+					currentMachineMoney[0].setCuantity(3);
+					currentMachineMoney[1].setCuantity(2);
+					currentMachineMoney[2].setCuantity(3);
+					currentMachineMoney[3].setCuantity(7);
+					currentMachineMoney[4].setCuantity(15);
+					currentMachineMoney[5].setCuantity(25);
+					currentMachineMoney[6].setCuantity(30);
+					currentMachineMoney[7].setCuantity(20);
+				}else if(arrayIndex == 2) {
+					
+					currentMachineMoney[0].setCuantity(3);
+					currentMachineMoney[1].setCuantity(1);
+					currentMachineMoney[2].setCuantity(3);
+					currentMachineMoney[3].setCuantity(5);
+					currentMachineMoney[4].setCuantity(12);
+					currentMachineMoney[5].setCuantity(30);
+					currentMachineMoney[6].setCuantity(10);
+					currentMachineMoney[7].setCuantity(15);
+				} 
 				
 				operativeMachines[arrayIndex] = new VendingMachine(arrayIndex + 1, currentMachineProducts, currentMachineMoney, administrators);
 
