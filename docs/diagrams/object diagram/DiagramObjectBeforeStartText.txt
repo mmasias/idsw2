@@ -12,11 +12,11 @@ quantity
 }
 class Coin{
 value
-cuantity
+quantity
 }
 class Note{
 value
-cuantity
+quantity
 }
 class Cookies{
 id=4
@@ -128,37 +128,37 @@ logedIn=false
 
 class 1€{
 value=1
-cuantity=0
+quantity=0
 }
 
 class 0,5€{
 value=0.5
-cuantity=0
+quantity=0
 }
 
 class 0,2€{
 value=0.2
-cuantity=0
+quantity=0
 }
 
 class 0,05€{
 value=0.05
-cuantity=0
+quantity=0
 }
 
 class 5€{
 value=5
-cuantity=0
+quantity=0
 }
 
 class 10€{
 value=10
-cuantity=0
+quantity=0
 }
 
 class 20€{
 value=20
-cuantity=0
+quantity=0
 }
 interface GraphicalInterface
 GraphicalInterface-- VendingMachineManager : is used
