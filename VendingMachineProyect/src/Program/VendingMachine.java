@@ -272,8 +272,10 @@ public class VendingMachine {
 			moneyValue = moneyValue % 0.2f;
 		}
 		if(moneyValue >= 0.05f) {
+			
 			list.add(new Money(0.05f, (int) Math.floor(moneyValue / 0.05f)));
 			moneyValue = moneyValue % 0.05f;
+			
 		}
 		return list;
 	}

@@ -25,6 +25,7 @@ import java.awt.Color;
 import java.awt.Component;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import java.awt.event.ActionEvent;
@@ -32,10 +33,10 @@ import javax.swing.JTextPane;
 import javax.swing.JTextField;
 import javax.swing.JPasswordField;
 
-public class ChooseMachine extends JFrame {
+public class GraphicalInterface extends JFrame {
 	private static final long serialVersionUID = 3142390317093997510L;
 	
-	public static ChooseMachine frame;
+	public static GraphicalInterface frame;
 	
 	private static JPanel ChooseMachinePane;
 	private static JPanel PrintProductInformation;
@@ -74,6 +75,7 @@ public class ChooseMachine extends JFrame {
 	private static JLabel lblP3quantity;
 	private static JLabel lblP4quantity;
 	private static JLabel lblBoughtProduct;
+	private static JLabel lblNewLabel_1_1;
 	
 	private static JTextPane textPane;
 	private JTextField tfUsername;
@@ -89,7 +91,7 @@ public class ChooseMachine extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					frame = new ChooseMachine();
+					frame = new GraphicalInterface();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -101,7 +103,7 @@ public class ChooseMachine extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public ChooseMachine() {
+	public GraphicalInterface() {
 		
 		//Creation of the panels and the general settings
 		
@@ -251,8 +253,7 @@ public class ChooseMachine extends JFrame {
 				btnNewButton_11.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent arg0) {
 						
-						//Si el producto existe en la maquina , se pasa a la siguiente ventana
-						
+						//If the product exits in the machine, the panel is changed
 						try{
 							final String text = productsInformationText.getText();
 							int productId= Integer.parseInt(text);
@@ -264,6 +265,8 @@ public class ChooseMachine extends JFrame {
 								if(productToBuy != null && !currentVendingMachine.isBroken() && !currentVendingMachine.isStuck()) {
 									
 									reloadPanels(3, true);
+									lblNewLabel_1_1.setText("Introduce amount: " + productToBuy.getPrice() + " €");
+
 								}else if(currentVendingMachine.isBroken()) {
 									reloadPanels(8, true);
 									lblMachineBrokenOrStucked.setText("Lo sentimos pero esta máquina esta rota");
@@ -406,7 +409,7 @@ public class ChooseMachine extends JFrame {
 	private void SetIntroduceAmountPane() {
 		IntroduceAmountPane.setLayout(null);
 		
-		JLabel lblNewLabel_1_1 = new JLabel("Introduce amount");
+		lblNewLabel_1_1 = new JLabel("Introduce amount: ");
 		lblNewLabel_1_1.setBounds(0, 0, 790, 35);
 		lblNewLabel_1_1.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_1_1.setFont(new Font("Segoe UI Black", Font.BOLD, 25));
@@ -594,7 +597,7 @@ public class ChooseMachine extends JFrame {
 						for(Money m : moneyToIntroduce) {
 							introducedMoney += m.getValue();
 						}
-						final float moneyBack = introducedMoney - productToBuy.getPrice();
+						final float moneyBack = round(introducedMoney - productToBuy.getPrice(), 2);
 						currentVendingMachine.removeMoney(currentVendingMachine.floatToMoney(moneyBack));
 						lblBoughtProduct.setText(productToBuy.getName() + " and your money back: " + moneyBack + " €");
 					}else {
@@ -1521,9 +1524,8 @@ public class ChooseMachine extends JFrame {
 		FinalProductPanel.add(btnComeBack);
 	}
 	
-	//Method to initialice all the panels and set their settings
-	
-	
+
+	//Updates the valueos of the money labels
 	private void setLabelsForRefillMoney() {
 		lblQ005.setText(String.valueOf(currentVendingMachine.getQuantityOfSpecificCuerrencyType(currentVendingMachine.getMoney(), 0.05f)));
 		lblQ02.setText(String.valueOf(currentVendingMachine.getQuantityOfSpecificCuerrencyType(currentVendingMachine.getMoney(), 0.2f)));
@@ -1536,6 +1538,7 @@ public class ChooseMachine extends JFrame {
 		lblQTotal.setText(String.valueOf(currentVendingMachine.getTotalMoneyInMachine(currentVendingMachine.getMoney())) + " €");
 	}
 	
+	//Updates the valueos of the products labels
 	private void setLabelsForRefillProducts() {
 
 		lblP1quantity.setText(String.valueOf(currentVendingMachine.getQuantityOfSpecificProduct(1)));
@@ -1545,6 +1548,7 @@ public class ChooseMachine extends JFrame {
 		lblTquantity.setText(String.valueOf(currentVendingMachine.getTotalAmountProducts()));
 	}
 	
+	//Gets the floats from the combo box of the money
 	private float getFloatFromComboxMoney(String text) {
 		
 		if(text.equals("0,05€")) {
@@ -1568,6 +1572,7 @@ public class ChooseMachine extends JFrame {
 		}
 	}
 	
+	//Gets the index from the combo box of the prodcuts
 	private int getIndexFromComboxProdcuts(String text) {
 		
 		if(text.equals("Cookies")) {
@@ -1583,6 +1588,12 @@ public class ChooseMachine extends JFrame {
 		}
 	}
 	
+	//Round 2 places decimal numbers
+    public static float round(float d, int decimalPlace) {
+        return BigDecimal.valueOf(d).setScale(decimalPlace,BigDecimal.ROUND_HALF_UP).floatValue();
+   }
+	
+	//Method to initialice all the panels and set their settings
 	private void InitializationOfPanels() {
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

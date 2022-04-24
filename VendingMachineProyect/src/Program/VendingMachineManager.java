@@ -106,7 +106,7 @@ public class VendingMachineManager {
 	}
 	
 	public static boolean isThereAMachineBroken() {
-		VendingMachine[] operativeMachines = Program.GraphicInterface.ChooseMachine.OperativeMachines;
+		VendingMachine[] operativeMachines = Program.GraphicInterface.GraphicalInterface.OperativeMachines;
 		int counter = 0;
 		for(VendingMachine m : operativeMachines) {
 			if(m.isBroken()) {
