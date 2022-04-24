@@ -5,10 +5,12 @@ class Value
 class Money
 class Quantity
 class Machine
+class Administrator
 
 Machine -l- Product : has
 Product -l- Value : has a
 Product -l- Quantity : has a 
 Value -d- Money : is paid with
 Money -r- Quantity : has a
+Administrator -l- Machine : manages
 @enduml

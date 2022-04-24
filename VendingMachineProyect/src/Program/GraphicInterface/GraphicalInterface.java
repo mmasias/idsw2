@@ -637,7 +637,7 @@ public class GraphicalInterface extends JFrame {
 		titlePanel.setBackground(new Color(30, 144, 255));
 		titlePanel.setLayout(null);
 		
-		JLabel lblTitle = new JLabel("VENIDING MACHINE\r\n");
+		JLabel lblTitle = new JLabel("VENDING MACHINE\r\n");
 		lblTitle.setBounds(151, 34, 485, 62);
 		lblTitle.setHorizontalAlignment(SwingConstants.CENTER);
 		lblTitle.setFont(new Font("Roboto Black", Font.PLAIN, 52));
