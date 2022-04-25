@@ -19,7 +19,7 @@ El resultado final será un conjunto de versiones de la misma aplicación, cada 
 ### Examen parcial
 > **Fecha** 28/04/2022
 
-Detalles del mismo, [En ]()
+Detalles del mismo, [en este documento](examenParcial.md)
 
 ### Segunda entrega / ajuste de diagramas / Primeras pinceladas de clean code
 > **Fecha:** 17/03/2022
