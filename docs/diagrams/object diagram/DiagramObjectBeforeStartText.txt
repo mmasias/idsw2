@@ -1,0 +1,190 @@
+@startuml
+title ObjectDiagram
+class Product{
+id
+name
+price
+quantity
+}
+class Money{
+value
+quantity
+}
+class Coin{
+value
+quantity
+}
+class Note{
+value
+quantity
+}
+class Cookies{
+id=4
+name=cookies
+price=1.5
+quantity=0
+}
+class Chocolates{
+id=2
+name=Chocolates
+price=1.10
+quantity=0
+}
+class Drink{
+id=3
+name=Drink
+price=1.05
+quantity=0
+}
+class Snack{
+id=1
+name=Snack
+price=1.05
+quantity=0
+}
+
+class VendingMachine{
+Products[]
+Money[]
+machineNumber
+stuck
+broken
+}
+
+class VendingMachine1{
+Products[]
+Money[]
+machineNumber=1
+stuck=false
+broken=false
+}
+
+class VendingMachine2{
+Products[]
+Money[]
+machineNumber=2
+stuck=false
+broken=false
+}
+
+class VendingMachine3{
+Products[]
+Money[]
+machineNumber=3
+stuck=false
+broken=false
+}
+
+
+class VendingMachineManager{
+List<Administrator> administrators
+}
+class Administrator{
+name
+surname
+username
+password
+logedIn
+}
+
+Administrator <|-- Administrator1 : can be
+Administrator <|-- Administrator2 : can be
+Administrator <|-- Administrator3 : can be
+Administrator <|-- Administrator4 : can be
+
+
+
+class Administrator1{
+name=Jesus
+surname=Saro
+username=jesus.saro
+password=12345
+logedIn=false
+}
+
+class Administrator2{
+name=Ruben
+surname=Guturierrez
+username=ruben.gutierrez
+password=12345
+logedIn=false
+}
+
+class Administrator3{
+name=Luis
+surname=Collado
+username=luis.collado
+password=12345
+logedIn=false
+}
+
+class Administrator4{
+name=Diego
+surname=Lopez
+username=diego.lopez
+password=12345
+logedIn=false
+}
+
+class 1€{
+value=1
+quantity=0
+}
+
+class 0,5€{
+value=0.5
+quantity=0
+}
+
+class 0,2€{
+value=0.2
+quantity=0
+}
+
+class 0,05€{
+value=0.05
+quantity=0
+}
+
+class 5€{
+value=5
+quantity=0
+}
+
+class 10€{
+value=10
+quantity=0
+}
+
+class 20€{
+value=20
+quantity=0
+}
+interface GraphicalInterface
+GraphicalInterface-- VendingMachineManager : is used
+VendingMachine o-- Product : has a
+VendingMachine o-- Money : has a
+VendingMachineManager <-- Administrator : has a
+
+VendingMachineManager <-- VendingMachine : manages
+Money <|-- Coin : can be
+Money <|-- Note : can be
+
+Product <|-- Cookies : can be
+Product <|-- Drink : can be
+Product <|-- Chocolates: can be
+Product <|-- Snack : can be
+
+Coin <|-- "1€" : can be
+Coin <|-- "0,5€" : can be
+Coin <|-- "0,2€" : can be
+Coin <|-- "0,05€" : can be
+
+Note <|-- "5€" : can be
+Note <|-- "10€" : can be
+Note <|-- "20€" : can be
+
+VendingMachine <|-- VendingMachine1 : can be
+VendingMachine <|-- VendingMachine2 : can be
+VendingMachine <|-- VendingMachine3 : can be
+@enduml

@@ -1,0 +1,17 @@
+@startuml
+title Domain Model
+class Product{
+ value
+ quantity
+}
+class Money{
+ value
+ quantity
+}
+class Machine
+class Administrator
+
+Machine -l- Product : has
+Product -- Money : costs
+Administrator -l- Machine : manages
+@enduml

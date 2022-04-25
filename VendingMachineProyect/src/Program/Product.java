@@ -4,13 +4,14 @@ public class Product {
 	
 	private String name;
 	private float price;
-	private int cuantity;
+	private int quantity;
+	private int id;
 	
-	
-	public Product(String name, float price, int cuantity) {
+	public Product(String name, float price, int cuantity , int id) {
 		this.name = name;
 		this.price = price;
-		this.cuantity = cuantity;
+		this.quantity = cuantity;
+		this.id = id;
 	}
 
 
@@ -35,17 +36,29 @@ public class Product {
 
 
 	public int getCuantity() {
-		return cuantity;
+		return quantity;
 	}
 
 
 	public void setCuantity(int cuantity) {
-		this.cuantity = cuantity;
+		this.quantity = cuantity;
+	}
+	
+	public int getId() {
+		return id;
+	}
+
+
+	public void setId(int id) {
+		this.id = id;
 	}
 	
 	public String toString() {
-		return name + "			" + cuantity;
+		return name + "			" + quantity;
 	}
 	
+	public String toStringShowingId() {
+		return name + "			" + id;
+	}
 
 }
