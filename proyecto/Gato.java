@@ -1,57 +1,51 @@
 package proyecto;
 
-public class Gato {
-    int posX;
-    int posY;
-    String symbol = "\uD83D\uDE3A";
-    int apariciones;
+public class Gato extends Entidad{
+    // protected String simbolo = "\uD83D\uDE3A";
+    protected boolean estado;
+    protected int impaciencia;
 
     public Gato(int posX, int posY) {
-        this.posX = posX;
-        this.posY = posY;
+        // this.posX = posX;
+        // this.posY = posY;
     }
 
-    public int getPosX() {
-        return posX;
+    public void cambioEstado(){
+        // TODO Auto-generated method stub
     }
 
-    public int getPosY() {
-        return posY;
+    public void ensuciar(){
+        // TODO Auto-generated method stub
     }
 
-    public String getSymbol() {
-        return symbol;
+    public void dibujar() {
+        // TODO Auto-generated method stub
+        
     }
 
-    public int getApariciones() {
-        return apariciones;
+    public void mover(int posX, int posY) {
+        // TODO Auto-generated method stub
+        
     }
 
-    public void setPosX(int posX) {
-        this.posX = posX;
+    public void proximoMovimiento() {
+        // TODO Auto-generated method stub
+        
     }
 
-    public void setPosY(int posY) {
-        this.posY = posY;
-    }
+    // public void moverGato(int[][] moves, int[][] map) {
+    //     int move = (int) (Math.random() * 8);
+    //     if ((this.posX + moves[move][0] > 0 || this.posX + moves[move][0] < map[0].length
+    //             || this.posY + moves[move][1] > 0 || this.posY + moves[move][1] < map.length)
+    //             && (map[this.posY + moves[move][1]][this.posX + moves[move][0]] >= 0)) {
+    //         this.posX += moves[move][0];
+    //         this.posY += moves[move][1];
+    //         setPosX(this.posX);
+    //         setPosY(this.posY);
+    //         if (map[this.posY][this.posX] + 1 < 4) {
+    //             map[this.posY][this.posX] = map[this.posY][this.posX] + 1;
+    //         }
+    //     }
 
-    public void setApariciones(int apariciones) {
-        this.apariciones = apariciones;
-    }
-
-    public void moverGato(int[][] moves, int[][] map) {
-        int move = (int) (Math.random() * 8);
-        if ((this.posX + moves[move][0] > 0 || this.posX + moves[move][0] < map[0].length
-                || this.posY + moves[move][1] > 0 || this.posY + moves[move][1] < map.length)
-                && (map[this.posY + moves[move][1]][this.posX + moves[move][0]] >= 0)) {
-            this.posX += moves[move][0];
-            this.posY += moves[move][1];
-            setPosX(this.posX);
-            setPosY(this.posY);
-            if (map[this.posY][this.posX] + 1 < 4) {
-                map[this.posY][this.posX] = map[this.posY][this.posX] + 1;
-            }
-        }
-
-    }
+    // }
 }
