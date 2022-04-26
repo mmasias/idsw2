@@ -1,10 +1,16 @@
 package structures.classes.players;
 
-import structures.classes.Position;
+import structures.classes.Surface;
+import structures.enums.SurfaceType;
 
 public class Horse extends Player {
-    public Horse(Position position) {
-        super(position);
+    public Horse(Surface surface) {
+        super(surface);
+    }
+
+    @Override
+    protected boolean canMove(SurfaceType type) {
+        return type == SurfaceType.HIGHGRASS;
     }
 
     @Override
