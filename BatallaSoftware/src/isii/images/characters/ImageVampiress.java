@@ -12,7 +12,7 @@ public class ImageVampiress implements ImageCharacter{
 
 	private Image image_vampiress1 = new ImageIcon("Images\\Vampiress\\Halt\\Vampiress_Halt_1.png").getImage();
 	private Image image_vampiress2 = new ImageIcon("Images\\Vampiress\\Halt\\Vampiress_Halt_2.png").getImage();
-	private Image image_vampiressFainting = new ImageIcon("Images\\Heroina\\Halt\\desmayo.png").getImage();
+	private Image image_vampiressFainting = new ImageIcon("Images\\Vampiress\\Halt\\VampiresaDesmayada.png").getImage();
 	
 	private List<SpriteImage> listAttacks1 = new ArrayList<SpriteImage>();
 	private List<SpriteImage> listAttacks2 = new ArrayList<SpriteImage>();
