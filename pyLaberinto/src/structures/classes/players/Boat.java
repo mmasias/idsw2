@@ -1,10 +1,16 @@
 package structures.classes.players;
 
-import structures.classes.Position;
+import structures.classes.Surface;
+import structures.enums.SurfaceType;
 
 public class Boat extends Player {
-    public Boat(Position position) {
-        super(position);
+    public Boat(Surface surface) {
+        super(surface);
+    }
+
+    @Override
+    protected boolean canMove(SurfaceType type) {
+        return type == SurfaceType.WATER || type == SurfaceType.TROUBLEDWATERS;
     }
 
     @Override
