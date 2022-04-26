@@ -16,6 +16,9 @@ Probabilidad de ventana abierta/cerrada: 70% / 30% (por cada hora)
 
 Probabilidad de luz encendida/apagada: 60% / 40% (por cada hora)
 
+## Retos extras
+### Caída de un rayo
 Probabilidad de caida de un rayo (y consiguiente avería en una columna): 25% en un día, una sola vez por día. La columna queda estropeada hasta el día siguiente.
 
+### Avería en una planta
 Probabilidad de avería en una planta: 15% en un día, una vez por día. La planta queda estropeada hasta el día siguiente.
