@@ -4,7 +4,7 @@ public class Time {
     private int hour = 6;
     private int minutes = 6;
 
-    public void avanzarHora(Sun sun){
+    public void increaseTime(Sun sun){
         this.minutes = this.minutes + 55;
         if (minutes >= 60) {
             this.hour = this.hour + 1;
