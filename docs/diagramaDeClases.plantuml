@@ -9,11 +9,9 @@ class Edificio
 }
 class Habitacion
 {
-    - Celda[][] suelo
+    - Dibujable[][] suelo
     - int ancho
     - int largo
-    - Aspiradora aspiradora
-    - Gato gato
     + constructor(int ancho, int largo)
     + limpiarHabitacion()
     + mostrarHabitacion()
@@ -23,21 +21,22 @@ class Habitacion
     + esTraspasable(int x, int y)
 }
 
-class Celda{
+interface Dibujable{
     - int posX
     - int posY
-    - Suciedad suciedad
-    + esTraspasable(int x, int y)
+    - bool traspasable
+    - String simbolo
     + dibujar()
+    
 }
 
-interface Entidad {
+abstract class Entidad implements Dibujable {
     - int[][] coordenadasDeMovimiento
+    - Dibujable encimaDe
     + mover(int posX, int posY)
     + proximoMovimiento()
 }
-class Aspiradora implements Entidad{
-    + {static} String representacion
+class Aspiradora extends Entidad{
     - Bateria bateria
     - Bolsa bolsa
     - int pasos
@@ -50,22 +49,21 @@ class Aspiradora implements Entidad{
     + areaConMayorSuciedad()
 }
 
-class Gato implements Entidad{
-    + {static} String representacion
+class Gato extends Entidad{
     - bool estado
     - int impaciencia
     + constructor()
     + cambioEstado()
     + ensuciar()
 }
-class Mueble{
+class Mueble implements Dibujable{
     - Map<String, String> tipoDeMueble
     + constructor()
     + getTipoDeMueble()
 }
 
-class Suciedad {
-    - String[] representacionesDeSuciedad
+class Suciedad implements Dibujable{
+    - String[] nivelesDeSuciedad
     - int nivelDeSuciedad
     + constructor()
     + getNivelDeSuciedad()
@@ -92,20 +90,13 @@ class Bolsa{
 
 Edificio *--> Habitacion
 
-Habitacion *-r- Celda : contiene
-Habitacion *-- Mueble
-Habitacion *-- Gato
-Habitacion *-- Aspiradora
-
-Celda ..> Aspiradora
-Celda ..> Gato
-Celda ..> Mueble
+Habitacion *--> Dibujable : contiene
 
 Aspiradora o--> Suciedad : elimina
-Aspiradora *-d-> Bolsa : tiene
+Aspiradora *-l-> Bolsa : tiene
 Aspiradora *-d-> Batería : tiene
 Aspiradora -u-> Edificio
-
+Entidad -u-> Edificio
 
 Gato o..> Suciedad : produce
 
