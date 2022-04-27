@@ -4,7 +4,7 @@ public class Time {
     private int hour = 6;
     private int minutes = 6;
 
-    public void avanzarHora(Torch torch){
+    public void avanzarHora(Sun sun){
         this.minutes = this.minutes + 55;
         if (minutes >= 60) {
             this.hour = this.hour + 1;
@@ -13,26 +13,26 @@ public class Time {
             if (this.hour==24){this.hour=0;}
 
         if (this.hour == 4) {
-            torch.setBrightness(3);
+            sun.setBrightness(3);
         } else if (this.hour == 5) {
-            torch.setBrightness(4);
+            sun.setBrightness(4);
         } else if (this.hour == 6) {
-            torch.setBrightness(5);
+            sun.setBrightness(5);
         } else if (this.hour == 7) {
-            torch.setBrightness(100);
+            sun.setBrightness(100);
         } else if (this.hour == 17) {
-            torch.setBrightness(10);
+            sun.setBrightness(10);
         } else if (this.hour == 18) {
-            torch.setBrightness(7);
+            sun.setBrightness(7);
         } else if (this.hour == 19) {
-            torch.setBrightness(5);
+            sun.setBrightness(5);
         } else if (this.hour == 20) {
-            torch.setBrightness(4);
+            sun.setBrightness(4);
         } else if (this.hour == 21) {
-            torch.setBrightness(3);
+            sun.setBrightness(3);
         }
         else if (this.hour == 22) {
-            torch.setBrightness(2);
+            sun.setBrightness(2);
         }
     }
 
