@@ -9,7 +9,7 @@ public class Main {
 		final Sun sun;
 		sun = new Sun();
 		time = new Time();
-
+		
         Scanner enter = new Scanner(System.in);
 		String selection;
 		boolean EndGame = false;
