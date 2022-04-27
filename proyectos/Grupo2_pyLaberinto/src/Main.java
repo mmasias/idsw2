@@ -5,10 +5,9 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args){
 
-		final Time time;
-		final Sun sun;
-		sun = new Sun();
-		time = new Time();
+		final Time time = new Time;
+		final Sun sun = new Sun;
+		final Characters characters = new Characters;
 		
         Scanner enter = new Scanner(System.in);
 		String selection;
@@ -22,7 +21,7 @@ public class Main {
         do {
 
 			time.increaseTime(sun);
-
+		
 			System.out.print("\033[0;0H");System.out.flush();	
 			
 			System.out.print(Colors.BLOCK);
@@ -53,91 +52,91 @@ public class Main {
 			if (selection.equalsIgnoreCase("f")) {
 				EndGame = true;
 			} else if (selection.equalsIgnoreCase("c")) {
-				if (Characters.boat == true || Characters.flyingCarpet == true) {
-					Characters.boat = false;
-					Characters.flyingCarpet = false;
+				if (characters.boat == true || characters.flyingCarpet == true) {
+					characters.boat = false;
+					characters.flyingCarpet = false;
 				}
-				Characters.horse = !Characters.horse;
+				characters.horse = !characters.horse;
 			} else if (selection.equalsIgnoreCase("x")) {
-				if (Characters.boat == true || Characters.horse == true) {
-					Characters.boat = false;
-					Characters.horse = false;
+				if (characters.boat == true || characters.horse == true) {
+					characters.boat = false;
+					characters.horse = false;
 				}
-				Characters.flyingCarpet = !Characters.flyingCarpet;
+				characters.flyingCarpet = !characters.flyingCarpet;
 			} else if (selection.equalsIgnoreCase("b")) {
-				if (Characters.horse == true || Characters.flyingCarpet == true) {
-					Characters.horse = false;
-					Characters.flyingCarpet = false;
+				if (characters.horse == true || characters.flyingCarpet == true) {
+					characters.horse = false;
+					characters.flyingCarpet = false;
 				}
-				Characters.boat = !Characters.boat;
+				characters.boat = !characters.boat;
 			} else if (selection.equalsIgnoreCase("w") && World.actualRow > 0) {
-				if (Characters.boat == false && Characters.horse == false && Characters.flyingCarpet == false) {
+				if (characters.boat == false && characters.horse == false && characters.flyingCarpet == false) {
 					if (World.maze[World.actualRow - 1][World.actualColumn] % 2 == 0) {
 						World.actualRow = World.actualRow - 1;
 					}
-				} else if (Characters.boat == true) {
+				} else if (characters.boat == true) {
 					if (World.maze[World.actualRow - 1][World.actualColumn] == 3 || World.maze[World.actualRow - 1][World.actualColumn] == 11) {
 						World.actualRow = World.actualRow - 1;
 					}
-				} else if (Characters.horse == true) {
+				} else if (characters.horse == true) {
 					if (World.maze[World.actualRow - 1][World.actualColumn] == 7) {
 						World.actualRow = World.actualRow - 1;
 					}
-				} else if (Characters.flyingCarpet == true) {
+				} else if (characters.flyingCarpet == true) {
 					if (World.maze[World.actualRow - 1][World.actualColumn] == 9) {
 						World.actualRow = World.actualRow - 1;
 					}
 				}
 			} else if (selection.equalsIgnoreCase("s")) {
-				if (Characters.boat == false && Characters.horse == false && Characters.flyingCarpet == false) {
+				if (characters.boat == false && characters.horse == false && characters.flyingCarpet == false) {
 					if (World.maze[World.actualRow + 1][World.actualColumn] % 2 == 0) {
 						World.actualRow = World.actualRow + 1;
 					}
-				} else if (Characters.boat == true) {
+				} else if (characters.boat == true) {
 					if (World.maze[World.actualRow + 1][World.actualColumn] == 3 || World.maze[World.actualRow + 1][World.actualColumn] == 11) {
 						World.actualRow = World.actualRow + 1;
 					}
-				} else if (Characters.horse == true) {
+				} else if (characters.horse == true) {
 					if (World.maze[World.actualRow + 1][World.actualColumn] == 7) {
 						World.actualRow = World.actualRow + 1;
 					}
-				} else if (Characters.flyingCarpet == true) {
+				} else if (characters.flyingCarpet == true) {
 					if (World.maze[World.actualRow + 1][World.actualColumn] == 9) {
 						World.actualRow = World.actualRow + 1;
 					}
 				}
 			} else if (selection.equalsIgnoreCase("a")) {
-				if (Characters.boat == false && Characters.horse == false && Characters.flyingCarpet == false) {
+				if (characters.boat == false && characters.horse == false && characters.flyingCarpet == false) {
 					if (World.maze[World.actualRow][World.actualColumn - 1] % 2 == 0) {
 						World.actualColumn = World.actualColumn - 1;
 					}
-				} else if (Characters.boat == true) {
+				} else if (characters.boat == true) {
 					if (World.maze[World.actualRow][World.actualColumn - 1] == 3 || World.maze[World.actualRow][World.actualColumn - 1] == 11) {
 						World.actualColumn = World.actualColumn - 1;
 					}
-				} else if (Characters.horse == true) {
+				} else if (characters.horse == true) {
 					if (World.maze[World.actualRow][World.actualColumn - 1] == 7) {
 						World.actualColumn = World.actualColumn - 1;
 					}
-				} else if (Characters.flyingCarpet == true) {
+				} else if (characters.flyingCarpet == true) {
 					if (World.maze[World.actualRow][World.actualColumn - 1] == 9) {
 						World.actualColumn = World.actualColumn - 1;
 					}
 				}
 			} else if (selection.equalsIgnoreCase("d")) {
-				if (Characters.boat == false && Characters.horse == false && Characters.flyingCarpet == false) {
+				if (characters.boat == false && characters.horse == false && characters.flyingCarpet == false) {
 					if (World.maze[World.actualRow][World.actualColumn + 1] % 2 == 0) {
 						World.actualColumn = World.actualColumn + 1;
 					}
-				} else if (Characters.boat == true) {
+				} else if (characters.boat == true) {
 					if (World.maze[World.actualRow][World.actualColumn + 1] == 3 || World.maze[World.actualRow][World.actualColumn + 1] == 11) {
 						World.actualColumn = World.actualColumn + 1;
 					}
-				} else if (Characters.horse == true) {
+				} else if (characters.horse == true) {
 					if (World.maze[World.actualRow][World.actualColumn + 1] == 7) {
 						World.actualColumn = World.actualColumn + 1;
 					}
-				} else if (Characters.flyingCarpet == true) {
+				} else if (characters.flyingCarpet == true) {
 					if (World.maze[World.actualRow][World.actualColumn + 1] == 9) {
 						World.actualColumn = World.actualColumn + 1;
 					}
