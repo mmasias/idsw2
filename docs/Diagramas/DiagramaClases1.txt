@@ -1,0 +1,24 @@
+//  DIAGRAMA DE CLASES 
+
+
+@startuml
+Class Persona
+Class Edificio
+Class Ascensor
+Class Controlador
+Class Planta
+
+Persona --> Controlador
+Persona ..  Planta
+Persona .. Ascensor
+
+
+Controlador --> Ascensor
+Controlador --> Planta
+
+Edificio *-- Planta
+
+Planta *-- Ascensor
+
+
+@enduml

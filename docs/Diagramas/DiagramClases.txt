@@ -1,0 +1,37 @@
+//Diagrama de clases 
+@startuml
+object "edificio : Edificio" as edificio
+object "planta1 : Planta" as planta1
+object "planta2 : Planta" as planta2
+object "planta3 : Planta" as planta3
+object "planta4 : Planta" as planta4
+object "planta5 : Planta" as planta5
+object "controlAscensor : ControlAscensor" as controlAscensor
+object "ascensor1 : Ascensor" as ascensor1
+object "ascensor2 : Ascensor" as ascensor2
+object "usuario1 : Usuario" as usuario1
+object "usuario2 : Usuario" as usuario2
+
+edificio *--> planta1
+edificio *--> planta2
+edificio *--> planta3
+edificio *--> planta4
+edificio *--> planta5
+
+ascensor1 .u..> planta2: > está en
+ascensor1 .u..> planta4: > va a
+
+ascensor2 .u..> planta1: > está en
+
+usuario1 .u..> planta1: > está en
+usuario1 .u..> planta5: > va a
+usuario1 .u..> controlAscensor: > ha llamado
+
+usuario2 .u..> ascensor1: > está en
+usuario2 .u..> planta4: > va a
+
+ascensor2 ... controlAscensor: < llama a
+ascensor1 ... controlAscensor: < Sabe de
+ascensor2 ... controlAscensor: < Sabe de
+
+@enduml

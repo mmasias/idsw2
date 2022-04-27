@@ -1,0 +1,20 @@
+//Diagrama de Secuencia
+
+@startuml
+actor Usuario #red
+' The only difference between actor
+'and participant is the drawing
+participant Planta
+participant " Estancia en planta" as L #99FF99
+/' You can also declare:
+   participant L as " Estancia en planta"  #99FF99
+  '/
+
+Usuario -> Planta : Ingresa 
+Planta -> Ascensor: Usuario coge ascensor 
+Ascensor ->Planta:  Usuario baja ascensor 
+Planta ->L: Usuario se queda en planta
+Planta -> Ascensor: Usuario coge ascensor
+Ascensor ->Planta:  Usuario baja ascensor
+Planta -> Usuario: Sale 
+@enduml

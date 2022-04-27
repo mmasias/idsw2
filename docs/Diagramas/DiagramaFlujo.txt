@@ -1,0 +1,11 @@
+//Diagrama de Flujo
+@startuml
+:Ascensor Parado;
+ fork
+   :Llaman al ascensor y se mueve;
+   :ascensor para;
+ fork again
+   :Cliente se sube al ascensor en planta de inicio;
+   :Ascensor para en planta deseada;
+   :ascensor para;
+@enduml
