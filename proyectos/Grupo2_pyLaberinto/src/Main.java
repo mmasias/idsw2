@@ -21,11 +21,15 @@ public class Main {
 
         do {
 
-			time.avanzarHora(sun);
+			time.increaseTime(sun);
 
 			System.out.print("\033[0;0H");System.out.flush();	
 			
-			System.out.print(Colors.BLOCK);for(int i=0;i<=viewport*2;i=i+1){System.out.print(Colors.BLOCK);}System.out.println(Colors.BLOCK);
+			System.out.print(Colors.BLOCK);
+			for(int i=0;i<=viewport*2;i=i+1){
+				System.out.print(Colors.BLOCK);
+			}
+			System.out.println(Colors.BLOCK);
 			System.out.print(Colors.BLOCK);
 
 			Sun.showSun(time.getHour(), time.getMinutes());
