@@ -5,6 +5,16 @@ public class Sun {
 
         static int[] sun = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0};
 
+		private int brightness = 100;
+
+		public void setBrightness(int value){
+			this.brightness = value;
+		}
+	
+		public int getBrightness() {
+			return brightness;
+		}
+		
         public static void showSun (int hour, int minutes) {
             int[] sunArray = Sun.sun;
 				for(sky = 0; sky < sunArray.length && hour <= 20; sky++){

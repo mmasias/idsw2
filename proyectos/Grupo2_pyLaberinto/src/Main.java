@@ -6,8 +6,8 @@ public class Main {
     public static void main(String[] args){
 
 		final Time time;
-		final Torch torch;
-		torch = new Torch();
+		final Sun sun;
+		sun = new Sun();
 		time = new Time();
 
         Scanner enter = new Scanner(System.in);
@@ -21,7 +21,7 @@ public class Main {
 
         do {
 
-			time.avanzarHora(torch);
+			time.avanzarHora(sun);
 
 			System.out.print("\033[0;0H");System.out.flush();	
 			
@@ -38,7 +38,7 @@ public class Main {
 			}
 			System.out.println(Colors.BLOCK);
 
-            World.showMaze(torch.getBrightness(), viewport);
+            World.showMaze(sun.getBrightness(), viewport);
 
 			System.out.print("Lat:[" + World.actualRow + "] Long:[" + World.actualColumn + "] - ");
 			System.out.println("[" + time.getHour() + "]h:[" + time.getMinutes() + "]m     ");
