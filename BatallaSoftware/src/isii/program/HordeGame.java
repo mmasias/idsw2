@@ -1,11 +1,19 @@
 package isii.program;
 
-public class NormalGame extends GameController {
+import isii.characters.*;
 
-	private static final long serialVersionUID = -4169160719838456617L;
+public class HordeGame extends GameController {
+
+	private static final long serialVersionUID = 3058164086889172006L;
 	
-	public NormalGame(int x, int y, int width, int height, ResultJPanel resultPanel) {
-		super(x, y, width, height, resultPanel, false);
+	
+	
+	public HordeGame(int x, int y, int width, int height, ResultJPanel resultPanel) {
+		super(x, y, width, height, resultPanel, true);
+		listCharacters.add(heroine);
+		listCharacters.add(vampiress_1);
+		listCharacters.add(vampiress_2);
+		listCharacters.add(vampiress_3);
 		new StartGame().start();
 	}
 	
@@ -21,7 +29,9 @@ public class NormalGame extends GameController {
 				refress(); //Necesito dormir el hilo para que me haga las comprobaciones sino empieza a ejecutarse sin comprobar.
 				heroineController();
 				refress();
-				vampiressController();
+				vampiressController(1);
+				vampiressController(2);
+				vampiressController(3);
 			} while(!characterDead());
 			
 			// Detectar quien es el que ha muerto para mostrar si el jugador ha ganado o perdido.
@@ -51,22 +61,39 @@ public class NormalGame extends GameController {
 		 */
 		private synchronized void vampiressChangeTurnController() {
 			turn.changeTurn();
-			if (vampiress_1.isFainting()) {
-				vampiress_1.recoverEnergyFainting();
+			Vampiress vampiress = (Vampiress) listCharacters.get(1);
+			if (!vampiress.isDead()) {
+				vampiressController(vampiress);
+			}
+		}
+
+		private synchronized void vampiressController(Vampiress vampiress) {
+			if (vampiress.isFainting()) {
+				vampiress.recoverEnergyFainting();
 			} else {
 				newAttack();
-				vampiress_1.yourTurn(numAttack, heroine);
+				vampiress.yourTurn(numAttack, heroine);
 			}
 		}
 
 		/**
 		 * Controlador de la vampiresa.
+		 * @param vampiress 
 		 */
-		private synchronized void vampiressController() {
-			if(turn.getTurn() == 1) {
+		private synchronized void vampiressController(int numTurn) {
+			if(turn.getTurn() == numTurn) {
 				if (isCharacterRecovered() && isAnyAttack()) {
-					if (heroine.isDrinkPotion()) heroineDrinkPotionController();
-					else heroineChangeTurnController();
+					try {
+						Vampiress vampiress = (Vampiress) listCharacters.get(numTurn + 1);
+						turn.changeTurn();
+						if (!vampiress.isDead()) {
+							vampiressController(vampiress);
+						}
+					} catch (Exception e) {
+						if (heroine.isDrinkPotion()) heroineDrinkPotionController();
+						else heroineChangeTurnController();
+					}
+					
 				}
 			}
 		}
@@ -110,8 +137,7 @@ public class NormalGame extends GameController {
 		 * Si no hay ningun personaje recuperando vida devuelve true, sino false
 		 */
 		private synchronized boolean isCharacterRecovered() {
-			if (heroine.isEnergyRecovered() && vampiress_1.isEnergyRecovered()) return true; 
-			else return false;
+			return heroine.isEnergyRecovered() && vampiress_1.isEnergyRecovered() && vampiress_2.isEnergyRecovered() && vampiress_3.isEnergyRecovered();
 		}
 
 		/**
@@ -119,8 +145,7 @@ public class NormalGame extends GameController {
 		 * @return boolean
 		 */
 		private synchronized boolean isAnyAttack() {
-			if (heroine.isAttackFinish() && vampiress_1.isAttackFinish()) return true;
-			else return false;
+			return heroine.isAttackFinish() && vampiress_1.isAttackFinish() && vampiress_2.isAttackFinish() && vampiress_3.isAttackFinish();
 		}
 
 		//Metodo necesario para que el bucle no se colapse
@@ -133,10 +158,10 @@ public class NormalGame extends GameController {
 		 * @return
 		 */
 		private synchronized boolean characterDead() {
-			if (heroine.isDead() || vampiress_1.isDead()) return true;
+			if (heroine.isDead()) return true;
+			else if (vampiress_1.isDead() && vampiress_2.isDead() && vampiress_3.isDead()) return true;
 			else return false;
 		}
 		
 	}
-	
 }

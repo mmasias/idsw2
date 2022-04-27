@@ -6,11 +6,15 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import javax.swing.JProgressBar;
 import isii.attacks.Attack;
 import isii.characters.Vampiress;
+import isii.characters.Character;
 import isii.characters.Heroine;
 import isii.characters.energy.Energy;
 import isii.images.ImageGame;
@@ -23,6 +27,7 @@ public class GameController extends JPanel {
 	
 	protected Heroine heroine;
 	protected Vampiress vampiress_1, vampiress_2, vampiress_3;
+	protected List<Character> listCharacters = new ArrayList<Character>();
 	
 	protected Turn turn;
 	
@@ -45,6 +50,8 @@ public class GameController extends JPanel {
 	
 	private int x, y, width, height;
 	private int xRec, yRec, widthRec = 836, heightRec = 79;
+	protected int numPotionHeroine = 2;
+	protected boolean action;
 	
 	protected boolean openSettings = false;
 	protected boolean horde;
@@ -195,6 +202,14 @@ public class GameController extends JPanel {
 		});
 		backgroundSettings.add(panelExitSetting);
 		
+		action = false;
+		
+		heroineDrinkPotion(panelPotion);
+		heroineDefend(panelDefend);
+		heroineAttack(1, panelWeapon1);
+		heroineAttack(2, panelWeapon2);
+		heroineAttack(3, panelWeapon3);
+		
 		addAttributes();
 		createHeroine();
 		createVampiress();
@@ -229,7 +244,7 @@ public class GameController extends JPanel {
 	}
 	
 	private void createHeroine() {
-		Attack attack1 = new Attack(7, 50, 100, heroineDurabilityBar_Weapon1); //TODO Cambia el success a 50, 100 es para pruebas
+		Attack attack1 = new Attack(7, 50, 100, heroineDurabilityBar_Weapon1);
 		Attack attack2 = new Attack(15, 25, 100, heroineDurabilityBar_Weapon2);
 		Attack attack3 = new Attack(30, 12, 100, heroineDurabilityBar_Weapon3);
 		Energy heroineEnergy = new Energy(this.heroineEnergy, 30, heroineEnergyBar);
@@ -256,11 +271,40 @@ public class GameController extends JPanel {
 	protected synchronized void showAttackPanels(boolean show) {
 		showAttackPanels(panelAttacks, image.getImageButtonAttacks(false), !show);
 		showAttackPanels(panelDefend, image.getImageButtonDefend(false), !show);
-		showAttackPanels(panelPotion, image.getImageButtonPotion(false), !show);
+		if (numPotionHeroine != 0) showAttackPanels(panelPotion, image.getImageButtonPotion(false), !show);
+		else {
+			showAttackPanels(panelPotion, image.getImageButtonPotionDisabled(), !show);
+			panelPotion.setEnabled(false);
+		}
 		showAttackPanels(panelWeapon1, image.getImageButtomWeapon(1), show);
 		showAttackPanels(panelWeapon2, image.getImageButtomWeapon(2), show);
 		showAttackPanels(panelWeapon3, image.getImageButtomWeapon(3), show);
 		showAttackPanels(panelBack, image.getImageButtomBack(false), show);
+	}
+	
+	/**
+	 * Muestro o oculto los paneles del jugador.
+	 * 
+	 * Mostrar y ocultar va a la par con la action, asi que "action" me sirve para que:
+	 * 	- Si muestro paneles hago "action" a false para que no me entre en el controlador de la heroina.
+	 * 	- Si oculto los paneles hago "action" a true para que me entre en el controlador y cambie al turno de la vampiresa.
+	 * @param show
+	 */
+	protected void showPanels(boolean show) {
+		if (show) {
+			action = false;
+			showAttackPanels(false);
+		} else {
+			action = true;
+			hideAllPanel();
+		}
+	}
+	
+	/*
+	 * Asignar nuevo valor aleatorio al ataque
+	 */
+	protected synchronized void newAttack() {
+		this.numAttack = new Random().nextInt(3) + 1;
 	}
 	
 	protected synchronized void hideAllPanel() {
@@ -290,11 +334,86 @@ public class GameController extends JPanel {
 		panel.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseEntered(MouseEvent e) {
-				if (turn.getTurn() == 0  && !openSettings) panel.setImage(image_button_mouseEntered);
+				if (turn.getTurn() == 0  && !openSettings && panel.isEnabled()) panel.setImage(image_button_mouseEntered);
 			}
 			@Override
 			public void mouseExited(MouseEvent e) {
-				if (turn.getTurn() == 0  && !openSettings) panel.setImage(image_button);
+				if (turn.getTurn() == 0  && !openSettings && panel.isEnabled()) panel.setImage(image_button);
+			}
+		});
+	}
+	
+	/**
+	 * Metodo que la heroina ataca.
+	 * 	- Pongo action a true, para que entre en el if de la heroina en el controlador de su turno para que cambie al 
+	 * 	turno de la vampiresa cuando termine de atacar y de hacer daño a la vampiresa.
+	 * 	- "heroine.yourTurn(...) para que la heroina ataque a la vampiresa.
+	 * 	- Oculto los paneles.
+	 * @param nAttack
+	 */
+	protected synchronized void heroineAttack(int nAttack) {
+		action = true;
+		numAttack = nAttack;
+		if (horde) {
+			for (Character character : listCharacters.subList(1, listCharacters.size())) {
+				if (!character.isDead()) {
+					heroine.yourTurn(numAttack, character);
+					break;
+				}
+			}
+		}
+		else heroine.yourTurn(numAttack, vampiress_1);
+		hideAllPanel();
+	}
+	
+	/**
+	 * Boton de la heroina cuando ataca
+	 * @param nAttack
+	 * @param panelWeapon
+	 */
+	private synchronized void heroineAttack(int nAttack, ButtonPanel panelWeapon) {
+		panelWeapon.addMouseListener(new MouseAdapter() {
+			@Override
+			public synchronized void mouseClicked(MouseEvent e) {
+				if (turn.getTurn() == 0  && !openSettings) {
+					heroineAttack(nAttack);
+				}
+			}
+		});
+	}
+
+	/**
+	 * Boton de la heroina cuando escoge defenderse.
+	 * @param panelDefend
+	 */
+	private synchronized void heroineDefend(JPanel panelDefend) {
+		panelDefend.addMouseListener(new MouseAdapter() {  
+			@Override
+			public synchronized void mouseClicked(MouseEvent e) {
+				if (turn.getTurn() == 0  && !openSettings) {
+					heroine.setDefend(true);
+					action = true;
+					hideAllPanel();
+				}
+			}
+		});
+	}
+	
+	/**
+	 * Boto de la heroina cuando escoge beber la pocion.
+	 * @param panelPotion
+	 */
+	private synchronized void heroineDrinkPotion(JPanel panelPotion) {
+		panelPotion.addMouseListener(new MouseAdapter() { 
+			@Override
+			public synchronized void mouseClicked(MouseEvent e) {
+				if (turn.getTurn() == 0  && !openSettings && panelPotion.isEnabled()) {
+					numPotionHeroine--;
+					heroine.setDrinkPotion(true);
+					action = true;
+					heroine.printAnimationPotion();
+					hideAllPanel();
+				}
 			}
 		});
 	}

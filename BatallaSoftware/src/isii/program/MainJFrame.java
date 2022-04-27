@@ -31,7 +31,7 @@ public class MainJFrame extends JFrame {
 	private JPanel gameContentPanel;
 	private ButtonPanel titlePanel = new ButtonPanel(image.getImageTitle());
 	private ButtonPanel menuPanel = new ButtonPanel(image.getImageBackground());
-	private NormalGame gamePanel;
+	private GameController gamePanel;
 	private ResultJPanel resultPanel;
 	private JButton btn_play = new JButton();
 	private JButton btn_normal = new JButton();
@@ -162,7 +162,7 @@ public class MainJFrame extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				showSelectModePanels(false);
 				menuPanel.setVisible(false);
-				gamePanel = new NormalGame((dimensionScreen.width / 2) - (dimensionScreen.width / 2), (dimensionScreen.height / 2) - (dimensionScreen.height / 2), dimensionScreen.width, dimensionScreen.height, resultPanel);
+				gamePanel = new HordeGame((dimensionScreen.width / 2) - (dimensionScreen.width / 2), (dimensionScreen.height / 2) - (dimensionScreen.height / 2), dimensionScreen.width, dimensionScreen.height, resultPanel);
 				gameContentPanel.add(gamePanel);
 				gamePanel.setVisible(true);
 			}

@@ -30,9 +30,9 @@ public class Heroine extends Character {
 	 */
 	public synchronized void paint(Graphics2D g) {
 		if (!this.weapon.isAttackFinish()) this.paintAttack(numAttack, g);
+		else if (this.getEnergy().isFainting()) g.drawImage(this.weapon.getImageCharacter().getImageFainting(), X, Y, WIDTH, HEIGHT, null);
 		else if (this.isDrinkPotion()) g.drawImage(((ImageHeroine) this.weapon.getImageCharacter()).getImagePotion(numSprite), X, Y, WIDTH, HEIGHT, null);
 		else if (this.isDefend()) g.drawImage(((ImageHeroine) this.weapon.getImageCharacter()).getImageDefend(), X, Y, WIDTH, HEIGHT, null);
-		else if (this.getEnergy().isFainting()) g.drawImage(this.weapon.getImageCharacter().getImageFainting(), X, Y, WIDTH, HEIGHT, null);
 		else paintHalt(g);
 	}
 	
