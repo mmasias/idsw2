@@ -6,8 +6,8 @@ public class Aspiradora extends Entidad{
     private Bolsa bolsa;
     private int pasos;
 
-    public Aspiradora(){
-        // TODO Auto-generated method stub
+    public Aspiradora(String simbolo){
+        this.simbolo = simbolo;
     }
 
     public void limpiar(){
@@ -44,7 +44,11 @@ public class Aspiradora extends Entidad{
     }
 
     public void dibujar() {
-        // TODO Auto-generated method stub        
+        
+    }
+
+    public String getSimbolo() {
+        return this.simbolo;
     }
     
 }

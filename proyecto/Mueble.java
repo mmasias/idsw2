@@ -15,8 +15,7 @@ public class Mueble implements Dibujable{
     }
 
     public void dibujar() {
-        // TODO Auto-generated method stub
-        
+        System.out.print("");
     }
     
 }

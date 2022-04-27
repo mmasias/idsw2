@@ -7,4 +7,5 @@ public interface Dibujable {
     public String simbolo;
 
     public void dibujar();
+    public String getSimbolo();
 }

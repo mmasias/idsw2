@@ -5,15 +5,20 @@ public class Bateria {
     private int carga;
     private int cantidad;
 
-    public Bateria(){
-        // TODO Auto-generated method stub
+    public Bateria(int carga, int cantidad){
+        this.carga = carga;
+        this.cantidad = cantidad;
     }
 
     public void cargar(){
-        // TODO Auto-generated method stub
+        this.cantidad = carga; 
     }
 
     public void descargar(){
-        // TODO Auto-generated method stub
+        this.cantidad--;
+    }
+
+    public boolean tieneCarga(){
+        return this.cantidad > 0;
     }
 }

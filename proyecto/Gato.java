@@ -11,7 +11,7 @@ public class Gato extends Entidad{
     }
 
     public void cambioEstado(){
-        // TODO Auto-generated method stub
+        this.estado = !this.estado;
     }
 
     public void ensuciar(){
@@ -19,7 +19,12 @@ public class Gato extends Entidad{
     }
 
     public void dibujar() {
-        // TODO Auto-generated method stub
+        if(estado){
+            System.out.print(this.simbolo);
+        }
+        else{
+            System.out.print(this.encimaDe.getSimbolo())
+        }
         
     }
 
