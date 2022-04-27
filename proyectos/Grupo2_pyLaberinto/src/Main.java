@@ -141,5 +141,6 @@ public class Main {
 			}
 			
         } while (!EndGame);
+		enter.close();
     }
 }
