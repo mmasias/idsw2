@@ -9,13 +9,16 @@ public class Celda {
     public Celda(int posX, int posY) {
         this.posX = posX;
         this.posY = posY;
-        this.suciedad = new Suciedad();
-        this.representacion = ".";
+        this.suciedad = new Suciedad(generarNumeroAleatorio());
+        this.representacion = suciedad.getNivelDeSuciedad();
     }
 
     public void dibujar() {
         System.out.print(representacion);
     }
-        
+
+    private int generarNumeroAleatorio() {
+        return (Random.nextInt() * (3 + 1 - 0) + 0);
     }
+
 }

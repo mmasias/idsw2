@@ -92,7 +92,10 @@ class Bolsa{
 
 Edificio *--> Habitacion
 
-Habitacion *-r-> Celda : contiene
+Habitacion *-r- Celda : contiene
+Habitacion *-- Mueble
+Habitacion *-- Gato
+Habitacion *-- Aspiradora
 
 Celda ..> Aspiradora
 Celda ..> Gato

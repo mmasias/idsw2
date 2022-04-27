@@ -11,8 +11,7 @@ public class Habitacion {
         this.ancho = ancho;
         this.largo = largo;
         this.suelo = setCelda(ancho, largo);
-        this.gato = new Gato();
-        this.aspiradora = new Aspiradora();
+        this.gato = new Gato(ancho - 1, largo - 1);
     }
 
     public void mostrarHabitacion() {
