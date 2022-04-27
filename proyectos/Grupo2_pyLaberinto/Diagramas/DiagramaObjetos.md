@@ -2,4 +2,4 @@
 ![](Imagenes/DiagramaObjetos.png)
 
 # Diagrama de Objetos actualizado
-![](Imagenes/Objetos2.png)
+![](Imagenes/DiagramaObjetos(v2).png)
