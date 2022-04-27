@@ -1,0 +1,7 @@
+@startuml
+object "horse : Character" as character
+object "tallGrass : Surface" as surface
+object "maze : World" as maze
+character  --> surface : goes through >
+surface --> maze: in >
+@enduml
