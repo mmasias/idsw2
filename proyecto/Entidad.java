@@ -1,19 +1,11 @@
 package proyecto;
 
-abstract class Entidad {
-    int[][] coordenadasDeMovimiento = {
-            { -1, -1 },
-            { -1, 0 },
-            { -1, 1 },
-            { 0, -1 },
-            { 0, 1 },
-            { 1, -1 },
-            { 1, 0 },
-            { 1, 1 }
-    };
-    Dibujable encimaDe = null;
+public abstract class Entidad implements Dibujable {
 
-    public void mover(int x, int y);
+    protected int[][] coorrdenadasDeMovimiento;
+    protected Dibujable encimaDe;
 
-    public void proximoMovimiento();
+    public abstract void mover(int posX, int posY);
+
+    public abstract void proximoMovimiento();
 }

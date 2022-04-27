@@ -1,34 +1,17 @@
 package proyecto;
 
 public class Edificio {
-    private Habitacion habitacion;
+    static Habitacion habitacion;
 
-    public Edificio(Habitacion habitacion) {
-        this.habitacion = habitacion;
+    static void areaConMayorSuciedad() {
+
     }
 
-    public static int areaConMayorSuciedadEnHabitacion() {
-        return Habitacion.areaConMayorSuciedad();
+    static void esPosibleMoverse(int x, int y) {
+
     }
 
-    public static boolean esPosibleMoverseA(int x, int y) {
-        return Habitacion.esTraspasable(x, y);
-    }
-
-    private void limpiarEdificio() {
-        habitacion.mostrarHabitacion();
-
-        do {
-            habitacion.limpiarHabitacion();
-            habitacion.mostrarHabitacion();
-
-        } while (habitacion.suciedadRestante() == 0);
-
-        System.out.println("La limpieza ha terminado");
-    }
-
-    public static void main(String[] args) {
-        new Edificio(new Habitacion(50, 50)).limpiarEdificio();
+    static void main(String[] args) {
 
     }
 }

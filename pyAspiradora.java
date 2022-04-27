@@ -1,4 +1,4 @@
-package proyecto;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -45,7 +45,7 @@ class pyAspiradora {
     static float bateria = 100;
     static int bolsa;
     static String respuesta;
-    static Gato gato = new Gato(15, 15);
+    // static Gato gato = new Gato(15, 15);
 
     public static void main(String[] args) {
 
@@ -59,13 +59,13 @@ class pyAspiradora {
                 { 1, 0 },
                 { 1, 1 }
         };
-        gato.setApariciones(15);
+        // gato.setApariciones(15);
         int apariciones = 0;
-        int apareceGato = 0;
+        // int apareceGato = 0;
         while (true) {
             if (apariciones == 0) {
-                apareceGato = (int) (Math.random() * 10) + 1;
-                apariciones = apareceGato <= 5 ? gato.getApariciones() : 0;
+                // apareceGato = (int) (Math.random() * 10) + 1;
+                // apariciones = apareceGato <= 5 ? gato.getApariciones() : 0;
             }
 
             int move = lookForPath(findDirtiestZone(), moves);
@@ -82,7 +82,7 @@ class pyAspiradora {
             bateria = bateria - percentage;
             System.out.println("Batería: " + bateria + "%");
             if (apariciones > 0) {
-                gato.moverGato(moves, map);
+                // gato.moverGato(moves, map);
                 apariciones--;
             }
 
@@ -128,7 +128,7 @@ class pyAspiradora {
                     e.printStackTrace();
                 }
             } else {
-                printMap(apareceGato);
+                // printMap(apareceGato);
             }
 
             BufferedReader reader = new BufferedReader(
@@ -158,13 +158,13 @@ class pyAspiradora {
         return move;
     }
 
-    public static void printMap(int apareceGato) {
+    public static void printMap() {
         for (int row = 0; row < map.length; row++) {
             for (int col = 0; col < map[row].length; col++) {
                 if (row == yVacuum && col == xVacuum) {
                     System.out.print(aspiradora);
-                } else if (row == gato.getPosY() && col == gato.getPosX() && apareceGato <= 5) {
-                    System.out.print(gato.getSymbol());
+                // } else if (row == gato.getPosY() && col == gato.getPosX() && apareceGato <= 5) {
+                    // System.out.print(gato.getSymbol());
                 } else if (map[row][col] < 0) {
                     System.out.print(furniture[Math.abs(map[row][col]) - 1]);
                 }else {
