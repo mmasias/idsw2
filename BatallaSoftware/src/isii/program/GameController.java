@@ -50,7 +50,7 @@ public class GameController extends JPanel {
 	
 	private int x, y, width, height;
 	private int xRec, yRec, widthRec = 836, heightRec = 79;
-	protected int numPotionHeroine = 2;
+	protected int numPotionHeroine = 3;
 	protected boolean action;
 	
 	protected boolean openSettings = false;
@@ -346,7 +346,7 @@ public class GameController extends JPanel {
 	/**
 	 * Metodo que la heroina ataca.
 	 * 	- Pongo action a true, para que entre en el if de la heroina en el controlador de su turno para que cambie al 
-	 * 	turno de la vampiresa cuando termine de atacar y de hacer daño a la vampiresa.
+	 * 	turno de la vampiresa cuando termine de atacar y de hacer daï¿½o a la vampiresa.
 	 * 	- "heroine.yourTurn(...) para que la heroina ataque a la vampiresa.
 	 * 	- Oculto los paneles.
 	 * @param nAttack
