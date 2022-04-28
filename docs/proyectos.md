@@ -4,7 +4,28 @@ A lo largo de la asignatura han de ir ***evolucionando***, mediante la aplicaci�
 
 El resultado final será un conjunto de versiones de la misma aplicación, cada una evolucionada según un principio aprendido.
 
+### Forma de trabajo
+> He preparado un usuario de pruebas (Ibuprofeno Fernández) que ha seguido los lineamientos que se indican a continuación. Pueden explorar su repo (así como su fork de la repo de la asignatura) en https://github.com/ibuprofenofernandez/idsw2
+* Fork del repo principal (https://github.com/mmasias/idsw2). 
+* Ya en su repo, una carpeta dentro de la carpeta /proyectos conteniendo su trabajo.
+  * La organización de su carpeta de trabajo se deja a libre elección, pero siempre dentro de un esquema lógico (si en un momento de la revisión se ve necesario, ya lo reorganizaremos). 
+  * Una sugerencia podría ser una carpeta para la documentación, otra para el código de su solución.  
+* Cuando tengan avances, desde su fork realizan un pull request al repo de la asignatura, apuntando a la rama de su grupo.
+* Tiempo de trabajo: a aplicar luego de la clase de los principios indicados. Para cada entrega iremos indicando tiempos.
+* Exposición.
+
 ## Entregas
+
+### Examen parcial
+> **Fecha** 28/04/2022
+
+Detalles del mismo, [en este documento](examenParcial.md)
+
+### Segunda entrega / ajuste de diagramas / Primeras pinceladas de clean code
+> **Fecha:** 17/03/2022
+
+Con lo visto hasta el momento en clase, se han de ajustar los diagramas de modelo del dominio así como lo diagramas de clases u objetos que se hayan utilizado para dar forma previa a la solución planteada. Asimismo, vamos aplicando a nuestro código los principios de código limpio vistos en clase.
+
 ### Primera entrega / presentación
 
 > **Fecha:** 24/02/2022
@@ -16,12 +37,7 @@ Se ha de plantear un conjunto breve de herramientas de requisitado, como referen
 
 La solución avanzada hasta la fecha y su código fuente.
 
-### Forma de trabajo
-
-* Una rama (y dentro de esa rama, una carpeta) del repo principal por grupo
-* Hacer un pull request a la rama de su grupo.
-* Tiempo de trabajo: a aplicar luego de la clase de los principios indicados.
-* Exposición.
+Se sugiere el uso de [PlantUML](https://plantuml.com/es/) para los diagramas.
 
 ## Los no funcionales ;)
 
