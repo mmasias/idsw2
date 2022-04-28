@@ -1,4 +1,3 @@
-package src;
 
 public class Time {
     private int hour = 6;

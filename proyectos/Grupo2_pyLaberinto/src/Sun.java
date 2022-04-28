@@ -1,4 +1,3 @@
-package src;
 
 public class Sun {
         private int sky = 0;
