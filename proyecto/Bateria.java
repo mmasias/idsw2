@@ -5,9 +5,9 @@ public class Bateria {
     private int carga;
     private int cantidad;
 
-    public Bateria(int carga, int cantidad){
+    public Bateria(int carga){
         this.carga = carga;
-        this.cantidad = cantidad;
+        this.cantidad = 0;
     }
 
     public void cargar(){
@@ -15,7 +15,7 @@ public class Bateria {
     }
 
     public void descargar(){
-        this.cantidad--;
+        this.cantidad = Math.max(0, this.cantidad -1 );
     }
 
     public boolean tieneCarga(){

@@ -4,13 +4,13 @@ public class Bolsa {
     private int capacidad;
     private int cantidad;
 
-    public Bolsa(int capacidad, int cantidad){
+    public Bolsa(int capacidad){
         this.capacidad =  capacidad;
-        this.cantidad = cantidad;
+        this.cantidad = 0;
     }
 
     public void llenar(){
-        this.cantidad++;
+        this.cantidad = Math.min(capacidad, this.cantidad + 1);
     }
 
     public void vaciar(){

@@ -1,13 +1,13 @@
 package proyecto;
 
 public class Gato extends Entidad {
-    // protected String simbolo = "\uD83D\uDE3A";
+    protected String simbolo = "\uD83D\uDE3A";
     protected boolean estado;
     protected int impaciencia;
 
     public Gato(int posX, int posY) {
-        // this.posX = posX;
-        // this.posY = posY;
+        this.posX = posX;
+        this.posY = posY;
     }
 
     public void cambioEstado() {
@@ -23,7 +23,7 @@ public class Gato extends Entidad {
             System.out.print(this.simbolo);
         }
         else{
-            System.out.print(this.encimaDe.getSimbolo())
+            System.out.print(this.encimaDe.getSimbolo());
         }
         
     }
@@ -33,9 +33,22 @@ public class Gato extends Entidad {
 
     }
 
-    public void proximoMovimiento() {
-        // TODO Auto-generated method stub
+    public int[] proximoMovimiento() {
+        int[] movimiento = {(int)Math.random()*3-1,(int)Math.random()*3-1}; //TODO calculo del proximo movimiento
+        return movimiento;
+    }
 
+    public boolean getTraspasable() {
+        return false;
+    }
+
+    public void avanzarEstado() {
+        // TODO Auto-generated method stub
+        
+    }
+
+    public String getSimbolo() {
+        return this.simbolo;
     }
 
     // public void moverGato(int[][] moves, int[][] map) {
