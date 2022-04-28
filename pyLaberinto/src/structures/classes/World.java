@@ -21,10 +21,10 @@ public class World {
         this.sun = new Sky();
     }
 
-    public void printWorld() {
+    public void print() {
         this.sun.showSky(this.time.isNightTime());
         this.time.showTime();
-        this.printMaze();
+        this.printWorld();
     }
 
     public void updateState(String direction, int amount) {
@@ -57,8 +57,8 @@ public class World {
         return player;
     }
 
-    private void printMaze() {
-        final List<List<Surface>> mazeToPrint = this.getMazeToPrint();
+    private void printWorld() {
+        final List<List<Surface>> mazeToPrint = this.getSectionToPrint();
 
         IntStream.range(0, mazeToPrint.size()).forEach(y -> {
             IntStream.range(0, mazeToPrint.get(0).size()).forEach(x -> {
@@ -68,7 +68,7 @@ public class World {
         });
     }
 
-    private List<List<Surface>> getMazeToPrint() {
+    private List<List<Surface>> getSectionToPrint() {
         final int maxXIndex = this.player.getSurface().getPosition().getX() + 8;
         final int minXIndex = this.player.getSurface().getPosition().getX() - 8;
         final int maxYIndex = this.player.getSurface().getPosition().getY() - 8;
@@ -83,12 +83,12 @@ public class World {
             }).collect(Collectors.toList());
         }).collect(Collectors.toList());
 
-        if (this.time.isNightTime()) return getReducedMap(mazeToShow, 3);
-        else if (this.time.isVisionReduced()) return getReducedMap(mazeToShow, 7);
+        if (this.time.isNightTime()) return getReducedView(mazeToShow, 3);
+        else if (this.time.isVisionReduced()) return getReducedView(mazeToShow, 7);
         else return mazeToShow;
     }
 
-    private List<List<Surface>> getReducedMap(List<List<Surface>> mazeToReduce, final int range) {
+    private List<List<Surface>> getReducedView(List<List<Surface>> mazeToReduce, final int range) {
         return IntStream.range(0, mazeToReduce.size()).mapToObj(y -> {
             return IntStream.range(0, mazeToReduce.get(0).size()).mapToObj(x -> {
                 return (Math.abs(x - 8) + Math.abs(y - 8) <= range) ? mazeToReduce.get(y).get(x) : new Surface(SurfaceType.GROUND, new Position(-1, -1));
