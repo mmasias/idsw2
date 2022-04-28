@@ -113,32 +113,32 @@ public class World{
                     } else if((actualColumn+viewport>=column)&&(actualColumn-viewport<=column)) {
                         if ((Math.pow(actualRow-row,2)+Math.pow(actualColumn-column,2))<=(Math.pow(torch,2))) {	
 
-                            if (maze[row][column]==Colors.ID_FLOOR){
-                                System.out.print(Colors.FLOOR);
+                            if (maze[row][column]==Surface.ID_FLOOR){
+                                System.out.print(Surface.FLOOR);
                             }	
-                            else if (maze[row][column]==Colors.ID_WALL){
-                                System.out.print(Colors.WALL);
+                            else if (maze[row][column]==Surface.ID_WALL){
+                                System.out.print(Surface.WALL);
                             }
-                            else if (maze[row][column]==Colors.ID_GRASS){
-                                System.out.print(Colors.GRASS);
+                            else if (maze[row][column]==Surface.ID_GRASS){
+                                System.out.print(Surface.GRASS);
                             }	
-                            else if (maze[row][column]==Colors.ID_WATER){
-                                System.out.print(Colors.WATER);
+                            else if (maze[row][column]==Surface.ID_WATER){
+                                System.out.print(Surface.WATER);
                             }	
-                            else if (maze[row][column]==Colors.ID_MEDIUM_GRASS){
-                                System.out.print(Colors.MEDIUM_GRASS);
+                            else if (maze[row][column]==Surface.ID_MEDIUM_GRASS){
+                                System.out.print(Surface.MEDIUM_GRASS);
                             }	
-                            else if (maze[row][column]==Colors.ID_SAND){
-                                System.out.print(Colors.SAND);
+                            else if (maze[row][column]==Surface.ID_SAND){
+                                System.out.print(Surface.SAND);
                             }
-                            else if (maze[row][column]==Colors.ID_TALL_GRASS){
-                                System.out.print(Colors.TALL_GRASS);
+                            else if (maze[row][column]==Surface.ID_TALL_GRASS){
+                                System.out.print(Surface.TALL_GRASS);
                             }	
-                            else if (maze[row][column]==Colors.ID_HEAVY_WATER){
-                                System.out.print(Colors.HEAVY_WATER);
+                            else if (maze[row][column]==Surface.ID_HEAVY_WATER){
+                                System.out.print(Surface.HEAVY_WATER);
                             }
-                            else if (maze[row][column]==Colors.ID_MOUNTAIN){
-                                System.out.print(Colors.MOUNTAIN);
+                            else if (maze[row][column]==Surface.ID_MOUNTAIN){
+                                System.out.print(Surface.MOUNTAIN);
                             }
                         } else {
                             System.out.print(Colors.DARKNESS);
