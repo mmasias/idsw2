@@ -9,25 +9,38 @@ Class Persona{
   {method} EliminarPlanta
 }
 
-Class Edificio
+Class Edificio{
+  +Plantas
+  +Ascensores
+  {method} Esperar
+  {method} GenerarPersonas
+}
+
 Class Ascensor
 {
-  +ocupacion
-  +destinoPlanta
-  +ubicacionPlanta
-  +estado
-  +moverse():
+  +PisoActual
+  +PisoMax
+  +PisoMin
+  +CargaMax
+  +NumAscensor
+  {method} Subir
+  {method} Bajar
+  {method} IraPiso
 }
+
 Class Controlador{
-  +BotonPulsado
-  +posicionesAscensor[]:
+  +
+  +
   +BuscarCaminoOptimo(BotonPulsado,posiciones):
 }
 
 Class Planta{
   +numeroPlanta
   +personasEsperando
-  +personasEnLaPlanta
+  +OcupacionLaPlanta
+  {method} AñadirPersona
+  {method} EsperarAscensor
+  {method} CogerAscensor
 }
 
 Persona --> Controlador
