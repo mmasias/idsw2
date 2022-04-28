@@ -11,7 +11,7 @@ Esta presentación ha de incluir:
 * Patrones aplicados para hacer evolucionar el proyecto
 
 ## Acerca de la entrega
-El trabajo se recibirá en este repositorio hasta el día lunes 25 de abril. 
+El trabajo se recibirá en este repositorio hasta el día anterior al día en que hagan la presentación. Los días de presentación son 28 y 29 de abril. 
 
 ## Acerca de la exposición
 
