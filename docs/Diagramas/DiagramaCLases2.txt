@@ -1,0 +1,59 @@
+//Diagrama de clases 
+@startuml
+Class Persona{
+  {field} +PlantaDestino : int[]
+  {field} +PlantaActual : int[]
+  {field} +TiempoPlanta : int[]
+  {method} AñadirPlanta
+  {method} Esperar
+  {method} EliminarPlanta
+}
+
+Class Edificio{
+  +Plantas
+  +Ascensores
+  {method} Esperar
+  {method} GenerarPersonas
+}
+
+Class Ascensor
+{
+  +PisoActual
+  +PisoMax
+  +PisoMin
+  +CargaMax
+  +NumAscensor
+  {method} Subir
+  {method} Bajar
+  {method} IraPiso
+}
+
+Class Controlador{
+  +
+  +
+  +BuscarCaminoOptimo(BotonPulsado,posiciones):
+}
+
+Class Planta{
+  +numeroPlanta
+  +personasEsperando
+  +OcupacionLaPlanta
+  {method} AñadirPersona
+  {method} EsperarAscensor
+  {method} CogerAscensor
+}
+
+Persona --> Controlador
+Persona ..  Planta
+Persona .. Ascensor
+
+
+Controlador --> Ascensor
+Controlador --> Planta
+
+Edificio *-- Planta
+
+Planta *-- Ascensor
+
+
+@enduml

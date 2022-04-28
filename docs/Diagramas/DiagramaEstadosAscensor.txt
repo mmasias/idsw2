@@ -1,0 +1,11 @@
+//Diagrama Estados Ascensor
+
+@startuml
+hide empty description
+[*] --> AscensorInicio
+
+
+AscensorInicio -> AscensorMovimiento  : Se mueve
+AscensorMovimiento  --> AscensorFinal  : No se mueve
+AscensorInicio -> AscensorFinal
+@enduml
