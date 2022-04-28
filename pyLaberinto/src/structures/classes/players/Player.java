@@ -1,36 +1,43 @@
 package structures.classes.players;
 
-import structures.classes.Position;
+import structures.classes.Surface;
 import structures.enums.PlayerType;
+import structures.enums.SurfaceType;
 import structures.interfaces.Drawable;
 
 public abstract class Player implements Drawable {
-    protected Position position;
+    public Surface currentSurface;
 
-    public Player(Position position) {
-        this.position = position;
+    public Player(Surface surface) {
+        this.currentSurface = surface;
     }
 
-    public Position getPosition() {
-        return position;
+    public void tryMove(Surface surface) {
+        if (canMove(surface.getType())) this.currentSurface = surface;
     }
 
-    public void setPosition(Position position) {
-        this.position = position;
-    }
+    protected abstract boolean canMove(SurfaceType type);
 
-    public static Player getPlayerType(PlayerType playerType, Position position) {
+    public static Player getPlayerType(PlayerType playerType, Surface surface) {
         switch (playerType) {
             case BOAT:
-                return new Boat(position);
+                return new Boat(surface);
             case HORSE:
-                return new Horse(position);
+                return new Horse(surface);
             case CARPET:
-                return new Carpet(position);
+                return new Carpet(surface);
             case WALKER:
-                return new Walker(position);
+                return new Walker(surface);
             default:
                 return null;
         }
+    }
+
+    public Surface getSurface() {
+        return this.currentSurface;
+    }
+
+    public void setSurface(Surface surface) {
+        this.currentSurface = surface;
     }
 }
