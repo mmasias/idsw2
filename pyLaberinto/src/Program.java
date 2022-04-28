@@ -13,7 +13,7 @@ public class Program {
                                 final String nextMovementText = Colors.GREEN_BG + "Insert next movement: [w] [a] [s] [d] [q] [e] [z] [c] " + Colors.RESET + "    " + "\n" + "    " + Colors.CYAN_BG;
                                 String selection = "";
 
-                                world.printWorld();
+                                world.print();
 
                                 if (world.getPlayer() instanceof Walker)
                                         System.out.println(nextMovementText + "(b:boat) (f:carpet) (h:horse) (x:exit)" + Colors.RESET + " ");
