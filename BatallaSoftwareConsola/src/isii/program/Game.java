@@ -65,7 +65,7 @@ public class Game {
 	}
 
 	private void createHeroine() {
-		Attack attack1 = new Attack(7, 100, 100); //TODO Cambiar success a 50
+		Attack attack1 = new Attack(7, 50, 100);
 		Attack attack2 = new Attack(15, 25, 100);
 		Attack attack3 = new Attack(30, 12, 100);
 		Energy heroineEnergy = new Energy(this.heroineEnergy, 30);
