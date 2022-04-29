@@ -1,20 +1,91 @@
-package src;
 
-public class Character{
-    
-    private string name;
-    private string CharacterRep;
+public class Character {
 
-    public Character(string name, string CharacterRep){
-        this.name = name;
-        this.CharacterRep = CharacterRep;
+    private String name;
+    private String CharacterRep;
+    private World world = new World();
+
+    public Character() {
+        // this.name = name;
+        // this.CharacterRep = CharacterRep;
     }
 
-    public void move(Position position, int velocity){
-
+    public void move(Position position, Character character, String selection) {
+        if (selection.equalsIgnoreCase("w") && position.getX() > 0) {
+            if (character.getChoice() == ":_;" && character.getChoice() != "_/*" && character.getChoice() != "|_|") {
+                if (world.maze[position.getX() - 1][position.getY()] % 2 == 0) {
+                    position.setX(position.getX() - 1);
+                }
+            } else if (character.getChoice() == ":_;") {
+                if (world.maze[position.getX() - 1][position.getY()] == 3 || world.maze[position.getX() - 1][position.getY()] == 11) {
+                    position.setX(position.getX() - 1);
+                }
+            } else if (character.getChoice() == "_/*") {
+                if (world.maze[position.getX() - 1][position.getY()] == 7) {
+                    position.setX(position.getX() - 1);
+                }
+            } else if (character.getChoice() == "|_|") {
+                if (world.maze[position.getX() - 1][position.getY()] == 9) {
+                    position.setX(position.getX() - 1);
+                }
+            }
+        } else if (selection.equalsIgnoreCase("s")) {
+            if (character.getChoice() != ":_;" && character.getChoice() != "_/*" && character.getChoice() != "|_|") {
+                if (world.maze[position.getX() + 1][position.getY()] % 2 == 0) {
+                    position.setX(position.getX() + 1);
+                }
+            } else if (character.getChoice() == ":_;") {
+                if (world.maze[position.getX() + 1][position.getY()] == 3 || world.maze[position.getX() + 1][position.getY()] == 11) {
+                    position.setX(position.getX() + 1);
+                }
+            } else if (character.getChoice() == "_/*") {
+                if (world.maze[position.getX() + 1][position.getY()] == 7) {
+                    position.setX(position.getX() + 1);
+                }
+            } else if (character.getChoice() == "|_|") {
+                if (world.maze[position.getX() + 1][position.getY()] == 9) {
+                    position.setX(position.getX() + 1);
+                }
+            }
+        } else if (selection.equalsIgnoreCase("a")) {
+            if (character.getChoice() != ":_;" && character.getChoice() != "_/*" && character.getChoice() != "|_|") {
+                if (world.maze[position.getX()][position.getY() - 1] % 2 == 0) {
+                    position.setY(position.getY() - 1);
+                }
+            } else if (character.getChoice() == ":_;") {
+                if (world.maze[position.getX()][position.getY() - 1] == 3 || world.maze[position.getX()][position.getY() - 1] == 11) {
+                    position.setY(position.getY() - 1);
+                }
+            } else if (character.getChoice() == "_/*") {
+                if (world.maze[position.getX()][position.getY() - 1] == 7) {
+                    position.setY(position.getY() - 1);
+                }
+            } else if (character.getChoice() == "|_|") {
+                if (world.maze[position.getX()][position.getY() - 1] == 9) {
+                    position.setY(position.getY() - 1);
+                }
+            }
+        } else if (selection.equalsIgnoreCase("d")) {
+            if (character.getChoice() != ":_;" && character.getChoice() != "_/*" && character.getChoice() != "|_|") {
+                if (world.maze[position.getX()][position.getY() + 1] % 2 == 0) {
+                    position.setY(position.getY() + 1);
+                }
+            } else if (character.getChoice() == ":_;") {
+                if (world.maze[position.getX()][position.getY() + 1] == 3 || world.maze[position.getX()][position.getY() + 1] == 11) {
+                    position.setY(position.getY() + 1);
+                }
+            } else if (character.getChoice() == "_/*") {
+                if (world.maze[position.getX()][position.getY() + 1] == 7) {
+                    position.setY(position.getY() + 1);
+                }
+            } else if (character.getChoice() == "|_|") {
+                if (world.maze[position.getX()][position.getY() + 1] == 9) {
+                    position.setY(position.getY() + 1);
+                }
+            }
     }
-
-    public string choose(string option){
+}
+    public void setChoice(String option) {
         boolean boat = false;
         boolean horse = false;
         boolean flyingCarpet = false;
@@ -40,15 +111,17 @@ public class Character{
         }
 
         if (boat == false && horse == false && flyingCarpet == false) {
-            selectedCharacter = "_O_";
+            CharacterRep = "_O_";
         } else if (boat == true) {
-            selectedCharacter = ":_;";
+            CharacterRep = ":_;";
         } else if (horse == true) {
-            selectedCharacter = "_/*";
+            CharacterRep = "_/*";
         } else if (flyingCarpet == true) {
-            selectedCharacter = "|_|";
+            CharacterRep = "|_|";
         }
-        
-        return selectedCharacter;
+    }
+
+    public String getChoice() {
+        return CharacterRep;
     }
 }
