@@ -11,6 +11,8 @@ Repo de materiales y proyectos de la asignatura **Ingeniería del Software II** 
 * [PlantUML](http://www.plantuml.com) 
 * [PlantText](http://www.planttext.com) 
 * [Mermaid](https://github.com/mermaid-js/mermaid)
+### Herramientas miscelánea
+* [Carnac](https://github.com/Code52/carnac/releases/tag/2.3.13) - Mostrar secuencia de pulsaciones de teclas.
 ### Miscelánea
 Personalización de consolas: [Windows](https://www.hanselman.com/blog/my-ultimate-powershell-prompt-with-oh-my-posh-and-the-windows-terminal) / [Mac](https://ohmyposh.dev/docs/macos)
 ## Lecturas recomendadas
