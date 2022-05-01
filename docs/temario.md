@@ -19,9 +19,9 @@
 * Fundamentos de Diseño	
 	* ***Modularidad***
 	* ***Abstracción***
-	* Acoplamiento
-	* Cohesión
-	* Ocultamiento de la información
+	* ***Acoplamiento***
+	* ***Cohesión***
+	* ***Ocultamiento de la información***
 * Principicios de Diseño	
 	* ***SOLID***
 	* ***GRASP***
