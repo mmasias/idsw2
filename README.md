@@ -13,6 +13,7 @@ Repo de materiales y proyectos de la asignatura **Ingeniería del Software II** 
 * [Mermaid](https://github.com/mermaid-js/mermaid)
 ### Herramientas miscelánea
 * [Carnac](https://github.com/Code52/carnac/releases/tag/2.3.13) - Mostrar secuencia de pulsaciones de teclas.
+* [Barrier](https://github.com/debauchee/barrier) - Alternativa open source a Synergy: *software que permite controlar con un único ratón y teclado varios ordenadores*.
 ### Miscelánea
 Personalización de consolas: [Windows](https://www.hanselman.com/blog/my-ultimate-powershell-prompt-with-oh-my-posh-and-the-windows-terminal) / [Mac](https://ohmyposh.dev/docs/macos)
 ## Lecturas recomendadas
