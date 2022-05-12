@@ -16,6 +16,10 @@ El resultado final será un conjunto de versiones de la misma aplicación, cada 
 
 ## Entregas
 
+### Evaluación final
+#### Examen final
+#### Entrega final
+
 ### Examen parcial
 > **Fecha** 28/04/2022
 
