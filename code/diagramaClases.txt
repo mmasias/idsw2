@@ -1,0 +1,97 @@
+@startuml
+class "Surface"{
+    {field} + tipo: object,
+    {field} + color: object,
+    {field} + colorCode: object,
+    {field} + surface: string[],
+    {method} - int getRandomArbitrary(int min, int max)
+    {method} + setSurfaceDimension(int x, int y),
+    {method} + surface getSurface()
+}
+
+class "Player"{
+    {field} - coordinate: Coordinate(),
+    {field} - numberOfSteps: Int,
+    {field} - avatar: string,
+    {field} - items: array,
+    {field} - timeItemConsum: object,
+    {method} + setPosition (int x, int y),
+    {method} + int getNumberOfSteps(),
+    {method} + coordinate getPosition(),
+    {method} + addItem(item),
+    {method} + items getItems(),
+    {method} + string getAvatar(),
+    {method} - removeItem(item),
+    {method} - printItemRemoved(item),
+    {method} + maze mover(string input, array maze)
+}
+
+class "Coordinate"{
+   {field} - X: int,
+   {field} - Y: Int,
+   {field} - coodinate,
+   {method} + setPosicion(int x, int y),
+   {method} + coodinate getPosicion()
+}
+
+class "Item"{
+   {field} - coordinate: Coordinate()
+   {field} - typeItem: object
+   {method} + item getItem()
+   {method} + setPosition(int x, int y)
+   {method} + coordinate getPosition()
+   {method} - int getRandomArbitrary(int min, int max)
+}
+
+class "Obstacle"{
+    {field} - coordinate: Coordinate()
+    {field} - type: object
+    {method} + obstacle getObstacle()
+    {method} + setPosition(int x, int y)
+    {method} + coordinate getPosition()
+    {method} - int getRandomArbitrary(int min, int max)
+}
+
+class "Maze"{
+    {field} - dimensionX: Int
+    {field} - dimensionY: Int
+    {field} - quantityItems: Int
+    {field} - quantityObstacle: Int
+    {field} - maze: Int[][]
+    {method} + int getRandomArbitrary(maze)
+    {method} + start()
+}
+
+class "Supermarket"{
+    {field} - queue1: Queue()
+    {field} - queue2: Queue()
+    {field} - market: string[][]
+    {method} + market generateMarket()
+    {method} - addQueue()
+}
+
+class "Queue"{
+    {field} - coordinate: Coordinate()
+    {field} - types: object
+    {field} - itemConsumptionTimes: object
+    {field} - type: string
+    {field} - itemConsumptionTime: int
+    {method} + queue getQueue()
+    {method} + setPosition(int x, int y)
+    {method} + coordinate getPosicion()
+    {method} + setQueue(sting typeItem, int time)
+}
+
+Player *-- Coordinate
+Item *-- Coordinate
+Queue *-- Coordinate
+Obstacle *--Coordinate
+
+Surface *-- Player
+Maze o-- Item
+Maze *-- Obstacle
+Surface *-- Maze
+Surface *-- Supermarket
+Supermarket *-- Queue
+@enduml
+

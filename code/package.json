@@ -1,22 +1,18 @@
 {
-    "name": "laberinto",
-    "version": "1.0.0",
-    "engines": {
-        "node": ">=14.0.0"
-    },
-    "description": "",
-    "main": "src/server/index.js",
-    "type": "module",
-    "scripts": {
-        "game": "node ./src/index.js --harmony"
-    },
-    "repository": {
-        "type": "git",
-        "url": ""
-    },
-    "author": "Grupo 5",
-    "license": "ISC",
-    "dependencies": {
-        "dotenv": "^16.0.0"
-    }
+  "name": "laberinto-colas-cajas",
+  "version": "1.0.0",
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "description": "Proyecto de IDSII",
+  "main": "interfaces/Maze.js",
+  "type": "module",
+  "scripts": {
+    "game": "node ./interfaces/Maze.js --harmony"
+  },
+  "author": "Grupo 5 y 7",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.0.1"
+  }
 }
