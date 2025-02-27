@@ -2,6 +2,8 @@
 
 A continuación esquematizo el planteamiento de las sesiones.
 
+> [Reflexiones y propuestas de mejora](reflexiones.md)
+
 ## ¿Por qué?
 
 El diseño de software es fundamental para el desarrollo de soluciones tecnológicas que no solo funcionen sino que también sean mantenibles, escalables y eficientes. La necesidad de enseñar diseño de software surge de la complejidad inherente a la construcción de sistemas de software robustos y la limitación de enfoques que se centran únicamente en la programación. Sin un buen diseño, las soluciones desarrolladas pueden ser frágiles, difíciles de modificar o escalar, y costosas de mantener. Además, la enseñanza del diseño de software presenta desafíos, incluyendo la abstracción de conceptos y la aplicación de teorías a problemas prácticos, lo que requiere un enfoque pedagógico bien pensado.
@@ -44,4 +46,3 @@ La metodología propuesta para enseñar diseño de software son las "sesiones de
 - Evaluaciones oficiales (en horas de clase)
   - A estas debe asistir el 80% de los integrantes de los grupos.
   - Si a las reuniones asiste menos del 80% del grupo, la reunión se cancela y el grupo se da por cerrado. La evaluación se realiza de la forma tradicional (examen parcial, examen final).
-
