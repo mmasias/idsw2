@@ -3,7 +3,9 @@ import java.util.List;
 
 public class EjemploSistemaDocumentos {
     public static void main(String[] args) {
-        // Creamos documentos con contenido
+        // Este ejemplo muestra un sistema donde conviven los 4 tipos de relaciones
+        
+        // Creamos documentos (con una relación de composición interna con su contenido)
         Documento doc1 = new Documento("Informe trimestral");
         Documento doc2 = new Documento("Presupuesto anual");
         Documento doc3 = new Documento("Plan estratégico");
@@ -13,14 +15,14 @@ public class EjemploSistemaDocumentos {
         System.out.println("- " + doc2.getTitulo());
         System.out.println("- " + doc3.getTitulo());
         
-        // Creamos carpetas y agregamos documentos (AGREGACIÓN)
+        // AGREGACIÓN: Carpetas que contienen documentos pero no controlan su ciclo de vida
         Carpeta carpetaFinanzas = new Carpeta("Finanzas");
         carpetaFinanzas.agregarDocumento(doc1);
         carpetaFinanzas.agregarDocumento(doc2);
         
         Carpeta carpetaPlanes = new Carpeta("Planes");
         carpetaPlanes.agregarDocumento(doc3);
-        carpetaPlanes.agregarDocumento(doc2); // Nota: doc2 está en ambas carpetas
+        carpetaPlanes.agregarDocumento(doc2); // Un documento puede estar en varias carpetas
         
         System.out.println("Documentos en carpeta Finanzas:");
         carpetaFinanzas.listarDocumentos();
@@ -28,26 +30,24 @@ public class EjemploSistemaDocumentos {
         System.out.println("Documentos en carpeta Planes:");
         carpetaPlanes.listarDocumentos();
         
-        // Un usuario edita un documento (ASOCIACIÓN)
+        // ASOCIACIÓN: Usuarios mantienen referencias persistentes a documentos
         Usuario usuario = new Usuario("Carlos");
         usuario.abrirDocumento(doc1);
         System.out.println(usuario.getNombre() + " está editando: " + doc1.getTitulo());
         
-        // Otro usuario edita otro documento
         Usuario usuario2 = new Usuario("Ana");
         usuario2.abrirDocumento(doc3);
         System.out.println(usuario2.getNombre() + " está editando: " + doc3.getTitulo());
         
-        // Un impresor imprime un documento (USO)
+        // USO: El impresor utiliza el documento temporalmente sin mantener referencia
         Impresor impresor = new Impresor();
         System.out.println("Imprimiendo documento...");
-        impresor.imprimir(doc2, 2); // Relación temporal sin referencias persistentes
+        impresor.imprimir(doc2, 2);
         
-        // Simulamos que la carpeta Finanzas se elimina
+        // Demostrando independencia de ciclo de vida en la agregación
         System.out.println("La carpeta Finanzas se elimina");
         carpetaFinanzas = null;
         
-        // Los documentos siguen existiendo aunque la carpeta se haya eliminado (característica de agregación)
         System.out.println("El documento '" + doc1.getTitulo() + "' sigue existiendo");
         System.out.println("El documento '" + doc2.getTitulo() + "' sigue en la carpeta Planes:");
         carpetaPlanes.listarDocumentos();
@@ -56,10 +56,12 @@ public class EjemploSistemaDocumentos {
 
 class Documento {
     private String titulo;
-    private Contenido contenido; // COMPOSICIÓN - el contenido no existe sin el documento
+    // COMPOSICIÓN: Contenido no puede existir sin su documento
+    private Contenido contenido;
     
     public Documento(String titulo) {
         this.titulo = titulo;
+        // Creación del componente en el constructor - característica de composición
         this.contenido = new Contenido(titulo + " - contenido inicial");
     }
     
@@ -75,7 +77,8 @@ class Documento {
         contenido.setTexto(texto);
     }
     
-    // Cuando el documento se destruye, su contenido también se destruye (composición)
+    // Cuando el documento se destruye, su contenido también se destruye
+    // Esta es la diferencia clave con la agregación
 }
 
 class Contenido {
@@ -96,7 +99,8 @@ class Contenido {
 
 class Carpeta {
     private String nombre;
-    private List<Documento> documentos; // AGREGACIÓN - los documentos existen independientemente
+    // AGREGACIÓN: documentos existen independientemente de la carpeta
+    private List<Documento> documentos;
     
     public Carpeta(String nombre) {
         this.nombre = nombre;
@@ -128,12 +132,14 @@ class Carpeta {
         }
     }
     
-    // Si la carpeta se destruye, los documentos siguen existiendo (agregación)
+    // Si la carpeta se destruye, los documentos siguen existiendo
+    // Esta es la diferencia clave con la composición
 }
 
 class Usuario {
     private String nombre;
-    private List<Documento> documentosAbiertos; // ASOCIACIÓN - relación duradera pero no de contenencia
+    // ASOCIACIÓN: referencia duradera a documentos independientes
+    private List<Documento> documentosAbiertos;
     
     public Usuario(String nombre) {
         this.nombre = nombre;
@@ -158,9 +164,9 @@ class Usuario {
 }
 
 class Impresor {
-    // USO - relación temporal sin almacenar referencias al objeto usado
+    // USO: relación temporal durante la operación de impresión
     public void imprimir(Documento doc, int copias) {
         System.out.println("Imprimiendo " + copias + " copias del documento: " + doc.getTitulo());
-        // La relación con el documento termina cuando el método termina
+        // No hay atributo que almacene el documento - relación termina al finalizar el método
     }
 }

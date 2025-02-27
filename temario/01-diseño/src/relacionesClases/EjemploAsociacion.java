@@ -1,25 +1,25 @@
 public class EjemploAsociacion {
     public static void main(String[] args) {
-        // Creamos un disco SSD independiente
+        // ASOCIACIÓN: Relación duradera entre objetos independientes
+        
+        // Los objetos asociados existen de forma independiente
         DiscoSSD disco = new DiscoSSD(512);
         System.out.println("Disco SSD creado con " + disco.getCapacidadGB() + " GB de capacidad");
         
-        // Creamos un ordenador que usa ese disco específico
+        // Se establece una asociación duradera entre ordenador y disco
         Ordenador ordenador = new Ordenador(disco);
         System.out.println("Ordenador creado con un disco de " + ordenador.getCapacidadDiscoGB() + " GB");
         
-        // Ambos objetos tienen ciclos de vida independientes pero mantienen
-        // una relación duradera (el ordenador referencia al disco)
+        // La asociación permite a un objeto utilizar funcionalidades del otro
         System.out.println("Usando el ordenador para almacenar datos:");
         ordenador.almacenarDatos("documento.txt");
         
-        // Si cambiamos algo en el disco, afecta al ordenador porque
-        // mantienen una relación de asociación
+        // Los cambios en un objeto asociado afectan a la relación
         System.out.println("Actualizando firmware del disco...");
         disco.actualizarFirmware();
         System.out.println("El ordenador ahora usa el disco con firmware actualizado");
         
-        // Podríamos usar el mismo disco en otro ordenador
+        // En asociación, un objeto servidor puede asociarse con múltiples clientes
         Ordenador ordenador2 = new Ordenador(disco);
         System.out.println("Otro ordenador creado con el mismo disco");
         System.out.println("Este segundo ordenador también tiene acceso a un disco de " + 
@@ -28,6 +28,7 @@ public class EjemploAsociacion {
 }
 
 class Ordenador {
+    // ASOCIACIÓN: referencia duradera a un objeto independiente
     private DiscoSSD disco;
     
     // En la asociación, el objeto cliente (Ordenador) mantiene una referencia
@@ -46,6 +47,7 @@ class Ordenador {
     }
     
     // Si el Ordenador se destruye, el disco SSD sigue existiendo
+    // (a diferencia de la composición)
 }
 
 class DiscoSSD {

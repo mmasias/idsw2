@@ -1,12 +1,14 @@
 public class EjemploUso {
     public static void main(String[] args) {
-        // Creamos un alumno y un autobús independientemente
+        // USO: Relación temporal entre objetos durante una operación específica
+        
+        // Los objetos existen independientemente antes de la relación
         Alumno alumno = new Alumno("Ana");
         Autobus autobus = new Autobus("Línea 42");
         
         System.out.println(alumno.getNombre() + " necesita ir a la universidad");
         
-        // La relación de uso es temporal - solo durante el método viaje()
+        // Se establece una relación temporal de uso solo durante el método viaje()
         alumno.viaje(autobus);
         
         // Después del viaje, no hay relación persistente entre el alumno y el autobús
@@ -18,7 +20,8 @@ public class EjemploUso {
         System.out.println("El " + autobus.getLinea() + " continúa su ruta normal");
         autobus.continuarRuta();
         
-        // Otro día, el mismo alumno puede usar un autobús diferente
+        // En el uso, la relación es tan efímera que el mismo cliente puede
+        // usar servicios de diferentes servidores en distintos momentos
         Autobus otroAutobus = new Autobus("Línea 15");
         System.out.println("Al día siguiente, " + alumno.getNombre() + " toma otro autobús");
         alumno.viaje(otroAutobus);
@@ -36,8 +39,8 @@ class Alumno {
         return nombre;
     }
     
-    // En la relación de uso, el cliente (Alumno) utiliza temporalmente 
-    // los servicios del servidor (Autobus) sin mantener una referencia permanente
+    // USO: el cliente (Alumno) utiliza temporalmente los servicios 
+    // del servidor (Autobus) sin mantener una referencia permanente
     public void viaje(Autobus autobus) {
         System.out.println(nombre + " va a usar el " + autobus.getLinea() + ":");
         autobus.subir();
@@ -45,7 +48,8 @@ class Alumno {
         System.out.println(nombre + " viaja durante 20 minutos...");
         autobus.bajar();
         
-        // No hay atributo que almacene el autobús - la relación termina al finalizar el método
+        // Característica clave del USO: no hay atributo que almacene el autobús
+        // La relación termina al finalizar el método
     }
     
     public void estudiar() {

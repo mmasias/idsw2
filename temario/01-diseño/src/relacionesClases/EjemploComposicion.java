@@ -3,17 +3,16 @@ public class EjemploComposicion {
         Libro libro = new Libro();
         System.out.println("Libro creado con " + libro.getNumeroPaginas() + " páginas");
         
-        // Las páginas están encapsuladas dentro del libro y no se pueden acceder directamente
-        // desde fuera (característica de la composición)
+        // Las páginas están encapsuladas dentro del libro (característica de la composición)
         System.out.println("Contenido de la primera página: " + libro.getContenidoPagina(0));
         
-        // Modificamos una página
         libro.escribirEnPagina(0, "Este es el inicio de nuestra historia...");
         System.out.println("Contenido actualizado: " + libro.getContenidoPagina(0));
     }
 }
 
 class Libro {
+    // COMPOSICIÓN: el contenedor (Libro) crea y controla el ciclo de vida de sus partes (Páginas)
     private Pagina[] paginas;
     
     public Libro() {
@@ -43,7 +42,7 @@ class Libro {
     }
     
     // Al destruirse el objeto Libro, todas sus páginas también se destruyen
-    // ya que no son accesibles desde ningún otro lugar
+    // (característica definitoria de la composición)
 }
 
 class Pagina {
