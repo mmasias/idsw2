@@ -101,7 +101,3 @@
 ## Temario++
 
 - [x] Artículos varios recopilados en la [carpeta de documentos](/documentos/README.md).
-
----
-
-Con todo esto, [a día de hoy deberíamos saber](aDiaDeHoy.md)...
