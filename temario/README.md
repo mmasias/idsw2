@@ -34,30 +34,33 @@
 
 > Nivel: clases y métodos...
 
-- [ ] Cohesión
-- [ ] Acoplamiento
-- [ ] Granularidad
-- [ ] Smell Codes
-  - Relacionados con la cohesión
-    - [x] [Alternative classes with different interfaces - Clases alternativas con distintas interfaces](02-diseñoModular/sc.acdi.md)
-    - [x] [Features envy - Envidia de características](02-diseñoModular/sc.fe.md)
-    - [x] [Data class - Clase de datos](02-diseñoModular/sc.dc.md)
-    - [x] [Divergent Change - Cambios divergentes](02-diseñoModular/sc.dch.md)
-    - [x] [Shotgun Surgery - Cirugía a escopetazos](02-diseñoModular/sc.ss.md)
-    - [x] [Data Clumps - Grupo de datos](02-diseñoModular/sc.dcl.md)
-    - [x] [Primitive Obssesion - Obsesión por tipos primitivos](02-diseñoModular/sc.po.md)
-    - [x] [Lazy Classes - Clases perezosas](02-diseñoModular/sc.lc.md)
-  - Relacionados con el acoplamiento
-    - [x] [Inappropriate Intimacy - Inapropiada intimidad](02-diseñoModular/sc.ii.md)
-    - [x] [Incomplete Library Class - Clase de biblioteca incompleta](02-diseñoModular/sc.ilc.md)
-  - Relacionados con el tamaño
-    - [x] [Long Parameter List - Listas de parámetros larga](02-diseñoModular/sc.lpl.md)
-    - [x] [Long Method - Métodos largos](02-diseñoModular/sc.lm.md)
-    - [x] [Large Class - Clase grande](02-diseñoModular/sc.lcl.md)
-    - [x] [Temporary Fields - Campos temporales](02-diseñoModular/sc.tf.md)
-  - Reflexiones varias
-    - [ ] [Acerca de... getters y setter](02-diseñoModular/gettersSetter.md)
-- [ ] Patrón Modelo, Vista, Controlador (Código)
+<div align="center">
+
+| Tema |
+|------|
+| [ ] **Cohesión** |
+| &nbsp;&nbsp;&nbsp;&nbsp;[✓] [Alternative classes with different interfaces](02-diseñoModular/01-cohesion/01-alternativeClasses.md) |
+| &nbsp;&nbsp;&nbsp;&nbsp;[✓] [Features envy - Envidia de características](02-diseñoModular/01-cohesion/02-featuresEnvy.md) |
+| &nbsp;&nbsp;&nbsp;&nbsp;[✓] [Data class - Clase de datos](02-diseñoModular/01-cohesion/03-dataClass.md) |
+| &nbsp;&nbsp;&nbsp;&nbsp;[✓] [Divergent Change - Cambios divergentes](02-diseñoModular/01-cohesion/04-divergentChange.md) |
+| &nbsp;&nbsp;&nbsp;&nbsp;[✓] [Shotgun Surgery - Cirugía a escopetazos](02-diseñoModular/01-cohesion/05-shotgunSurgery.md) |
+| &nbsp;&nbsp;&nbsp;&nbsp;[✓] [Data Clumps - Grupo de datos](02-diseñoModular/01-cohesion/06-dataClumps.md) |
+| &nbsp;&nbsp;&nbsp;&nbsp;[✓] [Primitive Obsession - Obsesión por tipos primitivos](02-diseñoModular/01-cohesion/07-primitiveObsession.md) |
+| &nbsp;&nbsp;&nbsp;&nbsp;[✓] [Lazy Classes - Clases perezosas](02-diseñoModular/01-cohesion/08-lazyClasses.md) |
+| [ ] **Acoplamiento** |
+| &nbsp;&nbsp;&nbsp;&nbsp;[✓] [Inappropriate Intimacy - Inapropiada intimidad](02-diseñoModular/02-acoplamiento/01-inappropriateIntimacy.md) |
+| &nbsp;&nbsp;&nbsp;&nbsp;[✓] [Incomplete Library Class - Clase de biblioteca incompleta](02-diseñoModular/02-acoplamiento/02-incompleteLibraryClass.md) |
+| [ ] **Granularidad** |
+| [ ] **Relacionados con el tamaño** |
+| &nbsp;&nbsp;&nbsp;&nbsp;[✓] [Long Parameter List - Listas de parámetros larga](02-diseñoModular/03-tamaño/01-longParameterList.md) |
+| &nbsp;&nbsp;&nbsp;&nbsp;[✓] [Long Method - Métodos largos](02-diseñoModular/03-tamaño/02-longMethod.md) |
+| &nbsp;&nbsp;&nbsp;&nbsp;[✓] [Large Class - Clase grande](02-diseñoModular/03-tamaño/03-largeClass.md) |
+| &nbsp;&nbsp;&nbsp;&nbsp;[✓] [Temporary Fields - Campos temporales](02-diseñoModular/03-tamaño/04-temporaryFields.md) |
+| [ ] **Reflexiones varias** |
+| &nbsp;&nbsp;&nbsp;&nbsp;[ ] [Acerca de... getters y setter](02-diseñoModular/04-reflexiones/01-gettersSetter.md) |
+| [ ] **Patrón Modelo, Vista, Controlador (Código)** |
+
+</div>
 
 ## Diseño orientado a objetos
 
