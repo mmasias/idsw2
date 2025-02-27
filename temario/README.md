@@ -11,13 +11,19 @@
 
 > Nivel: línea...
 
-- [x] [Estrategias de clasificación](01-diseño/01-estrategiasClasificacion.md) ([Presentación](https://docs.google.com/presentation/d/1GJ-J5IKzcYiXpODAjQpXQaGmkeu8ClJ3ho_OXcZOpE4/edit?usp=sharing))
-  - [x] [Descomposición Funcional](01-diseño/01.1-descomposicionFuncional.md) (antipatrón)
-- [x] [Relaciones entre clases](01-diseño/02-relacionesClases.md)
-    - [x] [xColaboración](https://docs.google.com/presentation/d/1pMD3ONO1Urug8n9ZWnnURv0lS_0F0PNi1O5rv73nROY/edit?usp=sharing)
-    - [x] [xTransmisión](https://docs.google.com/presentation/d/1ghZkWWi5LOSibOTaVjteYxgyBm6G83nhW5B5BVqkV6c/edit?usp=sharing)
-- [x] [Clean code: legibilidad](01-diseño/03-legibilidad.md) ([Presentación](https://docs.google.com/presentation/d/1JKWWhu-AzPAJ0xSPxwuM0zmDvt86FjU7WPLhK1UMmoI/edit?usp=sharing))
-- [x] [Composición vs Herencia](01-diseño/04-composicionVsHerencia.md)
+<div align="center">
+
+| Tema |
+|------|
+| [✓] [Estrategias de clasificación](01-diseño/01-estrategiasClasificacion.md) ([Presentación](https://docs.google.com/presentation/d/1GJ-J5IKzcYiXpODAjQpXQaGmkeu8ClJ3ho_OXcZOpE4/edit?usp=sharing)) |
+| &nbsp;&nbsp;&nbsp;&nbsp;[✓] [Descomposición Funcional](01-diseño/01.1-descomposicionFuncional.md) (antipatrón) |
+| [✓] [Relaciones entre clases](01-diseño/02-relacionesClases.md) |
+| &nbsp;&nbsp;&nbsp;&nbsp;[✓] [xColaboración](https://docs.google.com/presentation/d/1pMD3ONO1Urug8n9ZWnnURv0lS_0F0PNi1O5rv73nROY/edit?usp=sharing) |
+| &nbsp;&nbsp;&nbsp;&nbsp;[✓] [xTransmisión](https://docs.google.com/presentation/d/1ghZkWWi5LOSibOTaVjteYxgyBm6G83nhW5B5BVqkV6c/edit?usp=sharing) |
+| [✓] [Clean code: legibilidad](01-diseño/03-legibilidad.md) ([Presentación](https://docs.google.com/presentation/d/1JKWWhu-AzPAJ0xSPxwuM0zmDvt86FjU7WPLhK1UMmoI/edit?usp=sharing)) |
+| [✓] [Composición vs Herencia](01-diseño/04-composicionVsHerencia.md) |
+
+</div>
 
 ### Caso ejemplo: [repo de **theWorld**](https://github.com/puntoReflex/pyAspiradora)
 
