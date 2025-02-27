@@ -66,14 +66,29 @@
 
 > Nivel: Jerarquías de clasificación
 
-- [x] S [Principio de responsabilidad única](03-diseñoOO/SOLID_S.md)
-- [x] O [Principio de abierto/cerrado](03-diseñoOO/SOLID_O.md)
-- [x] L [Principio de Sustitución de Liskov](03-diseñoOO/SOLID_L.md)
-- [x] I [Principio de segregación de interfaces](03-diseñoOO/SOLID_I.md)
-- [x] D [Principio de Inversión de Dependencias](03-diseñoOO/SOLID_D.md)
-- [x] [Demeter](03-diseñoOO/demeter.md)
-- [x] [Inversión de Control](casos/IoC.md)
-- [x] [Inyección de Dependencias](casos/inyeccionDependenciasCaso.md)
+<div align="center">
+
+| Tema |
+|------|
+| **SOLID** |
+| &nbsp;&nbsp;&nbsp;&nbsp;[✓] S [Principio de responsabilidad única](03-diseñoOO/01-solid/01-responsabilidadUnica.md) |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[✓] [Ejemplo: Biblioteca](03-diseñoOO/01-solid/01.1-ejemploBiblioteca.md) |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[✓] [Ejemplo: Empleado](03-diseñoOO/01-solid/01.2-ejemploEmpleado.md) |
+| &nbsp;&nbsp;&nbsp;&nbsp;[✓] O [Principio de abierto/cerrado](03-diseñoOO/01-solid/02-abiertoCerrado.md) |
+| &nbsp;&nbsp;&nbsp;&nbsp;[✓] L [Principio de Sustitución de Liskov](03-diseñoOO/01-solid/03-sustitucionLiskov.md) |
+| &nbsp;&nbsp;&nbsp;&nbsp;[✓] I [Principio de segregación de interfaces](03-diseñoOO/01-solid/04-segregacionInterfaces.md) |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[✓] [Ejemplo completo](03-diseñoOO/01-solid/04.1-ejemploCompleto.md) |
+| &nbsp;&nbsp;&nbsp;&nbsp;[✓] D [Principio de Inversión de Dependencias](03-diseñoOO/01-solid/05-inversionDependencias.md) |
+| **Otros principios** |
+| &nbsp;&nbsp;&nbsp;&nbsp;[✓] [Ley de Demeter](03-diseñoOO/02-principios/01-leyDemeter.md) |
+| &nbsp;&nbsp;&nbsp;&nbsp;[✓] [Inversión de Control](casos/IoC.md) |
+| &nbsp;&nbsp;&nbsp;&nbsp;[✓] [Inyección de Dependencias](casos/inyeccionDependenciasCaso.md) |
+| **Estrategias de diseño** |
+| &nbsp;&nbsp;&nbsp;&nbsp;[✓] [Herencia vs Composición](03-diseñoOO/03-estrategias/01-herenciaComposicion.md) |
+| &nbsp;&nbsp;&nbsp;&nbsp;[✓] [Composición sobre Herencia](03-diseñoOO/03-estrategias/02-composicionSobreHerencia.md) |
+| &nbsp;&nbsp;&nbsp;&nbsp;[✓] [Herencia sobre Composición](03-diseñoOO/03-estrategias/03-herenciaSobreComposicion.md) |
+
+</div>
 
 ## Más cosas por ver...
 
