@@ -59,6 +59,8 @@ Se puede determinar que existe una relación de composición entre la clase A (e
 <tr><th>Composición</th><th>Agregación</th></tr>
 <tr><td valign=top>
 
+[*Ver implementación completa*](src/relacionesClases/EjemploComposicion.java)
+
 ```java
 class Libro {
     private Pagina[] paginas;
@@ -75,8 +77,9 @@ class Pagina {
 
 }
 ```
-[Ver implementación completa](src/relacionesClases/EjemploComposicion.java)
 </td><td valign=top>
+
+[*Ver implementación completa*](src/relacionesClases/EjemploAgregacion.java)
 
 ```java
 class Equipo {
@@ -99,7 +102,6 @@ class Jugador {
     }
 }
 ```
-[Ver implementación completa](src/relacionesClases/EjemploAgregacion.java)
 </td></tr>
 </table>
 
@@ -128,6 +130,8 @@ class Jugador {
 <tr><th>Asociación</th><th>Uso</th></tr>
 <tr><td valign=top>
 
+[*Ver implementación completa*](src/relacionesClases/EjemploAsociacion.java)
+
 ```java
 class Ordenador {
     private DiscoSSD disco;
@@ -145,8 +149,9 @@ class DiscoSSD {
     }
 }
 ```
-[Ver implementación completa](src/relacionesClases/EjemploAsociacion.java)
 </td><td valign=top>
+
+[*Ver implementación completa*](src/relacionesClases/EjemploUso.java)
 
 ```java
 class Alumno {
@@ -163,7 +168,6 @@ class Autobus {
    public void bajar() {};
 }
 ```
-[Ver implementación completa](src/relacionesClases/EjemploUso.java)
 </td></tr>
 </table>
 
@@ -211,6 +215,8 @@ En la práctica, estas decisiones suelen basarse en:
 > Un enfoque pragmático es comenzar con la relación más débil posible (Uso) y fortalecer la relación solo cuando sea necesario, siguiendo principios como el bajo acoplamiento y la alta cohesión.
 
 ### Ejemplo: sistema de gestión de documentos
+
+[*Ver implementación completa*](src/relacionesClases/EjemploSistemaDocumentos.java)
 
 <div align=center>
 
@@ -280,8 +286,6 @@ class Impresor {
 }
 ```
 
-[Ver implementación completa](src/relacionesClases/EjemploSistemaDocumentos.java)
-
 ## Relaciones por transmisión
 
 Herencia
@@ -292,6 +296,8 @@ La clase descendiente implementa todas las operaciones de la clase base, añadie
 |Bien|Bien|***¡Mal!***|***¡Mal!***|
 
 ### Por especialización
+
+[*Ver implementación completa*](src/relacionesClases/EjemploHerenciaEspecializacion.java)
 
 ```java
 class Coordenada {
@@ -393,10 +399,9 @@ class Rectangulo extends Figura {
 }
 ```
 
-[Ver implementación completa](src/relacionesClases/EjemploHerenciaEspecializacion.java)
-```
-
 ### Por extensión
+
+[*Ver implementación completa*](src/relacionesClases/EjemploHerenciaExtension.java)
 
 ```java
 class Cuenta {
@@ -427,7 +432,7 @@ class CuentaRemunerada extends Cuenta {
         depositar(interes);
     }
 }
-[Ver implementación completa](src/relacionesClases/EjemploHerenciaExtension.java)
+```
 
 ### Herencia por limitación
 
@@ -453,6 +458,7 @@ class RelojDigital extends DispositivoElectronico {
         throw new UnsupportedOperationException("Este reloj no soporta WiFi");
     }
 }
+
 ```
 
 ### Herencia por construcción
@@ -480,6 +486,7 @@ class Reporte extends BaseDeDatos {
         desconectar();
     }
 }
+
 ```
 
 ## Comparativa entre Herencia y Composición
