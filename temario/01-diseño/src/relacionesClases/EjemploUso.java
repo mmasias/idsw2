@@ -10,17 +10,17 @@ public class EjemploUso {
         alumno.viaje(autobus);
         
         // Después del viaje, no hay relación persistente entre el alumno y el autobús
-        System.out.println("\nDespués del viaje, " + alumno.getNombre() + 
+        System.out.println("Después del viaje, " + alumno.getNombre() + 
                           " continúa con sus actividades independientemente del autobús");
         alumno.estudiar();
         
         // El autobús sigue su ruta habitual sin relación con el alumno específico
-        System.out.println("\nEl " + autobus.getLinea() + " continúa su ruta normal");
+        System.out.println("El " + autobus.getLinea() + " continúa su ruta normal");
         autobus.continuarRuta();
         
         // Otro día, el mismo alumno puede usar un autobús diferente
         Autobus otroAutobus = new Autobus("Línea 15");
-        System.out.println("\nAl día siguiente, " + alumno.getNombre() + " toma otro autobús");
+        System.out.println("Al día siguiente, " + alumno.getNombre() + " toma otro autobús");
         alumno.viaje(otroAutobus);
     }
 }
@@ -39,7 +39,7 @@ class Alumno {
     // En la relación de uso, el cliente (Alumno) utiliza temporalmente 
     // los servicios del servidor (Autobus) sin mantener una referencia permanente
     public void viaje(Autobus autobus) {
-        System.out.println("\n" + nombre + " va a usar el " + autobus.getLinea() + ":");
+        System.out.println(nombre + " va a usar el " + autobus.getLinea() + ":");
         autobus.subir();
         autobus.pagarBoleto();
         System.out.println(nombre + " viaja durante 20 minutos...");

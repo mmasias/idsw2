@@ -10,18 +10,18 @@ public class EjemploAsociacion {
         
         // Ambos objetos tienen ciclos de vida independientes pero mantienen
         // una relación duradera (el ordenador referencia al disco)
-        System.out.println("\nUsando el ordenador para almacenar datos:");
+        System.out.println("Usando el ordenador para almacenar datos:");
         ordenador.almacenarDatos("documento.txt");
         
         // Si cambiamos algo en el disco, afecta al ordenador porque
         // mantienen una relación de asociación
-        System.out.println("\nActualizando firmware del disco...");
+        System.out.println("Actualizando firmware del disco...");
         disco.actualizarFirmware();
         System.out.println("El ordenador ahora usa el disco con firmware actualizado");
         
         // Podríamos usar el mismo disco en otro ordenador
         Ordenador ordenador2 = new Ordenador(disco);
-        System.out.println("\nOtro ordenador creado con el mismo disco");
+        System.out.println("Otro ordenador creado con el mismo disco");
         System.out.println("Este segundo ordenador también tiene acceso a un disco de " + 
                           ordenador2.getCapacidadDiscoGB() + " GB");
     }

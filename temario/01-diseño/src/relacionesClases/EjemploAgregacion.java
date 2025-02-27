@@ -16,30 +16,30 @@ public class EjemploAgregacion {
         Equipo equipo1 = new Equipo("Equipo Azul");
         equipo1.addJugador(jugador1);
         equipo1.addJugador(jugador2);
-        System.out.println("\nJugadores en " + equipo1.getNombre() + ":");
+        System.out.println("Jugadores en " + equipo1.getNombre() + ":");
         equipo1.listarJugadores();
         
         // Creamos otro equipo con algunos de los mismos jugadores (pueden pertenecer a varios equipos)
         Equipo equipo2 = new Equipo("Equipo Rojo");
         equipo2.addJugador(jugador2);  // María está en ambos equipos
         equipo2.addJugador(jugador3);
-        System.out.println("\nJugadores en " + equipo2.getNombre() + ":");
+        System.out.println("Jugadores en " + equipo2.getNombre() + ":");
         equipo2.listarJugadores();
         
         // Podemos eliminar un jugador de un equipo sin destruirlo
         equipo1.removeJugador(jugador1);
-        System.out.println("\nDespués de que " + jugador1.getNombre() + 
+        System.out.println("Después de que " + jugador1.getNombre() + 
                            " abandona " + equipo1.getNombre() + ":");
         equipo1.listarJugadores();
         
         // Podemos cambiar el equipo al que pertenece un jugador
-        System.out.println("\n" + jugador1.getNombre() + " se une a " + equipo2.getNombre());
+        System.out.println(jugador1.getNombre() + " se une a " + equipo2.getNombre());
         equipo2.addJugador(jugador1);
         equipo2.listarJugadores();
         
         // Simulamos la destrucción del equipo1
         equipo1 = null;
-        System.out.println("\nEl " + "Equipo Azul" + " ha sido disuelto, pero los jugadores siguen existiendo:");
+        System.out.println("El " + "Equipo Azul" + " ha sido disuelto, pero los jugadores siguen existiendo:");
         System.out.println(jugador2.getNombre() + " ahora solo está en Equipo Rojo");
     }
 }

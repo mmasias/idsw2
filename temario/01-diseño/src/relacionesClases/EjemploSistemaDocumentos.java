@@ -22,16 +22,16 @@ public class EjemploSistemaDocumentos {
         carpetaPlanes.agregarDocumento(doc3);
         carpetaPlanes.agregarDocumento(doc2); // Nota: doc2 está en ambas carpetas
         
-        System.out.println("\nDocumentos en carpeta Finanzas:");
+        System.out.println("Documentos en carpeta Finanzas:");
         carpetaFinanzas.listarDocumentos();
         
-        System.out.println("\nDocumentos en carpeta Planes:");
+        System.out.println("Documentos en carpeta Planes:");
         carpetaPlanes.listarDocumentos();
         
         // Un usuario edita un documento (ASOCIACIÓN)
         Usuario usuario = new Usuario("Carlos");
         usuario.abrirDocumento(doc1);
-        System.out.println("\n" + usuario.getNombre() + " está editando: " + doc1.getTitulo());
+        System.out.println(usuario.getNombre() + " está editando: " + doc1.getTitulo());
         
         // Otro usuario edita otro documento
         Usuario usuario2 = new Usuario("Ana");
@@ -40,11 +40,11 @@ public class EjemploSistemaDocumentos {
         
         // Un impresor imprime un documento (USO)
         Impresor impresor = new Impresor();
-        System.out.println("\nImprimiendo documento...");
+        System.out.println("Imprimiendo documento...");
         impresor.imprimir(doc2, 2); // Relación temporal sin referencias persistentes
         
         // Simulamos que la carpeta Finanzas se elimina
-        System.out.println("\nLa carpeta Finanzas se elimina");
+        System.out.println("La carpeta Finanzas se elimina");
         carpetaFinanzas = null;
         
         // Los documentos siguen existiendo aunque la carpeta se haya eliminado (característica de agregación)
