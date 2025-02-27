@@ -75,6 +75,7 @@ class Pagina {
 
 }
 ```
+[Ver implementación completa](src/relacionesClases/EjemploComposicion.java)
 </td><td valign=top>
 
 ```java
@@ -98,6 +99,7 @@ class Jugador {
     }
 }
 ```
+[Ver implementación completa](src/relacionesClases/EjemploAgregacion.java)
 </td></tr>
 </table>
 
@@ -143,6 +145,7 @@ class DiscoSSD {
     }
 }
 ```
+[Ver implementación completa](src/relacionesClases/EjemploAsociacion.java)
 </td><td valign=top>
 
 ```java
@@ -160,6 +163,7 @@ class Autobus {
    public void bajar() {};
 }
 ```
+[Ver implementación completa](src/relacionesClases/EjemploUso.java)
 </td></tr>
 </table>
 
@@ -276,6 +280,8 @@ class Impresor {
 }
 ```
 
+[Ver implementación completa](src/relacionesClases/EjemploSistemaDocumentos.java)
+
 ## Relaciones por transmisión
 
 Herencia
@@ -387,6 +393,9 @@ class Rectangulo extends Figura {
 }
 ```
 
+[Ver implementación completa](src/relacionesClases/EjemploHerenciaEspecializacion.java)
+```
+
 ### Por extensión
 
 ```java
@@ -418,7 +427,7 @@ class CuentaRemunerada extends Cuenta {
         depositar(interes);
     }
 }
-```
+[Ver implementación completa](src/relacionesClases/EjemploHerenciaExtension.java)
 
 ### Herencia por limitación
 
