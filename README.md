@@ -17,3 +17,7 @@
   - [x] [Acoplamiento](02-diseñoModular/acoplamiento.md)
   - [x] [Tamaño](02-diseñoModular/tamaño.md)
 - [x] [Diseño orientado a objetos](temario/03-diseñoOO/README.md)
+
+---
+
+> *diseño no es ni descubrimiento ni invención, ni un simple acto de ajustar, reparar o mejorar, sino el arte de implementar requisitos y aprovechar inteligentemente las limitaciones y posibilidades que ofrecen los materiales, con un fin teleológico, para construir artefactos orientados a un objetivo específico.* - THE ETHICS OF INFORMATION, Luciano Floridi
