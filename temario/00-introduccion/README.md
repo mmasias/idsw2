@@ -136,7 +136,7 @@ El descubrimiento de un orden no es tarea fácil. . . . sin embargo, una vez que
 
 - Kelly Johnson
   - Keep it simple, stupid! - Mantenlo sencillo, estúpido!
-  - Keep it stupid simple! - Mantenlo estúpidamente sencillo
+  - Keep it stupidly simple! - Mantenlo estúpidamente sencillo
   - Keep it small & simple - Mantenlo pequeño y sencillo!
   - Keep it short and simple - Mantenlo pequeño y simple!
 - Lo contrario a:
