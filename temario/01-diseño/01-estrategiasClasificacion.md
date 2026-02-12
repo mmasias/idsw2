@@ -11,7 +11,7 @@
 Inconveniente:
 
 - No es un enfoque riguroso y sin duda no escala bien para nada más allá de problemas bastante triviales. El lenguaje humano es un vehículo de expresión tremendamente impreciso, por lo que la calidad de la lista resultante de los objetos y las operaciones depende de la habilidad de la escritura de su autor: sinónimos, anáforas, metáforas, …​
-- Por otra parte, cualquier sustantivo puede ser verbo, y cualquier verbo puede ser sustantivo, cosificación. Ej.: gestionar vs gestión; oxigenar vs oxigeno; pulsar vs pulso; …​;
+- Por otra parte, cualquier sustantivo puede ser verbo, y cualquier verbo puede ser sustantivo, cosificación. Ej.: gestionar vs gestión; oxigenar vs oxigeno; pulsar vs pulso.
 
 ***Ejemplo:***
 
@@ -85,7 +85,7 @@ Esta información del dominio nos ayuda a:
 
 Mientras que los enfoques clásicos anteriormente mencionados se centran en cosas tangibles en el dominio del problema, otra escuela de pensamiento en el análisis orientado a objetos se centra en el comportamiento dinámico como la fuente primaria de clases y objetos.
 
-## Patrón experto en la información
+### Patrón experto en la información
 
 Existen dos tipos básicos de obligaciones de un objeto en términos de su comportamiento/responsabilidad:
 
@@ -179,7 +179,7 @@ Limitaciones, limitaciones, limitaciones...
 |Puede pasar por alto requisitos no funcionales|Puede volverse inmanejable con muchos casos de uso|Puede ser difícil mantener la consistencia|No ayuda en decisiones técnicas|Puede ser costoso mantener actualizado|
 |No captura bien requisitos de sistema o arquitectónicos|Difícil balance entre abstracción y detalle|La documentación puede crecer excesivamente|Puede subestimar complejidades técnicas|Requiere habilidad para identificar escenarios relevantes|
 
-## En resumen (ChatGPT dixit)
+## En resumen (*ChatGPT dixit*)
 
 |Método|Fortalezas Principales|Debilidades Críticas|Mejor para|
 |-|-|-|-|
