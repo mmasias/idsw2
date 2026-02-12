@@ -11,7 +11,7 @@ Hemos visto:
 
 ## ¿Qué?
 
-> [**RAE**](https://dle.rae.es/dise%C3%B1o)
+> [**RAE**](https://dle.rae.es/dise%C3%B1o): *Traza o delineación de un edificio o de una figura.* / *Proyecto, plan que configura algo.* / *Descripción o bosquejo verbal de algo.*
 
 <div align=center>
 
