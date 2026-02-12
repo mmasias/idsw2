@@ -4,7 +4,7 @@
 
 Hemos visto:
 
-|Que el software sufre de inefectividad|Que la solución no es más código|Que controlar la complejidad es la esencia de la programación
+|Que el software sufre de inefectividad|Que la solución no es ir directo al código|Que controlar la complejidad es la esencia de la programación
 |-|-|-|
 |Proyectos que incumplen su ámbito, tiempo o coste; sistemas con mala calidad (poca fiabilidad, usabilidad, seguridad); y código difícil de mantener — **viscoso**, **rígido**, **frágil**, **inmovil** — debido a una **complejidad arbitraria** que lo hace incomprensible.|sino mejor diseño: la sencillez (*Divide et impera*), el principio KISS (Keep It Simple, Stupid), y el **código limpio** que se lee como una prosa bien escrita.|Y que la **simplicidad llevada al extremo se convierte en elegancia**
 ||Que los programas deben ser escritos para que los lean las personas y sólo incidentalmente, para que lo ejecuten las máquinas
