@@ -58,17 +58,23 @@ Es un estándar: allá donde fueres, haz lo que vieres.
 - Es simplemente una tontería tener una regla que dice que cada variable debe tener un comentario o que cada función debe tener un javadoc a a no ser que sea publicado como biblioteca
 - No comentes código malo, re-escríbelo — Kernighan & Plaugher
 
-|👍|💩|
-|-|-|
-|Comentario legal|Comentarios redundantes.|
-|Comentario aclaratorio|Comentarios de sección.|
-|Comentario esporádico y oportuno|Comentarios no mantenidos, con valores que no se actualizarán.|
-||Comentarios excesivos, como el historial de interesantes discusiones de diseño|
-||Comentarios != Documentación|
-||Comentarios confusos. Si nuestro único recurso es examinar el código en otras partes del sistema para averiguar lo que está pasando.|
-||Comentarios inexactos. Un programador hace una declaración en sus comentarios que no es lo suficientemente precisa para ser exacta|
-||Comentarios de atribución cuando para eso está el control de versiones (cuando haga realmente falta)|
-||Código comentado, cuando para eso está el control de versiones|
+<div align=center>
+
+|👍|😐|💩|
+|-|-|-|
+|Comentario aclaratorio|Comentario legal|Comentarios redundantes|
+||Comentario esporádico y "oportuno"|Comentarios de sección|
+|||Comentarios no mantenidos|
+|||Comentarios excesivos|
+|||Comentarios como documentación|
+|||Comentarios confusos|
+|||Comentarios inexactos|
+|||Comentarios de atribución|
+|||Código comentado|
+
+</div>
+
+Lectura extendida: [Comentarios acerca de los comentarios...](https://github.com/mmasias/PRG1/blob/main/documentos/acercaDeLosComentarios.md)
 
 ## Formato
 
