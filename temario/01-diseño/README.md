@@ -36,7 +36,7 @@ El diseño responde a tres preguntas clave:
 1. **¿Cómo organizamos las piezas para que funcionen juntas?**
    - Mediante *relaciones* y *arquitectura*
 
-1. **¿ cómo describimos esta organización para que otros la entiendan?**
+1. **¿Cómo describimos esta organización para que otros la entiendan?**
    - Mediante *notación* y *convenciones* (UML, código legible, documentación)
 
 ## ¿Cómo?
