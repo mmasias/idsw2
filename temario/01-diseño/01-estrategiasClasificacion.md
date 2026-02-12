@@ -38,7 +38,9 @@ Un número de metodólogos han propuesto diversas fuentes de clases y objetos, d
 |**Otros sistemas externos** con los que interactúa la aplicación|Sistema de gestión académica / Sistema de pagos / Sistema de correo electrónico / Base de datos bibliográfica externa|
 |**Cosas que pasan**, por lo general de otra cosa en una fecha determinada, eventos|Préstamo de libro / Devolución / Vencimiento / Generación de multa / Renovación de préstamo / Pérdida de libro|
 
-Este análisis es más estructurado y exhaustivo que la descripción informal, ya que obliga a considerar diferentes aspectos del sistema desde distintas perspectivas predefinidas
+Este análisis es más estructurado y exhaustivo que la descripción informal, ya que obliga a considerar diferentes aspectos del sistema desde distintas perspectivas predefinidas.
+
+> [Lo mencionamos en IdSw1!](https://github.com/mmasias/IdSw1/blob/main/temario/contenidos/00004-MdD.md#c%C3%B3mo-hallar-clases-conceptuales)
 
 Presenta, sin embargo, limitaciones:
 
