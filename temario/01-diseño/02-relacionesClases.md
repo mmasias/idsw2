@@ -147,7 +147,7 @@ class DiscoSSD {
 
 ```java
 class Alumno {
-   public void viaje(Autobus autobus){
+   public void viajar(Autobus autobus){
       autobus.subir();
       autobus.pagarBoleto();
       autobus.bajar();
