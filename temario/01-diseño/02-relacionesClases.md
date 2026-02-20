@@ -223,6 +223,8 @@ En la práctica, estas decisiones suelen basarse en:
 
 </div>
 
+![](/images/modelosUML/modelosUML/diagramaDocs.svg)
+
 ```java
 class Documento {
     private Contenido contenido;
