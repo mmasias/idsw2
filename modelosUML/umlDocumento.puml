@@ -1,0 +1,15 @@
+@startuml
+
+class Documento
+class Contenido
+class Carpeta
+class Usuario
+class Impresora
+
+Documento *-- Contenido 
+Carpeta o-- Documento 
+Usuario --> Documento 
+Impresora ..> Documento 
+Usuario ..> Impresora 
+
+@enduml
