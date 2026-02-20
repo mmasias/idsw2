@@ -217,7 +217,7 @@ En la práctica, estas decisiones suelen basarse en:
 |||La carpeta no crea los documentos, solo los agrega
 |ASOCIACIÓN|Usuario y Documento|Relación duradera donde el usuario edita documentos específicos
 |||El usuario mantiene una referencia al documento que está editando
-|USO|Impresor y Documento|El impresor utiliza temporalmente el documento solo para imprimirlo
+|USO|Impresora y Documento|La Impresora utiliza temporalmente el documento solo para imprimirlo
 |||Utiliza el documento solo durante la ejecución de este método
 |||No mantiene una referencia al documento después de la impresión
 
@@ -271,7 +271,7 @@ class Usuario {
     }
 }
 
-class Impresor {
+class Impresora {
     public void imprimir(Documento doc, int copias) {
         System.out.println("Imprimiendo documento...");
     }

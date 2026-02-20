@@ -18,6 +18,18 @@
   - [x] [Tamaño](02-diseñoModular/tamaño.md)
 - [x] [Diseño orientado a objetos](temario/03-diseñoOO/README.md)
 
+## Iteraciones
+
+<div align=center>
+
+|Actual|[[25][26]](https://github.com/mmasias/25-26-IdSw2)|
+|-|-|
+|Pasadas|[[24][25]](https://github.com/mmasias/24-25-IdSw2)
+||[[23][24]](https://github.com/mmasias/23-24-IdSw2)
+||[[22][23]](https://github.com/mmasias/IdSw2-22-23)
+
+</div>
+
 ---
 
 > *diseño no es ni descubrimiento ni invención, ni un simple acto de ajustar, reparar o mejorar, sino el arte de implementar requisitos y aprovechar inteligentemente las limitaciones y posibilidades que ofrecen los materiales, con un fin teleológico, para construir artefactos orientados a un objetivo específico.* - THE ETHICS OF INFORMATION, Luciano Floridi

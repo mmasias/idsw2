@@ -11,7 +11,7 @@
 Inconveniente:
 
 - No es un enfoque riguroso y sin duda no escala bien para nada más allá de problemas bastante triviales. El lenguaje humano es un vehículo de expresión tremendamente impreciso, por lo que la calidad de la lista resultante de los objetos y las operaciones depende de la habilidad de la escritura de su autor: sinónimos, anáforas, metáforas, …​
-- Por otra parte, cualquier sustantivo puede ser verbo, y cualquier verbo puede ser sustantivo, cosificación. Ej.: gestionar vs gestión; oxigenar vs oxigeno; pulsar vs pulso; …​;
+- Por otra parte, cualquier sustantivo puede ser verbo, y cualquier verbo puede ser sustantivo, cosificación. Ej.: gestionar vs gestión; oxigenar vs oxigeno; pulsar vs pulso.
 
 ***Ejemplo:***
 
@@ -38,7 +38,9 @@ Un número de metodólogos han propuesto diversas fuentes de clases y objetos, d
 |**Otros sistemas externos** con los que interactúa la aplicación|Sistema de gestión académica / Sistema de pagos / Sistema de correo electrónico / Base de datos bibliográfica externa|
 |**Cosas que pasan**, por lo general de otra cosa en una fecha determinada, eventos|Préstamo de libro / Devolución / Vencimiento / Generación de multa / Renovación de préstamo / Pérdida de libro|
 
-Este análisis es más estructurado y exhaustivo que la descripción informal, ya que obliga a considerar diferentes aspectos del sistema desde distintas perspectivas predefinidas
+Este análisis es más estructurado y exhaustivo que la descripción informal, ya que obliga a considerar diferentes aspectos del sistema desde distintas perspectivas predefinidas.
+
+> [Lo mencionamos en IdSw1!](https://github.com/mmasias/IdSw1/blob/main/temario/contenidos/00004-MdD.md#c%C3%B3mo-hallar-clases-conceptuales)
 
 Presenta, sin embargo, limitaciones:
 
@@ -85,7 +87,7 @@ Esta información del dominio nos ayuda a:
 
 Mientras que los enfoques clásicos anteriormente mencionados se centran en cosas tangibles en el dominio del problema, otra escuela de pensamiento en el análisis orientado a objetos se centra en el comportamiento dinámico como la fuente primaria de clases y objetos.
 
-## Patrón experto en la información
+### Patrón experto en la información
 
 Existen dos tipos básicos de obligaciones de un objeto en términos de su comportamiento/responsabilidad:
 
@@ -179,7 +181,7 @@ Limitaciones, limitaciones, limitaciones...
 |Puede pasar por alto requisitos no funcionales|Puede volverse inmanejable con muchos casos de uso|Puede ser difícil mantener la consistencia|No ayuda en decisiones técnicas|Puede ser costoso mantener actualizado|
 |No captura bien requisitos de sistema o arquitectónicos|Difícil balance entre abstracción y detalle|La documentación puede crecer excesivamente|Puede subestimar complejidades técnicas|Requiere habilidad para identificar escenarios relevantes|
 
-## En resumen (ChatGPT dixit)
+## En resumen (*ChatGPT dixit*)
 
 |Método|Fortalezas Principales|Debilidades Críticas|Mejor para|
 |-|-|-|-|
