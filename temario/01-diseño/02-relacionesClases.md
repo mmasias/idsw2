@@ -285,6 +285,7 @@ Herencia
 |Por especialización|Por extensión|Por limitación|Por construcción|
 |-|-|-|-|
 La clase descendiente implementa todas las operaciones de la clase base, añadiendo o redefiniendo partes especializadas|La especialización transforma el concepto de la clase base a la clase derivada|La clase descendiente ***no implementa todas*** las operaciones de la clase base, completamente desaconsejada porque imposibilita el tratamiento polimórfico|La clase utiliza la herencia simplemente como un mecanismo de reutilización de código, no de modelado de conceptos: realmente es una relación de composición.
+|Figura, Círculo, Cuadrado, Triángulo|Cuenta, CuentaRemunerada|DispositivoElectronico, Reloj|BaseDeDatos, Reporte
 |Bien|Bien|***¡Mal!***|***¡Mal!***|
 
 ### Por especialización
