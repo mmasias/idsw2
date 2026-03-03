@@ -110,7 +110,12 @@ Un equipo de desarrolladores debe ponerse de acuerdo sobre un único estilo de f
 - Ten cuidado con los convenios que eliges.
 - Una vez elegidos, síguelos.
 
-> Gestión de formularios: [1997, SigHor](https://github.com/mmasias/pySigHor/blob/8dfbea48b15d9fbaf3c7e4c819be6ab984a31203/src/MODULO.BAS#L17), [ejemplo de uso](https://github.com/mmasias/pySigHor/blob/8dfbea48b15d9fbaf3c7e4c819be6ab984a31203/src/FRMCURSO.FRM#L949) - [1999, HF](https://github.com/mmasias/HerramientasFinancieras/blob/17423e17ac6fe15faf48f6269dd43a84e1d3115f/src/AdministracionDeFormularios.bas#L285), [ejemplo de uso](https://github.com/mmasias/HerramientasFinancieras/blob/17423e17ac6fe15faf48f6269dd43a84e1d3115f/src/frmAsistenteFechas.frm#L247) -[Años y proyectos después]-> [2003, NutrIber](https://github.com/mmasias/NutrIber/blob/b3d0280bf85cd875743eaecbcff276cec1fbfacd/fuentes.DEBUG/mFuncionesGenerales.bas#L1996), [ejemplo de uso](https://github.com/mmasias/NutrIber/blob/b3d0280bf85cd875743eaecbcff276cec1fbfacd/fuentes.DEBUG/frmPaciente.frm#L1751). 
+> Gestión de formularios:
+>
+> - [1997, SigHor](https://github.com/mmasias/pySigHor/blob/8dfbea48b15d9fbaf3c7e4c819be6ab984a31203/src/MODULO.BAS#L17), [ejemplo de uso](https://github.com/mmasias/pySigHor/blob/8dfbea48b15d9fbaf3c7e4c819be6ab984a31203/src/FRMCURSO.FRM#L949) 
+> - [1999, HF](https://github.com/mmasias/HerramientasFinancieras/blob/17423e17ac6fe15faf48f6269dd43a84e1d3115f/src/AdministracionDeFormularios.bas#L285), [ejemplo de uso](https://github.com/mmasias/HerramientasFinancieras/blob/17423e17ac6fe15faf48f6269dd43a84e1d3115f/src/frmAsistenteFechas.frm#L247)
+> - -[Años y proyectos después]-> 
+> - [2003, NutrIber](https://github.com/mmasias/NutrIber/blob/b3d0280bf85cd875743eaecbcff276cec1fbfacd/fuentes.DEBUG/mFuncionesGenerales.bas#L1996), [ejemplo de uso](https://github.com/mmasias/NutrIber/blob/b3d0280bf85cd875743eaecbcff276cec1fbfacd/fuentes.DEBUG/frmPaciente.frm#L1751). 
 >
 > El nombre cambia, la responsabilidad crece, la expresividad mejora, pero la decisión arquitectónica es la misma: esto no se hace aquí, se delega.
 
