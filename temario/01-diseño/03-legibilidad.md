@@ -105,7 +105,7 @@ Un equipo de desarrolladores debe ponerse de acuerdo sobre un único estilo de f
 ## Consistencia
 
 - Si haces algo de cierta manera, haz todas las cosas similares de la misma forma.
-- Una simple consistencia como esta, cuando se aplica de forma fiable, se puede conseguir código más fácil de leer y modificar. [HF-V1](https://github.com/mmasias/HerramientasFinancierasV1/blob/main/src/F_Factores.bas) (4 años después) [HF-V2](https://github.com/mmasias/HerramientasFinancieras/blob/main/src/f_Factores.bas)
+- Una simple consistencia como esta, cuando se aplica de forma fiable, se puede conseguir código más fácil de leer y modificar. ([Aplicación en ecuaciones RUS y TW2](https://github.com/mmasias/NutrIber/blob/main/ingenieriaInversa/sistemaMaduracionOsea.md#42-funciones-de-conversi%C3%B3n-puntaje--edad-%C3%B3sea))
 - Ten cuidado con los convenios que eliges.
 - Una vez elegidos, síguelos.
 
@@ -128,6 +128,8 @@ Ej: Gestión de formularios: [InicializaMe](https://github.com/mmasias/Herramien
 - El objetivo es reducir la repetición de la información de todo tipo, lo que hace que los sistemas de software sean más fácil de mantener
 - La consecuencia es que una modificación de cualquier elemento individual de un sistema no requiere un cambio en otros elementos lógicamente no relacionados.
 - Aplicable a todo: programación, esquemas de bases de datos, planes de prueba, el sistema de construcción, análisis y diseños, incluso la documentación.
+
+[HF-V1](https://github.com/mmasias/HerramientasFinancierasV1/blob/main/src/F_Factores.bas) (4 años después) [HF-V2](https://github.com/mmasias/HerramientasFinancieras/blob/main/src/f_Factores.bas)
 
 ## YAGNI: You aren’t going to need it
 
