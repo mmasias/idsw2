@@ -21,13 +21,13 @@
 |Usa nomenclatura estándar donde sea posible|Sigue las convenciones establecidas en el lenguaje o framework que utilizas para facilitar la comprensión del código.|
 |Nombres no ambiguos|Evita nombres que puedan interpretarse de múltiples maneras o confundirse con otros elementos del programa.|
 |Usa nombres largos para ámbitos largos|Cuanto mayor sea el alcance de una variable o función, más descriptivo y específico debe ser su nombre.|
-|Evita codificaciones|No uses prefijos o sufijos técnicos innecesarios que compliquen la lectura del código (como notación húngara).|
+|[Evita codificaciones](https://github.com/mmasias/HerramientasFinancieras/blob/17423e17ac6fe15faf48f6269dd43a84e1d3115f/src/AdministradorDeMenu.bas#L137)|No uses prefijos o sufijos técnicos innecesarios que compliquen la lectura del código (como notación húngara).|
 |Los nombres deberían describir los efectos laterales|Si una función produce efectos además de su propósito principal, el nombre debe sugerirlo.|
-|[Los nombres deben revelar su intención](https://github.com/mmasias/pdeinfo.com/blob/e7545e05aba51513fb5bd7333399918493a4c8fd/cgi-bin/webcal/webcal.config.pl#L18)|Deberían revelar por qué existe lo que existe, qué hace y cómo se utiliza para facilitar la legibilidad para el desarrollo y el mantenimiento correctivo, perfectivo y adaptativo.|
+|[Los nombres deben revelar su intención](https://github.com/mmasias/HerramientasFinancieras/blob/17423e17ac6fe15faf48f6269dd43a84e1d3115f/src/AdministradorDeMenu.bas#L170)|Deberían revelar por qué existe lo que existe, [qué hace](https://github.com/mmasias/HerramientasFinancieras/blob/17423e17ac6fe15faf48f6269dd43a84e1d3115f/src/AdministradorDeMenu.bas#L210) y cómo se utiliza para facilitar la legibilidad para el desarrollo y el mantenimiento correctivo, perfectivo y adaptativo.|
 |La elección de buenos nombres lleva tiempo, pero ahorra más de lo que toma|Así que ten cuidado con los nombres y cámbialos cuando encuentres otros mejores. Hay personas que tienen miedo de cambiar el nombre de las cosas por temor a que otros desarrolladores objeten.|
 |Nombres pronunciables que permitan mantener una conversación|Utiliza nombres que puedan pronunciarse fácilmente, facilitando las discusiones sobre el código entre desarrolladores.|
 |Mayúsculas en los caracteres inicio de palabra (CamelCase)|Sigue la convención de usar mayúsculas al inicio de cada palabra en identificadores compuestos para mejorar la legibilidad.|
-|Nombres del dominio del problema y de la solución|Emplea términos tanto del ámbito del problema (negocio) como de la solución técnica, según corresponda al contexto.|
+|[Nombres del dominio del problema](https://github.com/mmasias/HerramientasFinancieras/blob/17423e17ac6fe15faf48f6269dd43a84e1d3115f/src/f_DescuentoBancario.bas#L51) y [de la solución](https://github.com/mmasias/HerramientasFinancieras/blob/17423e17ac6fe15faf48f6269dd43a84e1d3115f/src/frmCreditosLeasing.frm#L70)|Emplea términos tanto del ámbito del problema (negocio) como de la solución técnica, según corresponda al contexto.|
 |Elige una palabra para un concepto abstracto y aferrarte a él|Mantén consistencia usando el mismo término para representar un concepto específico a lo largo de todo el código.|
 |Nombres de paquetes deben ser sustantivos y comenzar en minúsculas|Los paquetes se nombran con sustantivos en minúsculas, generalmente siguiendo estructura de dominio invertido.|
 |Nombres de clases deben ser sustantivos y comenzar en mayúsculas|Las clases se nombran con sustantivos que inician con mayúscula, representando entidades u objetos.|
@@ -42,8 +42,8 @@ Es un estándar: allá donde fueres, haz lo que vieres.
 
 ### Nombrado a evitar
 
-- Nombres acrónimos, a no ser que sean internacionales.
-- Nombres con códigos de tipo o información del ámbito (codificaciones y similares).
+- [Nombres acrónimos](https://github.com/mmasias/HerramientasFinancieras/blob/17423e17ac6fe15faf48f6269dd43a84e1d3115f/src/frmVANyTIR.frm#L196), [a no ser que sean internacionales](https://github.com/mmasias/HerramientasFinancieras/blob/17423e17ac6fe15faf48f6269dd43a84e1d3115f/src/frmVANyTIR.frm#L34).
+- [Nombres con códigos de tipo](https://github.com/mmasias/HerramientasFinancieras/blob/17423e17ac6fe15faf48f6269dd43a84e1d3115f/src/frmVANyTIR.frm#L226) o información del ámbito (codificaciones y similares).
 - Nombre con palabras vacías de significado o redundantes.
 - Nombres en serie.
 - Nombres desinformativos que no son lo que dicen.
@@ -52,9 +52,9 @@ Es un estándar: allá donde fueres, haz lo que vieres.
 
 ## Comentarios
 
-- Nada puede ser tan útil como un comentario bien colocado.
+- [Nada puede ser tan útil como un comentario bien colocado.](https://github.com/mmasias/HerramientasFinancieras/blob/17423e17ac6fe15faf48f6269dd43a84e1d3115f/src/AdministracionDeFormularios.bas#L171)
 - Nada puede ser tan perjudicial como un enrevesado comentario desactualizado que propaga mentiras y desinformación
-- Nada puede estorbar más encima de un módulo que frívolos comentarios dogmáticos.
+- [Nada puede estorbar más encima de un módulo que frívolos comentarios dogmáticos.](https://github.com/mmasias/HerramientasFinancieras/blob/17423e17ac6fe15faf48f6269dd43a84e1d3115f/src/AdministracionDeFormularios.bas#L218)
 - Es simplemente una tontería tener una regla que dice que cada variable debe tener un comentario o que cada función debe tener un javadoc a a no ser que sea publicado como biblioteca
 - No comentes código malo, re-escríbelo — Kernighan & Plaugher
 
@@ -100,12 +100,12 @@ Un equipo de desarrolladores debe ponerse de acuerdo sobre un único estilo de f
   - Dónde declarar variables de instancia;
   - Cómo nombrar las clases, métodos y variables
   - Dónde poner paréntesis, llaves; …​
-- No se necesita un documento para describir estos convenios porque su código proporciona los ejemplos.
+- [No se necesita un documento para describir estos convenios porque su código proporciona los ejemplos.](https://github.com/mmasias/NutrIber/blob/b3d0280bf85cd875743eaecbcff276cec1fbfacd/fuentes.DEBUG/frmPaciente.frm#L1753)
 
 ## Consistencia
 
 - Si haces algo de cierta manera, haz todas las cosas similares de la misma forma.
-- Una simple consistencia como esta, cuando se aplica de forma fiable, se puede conseguir código más fácil de leer y modificar.
+- Una simple consistencia como esta, cuando se aplica de forma fiable, se puede conseguir código más fácil de leer y modificar. [HF-V1](https://github.com/mmasias/HerramientasFinancierasV1/blob/main/src/F_Factores.bas) (4 años después) [HF-V2](https://github.com/mmasias/HerramientasFinancieras/blob/main/src/f_Factores.bas)
 - Ten cuidado con los convenios que eliges.
 - Una vez elegidos, síguelos.
 
@@ -114,9 +114,9 @@ Un equipo de desarrolladores debe ponerse de acuerdo sobre un único estilo de f
 - El código muerto se anquilosa y se endurece, rápidamente se hace imposible documentar el código o entender suficientemente su arquitectura para hacer mejoras.
 - Si no se elimina el código muerto, puede continuar proliferando según se reutiliza código en otras áreas
 - Puede haber crecimiento exponencial según los sucesivos desarrolladores, demasiado apremiados o intimidados por analizar los códigos originales, seguirán produciendo nuevos flujos secundarios en su intento de evitar los originales.
-- Fragmentos de código injustificables, inexplicables u obsoletos en el sistema: interfaces, clases, funciones o segmentos de código complejo con aspecto importante pero que no están relacionados con el sistema
-- Bloques de código comentado sin explicación o documentación
-- Bloques de código con comentarios
+- [Fragmentos de código injustificables](https://github.com/mmasias/NutrIber/blob/b3d0280bf85cd875743eaecbcff276cec1fbfacd/fuentes.DEBUG/frmHistoria.frm#L740), inexplicables u [obsoletos en el sistema](https://github.com/mmasias/NutrIber/blob/b3d0280bf85cd875743eaecbcff276cec1fbfacd/fuentes.DEBUG/frmExperimento.frm#L952): interfaces, clases, funciones o segmentos de código complejo con aspecto importante pero que no están relacionados con el sistema
+- [Bloques de código comentado sin explicación o documentación](https://github.com/mmasias/NutrIber/blob/b3d0280bf85cd875743eaecbcff276cec1fbfacd/fuentes.DEBUG/frmPaciente.frm#L1386)
+- [Bloques de código con comentarios](https://github.com/mmasias/HerramientasFinancierasV1/blob/59554c4da4199c6e6dc2e34dad0d9fca313a2e51/src/frmCreditoHipotecario.frm#L312)
 - //TODO: “proceso de cambio”, “para ser reemplazado”, …
 
 ## Don’t repeat yourself - DRY
@@ -126,6 +126,8 @@ Un equipo de desarrolladores debe ponerse de acuerdo sobre un único estilo de f
 - El objetivo es reducir la repetición de la información de todo tipo, lo que hace que los sistemas de software sean más fácil de mantener
 - La consecuencia es que una modificación de cualquier elemento individual de un sistema no requiere un cambio en otros elementos lógicamente no relacionados.
 - Aplicable a todo: programación, esquemas de bases de datos, planes de prueba, el sistema de construcción, análisis y diseños, incluso la documentación.
+
+Ej: Gestión de formularios: [InicializaMe](https://github.com/mmasias/HerramientasFinancieras/blob/17423e17ac6fe15faf48f6269dd43a84e1d3115f/src/AdministracionDeFormularios.bas#L285) en [HF.v2](https://github.com/mmasias/HerramientasFinancieras/blob/17423e17ac6fe15faf48f6269dd43a84e1d3115f/src/frmAsistenteFechas.frm#L247) ---> [NutrIber](https://github.com/mmasias/NutrIber/blob/b3d0280bf85cd875743eaecbcff276cec1fbfacd/fuentes.DEBUG/frmPaciente.frm#L1751)
 
 ## YAGNI: You aren’t going to need it
 
