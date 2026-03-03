@@ -2,62 +2,21 @@
 
 ## Contexto
 
-En 2007, un proyecto web para una empresa de cursos de español se desarrolló en PHP. No tenemos documentos de arquitectura, ni diagramas de navegación, ni guías de estilo escritas. Solo existía el código.
+En 2007, un proyecto web para una empresa de cursos de español se desarrolló en PHP. 
 
-> *Casi 20 años después, al revisar la estructura de archivos del proyecto, surge una correspondencia inesperada con un artefacto formal de ingeniería de requisitos: el **diagrama de contexto**, un diagrama de estados donde cada estado representa una vista del sistema y cada transición representa un caso de uso.*
+<div align=center>
 
-El artefacto nunca existió durante el desarrollo. La estructura del código lo hacía innecesario.
+||||
+|-|-|-|
+A día de hoy no tenemos documentos de arquitectura, ni diagramas de navegación, ni guías de estilo escritas: solo el código.|Sin embargo, al revisar la estructura de archivos del proyecto surge una correspondencia con un artefacto formal de ingeniería de requisitos: el **diagrama de contexto**.|El artefacto nunca existió durante el desarrollo. La estructura del código lo hacía innecesario.
+
+</div>
 
 ## El proyecto: estructura de archivos
 
-El [directorio](https://github.com/mmasias/pyQualityCourses/tree/main/var/www/html) del editor de administración contenía estos archivos:
+El [directorio](https://github.com/mmasias/pyQualityCourses/tree/main/var/www/html) del editor de administración contenía sus archivos.
 
-```
-editor.FrontPage.php
-editor.FrontPage._Graba.php
-editor.FrontPage_tp.htm
-
-editor.ListaPaises.php
-editor.ListaPaises_tp.htm
-editor.Paises.php
-editor.Paises_tp.htm
-editor.Paises._Graba.php
-editor.Paises._Eliminar.php
-editor.Paises._ActualizaOrden.php
-editor.Paises._Edita.php
-
-editor.ListaCiudades.php
-editor.ListaCiudades_tp.htm
-editor.CiudadPais.php
-editor.CiudadPais_tp.htm
-editor.CiudadPais._Graba.php
-editor.Ciudades._Eliminar.php
-editor.Ciudades._Graba.php
-
-editor.ListaServicios.php
-editor.ListaServicios_tp.htm
-editor.Servicios._Graba.php
-editor.Servicios._Eliminar.php
-
-editor.ServicioPais.php
-editor.ServicioPais_tp.htm
-editor.ServicioPais._Graba.php
-
-editor.ListaServicioCiudadesPais.php
-editor.ListaServicioCiudadesPais_tp.htm
-editor.ServicioCiudadPais.php
-editor.ServicioCiudadPais_tp.htm
-editor.ServicioCiudadPais._Graba.php
-
-editor.MetaTags.php
-editor.MetaTags_tp.htm
-editor.MetaTags._Graba.php
-editor.lista.metaTags.php
-editor.lista.metaTags_tp.htm
-editor.lista.metaTags_graba.php
-```
-
-Sin abrir un solo archivo, la convención de nombrado permite deducir la arquitectura completa del sistema.
+De modo directo, la convención de nombrado permite deducir la arquitectura completa del sistema.
 
 ## Lectura arquitectónica: lo que los nombres revelan
 
@@ -73,6 +32,20 @@ Cada entidad del sistema sigue una estructura predecible:
 |`editor.[Entidad]_tp.htm`|Plantilla del editor|Separación vista/lógica|
 |`editor.[Entidad]._Graba.php`|Acción de guardado|Transición que no cambia de vista|
 |`editor.[Entidad]._Eliminar.php`|Acción de eliminación|Transición que retorna al listado|
+
+Con lo que tendríamos:
+
+|Rol|FrontPage|Países|Ciudades|Servicios|ServicioCiudadPais|MetaTags|
+|-|-|-|-|-|-|-|
+|**Lista**||editor.ListaPaises.php|editor.ListaCiudades.php|editor.ListaServicios.php|editor.ListaServicioCiudadesPais.php|editor.lista.metaTags.php|
+|**Lista _tp**||editor.ListaPaises_tp.htm|editor.ListaCiudades_tp.htm|editor.ListaServicios_tp.htm|editor.ListaServicioCiudadesPais_tp.htm|editor.lista.metaTags_tp.htm|
+|**Editor**|editor.FrontPage.php|editor.Paises.php|editor.CiudadPais.php||editor.ServicioCiudadPais.php|editor.MetaTags.php|
+|**Editor _tp**|editor.FrontPage_tp.htm|editor.Paises_tp.htm|editor.CiudadPais_tp.htm||editor.ServicioCiudadPais_tp.htm|editor.MetaTags_tp.htm|
+|**_Graba**|editor.FrontPage._Graba.php|editor.Paises._Graba.php|editor.CiudadPais._Graba.php|editor.Servicios._Graba.php|editor.ServicioCiudadPais._Graba.php|editor.MetaTags._Graba.php|
+|**_Eliminar**||editor.Paises._Eliminar.php|editor.Ciudades._Eliminar.php|editor.Servicios._Eliminar.php|||
+|**Otros**||editor.Paises._ActualizaOrden.php|editor.Ciudades._Graba.php|editor.ServicioPais.php||editor.lista.metaTags_graba.php|
+|||editor.Paises._Edita.php||editor.ServicioPais_tp.htm|||
+|||||editor.ServicioPais._Graba.php|||
 
 ### Trazabilidad con el diagrama de estados
 
