@@ -25,6 +25,7 @@
 |Los nombres deberían describir los efectos laterales|Si una función produce efectos además de su propósito principal, el nombre debe sugerirlo.|
 |[Los nombres deben revelar su intención](https://github.com/mmasias/HerramientasFinancieras/blob/17423e17ac6fe15faf48f6269dd43a84e1d3115f/src/AdministradorDeMenu.bas#L170)|Deberían revelar por qué existe lo que existe, [qué hace](https://github.com/mmasias/HerramientasFinancieras/blob/17423e17ac6fe15faf48f6269dd43a84e1d3115f/src/AdministradorDeMenu.bas#L210) y cómo se utiliza para facilitar la legibilidad para el desarrollo y el mantenimiento correctivo, perfectivo y adaptativo.|
 |La elección de buenos nombres lleva tiempo, pero ahorra más de lo que toma|Así que ten cuidado con los nombres y cámbialos cuando encuentres otros mejores. Hay personas que tienen miedo de cambiar el nombre de las cosas por temor a que otros desarrolladores objeten.|
+|Los nombres de archivo|Un adecuado conjunto de nombres de archivo no solo revela la intención de cada archivo individual, sino la estructura de estados y transiciones del sistema completo. Ej.: [editor.Lista[Entidad].php, editor.[Entidad].php, editor.[Entidad]._Graba.php, editor.[Entidad]._Eliminar.php](https://github.com/mmasias/pyQualityCourses/tree/main/var/www/html)
 |Nombres pronunciables que permitan mantener una conversación|Utiliza nombres que puedan pronunciarse fácilmente, facilitando las discusiones sobre el código entre desarrolladores.|
 |Mayúsculas en los caracteres inicio de palabra (CamelCase)|Sigue la convención de usar mayúsculas al inicio de cada palabra en identificadores compuestos para mejorar la legibilidad.|
 |[Nombres del dominio del problema](https://github.com/mmasias/HerramientasFinancieras/blob/17423e17ac6fe15faf48f6269dd43a84e1d3115f/src/f_DescuentoBancario.bas#L51) y [de la solución](https://github.com/mmasias/HerramientasFinancieras/blob/17423e17ac6fe15faf48f6269dd43a84e1d3115f/src/frmCreditosLeasing.frm#L70)|Emplea términos tanto del ámbito del problema (negocio) como de la solución técnica, según corresponda al contexto.|
@@ -109,7 +110,11 @@ Un equipo de desarrolladores debe ponerse de acuerdo sobre un único estilo de f
 - Ten cuidado con los convenios que eliges.
 - Una vez elegidos, síguelos.
 
-Ej: Gestión de formularios: [InicializaMe](https://github.com/mmasias/HerramientasFinancieras/blob/17423e17ac6fe15faf48f6269dd43a84e1d3115f/src/AdministracionDeFormularios.bas#L285) en [HF.v2](https://github.com/mmasias/HerramientasFinancieras/blob/17423e17ac6fe15faf48f6269dd43a84e1d3115f/src/frmAsistenteFechas.frm#L247) -[Años y proyectos después]-> [NutrIber](https://github.com/mmasias/NutrIber/blob/b3d0280bf85cd875743eaecbcff276cec1fbfacd/fuentes.DEBUG/frmPaciente.frm#L1751)
+Ejemplos:
+
+- Gestión de formularios: [InicializaMe](https://github.com/mmasias/HerramientasFinancieras/blob/17423e17ac6fe15faf48f6269dd43a84e1d3115f/src/AdministracionDeFormularios.bas#L285) en [HF.v2](https://github.com/mmasias/HerramientasFinancieras/blob/17423e17ac6fe15faf48f6269dd43a84e1d3115f/src/frmAsistenteFechas.frm#L247) -[Años y proyectos después]-> [NutrIber](https://github.com/mmasias/NutrIber/blob/b3d0280bf85cd875743eaecbcff276cec1fbfacd/fuentes.DEBUG/frmPaciente.frm#L1751)
+- Consistencia de nombres
+
 
 ## Código muerto
 
@@ -140,3 +145,7 @@ Ej: Gestión de formularios: [InicializaMe](https://github.com/mmasias/Herramien
 - Hasta que la característica es realmente necesaria, es difícil definir completamente lo que debe hacer y probarla. Si la nueva característica no está bien definida y probada, puede que no funcione correctamente, incluso si eventualmente se necesitara. 
 - A menos que existan especificaciones y algún tipo de control de revisión, la función no puede ser conocida por los programadores que podrían hacer uso de ella.
 - Cualquier nueva característica impone restricciones en lo que se puede hacer en el futuro, por lo que una característica innecesaria puede interrumpir características necesarias que se agreguen en el futuro.
+
+## 2Think
+
+[2Think acerca del nombrado](99-reflexionesAcercaDelNombrado.md.md)
