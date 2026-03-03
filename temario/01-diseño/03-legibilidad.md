@@ -54,7 +54,7 @@ Es un estándar: allá donde fueres, haz lo que vieres.
 ## Comentarios
 
 - [Nada puede ser tan útil como un comentario bien colocado.](https://github.com/mmasias/HerramientasFinancieras/blob/17423e17ac6fe15faf48f6269dd43a84e1d3115f/src/AdministracionDeFormularios.bas#L171)
-- Nada puede ser tan perjudicial como un enrevesado comentario desactualizado que propaga mentiras y desinformación
+- [Nada puede ser tan perjudicial como un enrevesado comentario desactualizado](https://github.com/mmasias/NutrIber/blob/d6a1b1c738fc4c536740ae636dd389f83a0e6998/fuentes.DEBUG/mFuncionesGenerales.bas#L185) que propaga mentiras y desinformación
 - [Nada puede estorbar más encima de un módulo que frívolos comentarios dogmáticos.](https://github.com/mmasias/HerramientasFinancieras/blob/17423e17ac6fe15faf48f6269dd43a84e1d3115f/src/AdministracionDeFormularios.bas#L218)
 - Es simplemente una tontería tener una regla que dice que cada variable debe tener un comentario o que cada función debe tener un javadoc a a no ser que sea publicado como biblioteca
 - No comentes código malo, re-escríbelo — Kernighan & Plaugher
@@ -63,13 +63,13 @@ Es un estándar: allá donde fueres, haz lo que vieres.
 
 |👍|😐|💩|
 |-|-|-|
-|Comentario aclaratorio|Comentario legal|Comentarios redundantes|
-||[Comentario esporádico y "oportuno"](https://github.com/mmasias/pyQualityCourses/blob/b237909ffed222a1df0b8def896c99c76fc01c98/var/www/html/2007-06-03-editor.Sitio2/index.correccion_subdominio.php#L3)|[Comentarios de sección](https://github.com/mmasias/pyQualityCourses/blob/b237909ffed222a1df0b8def896c99c76fc01c98/var/www/html/2007-06-03-editor.Sitio2/index.pagina.idioma.php)|
-|||Comentarios no mantenidos|
+|[Comentario aclaratorio](https://github.com/mmasias/NutrIber/blob/d6a1b1c738fc4c536740ae636dd389f83a0e6998/fuentes.DEBUG/mFuncionesGenerales.bas#L1014)|Comentario legal|[Comentarios redundantes](https://github.com/mmasias/NutrIber/blob/d6a1b1c738fc4c536740ae636dd389f83a0e6998/fuentes.DEBUG/mFuncionesGenerales.bas#L334)|
+|[Otro](https://github.com/mmasias/NutrIber/blob/d6a1b1c738fc4c536740ae636dd389f83a0e6998/fuentes.DEBUG/mFuncionesGenerales.bas#L1123)|[Comentario esporádico y "oportuno"](https://github.com/mmasias/pyQualityCourses/blob/b237909ffed222a1df0b8def896c99c76fc01c98/var/www/html/2007-06-03-editor.Sitio2/index.correccion_subdominio.php#L3)|[Comentarios de sección](https://github.com/mmasias/pyQualityCourses/blob/b237909ffed222a1df0b8def896c99c76fc01c98/var/www/html/2007-06-03-editor.Sitio2/index.pagina.idioma.php)|
+|||[Comentarios no mantenidos](https://github.com/mmasias/NutrIber/blob/d6a1b1c738fc4c536740ae636dd389f83a0e6998/fuentes.DEBUG/mFuncionesGenerales.bas#L796)|
 |||[Comentarios excesivos](https://github.com/mmasias/pySigHor/blob/8dfbea48b15d9fbaf3c7e4c819be6ab984a31203/src/frmHorar.frm#L107)|
 |||[Comentarios](https://github.com/mmasias/pySigHor/blob/8dfbea48b15d9fbaf3c7e4c819be6ab984a31203/src/3D_CLASS.BAS#L1) como [documentación](https://github.com/mmasias/pySigHor/blob/8dfbea48b15d9fbaf3c7e4c819be6ab984a31203/src/MODULO.BAS#L41)|
 |||[Comentarios confusos](https://github.com/mmasias/pySigHor/blob/8dfbea48b15d9fbaf3c7e4c819be6ab984a31203/src/FORM99.FRM#L227)|
-|||Comentarios inexactos|
+|||[Comentarios inexactos](https://github.com/mmasias/NutrIber/blob/d6a1b1c738fc4c536740ae636dd389f83a0e6998/fuentes.DEBUG/mFuncionesGenerales.bas#L1348)|
 |||[Comentarios de atribución](https://github.com/mmasias/pyQualityCourses/blob/b237909ffed222a1df0b8def896c99c76fc01c98/var/www/html/2007-06-03-editor.Sitio2/index.php.v2#L3)|
 |||[Código comentado](https://github.com/mmasias/HerramientasFinancieras/blob/17423e17ac6fe15faf48f6269dd43a84e1d3115f/src/frmCreditosLeasing.frm#L385) / [Otro](https://github.com/mmasias/HerramientasFinancieras/blob/17423e17ac6fe15faf48f6269dd43a84e1d3115f/src/frmCostoEquivalente.frm#L104)|
 
