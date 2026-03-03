@@ -110,11 +110,7 @@ Un equipo de desarrolladores debe ponerse de acuerdo sobre un único estilo de f
 - Ten cuidado con los convenios que eliges.
 - Una vez elegidos, síguelos.
 
-Ejemplos:
-
-- Gestión de formularios: [InicializaMe](https://github.com/mmasias/HerramientasFinancieras/blob/17423e17ac6fe15faf48f6269dd43a84e1d3115f/src/AdministracionDeFormularios.bas#L285) en [HF.v2](https://github.com/mmasias/HerramientasFinancieras/blob/17423e17ac6fe15faf48f6269dd43a84e1d3115f/src/frmAsistenteFechas.frm#L247) -[Años y proyectos después]-> [NutrIber](https://github.com/mmasias/NutrIber/blob/b3d0280bf85cd875743eaecbcff276cec1fbfacd/fuentes.DEBUG/frmPaciente.frm#L1751)
-- Consistencia de nombres
-
+> Gestión de formularios: [1997, SigHor](https://github.com/mmasias/pySigHor/blob/8dfbea48b15d9fbaf3c7e4c819be6ab984a31203/src/MODULO.BAS#L17) - [1999, HF](https://github.com/mmasias/HerramientasFinancieras/blob/17423e17ac6fe15faf48f6269dd43a84e1d3115f/src/AdministracionDeFormularios.bas#L285) en [HF.v2](https://github.com/mmasias/HerramientasFinancieras/blob/17423e17ac6fe15faf48f6269dd43a84e1d3115f/src/frmAsistenteFechas.frm#L247) -[Años y proyectos después]-> [2003, NutrIber](https://github.com/mmasias/NutrIber/blob/b3d0280bf85cd875743eaecbcff276cec1fbfacd/fuentes.DEBUG/frmPaciente.frm#L1751). El nombre cambia, la responsabilidad crece, la expresividad mejora, pero la decisión arquitectónica es la misma: esto no se hace aquí, se delega.
 
 ## Código muerto
 
@@ -134,7 +130,7 @@ Ejemplos:
 - La consecuencia es que una modificación de cualquier elemento individual de un sistema no requiere un cambio en otros elementos lógicamente no relacionados.
 - Aplicable a todo: programación, esquemas de bases de datos, planes de prueba, el sistema de construcción, análisis y diseños, incluso la documentación.
 
-[HF-V1](https://github.com/mmasias/HerramientasFinancierasV1/blob/main/src/F_Factores.bas) (4 años después) [HF-V2](https://github.com/mmasias/HerramientasFinancieras/blob/main/src/f_Factores.bas)
+Germen: [HF-V1](https://github.com/mmasias/HerramientasFinancierasV1/blob/main/src/F_Factores.bas) (4 años después) [HF-V2](https://github.com/mmasias/HerramientasFinancieras/blob/main/src/f_Factores.bas)
 
 ## YAGNI: You aren’t going to need it
 
