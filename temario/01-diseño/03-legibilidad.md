@@ -48,7 +48,7 @@ Es un estándar: allá donde fueres, haz lo que vieres.
 - Nombre con palabras vacías de significado o redundantes.
 - Nombres en serie.
 - Nombres desinformativos que no son lo que dicen.
-- Nombres indistinguibles.
+- [Nombres indistinguibles](https://github.com/mmasias/HerramientasFinancieras/blob/17423e17ac6fe15faf48f6269dd43a84e1d3115f/src/frmCreditosLeasing.frm#L233).
 - Nombres polisémicos en un mismo contexto.
 
 ## Comentarios
@@ -64,14 +64,14 @@ Es un estándar: allá donde fueres, haz lo que vieres.
 |👍|😐|💩|
 |-|-|-|
 |Comentario aclaratorio|Comentario legal|Comentarios redundantes|
-||Comentario esporádico y "oportuno"|[Comentarios de sección](https://github.com/mmasias/pyQualityCourses/blob/b237909ffed222a1df0b8def896c99c76fc01c98/var/www/html/2007-06-03-editor.Sitio2/index.pagina.idioma.php)|
+||[Comentario esporádico y "oportuno"](https://github.com/mmasias/pyQualityCourses/blob/b237909ffed222a1df0b8def896c99c76fc01c98/var/www/html/2007-06-03-editor.Sitio2/index.correccion_subdominio.php#L3)|[Comentarios de sección](https://github.com/mmasias/pyQualityCourses/blob/b237909ffed222a1df0b8def896c99c76fc01c98/var/www/html/2007-06-03-editor.Sitio2/index.pagina.idioma.php)|
 |||Comentarios no mantenidos|
 |||[Comentarios excesivos](https://github.com/mmasias/pySigHor/blob/8dfbea48b15d9fbaf3c7e4c819be6ab984a31203/src/frmHorar.frm#L107)|
 |||[Comentarios](https://github.com/mmasias/pySigHor/blob/8dfbea48b15d9fbaf3c7e4c819be6ab984a31203/src/3D_CLASS.BAS#L1) como [documentación](https://github.com/mmasias/pySigHor/blob/8dfbea48b15d9fbaf3c7e4c819be6ab984a31203/src/MODULO.BAS#L41)|
 |||[Comentarios confusos](https://github.com/mmasias/pySigHor/blob/8dfbea48b15d9fbaf3c7e4c819be6ab984a31203/src/FORM99.FRM#L227)|
 |||Comentarios inexactos|
 |||[Comentarios de atribución](https://github.com/mmasias/pyQualityCourses/blob/b237909ffed222a1df0b8def896c99c76fc01c98/var/www/html/2007-06-03-editor.Sitio2/index.php.v2#L3)|
-|||Código comentado|
+|||[Código comentado](https://github.com/mmasias/HerramientasFinancieras/blob/17423e17ac6fe15faf48f6269dd43a84e1d3115f/src/frmCreditosLeasing.frm#L385) / [Otro](https://github.com/mmasias/HerramientasFinancieras/blob/17423e17ac6fe15faf48f6269dd43a84e1d3115f/src/frmCostoEquivalente.frm#L104)|
 
 </div>
 
