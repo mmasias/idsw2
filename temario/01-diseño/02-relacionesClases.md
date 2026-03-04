@@ -208,6 +208,8 @@ En la práctica, estas decisiones suelen basarse en:
 
 ### Ejemplo: sistema de gestión de documentos
 
+<details><summary>Ver</summary>
+
 <div align=center>
 
 |Relación|Clases|Justificación|
@@ -278,6 +280,8 @@ class Impresora {
 }
 ```
 
+</details>
+
 ## Relaciones por transmisión
 
 Herencia
@@ -288,7 +292,10 @@ La clase descendiente implementa todas las operaciones de la clase base, añadie
 |Figura, Círculo, Cuadrado, Triángulo|Fraction, FractionNode<br><br>Cuenta, CuentaRemunerada|DispositivoElectronico, Reloj|BaseDeDatos, Reporte
 |Bien|Bien|***¡Mal!***|***¡Mal!***|
 
+
 ### Por especialización
+
+<details><summary>Ver</summary>
 
 ```java
 class Coordenada {
@@ -390,7 +397,11 @@ class Rectangulo extends Figura {
 }
 ```
 
+</details>
+
 ### Por extensión
+
+<details><summary>Ver</summary>
 
 ```java
 class Fraction {
@@ -450,7 +461,11 @@ class CuentaRemunerada extends Cuenta {
 }
 ```
 
-### Herencia por limitación
+</details>
+
+### Por limitación
+
+<details><summary>Ver</summary>
 
 ```java
 
@@ -476,7 +491,11 @@ class RelojDigital extends DispositivoElectronico {
 }
 ```
 
-### Herencia por construcción
+</details>
+
+### Por construcción
+
+<details><summary>Ver</summary>
 
 ```java
 class BaseDeDatos {
@@ -502,6 +521,8 @@ class Reporte extends BaseDeDatos {
     }
 }
 ```
+
+</details>
 
 ## Comparativa entre Herencia y Composición
 
