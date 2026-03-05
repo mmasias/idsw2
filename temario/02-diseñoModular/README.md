@@ -100,7 +100,13 @@ Sin embargo, la ventaja más significativa y valiosa a largo plazo es la **excel
 
 Como expresa elocuentemente la analogía de la construcción de mosaicos:
 
-> "Es difícil hacer cualquier mosaico con fichas grandes de varios colores (baja cohesión) y formas irregulares (alto acoplamiento). Es fácil hacer cualquier mosaico con fichas pequeñas de un solo color (alta cohesión) y formas cuadradas (bajo acoplamiento)."
+<div align=center>
+
+|![](/images/mosaicosGrandes.jpg)|![](/images/mosaicosPequeños.jpg)|
+|-|-|
+*Es difícil hacer cualquier mosaico con fichas grandes de varios colores (baja cohesión) y formas irregulares (alto acoplamiento).*|*Es fácil hacer cualquier mosaico con fichas pequeñas de un solo color (alta cohesión) y formas cuadradas (bajo acoplamiento).*
+
+</div>
 
 ## ¿Cómo?
 
