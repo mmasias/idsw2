@@ -143,8 +143,6 @@ Casos muy específicos en los que se justifica la aceptación de un tamaño mayo
 - ***Objetos de valor con semántica cerrada***: una clase como `BigDecimal` o una implementación completa de fecha y hora necesita un conjunto amplio de operaciones para ser autosuficiente. Dividirla en múltiples clases colaboradoras introduce acoplamiento para compensar exactamente lo que la división eliminó, sin reducir la complejidad real.
   - La justificación exige que todas las operaciones compartan un único dominio semántico estable y que la clase no tenga dependencias externas: el tamaño es entonces la representación directa de la riqueza del concepto, no de una falta de diseño.
 
-
-
 ## ¿Para qué?
 
 La aplicación sistemática de los principios del Diseño Modular produce sistemas con las siguientes características positivas:
