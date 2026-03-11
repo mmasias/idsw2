@@ -21,8 +21,8 @@ Sin embargo, el problema más crítico y costoso a largo plazo es la **deficient
 
 - **Viscosos**: No se pueden *entender* con facilidad debido a su *estructura* compleja y desorganizada.
 - **Rígidos**: No se pueden *modificar* con facilidad porque cualquier *cambio* requiere ajustes en múltiples lugares.
-- **Frágiles**: No se pueden *probar* con facilidad porque las modificaciones provocan *errores en partes aparentemente no relacionadas*.
 - **Inmóviles**: No se pueden *reutilizar* con facilidad porque sus componentes están fuertemente *acoplados* entre sí.
+- **Frágiles**: No se pueden *probar* con facilidad porque las modificaciones provocan *errores en partes aparentemente no relacionadas*.
 
 Estas deficiencias suelen ser el resultado de una **complejidad arbitraria** introducida por decisiones de diseño inadecuadas o por la ausencia de un diseño deliberado.
 
@@ -40,9 +40,9 @@ Una creencia errónea pero común es que un diseño inspirado directamente en el
 |-|-|-|
 Clases que acumulan demasiadas responsabilidades por ser "expertos en información"|Componentes acoplados a múltiples tecnologías (interfaz, persistencia, comunicaciones)|Entidades que asumen responsabilidades que deberían estar distribuidas.
 
-|Viscoso|Rígido|Inmóvil|Frágil|
+|Viscoso|Inmóvil|Rígido|Frágil|
 |-|-|-|-|
-Presencia de multitud de **clases enormes** con **métodos enormes** con **acoplamientos cíclicos** sin un nítido reparto de responsabiliades|**Responsabilidades repartidas por multitud de clases** que requieren modificaciónes si cambian los requisitos correspondientes.|Presencia de **multitud de clases acopladas a multitud de clases de diversas tecnologías** (GUI, comunicaciones, bases de datos, servicios, etc.​)|**Ausencia de red de seguridad de pruebas unitarias** por imposibilidad de realizar pruebas sobre las clases anteriores
+Presencia de multitud de **clases enormes** con **métodos enormes** con **acoplamientos cíclicos** sin un nítido reparto de responsabiliades|Presencia de **multitud de clases acopladas a multitud de clases de diversas tecnologías** (GUI, comunicaciones, bases de datos, servicios, etc.​)|**Responsabilidades repartidas por multitud de clases** que requieren modificaciónes si cambian los requisitos correspondientes.|**Ausencia de red de seguridad de pruebas unitarias** por imposibilidad de realizar pruebas sobre las clases anteriores
 
 </div>
 
