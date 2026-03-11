@@ -40,9 +40,9 @@ Una creencia errónea pero común es que un diseño inspirado directamente en el
 |-|-|-|
 Clases que acumulan demasiadas responsabilidades por ser "expertos en información"|Componentes acoplados a múltiples tecnologías (interfaz, persistencia, comunicaciones)|Entidades que asumen responsabilidades que deberían estar distribuidas.
 
-|Viscoso|Inmóvil|Rígido|Frágil|
+|Viscoso|Rígido|Inmóvil|Frágil|
 |-|-|-|-|
-Presencia de multitud de **clases enormes** con **métodos enormes** con **acoplamientos cíclicos** sin un nítido reparto de responsabiliades|Presencia de **multitud de clases acopladas a multitud de clases de diversas tecnologías** (GUI, comunicaciones, bases de datos, servicios, etc.​)|**Responsabilidades repartidas por multitud de clases** que requieren modificaciónes si cambian los requisitos correspondientes.|**Ausencia de red de seguridad de pruebas unitarias** por imposibilidad de realizar pruebas sobre las clases anteriores
+Presencia de multitud de **clases enormes** con **métodos enormes** con **acoplamientos cíclicos** sin un nítido reparto de responsabiliades|**Responsabilidades repartidas por multitud de clases** que requieren modificaciónes si cambian los requisitos correspondientes.|Presencia de **multitud de clases acopladas a multitud de clases de diversas tecnologías** (GUI, comunicaciones, bases de datos, servicios, etc.​)|**Ausencia de red de seguridad de pruebas unitarias** por imposibilidad de realizar pruebas sobre las clases anteriores
 
 </div>
 
@@ -168,8 +168,8 @@ Sin embargo, la ventaja más significativa y valiosa a largo plazo es la **excel
 
 - **Fluidos**: Se pueden entender con facilidad gracias a su estructura clara y organizada.
 - **Flexibles**: Se pueden modificar con facilidad porque los cambios están localizados.
-- **Robustos**: Se pueden probar con facilidad porque las modificaciones no provocan efectos secundarios inesperados.
 - **Reusables**: Se pueden reutilizar componentes con facilidad porque están débilmente acoplados.
+- **Robustos**: Se pueden probar con facilidad porque las modificaciones no provocan efectos secundarios inesperados.
 
 <div align=center>
 
@@ -177,8 +177,8 @@ Sin embargo, la ventaja más significativa y valiosa a largo plazo es la **excel
 |-|-:|:-:|:-|-|
 |Comprensible|**Fluidez**|*vs*|**Viscosidad**|Difícil de entender|
 |Adaptable al cambio|**Flexibilidad**|*vs*|**Rigidez**|Resistente a modificaciones|
-|Resistente a fallos|**Robustez**|*vs*|**Fragilidad**|Propenso a errores inesperados|
 |Aprovechable en otros contextos|**Reusabilidad**|*vs*|**Inmovilidad**|Limitado a su contexto original|
+|Resistente a fallos|**Robustez**|*vs*|**Fragilidad**|Propenso a errores inesperados|
 
 </div>
 
