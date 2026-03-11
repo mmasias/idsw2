@@ -1,0 +1,86 @@
+@startuml
+hide stereotype
+hide circle
+skinparam shadowing false
+skinparam padding 1
+skinparam class {
+    BorderThickness 2
+    BorderColor<<a>> #228B22
+    BorderColor<<b>> #1E90FF
+    BorderColor<<c>> #DC143C
+    BorderColor<<d>> #DarkGrey
+    
+    FontColor<<a>> #228B22
+    FontColor<<b>> #1E90FF
+    FontColor<<c>> #DC143C
+    FontColor<<d>> #Black
+}
+
+class Alumno<<d>> {
+    profesor
+    setCalification
+    getCalification
+    scaleCalification
+    removeCalification
+    create
+    update
+    remove
+    findById
+    findByName
+    onClickButton
+    onChange
+    render
+    send
+    receive
+    ...
+}
+class Profesor<<d>> {
+    evaluate(Alumno)
+    update(Alumno)
+    create
+    update
+    remove
+    findById
+    findByName
+    onClickButton
+    onChange
+    render
+    send
+    receive
+    ...
+}
+Alumno <--> Profesor
+class Socket<<a>>
+class DatagramSocket<<a>>
+class IPAdress<<a>>
+class Button<<b>>
+class Edit<<b>>
+class Label<<b>>
+class Statment<<c>>
+class ResultSet<<c>>
+class BBDDDriver<<c>>
+
+Alumno -down-> Socket
+Alumno -down-> DatagramSocket
+Alumno -down-> IPAdress
+Alumno -down-> Button
+Alumno -down-> Edit
+Alumno -down-> Label
+Alumno -down-> Statment
+Alumno -down-> ResultSet
+Alumno -down-> BBDDDriver
+
+class DatagramSocket as "Datagram\nSocket"
+class DatagramSocket as "ResultSet\nSet"
+class DatagramSocket as "BBDDDriver\nDriver"
+
+Profesor -down-> Socket
+Profesor -down-> DatagramSocket
+Profesor -down-> IPAdress
+Profesor -down-> Button
+Profesor -down-> Edit
+Profesor -down-> Label
+Profesor -down-> Statment
+Profesor -down-> ResultSet
+Profesor -down-> BBDDDriver
+@enduml

@@ -30,13 +30,21 @@ Estas deficiencias suelen ser el resultado de una **complejidad arbitraria** int
 
 Una creencia errónea pero común es que un diseño inspirado directamente en el modelo del dominio garantiza por sí mismo un código de calidad. Sin embargo, la experiencia demuestra que este enfoque puede resultar en sistemas con graves problemas estructurales:
 
-- Clases que acumulan demasiadas responsabilidades por ser "expertos en información".
-- Componentes acoplados a múltiples tecnologías (interfaz, persistencia, comunicaciones).
-- Entidades que asumen responsabilidades que deberían estar distribuidas.
+<div align=center>
+
+|![](/images/modelosUML/disenoModular.svg)
+|-:
+<sub>[Código fuente](/modelosUML/disenoModular.puml)</sub>
+
+</div>
+
+||||
+|-|-|-|
+Clases que acumulan demasiadas responsabilidades por ser "expertos en información"|Componentes acoplados a múltiples tecnologías (interfaz, persistencia, comunicaciones)|Entidades que asumen responsabilidades que deberían estar distribuidas.
+
+> [Otro ejemplo](ejemplo/diseñoBasadoMdD.md)
 
 Los intentos de desarrollar un sistema de calidad sin principios de diseño sólidos suelen conducir a estructuras difíciles de entender, modificar, probar y reutilizar.
-
-> [Ver ejemplo](ejemplo/diseñoBasadoMdD.md)
 
 ## ¿Qué?
 
@@ -89,12 +97,12 @@ Sin embargo, la ventaja más significativa y valiosa a largo plazo es la **excel
 
 <div align=center>
 
-| Diseño Modular Adecuado |||| Diseño Modular Deficiente |
+|Diseño Modular Adecuado||||Diseño Modular Deficiente|
 |-|-:|:-:|:-|-|
-|Comprensible               |**Fluidez**|     *vs*|**Viscosidad**  | Difícil de entender |
-|Adaptable al cambio        |**Flexibilidad**|*vs*|**Rigidez**| Resistente a modificaciones |
-|Resistente a fallos        |**Robustez**|*vs*|**Fragilidad**| Propenso a errores inesperados |
-|Aprovechable en otros contextos|**Reusabilidad**|    *vs*|**Inmovilidad**  | Limitado a su contexto original |
+|Comprensible|**Fluidez**|*vs*|**Viscosidad**|Difícil de entender|
+|Adaptable al cambio|**Flexibilidad**|*vs*|**Rigidez**|Resistente a modificaciones|
+|Resistente a fallos|**Robustez**|*vs*|**Fragilidad**|Propenso a errores inesperados|
+|Aprovechable en otros contextos|**Reusabilidad**|*vs*|**Inmovilidad**|Limitado a su contexto original|
 
 </div>
 
@@ -130,7 +138,7 @@ Como expresa elocuentemente la analogía de la construcción de mosaicos:
 
 |Acoplamiento|Cohesión|Tamaño|
 |-|-|-|
-|El acoplamiento mide el grado de interdependencia entre los módulos de un sistema.|La cohesión evalúa el grado en que los elementos dentro de un módulo se relacionan entre sí y contribuyen a un propósito unificado.|El principio de tamaño establece dimensiones óptimas para los diferentes componentes del software. |
+|El acoplamiento mide el grado de interdependencia entre los módulos de un sistema.|La cohesión evalúa el grado en que los elementos dentro de un módulo se relacionan entre sí y contribuyen a un propósito unificado.|El principio de tamaño establece dimensiones óptimas para los diferentes componentes del software.|
 |Una comprensión profunda de este principio incluye:|Un estudio detallado de este principio abarca:|Un análisis completo de este principio contempla:|
 |**Definición formal** de acoplamiento y sus tipos|**Definición formal** de cohesión y sus implicaciones|**Restricciones dimensionales** recomendadas para cada nivel: paquete, clase y método|
 |**Acoplamiento aferente vs. eferente** / **Acoplamiento directo vs. indirecto** y sus implicaciones|**Niveles de cohesión**, desde la coincidental (más baja) hasta la funcional (más alta)|**Fundamentos cognitivos** que justifican estas restricciones|
