@@ -73,6 +73,78 @@ El Diseño Modular se fundamenta en tres criterios fundamentales que debe cumpli
 
 Estos tres principios, aplicados de manera consistente, constituyen la base para crear software que sea simultáneamente comprensible, modificable, testeable y reutilizable.
 
+### Cohesión
+
+<div align=center>
+
+|||
+|-|-|
+La cohesión, o más específicamente, la cohesión funcional, es una medida de cómo de fuerte están relacionadas y enfocadas las responsabilidades que son de un elemento. Estos elementos incluyen sistemas, paquetes, clases y métodos.<br><br><sub>Larman, UML y Patrones</sub>|<sub>*Si una persona no integra a sus colaboradores (partes, agregados, asociados y/o usos), sobrecarga su canal cognitivo (capacidad cuantitativa mental) al responsabilizarse de múltiples asuntos en lugar de uno único.*</sub>
+
+|Alta cohesión|Baja cohesión|
+|-|-|
+Responsabilidades muy relacionadas|Responsabilidades poco relacionadas 
+No hace una enorme cantidad de trabajo|Con una enorme cantidad de trabajo
+Delega en otros|Asignando un "grano muy grande" de abstracción o asumiendo responsabilidades que deberían haber sido delegadas en otros
+Una clase con alta cohesión tiene un número relativamente pequeño de métodos, con una funcionalidad muy relacionadas, y no hace demasiado trabajo. Colabora con otros objetos para compartir el esfuerzo si la tarea es grande|Clase con responsabilidades ligeras y únicas en unas pocas áreas diferentes que están lógicamente relacionadas con el concepto de la clase, pero no entre sí.
+
+</div>
+
+#### Compromisos
+
+Casos muy específicos en los que se justifica la aceptación de una cohesión menor:
+
+- ***Clases de utilidad***: agrupación de responsabilidades o código en una clase o componente para simplificar el mantenimiento de una persona aunque se advierte que tal agrupación también puede hacer el mantenimiento peor.
+  - Ej.: la clase System en Java (`java.lang.System`). Agrupa `in`, `out`, `err`, `gc()`, `arraycopy()`, `currentTimeMillis()`, `exit()`, `getenv()`... Responsabilidades sin relación funcional entre sí: I/O estándar, gestión de memoria, operaciones de array, tiempo del sistema, control de proceso. Cohesión funcional: nula. La justificación no es de diseño sino de mantenimiento operativo: un único punto de acceso a servicios de bajo nivel del runtime evita que el desarrollador deba conocer qué clase concreta gestiona cada aspecto de la JVM. La agrupación está justificada si los elementos agrupados comparten un *contexto de uso* estable aunque no compartan responsabilidad funcional, y si la audiencia del componente es lo suficientemente amplia como para que el punto de acceso único tenga valor real.
+- ***Servidores distribuidos***: por mantenimiento y rendimiento (justificado!!!) a veces es deseable crear menos y más grandes objetos servidores, menos cohesivos que proporcionan una interfaz para muchas operaciones. 
+  - Ej.: la fachada de un servicio REST complejo. En sistemas distribuidos, cada llamada remota tiene un coste fijo: latencia, serialización y riesgo de fallo de red. Un diseño de grano fino con objetos muy cohesivos puede exigir decenas de viajes de red para completar una sola operación de negocio, lo que lo hace inviable en producción. La solución es una fachada de grano grueso que expone operaciones completas (`procesarPedido()`, `consultarEstadoCliente()`) aunque agrupe responsabilidades heterogéneas. La baja cohesión es el precio explícito de reducir llamadas remotas; internamente, esa fachada delega en objetos cohesivos. La justificación exige que el problema de rendimiento sea real y medible, no una suposición.
+
+### Acoplamiento
+
+|||
+|-|-|
+El acoplamiento es una medida de la fuerza con la que un elemento está conectado a (o *tiene conocimiento de*, o *se basa en*) otros elementos. Estos elementos incluyen sistemas, paquetes, clases y métodos.|*Si una persona interactúa con demasiados colaboradores (partes, agregados, asociados y/o usos), sobrecarga su canal cognitivo (capacidad cuantitativa mental) al superar su capacidad de atención simultánea.*
+
+<div align=center>
+
+|Bajo|Moderado|Alto|
+|-|-|-|
+No es dependiente de muchos elementos||Sí es dependiente de muchos elementos
+Especialmente en las clases que son de naturaleza *muy* genéricas y con una alta probabilidad para su reutilización.|Es normal y necesario para la creación de un sistema orientado a objetos en el que las tareas se cumplen por una colaboración entre los objetos conectados|Con elementos estables y generalizados rara vez es un problema. El alto acoplamiento *per se* no es el problema. El problema es el acoplamiento a elementos que son inestables en alguna dimensión, como su interfaz, su implementación, o su mera presencia.
+
+</div>
+
+Los diseñadores han de elegir sus batallas en la reducción de acoplamiento y centrarse en los puntos de alta inestabilidad o evolución realista.
+
+### Tamaño
+
+<div align=center>
+
+|||
+|-|-|
+El tamaño es una medida de la cantidad de código que compone un elemento: líneas de código, número de métodos, número de atributos, número de parámetros. A diferencia de la cohesión —que describe la relación entre responsabilidades— y del acoplamiento —que describe las conexiones con otros elementos—, el tamaño mide el volumen bruto de lógica que un elemento contiene y que un lector debe procesar de forma simultánea.<br><br><sub>McConnell, Code Complete</sub>|<sub>*Si una persona acumula demasiadas tareas en un único espacio de trabajo, sobrecarga su canal cognitivo aunque cada tarea sea simple: la carga no procede de la complejidad individual de cada tarea, sino del volumen total que debe mantenerse activo al mismo tiempo.*</sub>
+
+|Tamaño reducido|Tamaño excesivo|
+|-|-|
+Lógica contenida en unidades mínimas comprensibles|Lógica acumulada en unidades de gran volumen
+Favorece la lectura, el test unitario y la localización de errores|Dificulta la comprensión, el aislamiento de fallos y el mantenimiento
+Consecuencia natural de alta cohesión y bajo acoplamiento|Síntoma frecuente de baja cohesión o de responsabilidades no delegadas
+Un elemento de tamaño reducido puede entenderse de forma independiente, sin retener en memoria el contexto de otras partes del sistema|Un elemento de gran tamaño obliga a mantener simultáneamente múltiples contextos, superando la capacidad de la memoria de trabajo
+
+</div>
+
+#### Compromisos
+
+Casos muy específicos en los que se justifica la aceptación de un tamaño mayor:
+
+- ***Máquinas de estado o parsers de protocolo***: la implementación de un protocolo complejo (un autómata TCP, un parser de gramática formal) puede requerir una estructura extensa —un `switch` de gran escala, una serie de producción completa— que, si se descompone artificialmente en métodos pequeños, pierde la correspondencia estructural con la especificación que implementa. Esa correspondencia es ella misma una forma de documentación verificable: cada estado del diagrama debe poder localizarse directamente en el código.
+  - La justificación exige que la especificación de referencia exista y sea estable, y que la descomposición alternativa no preserve esa trazabilidad.
+
+- ***Objetos de valor con semántica cerrada***: una clase como `BigDecimal` o una implementación completa de fecha y hora necesita un conjunto amplio de operaciones para ser autosuficiente. Dividirla en múltiples clases colaboradoras introduce acoplamiento para compensar exactamente lo que la división eliminó, sin reducir la complejidad real.
+  - La justificación exige que todas las operaciones compartan un único dominio semántico estable y que la clase no tenga dependencias externas: el tamaño es entonces la representación directa de la riqueza del concepto, no de una falta de diseño.
+
+
+
 ## ¿Para qué?
 
 La aplicación sistemática de los principios del Diseño Modular produce sistemas con las siguientes características positivas:
@@ -157,11 +229,9 @@ La verdadera potencia del Diseño Modular surge cuando estos tres principios se 
 
 - La **alta cohesión** facilita el **bajo acoplamiento** al concentrar responsabilidades relacionadas
 - El **bajo acoplamiento** permite mantener un **tamaño adecuado** al separar claramente las preocupaciones
-- El **tamaño adecuado** promueve la **alta cohesión** al limitar la cantidad de responsabilidades que puede asumir un módulo
+- El **tamaño adecuado** promueve la **alta cohesión** al limitar la cantidad de responsabilidades que puede asumir un módulo. Es la señal observable de que los otros dos principios se están aplicando correctamente.
 
 ## ¿Y ahora qué?
 
 1. **Aplicar estos principios y técnicas** de manera práctica en proyectos reales, utilizando refactorizaciones sistemáticas para mejorar diseños existentes.
 2. **Integrar herramientas de análisis** que permitan evaluar objetivamente la calidad del diseño según estos principios.
-
-> *El dominio del Diseño Modular no es un destino final sino un viaje continuo hacia la excelencia en el desarrollo de software, cuyos beneficios se manifestarán en cada fase del ciclo de vida de los sistemas construidos bajo sus principios.*
