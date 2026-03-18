@@ -19,10 +19,16 @@ Más allá de estas variables económicas, los sistemas desarrollados con frecue
 
 Sin embargo, el problema más crítico y costoso a largo plazo es la **deficiente mantenibilidad**, que se manifiesta en sistemas:
 
-- **Viscosos**: No se pueden *entender* con facilidad debido a su *estructura* compleja y desorganizada.
-- **Rígidos**: No se pueden *modificar* con facilidad porque cualquier *cambio* requiere ajustes en múltiples lugares.
-- **Inmóviles**: No se pueden *reutilizar* con facilidad porque sus componentes están fuertemente *acoplados* entre sí.
-- **Frágiles**: No se pueden *probar* con facilidad porque las modificaciones provocan *errores en partes aparentemente no relacionadas*.
+<div align=center>
+
+||No se pueden|Porque|
+|-|-|-|
+|**Viscosos**|*entender* con facilidad|su *estructura* es compleja y desorganizada.
+|**Rígidos**|*modificar* con facilidad|Cualquier *cambio* requiere ajustes en múltiples lugares.
+|**Inmóviles**|*eutilizar* con facilidad|Sus componentes están fuertemente *acoplados* entre sí.
+|**Frágiles**|*probar* con facilidad|Las modificaciones provocan *errores en partes aparentemente no relacionadas*.
+
+</div>
 
 Estas deficiencias suelen ser el resultado de una **complejidad arbitraria** introducida por decisiones de diseño inadecuadas o por la ausencia de un diseño deliberado.
 
@@ -225,6 +231,8 @@ La verdadera potencia del Diseño Modular surge cuando estos tres principios se 
 - La **alta cohesión** facilita el **bajo acoplamiento** al concentrar responsabilidades relacionadas
 - El **bajo acoplamiento** permite mantener un **tamaño adecuado** al separar claramente las preocupaciones
 - El **tamaño adecuado** promueve la **alta cohesión** al limitar la cantidad de responsabilidades que puede asumir un módulo. Es la señal observable de que los otros dos principios se están aplicando correctamente.
+
+> [Ejemplo completo: del diseño basado en modelo del dominio al diseño modular](ejemplo/diseñoBasadoMdD.md)
 
 ## ¿Y ahora qué?
 

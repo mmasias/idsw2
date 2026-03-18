@@ -189,28 +189,4 @@ Este diseño, aunque refleja directamente el modelo del dominio, genera serios p
 1. **Reutilización limitada**: La lógica de préstamos no puede reutilizarse sin arrastrar toda la clase `Biblioteca`.
 1. **Extensibilidad reducida**: Agregar un nuevo tipo de notificación (como SMS) requiere modificar la clase `Biblioteca`.
 
-## Solución con diseño modular
-
-Un mejor diseño aplicaría principios de cohesión y acoplamiento:
-
-1. **Separar responsabilidades**:
-   - `GestorInventario` para administrar libros
-   - `GestorUsuarios` para administrar usuarios
-   - `ServicioPrestamos` para la lógica de préstamos
-   - `CalculadorMultas` para la lógica de multas
-2. **Desacoplar tecnologías**:
-   - Interfaces para `RepositorioLibros`, `RepositorioUsuarios`, etc.
-   - Interfaces para `ServicioNotificacion`
-   - Patrón MVC para separar interfaz
-3. **Distribuir responsabilidades adecuadamente**:
-   - Entidades de dominio con comportamiento relevante
-   - Servicios para operaciones complejas
-   - Repositorios para persistencia
-
-<div align=center>
-
-|![](/images/temario/02-diseñoModular/ejemplo/diseñoMDD.svg)|![](/images/temario/02-diseñoModular/ejemplo/diseñoDM.svg)
-|:-:|:-:|
-|Solución basada en MdD|Solución basada en diseño modular|
-
-</div>
+> [Ver la solución con diseño modular](diseñoModular.md)

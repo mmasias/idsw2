@@ -1,0 +1,101 @@
+@startuml
+
+package "Dominio" {
+    class Libro {
+        -isbn: String
+        -titulo: String
+        -autor: String
+        -disponible: boolean
+        +isDisponible(): boolean
+        +setDisponible(disponible: boolean): void
+        +getIsbn(): String
+        +getTitulo(): String
+    }
+
+    class Usuario {
+        -id: int
+        -nombre: String
+        -email: String
+        -multas: List<Double>
+        +getId(): int
+        +getEmail(): String
+        +agregarMulta(monto: double): void
+    }
+
+    class Prestamo {
+        -libro: Libro
+        -usuario: Usuario
+        -fechaPrestamo: Date
+        -fechaDevolucion: Date
+        +estaVencido(): boolean
+        +getDiasRetraso(): int
+        +getLibro(): Libro
+        +getUsuario(): Usuario
+    }
+}
+
+package "Lógica" {
+    class GestorInventario {
+        -libros: List<Libro>
+        +agregar(libro: Libro): void
+        +buscarPorISBN(isbn: String): Libro
+    }
+
+    class GestorUsuarios {
+        -usuarios: List<Usuario>
+        +registrar(usuario: Usuario): void
+        +buscarPorId(id: int): Usuario
+    }
+
+    class CalculadorMultas {
+        -MULTA_POR_DIA: double
+        +calcular(prestamo: Prestamo): double
+    }
+
+    class ServicioPrestamos {
+        -prestamosActivos: List<Prestamo>
+        +prestar(isbn: String, idUsuario: int): Prestamo
+        +devolver(isbn: String): Prestamo
+        +calcularMulta(prestamo: Prestamo): double
+    }
+}
+
+package "Infraestructura" {
+    class BaseDatos {
+        +guardarLibro(libro: Libro): void
+        +guardarUsuario(usuario: Usuario): void
+        +registrarPrestamo(prestamo: Prestamo): void
+        +cerrarPrestamo(prestamo: Prestamo): void
+    }
+
+    class ServicioEmail {
+        +enviarBienvenida(email: String): void
+        +enviarConfirmacionPrestamo(email: String, titulo: String): void
+        +notificarMulta(email: String, monto: double): void
+    }
+}
+
+class Biblioteca {
+    +agregarLibro(libro: Libro): void
+    +registrarUsuario(usuario: Usuario): void
+    +prestarLibro(isbn: String, idUsuario: int): void
+    +devolverLibro(isbn: String): void
+}
+
+Prestamo --> Libro
+Prestamo --> Usuario
+
+GestorInventario --> Libro
+GestorUsuarios --> Usuario
+ServicioPrestamos --> GestorInventario
+ServicioPrestamos --> GestorUsuarios
+ServicioPrestamos --> CalculadorMultas
+ServicioPrestamos --> Prestamo
+
+Biblioteca --> GestorInventario
+Biblioteca --> GestorUsuarios
+Biblioteca --> ServicioPrestamos
+Biblioteca --> BaseDatos
+Biblioteca --> ServicioEmail
+
+@enduml
