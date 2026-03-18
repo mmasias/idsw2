@@ -4,18 +4,7 @@
 
 El desarrollo de sistemas complejos enfrenta constantemente el problema del acoplamiento excesivo entre componentes. Cuando los elementos de un sistema conocen demasiados detalles unos de otros y dependen directamente entre sí, se genera un escenario donde los cambios en un componente pueden provocar una cascada de modificaciones en todo el sistema.
 
-Esta situación se manifiesta en diversos problemas estructurales:
-
-- **Acoplamiento transitivo**: Los componentes se ven afectados por cambios en otros componentes con los que ni siquiera interactúan directamente, creando dependencias ocultas y fragilidad.
-- **Dependencias rígidas**: Componentes ligados fuertemente a implementaciones concretas en lugar de abstracciones, dificultando la sustitución y evolución independiente.
-- **Responsabilidades mezcladas**: Objetos que asumen múltiples responsabilidades que deberían estar separadas, como:
-  - Entidades de dominio que manejan también su persistencia
-  - Objetos de negocio que gestionan su representación visual
-  - Controladores que implementan lógica que debería estar delegada
-- **Dependencias cíclicas**: Componentes interdependientes que crean ciclos de dependencia, haciendo imposible modificar uno sin afectar a los demás.
-- **Dificultad de prueba**: Objetos imposibles de probar de manera aislada porque requieren la instanciación de múltiples dependencias.
-
-Un caso típico que ilustra estos problemas es el siguiente:
+Un caso típico:
 
 ```java
 public class Cliente {
@@ -253,25 +242,7 @@ La metáfora del "sistema eléctrico moderno" captura perfectamente este princip
 
 Para aplicar efectivamente los Patrones de Indirección en el diseño de software, se pueden seguir estas estrategias prácticas:
 
-### Identificar señales de acoplamiento excesivo
-
-El primer paso es detectar síntomas de acoplamiento que podrían beneficiarse de indirección:
-
-- **Clases con múltiples responsabilidades**: Componentes que hacen demasiadas cosas no relacionadas.
-- **Dificultad para realizar pruebas**: Componentes imposibles de probar sin levantar todo el sistema.
-- **Cambios en cascada**: Modificaciones que requieren ajustes en múltiples partes del sistema.
-- **Dependencias a implementaciones concretas**: Código que depende directamente de clases concretas en lugar de interfaces.
-- **Condicionales complejos**: Estructuras if-else extensas que podrían beneficiarse de polimorfismo.
-
 ### Aplicar el patrón de Invención pura
-
-#### Identificar responsabilidades desplazables
-
-Buscar en clases existentes responsabilidades que:
-
-- No son parte de la esencia conceptual de la clase
-- Podrían aplicarse a múltiples clases
-- Representan comportamiento específico en un contexto particular
 
 #### Crear clases de servicio
 
@@ -333,11 +304,6 @@ public class Producto {
 ### Aplicar el patrón vista separada
 
 #### Separar *Modelo* de la *Visualización*
-
-Identificar y separar claramente las responsabilidades de:
-
-- Modelo: Datos y lógica de negocio
-- Vista: Presentación y formateo visual
 
 ```java
 // Separación clara de responsabilidades
@@ -462,14 +428,6 @@ public class ControladorPedido {
 ```
 
 ### Aplicar el patrón Controlador
-
-#### Identificar eventos del sistema
-
-Determinar qué operaciones representan eventos del sistema que requieren coordinación:
-
-- Solicitudes de usuario
-- Eventos temporizados
-- Notificaciones externas
 
 #### Crear controladores específicos
 
