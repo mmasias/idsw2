@@ -1,0 +1,24 @@
+@startuml
+!define DIRECTION top to bottom
+
+package "Sistema de Capas" {
+  component [Interfaz Usuario] as UI
+  component [Lógica de Aplicación] as APP
+  component [Lógica de Dominio] as DOMAIN
+  component [Infraestructura] as INFRA
+
+  UI --> APP : "proporciona servicios"
+  APP --> DOMAIN : "utiliza servicios"
+  DOMAIN --> INFRA : "utiliza servicios"
+}
+
+note right of UI
+  Idealmente no conoce
+  las capas por encima
+end note
+
+note right of DOMAIN
+  No conoce las capas
+  por encima de ella
+end note
+@enduml

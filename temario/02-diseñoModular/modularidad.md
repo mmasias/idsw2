@@ -4,7 +4,7 @@
 
 El software que crece sin una estrategia de descomposición explícita se convierte rápidamente en un problema inabarcable. Un sistema de 100.000 líneas de código no puede comprenderse como una unidad: la capacidad cognitiva humana tiene límites precisos y bien documentados.
 
-El enfoque más habitual —y más dañino— ante este problema es la descomposición basada en los pasos del algoritmo: se identifica la secuencia de operaciones que el sistema debe ejecutar y se crea un módulo para cada paso. Esta estrategia tiene un defecto fundamental:
+El enfoque más habitual —y más dañino— ante este problema es la [descomposición funcional](../01-diseño/01.1-descomposicionFuncional.md): se identifica la secuencia de operaciones que el sistema debe ejecutar y se crea un módulo para cada paso. Esta estrategia tiene un defecto fundamental:
 
 > "Si el criterio de descomposición es el flujo de ejecución, los módulos cambian juntos cuando el algoritmo cambia."
 

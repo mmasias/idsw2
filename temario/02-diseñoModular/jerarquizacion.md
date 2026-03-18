@@ -26,7 +26,7 @@ Este principio se basa en observaciones de sistemas complejos tanto naturales co
 
 ### Enfoques de jerarquización
 
-#### Diseño descendente (top-down)
+#### Diseño descendente ([top-down](https://github.com/mmasias/24-25-PRG2/discussions/312))
 
 El enfoque descendente comienza con una visión de alto nivel del sistema y procede metódicamente hacia los detalles de implementación:
 
@@ -104,7 +104,7 @@ Una jerarquía efectiva debe cumplir con ciertas propiedades:
 
 1. **Acíclica**: Las dependencias entre componentes no deben formar ciclos.
 1. **Direccional**: Las dependencias deben fluir principalmente en una dirección consistente.
-1. **Estable**: Los niveles inferiores deben ser más estables que los superiores.
+1. **Estable**: Los niveles inferiores cambian con menos frecuencia que los superiores.
 1. **Abstracción gradual**: Cada nivel debe proporcionar una abstracción coherente sobre los niveles inferiores.
 1. **Encapsulación**: Los detalles internos de cada nivel deben estar ocultos a los niveles superiores.
 
@@ -154,119 +154,23 @@ En la práctica, muchos proyectos exitosos combinan ambos enfoques:
 2. Desarrollar **componentes fundamentales reutilizables** (bottom-up) que provean funcionalidades básicas comunes.
 3. Proceder con un enfoque **iterativo e incremental** que refine tanto la arquitectura global como los componentes individuales.
 
-```java
-// Definición top-down de interfaces
-public interface RepositorioCliente {
-    Cliente buscarPorId(String id);
-    void guardar(Cliente cliente);
-    // ...
-}
-
-// Implementación bottom-up de componentes específicos
-public class RepositorioClienteJPA implements RepositorioCliente {
-    @Override
-    public Cliente buscarPorId(String id) {
-        // Implementación específica
-    }
-    
-    @Override
-    public void guardar(Cliente cliente) {
-        // Implementación específica
-    }
-    // ...
-}
-```
-
 #### Arquitectura por capas
 
 Organizar el sistema en capas horizontales con responsabilidades bien definidas:
 
-```
-┌─────────────────────────┐
-│     Interfaz Usuario    │
-├─────────────────────────┤
-│   Lógica de Aplicación  │
-├─────────────────────────┤
-│    Lógica de Dominio    │
-├─────────────────────────┤
-│     Infraestructura     │
-└─────────────────────────┘
-```
+<div align=center>
+
+|![](/images/modelosUML/arquitecturaPorCapas.svg)
+|-:
+<sub>[*Código fuente*](/modelosUML/arquitecturaPorCapas.puml)</sub>
+
+</div>
 
 Cada capa:
 
 - Proporciona servicios a la capa superior
 - Puede utilizar servicios de la capa inferior
 - ***Idealmente***, no conoce las capas por encima de ella
-
-```java
-// Capa de dominio
-public class Cliente {
-    private String id;
-    private String nombre;
-    // Lógica de dominio
-}
-
-// Capa de aplicación
-public class ServicioCliente {
-    private RepositorioCliente repositorio;
-    
-    public void registrarCliente(DatosCliente datos) {
-        Cliente cliente = new Cliente(datos);
-        // Lógica de aplicación
-        repositorio.guardar(cliente);
-    }
-}
-
-// Capa de interfaz
-public class ControladorCliente {
-    private ServicioCliente servicio;
-    
-    public ResponseEntity<String> registrar(RequestCliente request) {
-        // Adaptación de datos de interfaz
-        servicio.registrarCliente(request.toDatosCliente());
-        return ResponseEntity.ok("Cliente registrado");
-    }
-}
-```
-
-### Principios de diseño
-
-#### Principio de dependencias acíclicas (ADP)
-
-No permitir ciclos en el grafo de dependencias entre componentes.
-
-```
-// Correcto: Dependencias acíclicas
-A → B → C → D
-
-// Incorrecto: Ciclo de dependencias
-A → B → C → A
-```
-
-Para romper ciclos de dependencias, se pueden utilizar:
-
-- Interfaces (Inversión de Dependencias)
-- Patrones de diseño como Observer o Mediator
-- Reestructuración de componentes
-
-#### Principio de dependencias estables (SDP)
-
-Los componentes más estables deben estar en la parte inferior de la jerarquía, y los más volátiles en la parte superior.
-
-```
-    Componentes Volátiles
-           ↓
-    Componentes de Aplicación
-           ↓
-    Componentes Estables (Librerías)
-```
-
-#### Principio de abstracciones estables (SAP)
-
-Los componentes estables deben ser más abstractos para permitir extensibilidad sin modificación.
-
-> [Ejemplo SAP / SDP](ejemplo/SDPySAP.md)
 
 ### Herramientas de visualización y análisis
 
@@ -285,7 +189,6 @@ com.empresa.producto
 ├── dominio
 │   ├── cliente
 │   │   ├── Cliente.java
-│   │   ├── ClienteId.java
 │   │   └── DireccionCliente.java
 │   └── pedido
 │       ├── Pedido.java
@@ -303,48 +206,4 @@ com.empresa.producto
     │   └── mongodb
     └── api
         └── rest
-```
-
-#### Control de visibilidad
-
-Utilizar modificadores de acceso para reforzar la jerarquía:
-
-```java
-// Paquete interno oculto a otros módulos
-package com.empresa.producto.dominio.interno;
-
-// Clase pública accesible desde otros módulos
-public class Cliente {
-    // Constructor interno - solo accesible dentro del paquete
-    Cliente(String nombre) {
-        this.nombre = nombre;
-    }
-    
-    // Método protegido - accesible solo a subclases
-    protected void validarEstado() {
-        // ...
-    }
-    
-    // Método privado - accesible solo dentro de la clase
-    private void logCambio() {
-        // ...
-    }
-}
-```
-
-#### Inversión de dependencias
-
-Usar interfaces para invertir dependencias entre capas:
-
-```java
-// En la capa de dominio:
-public interface RepositorioCliente {
-    Cliente obtenerPorId(String id);
-    void guardar(Cliente cliente);
-}
-
-// En la capa de infraestructura:
-public class RepositorioClienteMongoDB implements RepositorioCliente {
-    // Implementación específica que depende de MongoDB
-}
 ```
