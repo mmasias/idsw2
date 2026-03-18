@@ -11,18 +11,7 @@ El desarrollo de software fiable enfrenta constantemente el desafío de asegurar
 >
 > *El resultado es un error en tiempo de ejecución que podría haberse evitado con una definición clara de responsabilidades.*
 
-Cuando las expectativas entre los proveedores y consumidores de servicios no están claramente definidas y verificadas, surgen numerosos problemas que afectan la calidad del sistema.
-
-Estas deficiencias en la formalización de expectativas se manifiestan en diversos problemas:
-
-- **Errores silenciosos**: Comportamientos incorrectos que pasan desapercibidos hasta etapas avanzadas del desarrollo o incluso producción, multiplicando el costo de su corrección.
-- **Programación defensiva**: Código sobrecargado con verificaciones redundantes en múltiples lugares, aumentando la complejidad y reduciendo la legibilidad.
-- **Responsabilidades ambiguas**: Confusión sobre quién debe verificar la validez de los datos, llevando a situaciones donde:
-  - Nadie realiza la verificación, causando errores
-  - Múltiples componentes realizan las mismas verificaciones, creando redundancia
-- **Propagación de estados inválidos**: Valores incorrectos que se propagan a través del sistema, causando fallos en componentes alejados del origen del problema.
-- **Documentación insuficiente**: Comentarios y documentación informal que no especifica claramente las condiciones requeridas para la correcta operación de un componente.
-- **Pruebas incompletas**: Dificultad para diseñar casos de prueba exhaustivos sin conocer formalmente las restricciones y garantías de los componentes.
+Sin contratos formales, la respuesta habitual es la programación defensiva: verificaciones redundantes dispersas por todo el código.
 
 ```java
 // Ejemplo de programación defensiva
@@ -175,33 +164,34 @@ Los invariantes de clase especifican condiciones que deben mantenerse durante to
 ||Contrato|
 |-|-|
 |**Invariante**|- 0 <= tamaño <= capacidad<br>- elementos no es null
-|`public void apilar(T elemento)`|- ***elemento*** El elemento a añadir<br>- ***condicion*** !estaLlena()<br>- ***postcondicion***<br>&nbsp;&nbsp;- tamaño == old(tamaño) + 1<br>&nbsp;&nbsp;- cima() == elemento
+|`public void apilar(Object elemento)`|- ***elemento*** El elemento a añadir<br>- ***condicion*** !estaLlena()<br>- ***postcondicion***<br>&nbsp;&nbsp;- tamaño == old(tamaño) + 1<br>&nbsp;&nbsp;- cima() == elemento
 
 </div>
 
 ```java
-public class PilaAcotada<T> {
+public class PilaAcotada {
     private final Object[] elementos;
     private final int capacidad;
     private int tamaño;
-    
+
     public PilaAcotada(int capacidadMax) {
         assert capacidadMax > 0 : "La capacidad debe ser positiva";
-        
+
         this.capacidad = capacidadMax;
         this.elementos = new Object[capacidad];
         this.tamaño = 0;
-        
+
         verificarInvariante();
     }
-    
-    public void apilar(T elemento) {
+
+    public void apilar(Object elemento) {
         verificarInvariante();
         assert !estaLlena() : "Precondición violada: la pila está llena";
         
+        int oldTamaño = tamaño;
         elementos[tamaño++] = elemento;
-        
-        assert tamaño == old + 1 : "Postcondición violada: tamaño no incrementó correctamente";
+
+        assert tamaño == oldTamaño + 1 : "Postcondición violada: tamaño no incrementó correctamente";
         assert cima() == elemento : "Postcondición violada: el elemento no está en la cima";
         verificarInvariante();
     }
@@ -243,14 +233,6 @@ Se implementa mediante:
 - **Herramientas de análisis**: Para verificar contratos en tiempo de compilación
 
 ## ¿Para qué?
-
-La aplicación sistemática del Diseño por Contrato produce sistemas con las siguientes características positivas:
-
-- **Corrección mejorada**: Detección temprana de violaciones de contrato durante el desarrollo y pruebas.
-- **Claridad en responsabilidades**: Definición precisa de qué componente debe garantizar cada condición.
-- **Documentación ejecutable**: Los contratos sirven simultáneamente como documentación y como verificaciones en tiempo de ejecución.
-- **Simplificación del código**: Eliminación de verificaciones redundantes y código de manejo de errores innecesario.
-- **Pruebas dirigidas**: Contratos que guían el diseño de casos de prueba para cubrir específicamente los límites definidos.
 
 <div align=center>
 
@@ -332,24 +314,7 @@ Contratos verificados en tiempo de compilación.
   }
   ```
 
-#### Establecer convenciones
-
-Definir estándares para la expresión de contratos:
-
-- Formato consistente para documentación
-- Nomenclatura para aserciones
-- Ubicación de verificaciones en el código
-
 ### Implementar contratos de manera progresiva
-
-#### Identificar componentes críticos
-
-Comenzar aplicando contratos en:
-
-- Interfaces de módulos principales
-- Algoritmos complejos
-- Código de manejo de datos sensibles
-- Puntos de integración entre componentes
 
 #### Definir precondiciones
 
@@ -503,38 +468,3 @@ public void transferir_MontoNegativo_LanzaExcepcion() {
     assertTrue(exception.getMessage().contains("monto"));
 }
 ```
-
-#### Documentación generada
-
-Extraer contratos para generar documentación:
-
-```java
-// Usando herramientas como Javadoc, Doxygen o documentadores personalizados
-// que interpreten anotaciones de contrato
-
-/**
- * Transfiere fondos entre cuentas.
- * 
- * @param origen Cuenta de origen
- * @param destino Cuenta de destino
- * @param monto Cantidad a transferir
- * @pre origen != null
- * @pre destino != null
- * @pre monto > 0
- * @pre origen.getSaldo() >= monto
- * @post origen.getSaldo() == old(origen.getSaldo()) - monto
- * @post destino.getSaldo() == old(destino.getSaldo()) + monto
- */
-public void transferir(Cuenta origen, Cuenta destino, double monto) {
-    // Implementación...
-}
-```
-
-#### Análisis estático
-
-Incorporar herramientas de análisis estático para verificar contratos:
-
-- ESC/Java para Java
-- Spec# para C#
-- Frama-C para C
-- CodeContracts para .NET
