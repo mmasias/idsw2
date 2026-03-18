@@ -98,12 +98,7 @@ Una clase con alta cohesión tiene un número relativamente pequeño de métodos
 
 #### Compromisos
 
-Casos muy específicos en los que se justifica la aceptación de una cohesión menor:
-
-- ***Clases de utilidad***: agrupación de responsabilidades o código en una clase o componente para simplificar el mantenimiento de una persona aunque se advierte que tal agrupación también puede hacer el mantenimiento peor.
-  - Ej.: la clase System en Java (`java.lang.System`). Agrupa `in`, `out`, `err`, `gc()`, `arraycopy()`, `currentTimeMillis()`, `exit()`, `getenv()`... Responsabilidades sin relación funcional entre sí: I/O estándar, gestión de memoria, operaciones de array, tiempo del sistema, control de proceso. Cohesión funcional: nula. La justificación no es de diseño sino de mantenimiento operativo: un único punto de acceso a servicios de bajo nivel del runtime evita que el desarrollador deba conocer qué clase concreta gestiona cada aspecto de la JVM. La agrupación está justificada si los elementos agrupados comparten un *contexto de uso* estable aunque no compartan responsabilidad funcional, y si la audiencia del componente es lo suficientemente amplia como para que el punto de acceso único tenga valor real.
-- ***Servidores distribuidos***: por mantenimiento y rendimiento (justificado!!!) a veces es deseable crear menos y más grandes objetos servidores, menos cohesivos que proporcionan una interfaz para muchas operaciones. 
-  - Ej.: la fachada de un servicio REST complejo. En sistemas distribuidos, cada llamada remota tiene un coste fijo: latencia, serialización y riesgo de fallo de red. Un diseño de grano fino con objetos muy cohesivos puede exigir decenas de viajes de red para completar una sola operación de negocio, lo que lo hace inviable en producción. La solución es una fachada de grano grueso que expone operaciones completas (`procesarPedido()`, `consultarEstadoCliente()`) aunque agrupe responsabilidades heterogéneas. La baja cohesión es el precio explícito de reducir llamadas remotas; internamente, esa fachada delega en objetos cohesivos. La justificación exige que el problema de rendimiento sea real y medible, no una suposición.
+Sacrificar la cohesión se admite en casos muy concretos: clases de utilidad, servidores distribuidos, frameworks legacy.
 
 ### Acoplamiento
 

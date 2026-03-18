@@ -18,82 +18,123 @@ Este concepto fue formulado inicialmente por Larry Constantine en la década de 
 
 Se pueden identificar los siguientes niveles de cohesión, ordenados de mejor a peor:
 
-1. **Cohesión funcional** (la más alta): El módulo realiza una única tarea bien definida.
+<table>
+<tr>
+<td>1. <b>Cohesión funcional</b> (la más alta)</td>
+<td>El módulo realiza una única tarea bien definida.</td>
+<td>
 
-   ```java
-   public double calcularAreaCirculo(double radio) {
-       return Math.PI * radio * radio;
-   }
-   ```
+```java
+public double calcularAreaCirculo(double radio) {
+    return Math.PI * radio * radio;
+}
+```
+</td>
+</tr>
+<tr>
+<td>2. <b>Cohesión secuencial</b></td>
+<td>La salida de una parte del módulo sirve como entrada para otra.</td>
+<td>
 
-2. **Cohesión secuencial**: La salida de una parte del módulo sirve como entrada para otra.
+```java
+public String procesarTexto(String texto) {
+    String textoNormalizado = texto.toLowerCase().trim();
+    return eliminarCaracteresEspeciales(textoNormalizado);
+}
+```
+</td>
+</tr>
+<tr>
+<td>3. <b>Cohesión comunicacional</b></td>
+<td>Las partes del módulo operan sobre los mismos datos.</td>
+<td>
 
-   ```java
-   public String procesarTexto(String texto) {
-       String textoNormalizado = texto.toLowerCase().trim();
-       return eliminarCaracteresEspeciales(textoNormalizado);
-   }
-   ```
+```java
+public class ProcesadorPedido {
+    public void procesarPedido(Pedido pedido) {
+        validarStock(pedido);
+        calcularTotal(pedido);
+        aplicarDescuentos(pedido);
+    }
+}
+```
+</td>
+</tr>
+<tr>
+<td>4. <b>Cohesión procedimental</b></td>
+<td>Las partes del módulo se ejecutan en secuencia pero operan sobre datos diferentes y pertenecen a responsabilidades distintas.</td>
+<td>
 
-3. **Cohesión comunicacional**: Las partes del módulo operan sobre los mismos datos.
+```java
+public void procesarNuevoPedido(
+    int idPedido, Cliente cliente,
+    List<Producto> productos) {
+    verificarDisponibilidadProductos(productos);
+    actualizarHistorialCliente(cliente);
+    generarFactura(idPedido, productos);
+    registrarEstadisticasVenta(productos);
+    enviarCorreoConfirmacion(cliente.getEmail(), idPedido);
+}
+```
+</td>
+</tr>
+<tr>
+<td>5. <b>Cohesión temporal</b></td>
+<td>Actividades agrupadas por el momento en que se ejecutan, no por su relación funcional.</td>
+<td>
 
-   ```java
-   public class ProcesadorPedido {
-       public void procesarPedido(Pedido pedido) {
-           validarStock(pedido);
-           calcularTotal(pedido);
-           aplicarDescuentos(pedido);
-       }
-   }
-   ```
+```java
+public void inicializarSistema() {
+    conectarBaseDatos();
+    cargarConfiguracion();
+    iniciarInterfazUsuario();
+}
+```
+</td>
+</tr>
+<tr>
+<td>6. <b>Cohesión lógica</b></td>
+<td>El módulo realiza funciones lógicamente relacionadas pero funcionalmente diferentes, seleccionadas mediante un parámetro de control.</td>
+<td>
 
-4. **Cohesión procedimental**: Las partes del módulo se ejecutan en secuencia pero operan sobre datos diferentes.
+```java
+public void procesarEntrada(String tipo, Object datos) {
+    switch(tipo) {
+        case "teclado": 
+            procesarTeclado(datos); 
+            break;
+        case "mouse":   
+            procesarMouse(datos);   
+            break;
+        case "voz":     
+            procesarVoz(datos);     
+            break;
+    }
+}
+```
+</td>
+</tr>
+<tr>
+<td>7. <b>Cohesión coincidental</b> (la más baja)</td>
+<td>Las partes del módulo no tienen relación entre sí.</td>
+<td>
 
-   ```java
-   public class ProcesamientoPedido {
-       public void procesarNuevoPedido(int idPedido, Cliente cliente, List<Producto> productos) {
-           verificarDisponibilidadProductos(productos);
-           actualizarHistorialCliente(cliente);
-           generarFactura(idPedido, productos);
-           registrarEstadisticasVenta(productos);
-           enviarCorreoConfirmacion(cliente.getEmail(), idPedido);
-       }
-   }
-   ```
-
-   En este ejemplo, el método `procesarNuevoPedido` tiene cohesión procedimental porque sus componentes se ejecutan en una secuencia específica, pero cada paso trabaja con diferentes datos y representa responsabilidades distintas que podrían pertenecer a subsistemas diferentes (inventario, gestión de clientes, facturación, estadísticas y comunicaciones).
-
-5. **Cohesión temporal**: Actividades relacionadas por tiempo de ejecución pero no funcionalmente.
-
-   ```java
-   public void inicializarSistema() {
-       conectarBaseDatos();
-       cargarConfiguracion();
-       iniciarInterfazUsuario();
-   }
-   ```
-
-6. **Cohesión lógica**: El módulo realiza funciones lógicamente relacionadas pero funcionalmente diferentes.
-
-   ```java
-   public void procesarEntrada(String tipo, Object datos) {
-       switch(tipo) {
-           case "teclado": procesarTeclado(datos); break;
-           case "mouse": procesarMouse(datos); break;
-           case "voz": procesarVoz(datos); break;
-       }
-   }
-   ```
-
-7. **Cohesión coincidental** (la más baja): Las partes del módulo no tienen relación entre sí.
-
-   ```java
-   public class Utilidades {
-       public static void enviarEmail() { /*...*/ }
-       public static double calcularImpuesto() { /*...*/ }
-       public static void optimizarImagen() { /*...*/ }
-   }
-   ```
+```java
+public class Utilidades {
+    public static void enviarEmail() {
+         /*...*/ 
+    }
+    public static double calcularImpuesto() {
+        /*...*/ 
+    }
+    public static void optimizarImagen() {
+        /*...*/ 
+    }
+}
+```
+</td>
+</tr>
+</table>
 
 ### Alta vs. baja cohesión
 
@@ -113,13 +154,14 @@ En el diseño de software, se distinguen dos situaciones contrapuestas:
 
 ### Compromisos y excepciones
 
-Se pueden identificar ciertos contextos específicos donde podría aceptarse una menor cohesión:
+Casos muy específicos en los que se justifica la aceptación de una cohesión menor:
 
-1. **Clases de utilidad**: Agrupaciones de funciones estáticas de uso frecuente, como las clases `Collections` o `Math` en Java.
-1. **Servicios distribuidos**: Objetos remotos donde el costo de la comunicación justifica agrupar más operaciones en un solo componente.
-1. **Frameworks legacy**: Sistemas heredados donde la refactorización representaría un riesgo mayor que mantener la baja cohesión.
 
-Sin embargo, estos casos deben considerarse excepciones, no la regla.
+||||
+|-|-|-|
+***Clases de utilidad***|Agrupación de responsabilidades o código en una clase o componente para simplificar el mantenimiento de una persona aunque se advierte que tal agrupación también puede hacer el mantenimiento peor.|Ej.: la clase System en Java (`java.lang.System`). Agrupa `in`, `out`, `err`, `gc()`, `arraycopy()`, `currentTimeMillis()`, `exit()`, `getenv()`... Responsabilidades sin relación funcional entre sí: I/O estándar, gestión de memoria, operaciones de array, tiempo del sistema, control de proceso. Cohesión funcional: nula. La justificación no es de diseño sino de mantenimiento operativo: un único punto de acceso a servicios de bajo nivel del runtime evita que el desarrollador deba conocer qué clase concreta gestiona cada aspecto de la JVM. La agrupación está justificada si los elementos agrupados comparten un *contexto de uso* estable aunque no compartan responsabilidad funcional, y si la audiencia del componente es lo suficientemente amplia como para que el punto de acceso único tenga valor real.
+|***Servidores distribuidos***|Por mantenimiento y rendimiento (justificado!!!) a veces es deseable crear menos y más grandes objetos servidores, menos cohesivos que proporcionan una interfaz para muchas operaciones.|Ej.: la fachada de un servicio REST complejo. En sistemas distribuidos, cada llamada remota tiene un coste fijo: latencia, serialización y riesgo de fallo de red. Un diseño de grano fino con objetos muy cohesivos puede exigir decenas de viajes de red para completar una sola operación de negocio, lo que lo hace inviable en producción. La solución es una fachada de grano grueso que expone operaciones completas (`procesarPedido()`, `consultarEstadoCliente()`) aunque agrupe responsabilidades heterogéneas. La baja cohesión es el precio explícito de reducir llamadas remotas; internamente, esa fachada delega en objetos cohesivos. La justificación exige que el problema de rendimiento sea real y medible, no una suposición.
+|***Frameworks legacy***|Sistemas heredados donde la refactorización representaría un riesgo mayor que mantener la baja cohesión existente.
 
 ## ¿Para qué?
 
