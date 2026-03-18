@@ -220,9 +220,14 @@ Como expresa elocuentemente la analogía de la construcción de mosaicos:
 
 ### Técnicas complementarias
 
-- **[Abstracción de interfaz](abstraccionInterfaz.md)**: Para definir contratos claros entre componentes
-- **[Diseño por contrato](diseñoContrato.md)**: Para formalizar precondiciones, postcondiciones e invariantes
-- **[Patrones de indirección](patronesIndireccion.md)**: Para implementar mecanismos específicos de desacoplamiento
+<div align=center>
+
+|[Abstracción de interfaz](abstraccionInterfaz.md)|[Diseño por contrato](diseñoContrato.md)|[Patrones de indirección](patronesIndireccion.md)|
+|-|-|-|
+|Para definir contratos claros entre componentes|Para formalizar precondiciones, postcondiciones e invariantes|Para implementar mecanismos específicos de desacoplamiento|
+|*Qué expones*|*Qué garantizas*|*Cómo desacoplas mediante intermediarios*|
+
+</div>
 
 ### Sinergia de los tres principios
 
