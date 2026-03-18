@@ -136,13 +136,7 @@ Un elemento de tamaño reducido puede entenderse de forma independiente, sin ret
 
 #### Compromisos
 
-Casos muy específicos en los que se justifica la aceptación de un tamaño mayor:
-
-- ***Máquinas de estado o parsers de protocolo***: la implementación de un protocolo complejo (un autómata TCP, un parser de gramática formal) puede requerir una estructura extensa —un `switch` de gran escala, una serie de producción completa— que, si se descompone artificialmente en métodos pequeños, pierde la correspondencia estructural con la especificación que implementa. Esa correspondencia es ella misma una forma de documentación verificable: cada estado del diagrama debe poder localizarse directamente en el código.
-  - La justificación exige que la especificación de referencia exista y sea estable, y que la descomposición alternativa no preserve esa trazabilidad.
-
-- ***Objetos de valor con semántica cerrada***: una clase como `BigDecimal` o una implementación completa de fecha y hora necesita un conjunto amplio de operaciones para ser autosuficiente. Dividirla en múltiples clases colaboradoras introduce acoplamiento para compensar exactamente lo que la división eliminó, sin reducir la complejidad real.
-  - La justificación exige que todas las operaciones compartan un único dominio semántico estable y que la clase no tenga dependencias externas: el tamaño es entonces la representación directa de la riqueza del concepto, no de una falta de diseño.
+Superar los límites de tamaño se admite en casos muy concretos: máquinas de estado o parsers de protocolo, objetos de valor con semántica cerrada.
 
 ## ¿Para qué?
 
