@@ -2,16 +2,7 @@
 
 ## ¿Por qué?
 
-En el desarrollo de software, frecuentemente se generan sistemas con componentes que asumen múltiples responsabilidades desconectadas entre sí. Esta situación produce código que resulta difícil de entender, modificar, probar y reutilizar.
-
-Cuando un módulo, clase o método abarca demasiadas responsabilidades poco relacionadas entre sí, se consume lo que podría denominarse como "canal cognitivo" —la capacidad mental necesaria para comprenderlo. Este fenómeno genera sistemas que presentan las siguientes características negativas:
-
-- **Viscosidad**: No se logra entender con facilidad debido a la multiplicidad de propósitos entremezclados.
-- **Rigidez**: No se puede modificar con facilidad sin provocar efectos secundarios no deseados.
-- **Fragilidad**: No se puede probar con facilidad y resulta propenso a fallar cuando se modifica.
-- **Inmovilidad**: No se puede reutilizar con facilidad en otros contextos.
-
-Las manifestaciones típicas de esta problemática incluyen clases excesivamente grandes con métodos extensos, numerosos atributos, y múltiples responsabilidades, creando lo que coloquialmente se conoce como "clases Dios" o "métodos monstruo".
+Los sistemas viscosos, rígidos, frágiles e inmóviles tienen habitualmente un denominador común: sus componentes asumen responsabilidades que no guardan relación entre sí. La cohesión es el principio que mide y guía ese reparto.
 
 ## ¿Qué?
 
@@ -115,18 +106,10 @@ En el diseño de software, se distinguen dos situaciones contrapuestas:
 |Se asignan responsabilidades muy relacionadas entre sí|Se asignan responsabilidades escasamente relacionadas|
 |No se realiza una cantidad excesiva de trabajo|Se realiza una cantidad desproporcionada de trabajo|
 |Se delega adecuadamente a otros objetos|Se asumen responsabilidades que deberían delegarse|
-|Se implementa un número relativamente pequeño de métodos con funcionalidad relacionada|Se mantiene una cohesión moderada, con responsabilidades únicas pero en áreas diferentes|
+|Se implementa un número relativamente pequeño de métodos con funcionalidad relacionada|Se asignan responsabilidades moderadas pero de áreas diferentes|
 |Se colabora con otros objetos para distribuir el esfuerzo||
 
 </div>
-
-### Principio de responsabilidad única (SRP)
-
-El Principio de Responsabilidad Única, uno de los principios SOLID definido por Robert C. Martin, está directamente relacionado con la cohesión:
-
-> "Una clase debería tener un único motivo de cambio."
-
-Este principio redefine ligeramente el concepto tradicional de cohesión, enfocándolo en el origen del cambio. Si existen múltiples razones para modificar una clase, entonces esa clase tiene más de una responsabilidad, lo que implica baja cohesión.
 
 ### Compromisos y excepciones
 
@@ -140,29 +123,7 @@ Sin embargo, estos casos deben considerarse excepciones, no la regla.
 
 ## ¿Para qué?
 
-La implementación de componentes con alta cohesión produce sistemas con las siguientes características positivas:
-
-- **Fluidez**: Se puede entender con facilidad debido a la claridad de propósito de cada componente
-- **Flexibilidad**: Se puede modificar con facilidad al minimizar las dependencias entre componentes
-- **Reusabilidad**: Se puede reutilizar con facilidad al tener responsabilidades bien definidas
-- **Robustez**: Se reduce la fragilidad ante cambios al limitar los efectos secundarios
-
-Cuando se compara con un diseño de baja cohesión, las ventajas resultan evidentes:
-
-<div align=center>
-
-| Alta Cohesión |||| Baja Cohesión |
-|-|-:|:-:|:-|-|
-|Fácil de entender                  |**Fluidez**|     *vs*|**Viscosidad**  | Difícil de comprender |
-|Sencilla de modificar              |**Flexibilidad**|*vs*|**Rigidez**| Complicada de modificar |
-|Preparada para reutilizar          |**Reusabilidad**|*vs*|**Inmovilidad**| Imposible de reutilizar |
-|Resistente a efectos secundarios   |**Robustez**|    *vs*|**Fragilidad**| Constantemente afectada por cambios |
-
-</div>
-
-Como analogía práctica para recordar la importancia de la cohesión, puede utilizarse la del mosaico:
-
-> "Es difícil hacer cualquier mosaico con fichas grandes de varios colores (baja cohesión) y formas irregulares (alto acoplamiento). Es fácil hacer cualquier mosaico con fichas pequeñas de un solo color (alta cohesión) y formas cuadradas (bajo acoplamiento)." ***L.Fernández***
+La alta cohesión es lo que produce los sistemas fluidos, flexibles, reusables y robustos descritos en el diseño modular. A nivel de componente: cada elemento puede entenderse, modificarse y reutilizarse de forma aislada porque tiene un único propósito claro.
 
 ## ¿Cómo?
 
@@ -175,7 +136,7 @@ Para aplicar correctamente el principio de cohesión en el diseño de software, 
 - **[Clase de datos](sc.dc.md)**: Clases con solo atributos y getters/setters sin comportamiento real que encapsule reglas de negocio.
 - **[Cambios divergentes](sc.dch.md)**: Cuando una clase cambia por múltiples razones no relacionadas, indicando responsabilidades mezcladas.
 - **[Cirugía con escopeta](sc.ss.md)**: Cuando un solo cambio conceptual requiere modificar muchas clases distintas, señalando responsabilidades fragmentadas.
-- **[Grupo de datos](sc.dc.md)**: Los mismos grupos de campos aparecen juntos en múltiples lugares, sugiriendo que deberían ser su propia clase.
+- **[Grupo de datos](sc.dcl.md)**: Los mismos grupos de campos aparecen juntos en múltiples lugares, sugiriendo que deberían ser su propia clase.
 - **[Obsesión por tipos primitivos](sc.po.md)**: Uso excesivo de tipos primitivos en lugar de pequeñas clases de dominio con alta cohesión.
 - **[Clases perezosas](sc.lc.md)**: Clases que hacen demasiado poco para justificar su existencia, fragmentando conceptos que deberían estar juntos.
 - **[Métodos largos](sc.lm.md)**: Métodos que realizan múltiples operaciones, violando la cohesión a nivel de método.
