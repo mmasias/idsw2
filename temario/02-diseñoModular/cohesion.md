@@ -31,8 +31,8 @@ public double calcularAreaCirculo(double radio) {
 ```
 </td>
 </tr>
-<tr>
 <tr></tr>
+<tr>
 <td>2. <b>Cohesión secuencial</b></td>
 <td>La salida de una parte del módulo sirve como entrada para otra.</td>
 <td>
@@ -45,8 +45,8 @@ public String procesarTexto(String texto) {
 ```
 </td>
 </tr>
-<tr>
 <tr></tr>
+<tr>
 <td>3. <b>Cohesión comunicacional</b></td>
 <td>Las partes del módulo operan sobre los mismos datos.</td>
 <td>
@@ -81,8 +81,8 @@ public void procesarNuevoPedido(
 ```
 </td>
 </tr>
-<tr>
 <tr></tr>
+<tr>
 <td>5. <b>Cohesión temporal</b></td>
 <td>Actividades agrupadas por el momento en que se ejecutan, no por su relación funcional.</td>
 <td>
@@ -96,8 +96,8 @@ public void inicializarSistema() {
 ```
 </td>
 </tr>
-<tr>
 <tr></tr>
+<tr>
 <td>6. <b>Cohesión lógica</b></td>
 <td>El módulo realiza funciones lógicamente relacionadas pero funcionalmente diferentes, seleccionadas mediante un parámetro de control.</td>
 <td>
