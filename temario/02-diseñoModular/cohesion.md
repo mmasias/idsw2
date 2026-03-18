@@ -32,6 +32,7 @@ public double calcularAreaCirculo(double radio) {
 </td>
 </tr>
 <tr>
+<tr></tr>
 <td>2. <b>Cohesión secuencial</b></td>
 <td>La salida de una parte del módulo sirve como entrada para otra.</td>
 <td>
@@ -45,6 +46,7 @@ public String procesarTexto(String texto) {
 </td>
 </tr>
 <tr>
+<tr></tr>
 <td>3. <b>Cohesión comunicacional</b></td>
 <td>Las partes del módulo operan sobre los mismos datos.</td>
 <td>
@@ -60,6 +62,7 @@ public class ProcesadorPedido {
 ```
 </td>
 </tr>
+<tr></tr>
 <tr>
 <td>4. <b>Cohesión procedimental</b></td>
 <td>Las partes del módulo se ejecutan en secuencia pero operan sobre datos diferentes y pertenecen a responsabilidades distintas.</td>
@@ -79,6 +82,7 @@ public void procesarNuevoPedido(
 </td>
 </tr>
 <tr>
+<tr></tr>
 <td>5. <b>Cohesión temporal</b></td>
 <td>Actividades agrupadas por el momento en que se ejecutan, no por su relación funcional.</td>
 <td>
@@ -93,6 +97,7 @@ public void inicializarSistema() {
 </td>
 </tr>
 <tr>
+<tr></tr>
 <td>6. <b>Cohesión lógica</b></td>
 <td>El módulo realiza funciones lógicamente relacionadas pero funcionalmente diferentes, seleccionadas mediante un parámetro de control.</td>
 <td>
@@ -115,6 +120,7 @@ public void procesarEntrada(String tipo, Object datos) {
 </td>
 </tr>
 <tr>
+<tr></tr>
 <td>7. <b>Cohesión coincidental</b> (la más baja)</td>
 <td>Las partes del módulo no tienen relación entre sí.</td>
 <td>
@@ -173,7 +179,6 @@ Para aplicar correctamente el principio de cohesión en el diseño de software, 
 
 ### Identificar "code smells" que señalan problemas de cohesión
 
-- **[Clases alternativas con distintas interfaces](sc.acdi.md)**: Clases que realizan funcionalidades similares pero con APIs diferentes, creando inconsistencia conceptual.
 - **[Envidia de características](sc.fe.md)**: Cuando un método parece más interesado en los datos o comportamientos de otra clase que en los propios.
 - **[Clase de datos](sc.dc.md)**: Clases con solo atributos y getters/setters sin comportamiento real que encapsule reglas de negocio.
 - **[Cambios divergentes](sc.dch.md)**: Cuando una clase cambia por múltiples razones no relacionadas, indicando responsabilidades mezcladas.
@@ -181,8 +186,6 @@ Para aplicar correctamente el principio de cohesión en el diseño de software, 
 - **[Grupo de datos](sc.dcl.md)**: Los mismos grupos de campos aparecen juntos en múltiples lugares, sugiriendo que deberían ser su propia clase.
 - **[Obsesión por tipos primitivos](sc.po.md)**: Uso excesivo de tipos primitivos en lugar de pequeñas clases de dominio con alta cohesión.
 - **[Clases perezosas](sc.lc.md)**: Clases que hacen demasiado poco para justificar su existencia, fragmentando conceptos que deberían estar juntos.
-- **[Métodos largos](sc.lm.md)**: Métodos que realizan múltiples operaciones, violando la cohesión a nivel de método.
-- **[Clases grandes](sc.lcl.md)**: Clases con demasiadas responsabilidades que abarcan conceptos distintos.
 
 ### Técnicas de diseño & refactorización
 
@@ -259,12 +262,11 @@ Para aplicar correctamente el principio de cohesión en el diseño de software, 
    }
    
    public class Envio {
-       private Pedido pedido;
        private Transportista transportista;
-       
-       public void calcularCosto() { /*...*/ }
+
+       public void calcularCosto(Pedido pedido) { /*...*/ }
        public void seleccionarTransportista() { /*...*/ }
-       public void generarEtiqueta() { /*...*/ }
+       public void generarEtiqueta(Pedido pedido) { /*...*/ }
    }
    ```
 
@@ -338,4 +340,4 @@ Pueden emplearse métricas formales para medir la cohesión:
 
 ### Herramientas de análisis estático de código
 
-Se recomienda implementar herramientas como SonarQube, JArchitect o NDepend que pueden detectar automáticamente problemas de cohesión y ofrecer recomendaciones para mejorar la calidad del código.
+Herramientas como SonarQube, JDepend o el analizador de métricas de IntelliJ IDEA pueden detectar automáticamente problemas de cohesión y cuantificarlos con las métricas anteriores.
