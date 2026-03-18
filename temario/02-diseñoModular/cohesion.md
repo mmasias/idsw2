@@ -119,8 +119,8 @@ public void procesarEntrada(String tipo, Object datos) {
 ```
 </td>
 </tr>
-<tr>
 <tr></tr>
+<tr>
 <td>7. <b>Cohesión coincidental</b> (la más baja)</td>
 <td>Las partes del módulo no tienen relación entre sí.</td>
 <td>
