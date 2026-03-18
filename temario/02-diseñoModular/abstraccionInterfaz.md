@@ -2,65 +2,13 @@
 
 ## ¿Por qué?
 
-Entiendase por interfaz como el punto de conexión entre diferentes partes de un sistema de software, en el que se definen un conjunto de operaciones, métodos o funciones que un componente expone para ser utilizados por otros componentes, estableciendo claramente:
-
-<div align=center>
-
-|Que operaciones|Que parámetros|Que resultados|Que errores o excepciones|
-|-|-|-|-|
-|están disponibles|requieren|devuelven|pueden producirse|
-
-</div>
+Una interfaz es el punto de conexión entre partes de un sistema: el conjunto de operaciones que un componente expone para que otros lo usen, especificando qué operaciones están disponibles, qué parámetros requieren, qué devuelven y qué errores pueden producirse.
 
 > *Una interfaz bien diseñada no sólo describe lo que un sistema hace, sino que revela su intención, ocultando detalles no esenciales.*
 >
 > — Kent Beck
 
-El desarrollo de sistemas complejos enfrenta un desafío fundamental en la comunicación entre componentes. Cuando las interfaces entre módulos se diseñan de manera inconsistente, incompleta o excesivamente detallada, surgen numerosos problemas que afectan la calidad y mantenibilidad del software.
-
-Estas deficiencias en la comunicación entre componentes se manifiestan en diversos problemas:
-
-- **Interfaces confusas**: Comunicación entre componentes con contratos ambiguos o inconsistentes que llevan a malentendidos y errores difíciles de detectar.
-- **Exceso de información expuesta**: Componentes que revelan detalles internos innecesarios, creando dependencias ocultas y dificultando futuros cambios.
-- **Funcionalidad omitida**: Interfaces incompletas que obligan a los consumidores a buscar alternativas o implementar soluciones paralelas.
-- **Duplicación funcional**: Comportamientos similares implementados de manera diferente por distintos componentes, generando inconsistencias y confusión.
-- **Falta de evolución controlada**: Sin una abstracción adecuada, las interfaces cambian frecuentemente, afectando a todos los componentes dependientes.
-
-Un síntoma claro de esta problemática es el "code smell" de "[Clases alternativas con interfaces diferentes](sc.acdi.md)", donde diferentes componentes proporcionan funcionalidades similares pero con interfaces incompatibles, complicando innecesariamente el sistema.
-
-Cuando la abstracción de interfaz se realiza deficientemente, el código manifiesta comportamientos como:
-
-<div align=center>
-<table>
-<tr>
-<th>Componente 1: Gestión de usuarios</th><th>Componente 2: Sistema similar para clientes</th>
-</tr>
-<tr>
-<td>
-
-```java
-public class GestorUsuarios {
-    public boolean agregarUsuario(String nombre, int edad, String email) { /*...*/ }
-    public Usuario buscarUsuarioPorNombre(String nombre) { /*...*/ }
-    public void eliminarUsuario(int id) { /*...*/ }
-}
-```
-</td>
-<td>
-
-```java
-public class SistemaClientes {
-    public int darDeAltaCliente(Cliente datos) { /*...*/ }
-    public Cliente obtenerCliente(String nombreCompleto) { /*...*/ }
-    public boolean borrarClientePorIdentificador(int idCliente) { /*...*/ }
-}
-```
-</td>
-</tr>
-</table>
-</div>
-
-Estos componentes realizan operaciones conceptualmente idénticas, pero con interfaces tan diferentes que complican su uso, comprensión y mantenimiento.
+Cuando las interfaces se diseñan de manera inconsistente, incompleta o excesivamente detallada, los componentes que las usan quedan expuestos a cambios internos que deberían serles irrelevantes.
 
 ## ¿Qué?
 
@@ -155,15 +103,11 @@ Las operaciones deben ser fundamentales e indiscutiblemente necesarias. Una oper
 <td>
 
 ```java
-public interface Coleccion<T> {
-    void agregar(T elemento);
-    T obtener(int indice);
+public interface Coleccion {
+    void agregar(Object elemento);
+    Object obtener(int indice);
     int tamaño();
-    
-    // No primitiva: podría implementarse usando las anteriores
-    default boolean estaVacia() {
-        return tamaño() == 0;
-    }
+    // estaVacia() no es primitiva: puede derivarse como tamaño() == 0
 }
 ```
 </td>
@@ -174,14 +118,6 @@ public interface Coleccion<T> {
 > [Tipos de interfaces](interfacesTipos.md)
 
 ## ¿Para qué?
-
-La aplicación consistente del principio de Abstracción de Interfaz produce sistemas con las siguientes características positivas:
-
-- **Claridad contractual**: Las interacciones entre componentes se basan en contratos bien definidos que todos los participantes comprenden.
-- **Ocultamiento de información**: Los detalles de implementación permanecen encapsulados, permitiendo cambios internos sin afectar a los consumidores.
-- **Consistencia semántica**: Operaciones similares se expresan de manera similar en todo el sistema, facilitando el aprendizaje y reduciendo errores.
-- **Evolución independiente**: Los componentes pueden evolucionar internamente sin afectar a sus consumidores mientras mantengan la interfaz.
-- **Sustitución transparente**: Las implementaciones pueden ser reemplazadas siempre que respeten el contrato de la interfaz.
 
 <div align=center>
 
@@ -387,31 +323,6 @@ public class Producto implements Ordenable {
         return Double.compare(this.precio, otroProducto.precio);
     }
 }
-```
-
-En lenguajes con tipado pato (Python, JavaScript), documentar claramente las interfaces implícitas:
-
-```python
-# Interfaz implícita en Python
-class Ordenable:
-    """
-    Interfaz Ordenable: Todo objeto que implemente esta interfaz debe
-    proporcionar un método comparar(otro) que devuelva:
-    - valor negativo si este objeto es menor que otro
-    - cero si son iguales
-    - valor positivo si este objeto es mayor que otro
-    """
-    def comparar(self, otro):
-        raise NotImplementedError("Método 'comparar' debe ser implementado")
-
-class Producto:
-    def __init__(self, nombre, precio):
-        self.nombre = nombre
-        self.precio = precio
-    
-    def comparar(self, otro):
-        """Implementación de interfaz Ordenable"""
-        return self.precio - otro.precio
 ```
 
 #### Interfaces fluidas
