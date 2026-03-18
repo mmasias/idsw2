@@ -327,46 +327,6 @@ public class Producto implements Ordenable {
 
 #### Interfaces fluidas
 
-> [Interfaces fluidas](ejemplo/src/interfacesFluidas/README.md)
+Patrón que permite encadenar llamadas a métodos en una única expresión, devolviendo `this` en cada paso intermedio. Produce APIs expresivas que se leen casi como lenguaje natural.
 
-Diseñar interfaces que permitan encadenamiento de métodos para operaciones relacionadas:
-
-```java
-// Interfaz fluida
-public class ConsultaSQL {
-    public ConsultaSQL seleccionar(String... campos) {
-        // Implementación
-        return this;
-    }
-    
-    public ConsultaSQL desde(String tabla) {
-        // Implementación
-        return this;
-    }
-    
-    public ConsultaSQL donde(String condicion) {
-        // Implementación
-        return this;
-    }
-    
-    public ConsultaSQL ordenarPor(String campo) {
-        // Implementación
-        return this;
-    }
-    
-    public ResultadoConsulta ejecutar() {
-        // Implementación
-        return new ResultadoConsulta();
-    }
-}
-
-// Uso
-ResultadoConsulta resultado = new ConsultaSQL()
-    .seleccionar("id", "nombre", "precio")
-    .desde("productos")
-    .donde("precio > 100")
-    .ordenarPor("nombre")
-    .ejecutar();
-```
-
-> [+Advanced](interfacesAvanzado.md)
+> [Interfaces fluidas — ejemplo completo](ejemplo/src/interfacesFluidas/README.md)
