@@ -70,7 +70,7 @@ Para aplicar correctamente el principio de tamaño en el diseño de software, de
 
 - **[Método largo](sc.lm.md)**: Métodos con demasiadas líneas de código.
 - **[Lista de parámetros larga](sc.lpl.md)**: Métodos con demasiados parámetros.
-- **[Clase grande](sc.lc.md)**: Clases con demasiados atributos y/o métodos.
+- **[Clase grande](sc.lcl.md)**: Clases con demasiados atributos y/o métodos.
 - **[Complejidad ciclomática alta](https://es.wikipedia.org/wiki/Complejidad_ciclom%C3%A1tica)** *ext*: Muchos caminos de ejecución en un método.
 - **Comentarios extensos**: Necesidad de explicaciones largas suele indicar complejidad excesiva.
 - **Anidación profunda**: Estructuras condicionales o bucles excesivamente anidados.
