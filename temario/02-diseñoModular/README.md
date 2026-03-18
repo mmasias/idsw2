@@ -192,14 +192,24 @@ Como expresa elocuentemente la analogía de la construcción de mosaicos:
 
 ## ¿Cómo?
 
+<div align=center>
+
+|Cohesión|Acoplamiento|Tamaño|
+|-|-|-|
+|¿Qué hay dentro de un módulo?|¿Cómo se conectan los módulos?|¿Cuánto contiene un módulo?|
+|Los elementos deben estar fuertemente relacionados y contribuir a un único propósito.|Las dependencias deben minimizarse, especialmente hacia elementos inestables.|El volumen debe permitir comprender el módulo de forma independiente.|
+|Señal de problema: el módulo hace cosas sin relación entre sí.|Señal de problema: cambiar un módulo obliga a cambiar otros.|Consecuencia natural de cohesión alta y acoplamiento bajo; síntoma cuando falta alguno de los dos.|
+
+</div>
+
 ### Fundamentos
 
 - **[Modularidad](modularidad.md)** y **[jerarquización](jerarquizacion.md)**: Para estructurar sistemas complejos en niveles comprensibles.
 
 ### Principios fundamentales
 
-- **[Acoplamiento](acoplamiento.md)**: Para aprender a minimizar dependencias entre componentes
 - **[Cohesión](cohesion.md)**: Para entender cómo crear componentes con responsabilidades enfocadas
+- **[Acoplamiento](acoplamiento.md)**: Para aprender a minimizar dependencias entre componentes
 - **[Tamaño](tamaño.md)**: Para dominar el arte de dimensionar adecuadamente cada elemento
 
 ### Técnicas complementarias
@@ -207,19 +217,6 @@ Como expresa elocuentemente la analogía de la construcción de mosaicos:
 - **[Abstracción de interfaz](abstraccionInterfaz.md)**: Para definir contratos claros entre componentes
 - **[Diseño por contrato](diseñoContrato.md)**: Para formalizar precondiciones, postcondiciones e invariantes
 - **[Patrones de indirección](patronesIndireccion.md)**: Para implementar mecanismos específicos de desacoplamiento
-
-### Resumen
-
-|Acoplamiento|Cohesión|Tamaño|
-|-|-|-|
-|El acoplamiento mide el grado de interdependencia entre los módulos de un sistema.|La cohesión evalúa el grado en que los elementos dentro de un módulo se relacionan entre sí y contribuyen a un propósito unificado.|El principio de tamaño establece dimensiones óptimas para los diferentes componentes del software.|
-|Una comprensión profunda de este principio incluye:|Un estudio detallado de este principio abarca:|Un análisis completo de este principio contempla:|
-|**Definición formal** de acoplamiento y sus tipos|**Definición formal** de cohesión y sus implicaciones|**Restricciones dimensionales** recomendadas para cada nivel: paquete, clase y método|
-|**Acoplamiento aferente vs. eferente** / **Acoplamiento directo vs. indirecto** y sus implicaciones|**Niveles de cohesión**, desde la coincidental (más baja) hasta la funcional (más alta)|**Fundamentos cognitivos** que justifican estas restricciones|
-|**Ley de demeter** como guía para reducir el acoplamiento||**Complejidad ciclomática** como medida de complejidad del código|
-|**Identificación de code smells** relacionados con el acoplamiento: intimidad inapropiada, cadenas de mensajes, feature envy, middle man|**Identificación de code smells** que señalan problemas de cohesión: envidia de características, clases de datos, cambios divergentes, cirugía a escopetazos, grupos de datos, obsesión por tipos primitivos, clases perezosas|**Identificación de code smells** vinculados a problemas de tamaño: métodos largos, listas de parámetros largas, clases grandes, anidamiento excesivo|
-|**Métricas** para cuantificar el acoplamiento|**Técnicas de refactorización** para mejorar la cohesión|**Técnicas de refactorización** específicas para reducir el tamaño|
-||**Métricas** para evaluar objetivamente la cohesión|**Herramientas de análisis** para monitorizar y controlar el tamaño|
 
 ### Sinergia de los tres principios
 
