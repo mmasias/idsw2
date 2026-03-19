@@ -52,7 +52,9 @@ Presencia de multitud de **clases enormes** con **métodos enormes** con **acopl
 
 </div>
 
-[Otro ejemplo.](ejemplo/diseñoBasadoMdD.md)
+- [Otro ejemplo.](ejemplo/diseñoBasadoMdD.md)
+
+- Otro ejemplo, visto en clase:
 
 <div align=center>
 
