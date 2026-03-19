@@ -52,7 +52,19 @@ Presencia de multitud de **clases enormes** con **métodos enormes** con **acopl
 
 </div>
 
-> [Otro ejemplo](ejemplo/diseñoBasadoMdD.md)
+[Otro ejemplo.](ejemplo/diseñoBasadoMdD.md)
+
+<div align=center>
+
+|![](/images/unModeloEnClase.jpeg)|
+|-|
+|`Pedido` genera PDFs, calcula totales y aplica descuentos|
+|`Pedido` conoce `ServicioEmail`, `Factura`, `LineaPedido`, `Cliente` y `Estado`|
+|`Tienda` sin atributos ni métodos: ¿dónde irá a parar la lógica que no encuentre hogar?|
+
+<sub>[Discusión en clase](https://github.com/mmasias/25-26-IDSW2/discussions/76)</sub>
+
+</div>
 
 Los intentos de desarrollar un sistema de calidad sin principios de diseño sólidos suelen conducir a estructuras difíciles de entender, modificar, probar y reutilizar.
 
