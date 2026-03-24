@@ -20,9 +20,13 @@ Se pueden distinguir diferentes categorías de acoplamiento:
 
 #### Según la dirección
 
-|Aferente||Eferente|
-|-|-|-|
-|Mide cuántas clases dependen de una clase específica. Un alto valor indica una clase ampliamente utilizada en el sistema, lo que puede reflejar una buena reutilización pero también un punto crítico de fragilidad.|![](/images/modelosUML/acoplamiento.svg)|Mide cuántas clases son utilizadas por una clase específica. Un alto valor indica una clase que depende de muchos otros componentes, lo que reduce su independencia y aumenta su fragilidad ante cambios.
+<table>
+   <tr><td colspan=2 align=center>
+      
+![](/images/modelosUML/acoplamiento.svg)
+   </td></tr>
+   <tr><td><b>Aferente: </b><br>Mide cuántas clases dependen de una clase específica. Un alto valor indica una clase ampliamente utilizada en el sistema, lo que puede reflejar una buena reutilización pero también un punto crítico de fragilidad.</td><td><b>Eferente: </b><br>Mide cuántas clases son utilizadas por una clase específica. Un alto valor indica una clase que depende de muchos otros componentes, lo que reduce su independencia y aumenta su fragilidad ante cambios.</td></tr>
+</table>
 
 #### Según la forma
 
