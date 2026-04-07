@@ -205,8 +205,6 @@ interface DocumentoImprimible {
 
 Un visor de documentos solo necesita `DocumentoLegible`. Una impresora, solo `DocumentoImprimible`. Obligarlos a depender del monolito es acoplamiento innecesario.
 
-> Ver también: [ISP — Principio de segregación de interfaces](../03-diseñoOO/SOLID_I.md)
-
 ### Identificar problemas de interfaz
 
 Los siguientes code smells indican interfaces mal diseñadas:
