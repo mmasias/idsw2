@@ -1,29 +1,44 @@
 # Comportamiento obvio no implementado
 
-Interfaces que omiten operaciones que los clientes razonablemente esperarían.
+Ocurre cuando una clase u interfaz omite operaciones que cualquier cliente esperaría razonablemente dado su nombre o propósito declarado. La abstracción está incompleta: promete más de lo que entrega.
 
-Esto viola el "Principio de Menor Sorpresa" del diseño de software, el cual establece que los componentes de un sistema deben comportarse de manera que minimice la confusión entre los usuarios del sistema.
+**Causas habituales:** el desarrollador implementó solo el lado de la abstracción que necesitaba en ese momento, sin completarla. Es frecuente en operaciones simétricas donde solo se desarrolla una dirección: abrir sin cerrar, conectar sin desconectar, depositar sin retirar.
+
+**Consecuencias:** los clientes no pueden completar su tarea a través de la abstracción y se ven forzados a acceder a la implementación concreta o a replicar externamente la lógica que debería estar encapsulada.
 
 ## Ejemplo
 
 ### Problema
 
 ```java
-// Problema: Operación obvia faltante
-interface Coleccion<T> {
-    void agregar(T elemento);
-    T obtener(int indice);
-    // Falta método para eliminar elementos
+class CuentaBancaria {
+    private double saldo;
+
+    void depositar(double cantidad) {
+        saldo += cantidad;
+    }
+    // No hay forma de retirar dinero
 }
 ```
 
 ### Solución propuesta
 
 ```java
-// Solución: Incluir operación esperada
-interface Coleccion<T> {
-    void agregar(T elemento);
-    T obtener(int indice);
-    void eliminar(int indice);
+class CuentaBancaria {
+    private double saldo;
+
+    void depositar(double cantidad) {
+        saldo += cantidad;
+    }
+
+    void retirar(double cantidad) {
+        saldo -= cantidad;
+    }
+
+    double consultarSaldo() {
+        return saldo;
+    }
 }
 ```
+
+El nombre `CuentaBancaria` implica un ciclo completo de operaciones financieras. Una cuenta que solo acepta ingresos no representa la abstracción que anuncia.

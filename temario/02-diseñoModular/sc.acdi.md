@@ -1,26 +1,28 @@
 # Alternative classes with different interfaces
 
-Ocurre cuando dos clases realizan funciones similares pero tienen interfaces diferentes. Esto significa que sus métodos para realizar tareas comunes tienen nombres diferentes o parámetros diferentes, lo cual dificulta la interoperabilidad y el reemplazo de una clase por otra.
+Ocurre cuando dos clases realizan funciones similares pero tienen interfaces diferentes: sus métodos usan nombres distintos, firmas incompatibles o convenciones inconsistentes para expresar la misma responsabilidad. Aunque hacen lo mismo, no son intercambiables.
+
+**Causas habituales:** las clases se desarrollaron de forma independiente, sin reconocer que compartían una abstracción común. Es frecuente cuando distintos desarrolladores o módulos resuelven el mismo problema sin coordinación.
+
+**Consecuencias:** el código cliente no puede tratar ambas clases de forma polimórfica, duplica la lógica de coordinación para cada variante y dificulta la incorporación de nuevas implementaciones.
 
 ## Ejemplo
 
 ### Problema
 
 ```java
-public class EmailSender {
-    public void sendEmailMessage(String to, String subject, String body) {
-        System.out.println("Sending email to: " + to);
-        System.out.println("Subject: " + subject);
-        System.out.println("Body: " + body);
-
+class NotificadorEmail {
+    void enviarCorreo(String destinatario, String asunto, String cuerpo) {
+        System.out.println("Correo a: " + destinatario);
+        System.out.println("Asunto: " + asunto);
+        System.out.println("Cuerpo: " + cuerpo);
     }
 }
 
-public class SMSNotifier {
-    public void sendSMS(String phoneNumber, String messageContent) {
-        System.out.println("Sending SMS to: " + phoneNumber);
-        System.out.println("Message: " + messageContent);
-
+class NotificadorSMS {
+    void enviarSMS(String telefono, String mensaje) {
+        System.out.println("SMS a: " + telefono);
+        System.out.println("Mensaje: " + mensaje);
     }
 }
 ```
@@ -28,30 +30,24 @@ public class SMSNotifier {
 ### Solución propuesta
 
 ```java
-public interface MessageSender {
-    void sendMessage(String recipient, String title, String message);
+interface Notificador {
+    void enviar(String destinatario, String contenido);
 }
 
-public class EmailSender implements MessageSender {
-    public void sendMessage(String to, String subject, String body) {
-        sendEmailMessage(to, subject, body);
-    }
-
-    private void sendEmailMessage(String to, String subject, String body) {
-        System.out.println("Sending email to: " + to);
-        System.out.println("Subject: " + subject);
-        System.out.println("Body: " + body);
+class NotificadorEmail implements Notificador {
+    public void enviar(String destinatario, String contenido) {
+        // El formato específico del correo es un detalle de implementación
+        System.out.println("Correo a: " + destinatario);
+        System.out.println("Contenido: " + contenido);
     }
 }
 
-public class SMSNotifier implements MessageSender {
-    public void sendMessage(String phoneNumber, String messageContent, String unused) {
-        sendSMS(phoneNumber, messageContent);
-    }
-
-    private void sendSMS(String phoneNumber, String messageContent) {
-        System.out.println("Sending SMS to: " + phoneNumber);
-        System.out.println("Message: " + messageContent);
+class NotificadorSMS implements Notificador {
+    public void enviar(String destinatario, String contenido) {
+        System.out.println("SMS a: " + destinatario);
+        System.out.println("Mensaje: " + contenido);
     }
 }
 ```
+
+La interfaz común `Notificador` expresa la abstracción compartida: enviar un mensaje a un destinatario. Los detalles del canal —cómo un correo formatea asunto y cuerpo— son responsabilidad de cada implementación y no deben filtrarse al contrato.
