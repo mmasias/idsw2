@@ -2,38 +2,34 @@
 
 ## ¿Por qué?
 
-Una interfaz es el punto de conexión entre partes de un sistema: el conjunto de operaciones que un componente expone para que otros lo usen, especificando qué operaciones están disponibles, qué parámetros requieren, qué devuelven y qué errores pueden producirse.
+Una interfaz es la superficie que un componente expone para que otros lo usen: el conjunto de operaciones disponibles, los parámetros que requieren, lo que devuelven y los errores que pueden producirse.
 
 > *Una interfaz bien diseñada no sólo describe lo que un sistema hace, sino que revela su intención, ocultando detalles no esenciales.*
 >
 > — Kent Beck
 
-Cuando las interfaces se diseñan de manera inconsistente, incompleta o excesivamente detallada, los componentes que las usan quedan expuestos a cambios internos que deberían serles irrelevantes.
+Cuando las interfaces se diseñan mal —incompletas, inconsistentes, o con detalles de implementación filtrados— el código que las usa queda expuesto a cambios internos que deberían serle irrelevantes.
 
 ## ¿Qué?
 
-La Abstracción de interfaz es un principio de diseño que define cómo los componentes exponen su funcionalidad y se comunican entre sí, proporcionando contratos claros, consistentes y adecuadamente abstraídos.
+La abstracción de interfaz es un principio de diseño que establece cómo los componentes deben exponer su funcionalidad: contratos claros, consistentes y adecuadamente abstraídos. Su objetivo es separar el *qué* (la funcionalidad ofrecida) del *cómo* (los detalles de implementación).
 
-Este principio formaliza la separación entre el "qué" (la funcionalidad proporcionada) y el "cómo" (los detalles de implementación), estableciendo los fundamentos para un acoplamiento bajo y una evolución controlada.
+Dos principios orientan este diseño:
 
 <div align=center>
 
 |Principio del menor compromiso|Principio de la menor sorpresa|
 |-|-|
-|Formulado por Abelson y Sussman, este principio establece que la interfaz de un objeto debe proporcionar su comportamiento esencial, y nada más.|Este principio establece que una abstracción debe capturar todo el comportamiento de un objeto, ni más ni menos, sin ofrecer sorpresas o efectos secundarios.|
-|*La interfaz de un módulo debería capturar la mínima cantidad de suposiciones que los clientes necesitan para usarlo correctamente.*|*Los sistemas deberían comportarse de manera que los usuarios no se sorprendan con comportamientos inesperados.*|
-|Esto implica que una interfaz debe:|En términos prácticos:|
-|- Incluir solo las operaciones necesarias|- Las funciones deben hacer lo que sus nombres sugieren|
-|- Evitar detalles de implementación|- Los comportamientos similares deben seguir patrones consistentes|
-|- Minimizar las restricciones sobre los clientes|- Las excepciones al comportamiento común deben estar claramente señaladas|
+|Formulado por Abelson y Sussman: la interfaz debe proporcionar el comportamiento esencial, y nada más.|Una abstracción debe capturar todo el comportamiento de un objeto, ni más ni menos, sin efectos secundarios inesperados.|
+|*La interfaz de un módulo debería capturar la mínima cantidad de suposiciones que los clientes necesitan para usarlo correctamente.*|*Los componentes deben comportarse exactamente como su nombre y firma sugieren.*|
 
 </div>
 
-### Características de interfaces bien diseñadas
+Estos principios se concretan en tres propiedades que toda interfaz bien diseñada debe satisfacer.
 
-#### Suficiente
+### Suficiente
 
-Debe capturar suficientes características de la abstracción para permitir una interacción significativa y eficiente. De lo contrario, el componente sería inútil.
+La interfaz debe incluir las operaciones necesarias para que la interacción sea posible. Sin ellas, el componente es inutilizable.
 
 <div align=center>
 <table>
@@ -44,17 +40,17 @@ Debe capturar suficientes características de la abstracción para permitir una 
 <td>
 
 ```java
-public interface Coleccion {
-    void agregar(Object elemento);
-    // Falta método para recuperar elementos
+public interface Pila {
+    void apilar(Object elemento);
+    // No hay forma de recuperar nada
 }
 ```
 </td><td>
 
 ```java
-public interface Coleccion {
-    void agregar(Object elemento);
-    Object obtener(int indice);
+public interface Pila {
+    void apilar(Object elemento);
+    Object desapilar();
 }
 ```
 </td>
@@ -62,9 +58,9 @@ public interface Coleccion {
 </table>
 </div>
 
-#### Completa
+### Completa
 
-Debe cubrir todos los aspectos significativos de la abstracción, siendo lo suficientemente general como para ser comúnmente utilizable por cualquier cliente.
+La interfaz debe cubrir todos los aspectos significativos de la abstracción, siendo lo suficientemente general para cualquier cliente razonable.
 
 <div align=center>
 <table>
@@ -75,14 +71,12 @@ Debe cubrir todos los aspectos significativos de la abstracción, siendo lo sufi
 <td>
 
 ```java
-public interface Coleccion<T> {
-    void agregar(T elemento);
-    T obtener(int indice);
-    boolean contiene(T elemento);
+public interface Pila {
+    void apilar(Object elemento);
+    Object desapilar();
+    Object cima();
     int tamaño();
     boolean estaVacia();
-    void eliminar(T elemento);
-    Iterator<T> iterador();
 }
 ```
 </td>
@@ -90,9 +84,9 @@ public interface Coleccion<T> {
 </table>
 </div>
 
-#### Primitiva
+### Primitiva
 
-Las operaciones deben ser fundamentales e indiscutiblemente necesarias. Una operación es primitiva si solo puede implementarse a través del acceso a la representación subyacente o si, aunque podría implementarse sobre otras operaciones primitivas, hacerlo sería significativamente menos eficiente.
+Las operaciones deben ser fundamentales: solo se incluye lo que requiere acceso a la representación interna, o lo que implementar sobre otras primitivas sería significativamente menos eficiente.
 
 <div align=center>
 <table>
@@ -103,11 +97,12 @@ Las operaciones deben ser fundamentales e indiscutiblemente necesarias. Una oper
 <td>
 
 ```java
-public interface Coleccion {
-    void agregar(Object elemento);
-    Object obtener(int indice);
+public interface Pila {
+    void apilar(Object elemento);
+    Object desapilar();
+    Object cima();
     int tamaño();
-    // estaVacia() no es primitiva: puede derivarse como tamaño() == 0
+    // estaVacia() no es primitiva: equivale a tamaño() == 0
 }
 ```
 </td>
@@ -119,93 +114,44 @@ public interface Coleccion {
 
 ## ¿Para qué?
 
-<div align=center>
+Una interfaz bien abstraída desacopla al que usa un componente de cómo está implementado. Si `GestorPedidos` depende de la clase concreta `PilaEnlazada`, cualquier cambio en su implementación obliga a revisar `GestorPedidos`. Si depende de la interfaz `Pila`, el cambio queda contenido.
 
-| Abstracción de Interfaz Efectiva |||| Abstracción de Interfaz Deficiente |
-|-|-:|:-:|:-|-|
-|Contratos claros y explícitos      |**Fluidez**|     *vs*|**Viscosidad**  | Interfaces confusas o inconsistentes |
-|Cambios de implementación ocultos  |**Flexibilidad**|*vs*|**Rigidez**| Cambios internos afectan a consumidores |
-|Pruebas automáticas efectivas       |**Robustez**|*vs*|**Fragilidad**| Imposibilidad de verificar comportamiento |
-|Fácil adición de implementaciones  |**Reusabilidad**|    *vs*|**Inmovilidad**  | Difícil adaptación a nuevos contextos |
-
-</div>
-
-La metáfora del "enchufe eléctrico" ilustra perfectamente este principio:
-
-> "Una buena interfaz funciona como un enchufe eléctrico estándar: ofrece un contrato claro (voltaje, forma), oculta detalles complejos (cómo se genera la electricidad), permite sustitución (diferentes fuentes de energía) y posibilita evolución independiente (la red eléctrica puede actualizarse sin cambiar los enchufes)."
+Este es el mecanismo por el que la abstracción de interfaz contribuye directamente al [acoplamiento bajo](acoplamiento.md): el acoplamiento se produce inevitablemente —los componentes se usan entre sí— pero queda anclado a una abstracción estable en lugar de a un detalle volátil.
 
 ## ¿Cómo?
 
-Para aplicar efectivamente el principio de Abstracción de Interfaz en el diseño de software, se pueden seguir estas estrategias prácticas:
+### Diseñar con granularidad adecuada
 
-### Identificar y resolver problemas de interfaz
-
-El primer paso es detectar síntomas de interfaces mal diseñadas:
-
-- [Clases alternativas con interfaces diferentes](sc.acdi.md)
-- [Comportamiento obvio no implementado](sc.coni.md)
-- [Responsabilidad fuera de lugar](sc.mr.md)
-
-### Diseñar interfaces sólidas
-
-#### Nombrado semántico
-
-Los nombres de interfaces y métodos deben comunicar claramente su propósito.
+Una interfaz demasiado fragmentada obliga a los clientes a depender de múltiples contratos para completar una sola operación coherente.
 
 <div align=center>
 <table>
 <tr>
-<th>Poco claro</th><th>Mejor</th>
-</tr>
-<tr>
-<td>
-    
-```java
-interface IProcessor {
-    Object process(Object input);
-}
-```
-</td><td>
-
-```java
-interface TransformadorTexto {
-    String transformar(String entrada);
-}
-```   
-</td>
-</tr>
-</table>
-</div>
-
-#### Consistencia en patrones
-
-Mantener convenciones coherentes a través de todas las interfaces.
-
-
-<div align=center>
-<table>
-<tr>
-<th>Inconsistente</th><th>Consistente</th>
+<th>Fragmentación artificial</th><th>Granularidad correcta</th>
 </tr>
 <tr>
 <td>
 
 ```java
-interface RepositorioCliente {
-    Cliente buscarPorId(String id);
-    List<Cliente> getByName(String name);
-    void save(Cliente cliente);
-    void deleteCustomer(String id);
+interface AbrirConexion {
+    void abrir();
+}
+
+interface CerrarConexion {
+    void cerrar();
+}
+
+interface EnviarMensaje {
+    void enviar(String mensaje);
 }
 ```
 </td><td>
 
 ```java
-interface RepositorioCliente {
-    Cliente buscarPorId(String id);
-    List<Cliente> buscarPorNombre(String nombre);
-    void guardar(Cliente cliente);
-    void eliminar(String id);
+interface Conexion {
+    void abrir();
+    void cerrar();
+    void enviar(String mensaje);
 }
 ```
 </td>
@@ -213,56 +159,16 @@ interface RepositorioCliente {
 </table>
 </div>
 
-#### Granularidad adecuada
+Las tres operaciones de la izquierda no tienen utilidad independiente: ningún cliente abrirá sin cerrar, ni enviará sin haber abierto. La fragmentación no aporta flexibilidad; solo añade ruido.
 
-Diseñar las interfaces con el nivel adecuado de detalle.
+### Segregar interfaces grandes
 
-<div align=center>
-<table>
-<tr>
-<th>Demasiado</th><th>Mejor</th>
-</tr>
-<tr>
-<td>
-
-```java
-interface Autenticador {
-    boolean validarCredenciales(String usuario,
-                                String contraseña);
-}
-
-interface GestorSesiones {
-    String crearSesion(String idUsuario);
-}
-
-interface ValidadorTokens {
-    boolean validarToken(String token);
-}
-```
-</td><td>
-
-
-```java
-interface ServicioAutenticacion {
-    ResultadoAutenticacion autenticar(String usuario,
-                                      String contraseña);
-    boolean validarSesion(String token);
-    void cerrarSesion(String token);
-}
-```
-</td>
-</tr>
-</table>
-</div>
-
-#### Segregar las interfaces
-
-Dividir interfaces grandes en más pequeñas y específicas.
+El razonamiento opuesto aplica cuando una interfaz única agrupa responsabilidades que distintos clientes necesitan por separado.
 
 <div align=center>
 <table>
 <tr>
-<th>Monolito</th><th>Mejor</th>
+<th>Monolito</th><th>Segregada</th>
 </tr>
 <tr>
 <td>
@@ -270,11 +176,9 @@ Dividir interfaces grandes en más pequeñas y específicas.
 ```java
 interface Documento {
     void abrir();
-    void leer();
-    void escribir();
-    void formatear();
+    String leer();
+    void escribir(String contenido);
     void imprimir();
-    void mostrarPrevisualizacion();
 }
 ```
 </td>
@@ -283,17 +187,15 @@ interface Documento {
 ```java
 interface DocumentoLegible {
     void abrir();
-    void leer();
+    String leer();
 }
 
-interface DocumentoEditable extends DocumentoLegible {
-    void escribir();
-    void formatear();
+interface DocumentoEditable {
+    void escribir(String contenido);
 }
 
 interface DocumentoImprimible {
     void imprimir();
-    void mostrarPrevisualizacion();
 }
 ```
 </td>
@@ -301,32 +203,22 @@ interface DocumentoImprimible {
 </table>
 </div>
 
-### Técnicas de implementación
+Un visor de documentos solo necesita `DocumentoLegible`. Una impresora, solo `DocumentoImprimible`. Obligarlos a depender del monolito es acoplamiento innecesario.
 
-#### Interfaces explícitas vs. implícitas
+> Ver también: [ISP — Principio de segregación de interfaces](../03-diseñoOO/SOLID_I.md)
 
-En lenguajes con soporte para interfaces explícitas (Java, C#), utilizarlas para declarar contratos formales:
+### Identificar problemas de interfaz
 
-```java
-// Interfaz explícita en Java
-public interface Ordenable {
-    int comparar(Ordenable otro);
-}
+Los siguientes code smells indican interfaces mal diseñadas:
 
-public class Producto implements Ordenable {
-    private String nombre;
-    private double precio;
-    
-    @Override
-    public int comparar(Ordenable otro) {
-        Producto otroProducto = (Producto) otro;
-        return Double.compare(this.precio, otroProducto.precio);
-    }
-}
-```
+- [Clases alternativas con interfaces diferentes](sc.acdi.md)
+- [Comportamiento obvio no implementado](sc.coni.md)
+- [Responsabilidad fuera de lugar](sc.mr.md)
 
-#### Interfaces fluidas
+### Interfaces fluidas
 
 Patrón que permite encadenar llamadas a métodos en una única expresión, devolviendo `this` en cada paso intermedio. Produce APIs expresivas que se leen casi como lenguaje natural.
 
 > [Interfaces fluidas — ejemplo completo](ejemplo/src/interfacesFluidas/README.md)
+
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
