@@ -25,8 +25,8 @@ class Cliente {
 
 ```java
 class Cliente {
-    String nombre;
-    String email;
+    private String nombre;
+    private String email;
 }
 
 class RepositorioCliente {
