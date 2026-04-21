@@ -1,127 +1,115 @@
-# Principio Abierto/Cerrado
+# Principio abierto/cerrado (OCP)
 
-Las entidades de software (clases, módulos, funciones, etc.) deben estar **abiertas** para su extensión pero **cerradas** para su modificación.
+OCP es una consecuencia de diseñar con buenas [abstracciones de interfaz](../02-diseñoModular/abstraccionInterfaz.md) y [bajo acoplamiento](../02-diseñoModular/acoplamiento.md).
 
-Las nuevas funcionalidades o comportamientos entran sin modificar el código existente, mediante el uso de herencia, composición o interfaces.
+## ¿Por qué?
 
-## Cuándo se rompe este principio
+```java
+class CalculadorSalario {
+    private static final double BASE = 1000;
 
-- Cuando usamos atributos que no sean privados.
-- Cuando usamos variables globales.
-- Cuando se procede a consultar el tipo de objeto polimórfico.
-
-Pero claro, dado que el cierre no puede ser completo, debe ser una estrategia. Estos es, los diseñadores deben elegir la clase de cambios contra los cuales cerrar el diseño. Esto toma cierta cantidad de **presciencia** derivada de la experiencia.
-
-Los diseñadores experimentados conocen a los usuarios y la industria suficientemente bien para juzgar la probabilidad de diferentes clases de cambios.
-
-## Reflexiones
-
-### ¿Herencia o composición?
-
-<div align=center>
-
-<table>
-    <tr>
-        <td valign="top">
-<pre>
-class Todo {
-    private Parte parte;
-    public Todo() {
-      this.parte = new Parte();
-    }
-    public void m4(){
-      ...
-      this.parte.m1();
-      this.parte.m3();
-      ...
-    }
-    public void m5(){
-      ...
-    }
-    public void m1(){
-      ...
-      this.parte.m1();
-      ...
-    }
-    public void m2(){
-      ...
+    public double calcular(Empleado empleado) {
+        switch (empleado.getDepartamento()) {
+            case "Ventas":     return BASE + 200;
+            case "Ingenieria": return BASE + 500;
+            default:           return BASE;
+        }
     }
 }
-class Parte {
-    public Parte() { ... }
-    public void m1() { ... }
-    public void m2() { ... }
-    public void m3() { ... }
-}
-</pre>
-        </td>
-        <td valign="top">
-<pre>
-class Base {
-    public Base() { ... }
-    public void m1() { ... }
-    public void m2() { ... }
-    public void m3() { ... }
-}
-class Descendiente extends Base {
-    public Descendiente() {
-      super();
-    }
-    public void m4(){
-      ...
-      this.m1();
-      this.m3();
-      ...
-    }
-    public void m5(){
-      ...
-    }
-    public void m1(){
-      ...
-      super.m1();
-      ...
-    }
-    public void m2(){
-      ...
-    }
-}
-</pre>
-        </td>
-    </tr>
-</table>
+```
 
-|Composición|Herencia|
-|:-:|:-:|
-|Reusabilidad por ensamblado|Reusabilidad por extensión|
-![](/images/modelosUML/modelosUML/esquemaClasesComposicion.svg)|![](/images/modelosUML/modelosUML/esquemaClasesHerencia.svg)
-Más objetos para la reusabilidad, se tiene un objeto para el todo y otro para la parte y, por tanto, menos eficiente por la re-emisión de mensajes del objeto "todo" al objeto "parte"|Menos objetos para la reusabilidad, se tiene un objeto de la clase descendiente y, por tanto, más eficiente por la emisión directa de mensajes al objeto "descendiente"
-![](/images/modelosUML/modelosUML/esquemaObjetosComposicion.svg)|![](/images/modelosUML/modelosUML/esquemaObjetosHerencia.svg)
-|Reusabilidad con desarrollo explícito en el código, declarando los atributos que son parte del todo y enviando mensajes para su gestión|Reusabilidad implícita en el lenguaje, declarando la herencia se transmiten automáticamente todos los atributos y métodos, públicos, protegidos, privados y de paquete, con unos accesos u otros dependiendo del punto de vista (clase cliente o clase descendiente)|
-|Relación dinámica entre objetos, por tanto es más flexible porque un todo puede colaborar con distintas partes en el tiempo creando nuevos objetos|Relación estática entre clases, por tanto es menos flexible porque un objeto de la clase descendiente es y será un objeto de la clase descendiente sin poder modificar su clase base en tiempo de ejecución|
-|Caja negra, desde la clase todo se tiene acceso a miembros públicos de la parte, sin posibilidad de modificar el código reusado|Caja blanca, desde la calse descendiente se tiene acceso a miembros públicos y protegidos y de paquete, con posiblidad de modificar el código reusado mediante la redefinción (@Override)|
-|Fácil de mantener porque es imposible romper el principio de encapsulación|Difícil de mantener porque es fácil romper el principio de encapsulación|
+Añadir el departamento "Marketing" obliga a abrir este fichero y modificarlo. Cada modificación expone a errores en lógica que ya funcionaba, exige volver a probar los casos existentes y produce conflictos de merge cuando el equipo trabaja en paralelo.
 
-</div>
+## ¿Qué?
 
-[Por ejemplo...](herenciaComposicion.md)
+Las entidades de software deben estar **abiertas para extensión** y **cerradas para modificación**.
+
+- Abiertas para extensión: es posible añadir nuevo comportamiento.
+- Cerradas para modificación: añadir ese comportamiento no requiere tocar el código existente.
+
+El mecanismo que lo hace posible es la **abstracción**: identificar el punto de variación y esconderlo detrás de un tipo.
+
+## ¿Para qué?
+
+El código que funciona y está probado no debería tener que cambiar para incorporar nuevas funcionalidades. La extensión ocurre añadiendo código, no modificándolo; el riesgo de regresión desaparece.
+
+## ¿Cómo?
+
+Extraer el punto de variación (la regla de cálculo) a una interfaz e implementarla por separado para cada variante:
+
+```java
+interface ReglaSalario {
+    double calcular(double base);
+}
+
+class ReglaSalarioVentas implements ReglaSalario {
+    public double calcular(double base) { return base + 200; }
+}
+
+class ReglaSalarioIngenieria implements ReglaSalario {
+    public double calcular(double base) { return base + 500; }
+}
+
+class CalculadorSalario {
+    private static final double BASE = 1000;
+
+    public double calcular(ReglaSalario regla) {
+        return regla.calcular(BASE);
+    }
+}
+```
+
+Para añadir "Marketing" se crea `ReglaSalarioMarketing`. `CalculadorSalario` no cambia.
 
 ### Patrón método-plantilla
 
-|||
-|-|-|
-Se dificulta la extracción de un factor común en los códigos de los métodos de las clases derivadas por detalles inmersos en el propio código pero respetando un esquema general|Definir el esqueleto de un algoritmo de un método, diferir algunos pasos para las clases derivadas.
+Cuando el punto de variación está dentro de un algoritmo con estructura fija, la extensión se consigue mediante herencia: la clase base define el esqueleto, las derivadas sobrescriben los pasos abstractos sin alterar la estructura general.
 
-El patron permite que las clases derivadas redefinan esos pasos abstractos sin cambiar la estructura del algoritmo de la clase padre
+| Sin método-plantilla | Con método-plantilla |
+| --- | --- |
+| [🗒️](https://github.com/mmasias/23-24-pyKlondike/tree/449affaad73a3e49b27783e1c24488011c03a1ec/src) | [🗒️](https://github.com/mmasias/23-24-pyKlondike/tree/d66842e18ebf1473c12323aed6c4869dbb99e4da/src) |
+| `mostrar()` en cada clase derivada | `mostrar()` en clase base, `mostrarContenido()` en derivadas |
 
-|Sin método plantilla|Con método plantilla|
-|:-:|:-:|
-[🗒️](https://github.com/mmasias/23-24-pyKlondike/tree/449affaad73a3e49b27783e1c24488011c03a1ec/src)|[🗒️](https://github.com/mmasias/23-24-pyKlondike/tree/d66842e18ebf1473c12323aed6c4869dbb99e4da/src)
-`mostrar()` en cada clases derivadas|`mostrar()` en clase padre, `mostrarContenido()` en clases derivadas
+### Herencia vs composición
 
-### Código sucio por herencia rechazada
+<div align=center>
 
-|||
-|-|-|
-Las subclases heredan los métodos y atributos de sus padres que no necesitan.|La solución gira en torno a crear clases intermedias en la jerarquía, habitualmente abstractas, mover métodos y atributos hacia arriba y hacia abajo hasta que todas las subclases reciban los métodos y atributos necesarios y no más. De tal manera que cada clase padre tenga el factor común de sus clases derivadas.
+| | Composición | Herencia |
+| --- | --- | --- |
+| Reusabilidad | Por ensamblado | Por extensión |
+| Relación temporal | Dinámica (cambiable en runtime) | Estática (fijada en compilación) |
+| Visibilidad del código reusado | Caja negra (solo interfaz pública) | Caja blanca (acceso a `protected`) |
+| Mantenibilidad | Alta (no se puede romper encapsulación) | Menor (override puede romper contratos) |
+| Eficiencia | Menor (re-emisión de mensajes) | Mayor (mensajes directos) |
 
-A menudo, esta solución complica la jerarquía en exceso. En tal caso, si la herencia rechazada es la implantación “vacía” de un método de la clase derivada podría considerarse como solución frente a la complicación de la jerarquía. Pero si la herencia rechazada es la transmisión de métodos públicos implantados a clases derivadas que no lo necesitan, debería re-diseñarse la jerarquía de herencia por delegación para evitar corromper la interfaz de la clase derivada
+</div>
+
+Preferir composición para extensión salvo cuando la relación es genuinamente "es un" y el comportamiento heredado no necesita ser reemplazado en runtime. [Por ejemplo...](herenciaComposicion.md)
+
+### Herencia rechazada
+
+Cuando las subclases heredan métodos que no necesitan, la jerarquía está mal diseñada. La solución habitual es crear clases intermedias abstractas que concentren solo el factor común de sus derivadas. Si la herencia rechazada es solo una implementación vacía, puede tolerarse; si contamina la interfaz pública, la jerarquía debe rediseñarse mediante delegación.
+
+[🗒️ OCP](../../src/DOO/OCP/README.md) · [🗒️ doble despacho](../../src/DOO/DD/DD00/README.md)
+
+## Compromiso
+
+El cierre no puede ser total: siempre habrá cambios que obliguen a abrir el código. El objetivo es elegir los ejes de variación más probables y cerrar el diseño contra esos.
+
+Aplicar OCP introduce indirección. Si el punto de variación es estable o poco probable, la abstracción añade complejidad sin beneficio. La primera vez que aparece la necesidad de extensión es el momento de introducir OCP, no antes (YAGNI).
+
+## *#2Think*
+
+```java
+class GeneradorInforme {
+    public void generar(String formato) {
+        if (formato.equals("PDF"))  { ... }
+        if (formato.equals("HTML")) { ... }
+        if (formato.equals("CSV"))  { ... }
+    }
+}
+```
+
+- ¿Cuál es el punto de variación en esta clase?
+- ¿Qué abstracción introducirías para aplicar OCP?
+- Si los tres formatos actuales no van a cambiar y no se prevén nuevos, ¿merece la pena aplicar OCP?

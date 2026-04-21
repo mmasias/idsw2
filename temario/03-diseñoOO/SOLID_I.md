@@ -1,32 +1,8 @@
-# Segregación de interfaces
+# Segregación de interfaces (ISP)
 
-El Principio de Segregación de Interfaces fue introducido por Robert C. Martin como parte de los principios SOLID. Este principio establece que es mejor tener muchas interfaces específicas que una sola interfaz de propósito general, lo que reduce el acoplamiento entre componentes y aumenta la cohesión.
+ISP es una aplicación de la [abstracción de interfaces](../02-diseñoModular/abstraccionInterfaz.md) al diseño orientado a objetos.
 
-## Beneficios
-
-- Reduce la fragilidad del sistema al minimizar las dependencias innecesarias.
-- Mejora la mantenibilidad del código al asegurar que las clases solo implementen los métodos que realmente necesitan.
-- Facilita la extensibilidad del sistema mediante interfaces más cohesivas.
-- Permite un diseño más claro con responsabilidades bien definidas.
-
-> Una clase no debe verse obligada a implementar interfaces que no utiliza
->
-> *==>  interfaces deben ser pequeñas y específicas*
->
-
-## Signos de violación del ISP
-
-- Métodos vacíos o con implementaciones triviales que solo lanzan excepciones
-- Comentarios como "// No aplica" o "// No implementado"
-- Clases que implementan métodos que nunca utilizan
-- Interfaces con muchos métodos no relacionados entre sí
-
-## Consideraciones de diseño
-
-- Equilibrar entre tener demasiadas interfaces pequeñas (fragmentación excesiva) y pocas interfaces grandes (acoplamiento excesivo)
-- Pensar en las interfaces desde la perspectiva del cliente que las utilizará
-- Considerar la evolución del sistema al diseñar las interfaces
-
+## ¿Por qué?
 
 ```java
 interface Objeto {
@@ -37,120 +13,89 @@ interface Objeto {
 }
 
 class Gato implements Objeto {
-    @Override
-    public void mover() {
-        System.out.println("El gato se está moviendo");
-    }
-
-    @Override
-    public void hablar() {
-        System.out.println("El gato dice: Miau!");
-    }
-
-    @Override
-    public void cazar() {
-        System.out.println("El gato está cazando");
-    }
-
-    @Override
-    public void limpiar() {
-        System.out.println("El gato no limpia");
-    }    
+    public void mover()   { System.out.println("El gato se mueve"); }
+    public void hablar()  { System.out.println("El gato dice: miau"); }
+    public void cazar()   { System.out.println("El gato caza"); }
+    public void limpiar() { /* un gato no limpia */ }
 }
 
 class Aspiradora implements Objeto {
-    @Override
-    public void mover() {
-        System.out.println("La aspiradora se está moviendo");
-    }
-
-    @Override
-    public void hablar() {
-        System.out.println("La aspiradora hace ruido");
-    }
-
-    @Override
-    public void cazar() {
-        System.out.println("La aspiradora no caza");
-    }
-
-    @Override
-    public void limpiar() {
-        System.out.println("La aspiradora limpia");
-    } 
-}
-
-class Mapa {
-    // ...
+    public void mover()   { System.out.println("La aspiradora avanza"); }
+    public void hablar()  { /* una aspiradora no habla */ }
+    public void cazar()   { /* una aspiradora no caza */ }
+    public void limpiar() { System.out.println("La aspiradora aspira"); }
 }
 ```
 
----
+`Gato` y `Aspiradora` dependen de métodos que no necesitan. Si se añade `void nadar()` a `Objeto`, ambas clases se ven forzadas a implementarlo aunque ninguna nade. Un cambio en una parte de la interfaz que no les concierne las obliga a recompilar, adaptar y probar.
+
+## ¿Qué?
+
+Los clientes no deben depender de interfaces que no utilizan.
+
+Una interfaz demasiado grande acopla a sus implementadores con métodos ajenos. Cuando esa interfaz cambia, todas las clases que la implementan se ven arrastradas por el cambio aunque este no les afecte.
+
+## ¿Para qué?
+
+Interfaces pequeñas y específicas por capacidad:
+
+- Aíslan a las clases de los cambios que no les corresponden.
+- Expresan con precisión qué capacidades usa cada parte del sistema.
+- Facilitan la composición: una clase puede implementar varias interfaces según sus capacidades reales.
+
+## ¿Cómo?
+
+Segregar `Objeto` en interfaces por capacidad:
 
 ```java
-// Interfaces segregadas
-interface Movible {
-    void mover();
-}
+interface Movible   { void mover();   }
+interface Hablante  { void hablar();  }
+interface Cazador   { void cazar();   }
+interface Limpiador { void limpiar(); }
 
-interface Hablante {
-    void hablar();
-}
-
-interface Cazador {
-    void cazar();
-}
-
-interface Limpiador {
-    void limpiar();
-}
-
-// Implementaciones
 class Gato implements Movible, Hablante, Cazador {
-    @Override
-    public void mover() {
-        System.out.println("El gato se está moviendo sigilosamente");
-    }
-
-    @Override
-    public void hablar() {
-        System.out.println("El gato dice: Miau!");
-    }
-
-    @Override
-    public void cazar() {
-        System.out.println("El gato está cazando un ratón");
-    }
+    public void mover()  { System.out.println("El gato se mueve sigilosamente"); }
+    public void hablar() { System.out.println("El gato dice: miau"); }
+    public void cazar()  { System.out.println("El gato caza un ratón"); }
 }
 
 class Aspiradora implements Movible, Limpiador {
-    @Override
-    public void mover() {
-        System.out.println("La aspiradora se está moviendo por el suelo");
-    }
-    
-    @Override
-    public void limpiar() {
-        System.out.println("La aspiradora está recogiendo polvo");
-    }
+    public void mover()   { System.out.println("La aspiradora avanza por el suelo"); }
+    public void limpiar() { System.out.println("La aspiradora recoge el polvo"); }
 }
 
 class Robot implements Movible, Hablante, Limpiador {
-    @Override
-    public void mover() {
-        System.out.println("El robot se desplaza con ruedas");
-    }
-    
-    @Override
-    public void hablar() {
-        System.out.println("El robot dice: Hola humano");
-    }
-    
-    @Override
-    public void limpiar() {
-        System.out.println("El robot está limpiando la superficie");
-    }
+    public void mover()   { System.out.println("El robot se desplaza"); }
+    public void hablar()  { System.out.println("El robot dice: hola"); }
+    public void limpiar() { System.out.println("El robot limpia la superficie"); }
 }
 ```
 
+Añadir `Nadador` no afecta a ninguna de las tres clases salvo que alguna lo implemente. Cada clase solo compila contra las interfaces que le corresponden.
+
 [Un ejemplo más completo](SOLID_I_ejemploMasCompleto.md)
+
+## Compromiso
+
+La segregación también puede ir demasiado lejos. Si `Movible` y `Hablante` siempre se usan juntas y nunca por separado, mantenerlas como interfaces distintas añade fricción sin beneficio.
+
+La pregunta correcta no es "¿puedo separar esto?" sino "¿hay clientes que usan solo una parte?". Si todos los clientes usan los mismos métodos juntos, la interfaz está bien dimensionada.
+
+## *#2Think*
+
+```java
+interface RepositorioPedido {
+    void guardar(Pedido pedido);
+    Pedido buscarPorId(int id);
+    List<Pedido> listarTodos();
+    void actualizar(Pedido pedido);
+    void eliminar(int id);
+    List<Pedido> buscarPorFecha(String fecha);
+    List<Pedido> buscarPorCliente(int clienteId);
+    void exportarCSV(String ruta);
+}
+```
+
+- ¿Qué clientes distintos podrían usar esta interfaz?
+- ¿Qué métodos necesita cada uno?
+- ¿Cómo segregarías la interfaz?

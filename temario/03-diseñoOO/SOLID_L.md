@@ -1,69 +1,111 @@
-# Sustitución de Liskov
+# Sustitución de Liskov (LSP)
 
-Los objetos de una clase derivada deben poder reemplazar a los objetos de la clase base sin afectar la corrección del programa. En otras palabras, si una clase S hereda de una clase T, entonces un objeto de la clase T debe poder ser reemplazado por un objeto de la clase S sin alterar las propiedades deseables del programa.
-
-<div align="center">
-
-![](/images/modelosUML/modelosUML/liskovEIT.svg)
-
-</div>
+## ¿Por qué?
 
 ```java
-public class Base {
-    public int m(int x) {
-        assert x >= 0 && x <= 30 : "Input out of range";
-        return x * 2;
-    }
-}
-
-public class A extends Base {
-    @Override
-    public int m(int x) {
-        assert x >= -300 && x <= 300 : "Input out of range";
-        return Math.abs(x) / 100;
-    }
-}
-
-public class B extends Base {
-    @Override
-    public int m(int x) {
-        assert x >= 0 && x <= 3 : "Input out of range";
-        return x * -20;
-    }
-}
-
-public class Cliente {
-    public static void main(String[] args) {
-        Base base = new Base();
-        A a = new A();
-        B b = new B();
-
-        System.out.println("Base m(15): " + base.m(15));
-
-        System.out.println("A m(15): " + a.m(15));
-        System.out.println("a m(-100): " + a.m(-100));
-
-        System.out.println("B m(15): " + b.m(15));
-        System.out.println("b m(2): " + b.m(2));
+class Cajero {
+    public void procesar(CuentaBancaria cuenta, double importe) {
+        if (cuenta.getSaldo() >= importe) {
+            cuenta.retirar(importe);
+        }
     }
 }
 ```
 
+El `Cajero` trabaja con `CuentaBancaria` y asume que, si el saldo es suficiente, `retirar()` no falla. Sin embargo:
 
-<div align=center>
+```java
+class CuentaAhorro extends CuentaBancaria {
+    private static final double MINIMO = 100;
 
-| |Base|a|b|
-|-|:-:|:-:|:-:|
-*parámetros*|[0..30]|[-300..300]|[0..3]
-*resultados*|[0..70]|[0..7]|[-70..70]
+    @Override
+    public void retirar(double cantidad) {
+        if (saldo - cantidad < MINIMO)
+            throw new IllegalStateException("Saldo mínimo no alcanzado");
+        saldo -= cantidad;
+    }
+}
+```
 
-![](/images/modelosUML/modelosUML/liskovEITComplete.svg)
+`CuentaAhorro` añade una precondición más fuerte: no basta con `saldo >= cantidad`, también se requiere `saldo - cantidad >= 100`. El `Cajero` no sabe nada de ese requisito y explota cuando el saldo está entre el importe y el mínimo. Sustituir `CuentaBancaria` por `CuentaAhorro` rompe el programa.
 
-</div>
+## ¿Qué?
 
+Los objetos de una clase derivada deben poder sustituir a los de la clase base sin alterar el comportamiento observable del programa.
 
-|Se cumple cuando se redefine un método en una derivada reemplazando su precondición por una más débil y su postcondicion por una más fuerte|
-|-|
-Barbara Liskov, *Principio de Sustitución*
-|La manera más sencilla para detectar violaciones en el principio de sustitución de Liskov es observando si los métodos sobrescritos en una clase hija tienen el comportamiento esperado.|
-Una forma muy común de violación del LSP suele ser cuando los métodos sobreescritos de una clase hija devuelven un null o lanzan una excepción
+La sustituibilidad no se refiere a la estructura interna del objeto, sino al **contrato visible** que el cliente espera. Una clase derivada puede extender el comportamiento, pero no puede:
+
+- Añadir precondiciones más fuertes (exigir más al llamante de lo que exige la base)
+- Debilitar postcondiciones (garantizar menos al llamante de lo que garantiza la base)
+- Romper invariantes de la clase base
+- Lanzar excepciones inesperadas
+
+[Tratamiento formal del LSP](LSP.md)
+
+## ¿Para qué?
+
+El polimorfismo funciona correctamente: el código cliente opera con referencias al tipo base y se beneficia de las implementaciones derivadas sin adaptaciones especiales.
+
+Cuando se viola el LSP, el cliente acaba haciendo comprobaciones de tipo (`instanceof`) para manejar las excepciones al contrato, lo que destruye el polimorfismo y aumenta el acoplamiento.
+
+## ¿Cómo?
+
+Para `CuentaAhorro`, el problema es que añade una restricción que la base no contempla. La solución es modelar el mínimo como parte del contrato compartido:
+
+```java
+abstract class CuentaBancaria {
+    protected double saldo;
+    protected double saldoMinimo;
+
+    public void retirar(double cantidad) {
+        if (saldo - cantidad < saldoMinimo)
+            throw new IllegalStateException("Saldo mínimo no alcanzado");
+        saldo -= cantidad;
+    }
+}
+
+class CuentaAhorro extends CuentaBancaria {
+    public CuentaAhorro(double saldoInicial) {
+        this.saldo = saldoInicial;
+        this.saldoMinimo = 100;
+    }
+}
+
+class CuentaCorriente extends CuentaBancaria {
+    public CuentaCorriente(double saldoInicial) {
+        this.saldo = saldoInicial;
+        this.saldoMinimo = 0;
+    }
+}
+```
+
+Ahora el contrato de `retirar()` es uniforme para todos los subtipos. El `Cajero` no necesita saber qué tipo concreto está usando.
+
+Cuando la violación del LSP aparece, a menudo señala un problema en la jerarquía: la derivada no es un subtipo genuino de la base, sino algo diferente que comparte implementación. En ese caso, la herencia no es la relación correcta.
+
+## Compromiso
+
+La sustituibilidad completa es el ideal. En la práctica, pequeñas violaciones son tolerables en sistemas cerrados donde el cliente conoce los subtipos y la probabilidad de extensión es nula.
+
+El problema crece con el sistema: cada nueva subclase puede traer nuevas excepciones al contrato, y el cliente acumula `instanceof` hasta que el diseño se hace inmanejable.
+
+## *#2Think*
+
+```java
+abstract class Ave {
+    public abstract void volar();
+}
+
+class Aguila extends Ave {
+    public void volar() { System.out.println("El águila vuela"); }
+}
+
+class Pinguino extends Ave {
+    public void volar() {
+        throw new UnsupportedOperationException("Los pingüinos no vuelan");
+    }
+}
+```
+
+- ¿Viola `Pinguino` el LSP? ¿En qué condición lo viola y en cuál no?
+- ¿Cómo rediseñarías la jerarquía para que la sustituibilidad se mantenga?

@@ -1,57 +1,102 @@
 # Principio de responsabilidad única (SRP)
 
+SRP es una aplicación de la [alta cohesión funcional](../02-diseñoModular/cohesion.md) al diseño orientado a objetos.
+
 ## ¿Por qué?
 
-- *Problema de responsabilidades múltiples:* Una clase debe tener una única responsabilidad para ser fácilmente comprensible, modificable y mantenible.
-- *Fragilidad del software:* Módulos que se ven afectados por cambios no relacionados debido a dependencias entre múltiples responsabilidades.
-- *Dificultad para probar:* Las clases con múltiples responsabilidades son más difíciles de probar en un entorno aislado.
+```java
+class Empleado {
+    private String nombre;
+    private String departamento;
+    private double salarioBase;
+
+    public String getInfoPersonal() {
+        return nombre + " - " + departamento;
+    }
+
+    public double calcularSalario() {
+        if (departamento.equals("Ventas"))
+            return salarioBase + 200;
+        return salarioBase;
+    }
+
+    public void guardarEnBaseDeDatos() {
+        // conexión a BD, INSERT, manejo de errores...
+    }
+}
+```
+
+Esta clase puede cambiar por tres razones distintas: RR.HH. modifica los datos que se almacenan del empleado, Contabilidad cambia las reglas del salario, IT migra la base de datos. Tres grupos de personas, tres motivos de cambio independientes sobre un mismo fichero. Un cambio en la lógica de nómina obliga a tocar la misma clase que persiste datos, arriesgando romper algo que no tenía por qué cambiar.
 
 ## ¿Qué?
 
-- *Principio de responsabilidad única (SRP):* Una clase debe tener una sola razón para cambiar. Este principio fue acuñado por Robert Martin.
- 
+Una clase debe tener una sola razón para cambiar.
+
+"Razón para cambiar" no significa funcionalidad ni tema. Significa **actor**: el grupo de personas o el área del sistema que origina ese cambio. Una clase viola el SRP cuando dos actores distintos pueden pedir que se modifique.
+
 ## ¿Para qué?
 
-- *Separación clara de responsabilidades:* Mejora la comprensibilidad del código y su mantenimiento.
-- *Flexibilidad y reutilización:* Facilita el cambio sin afectar otras partes del sistema.
-- *Mejora en las pruebas:* Aísla los cambios, permitiendo pruebas más simples y efectivas.
+| Sin SRP | Con SRP |
+| --- | --- |
+| Cambiar la lógica de salario puede romper la lectura de datos | Cada clase evoluciona de forma independiente |
+| Para testear el cálculo hay que instanciar el almacenamiento | Cada responsabilidad se prueba en aislamiento |
+| El fallo en persistencia bloquea el desarrollo de nóminas | Los equipos trabajan en paralelo sin conflictos de merge |
 
 ## ¿Cómo?
 
-### ¿A qué hace referencia el término "cambiar" en el SRP?
+Identificar los actores de la clase y separar sus responsabilidades:
 
-*Cambiar* se refiere a la modificación o actualización del código de una clase debido a cambios en los requisitos del negocio, corrección de errores o adición de nuevas funcionalidades.
+```java
+class Empleado {
+    private String nombre;
+    private String departamento;
+    private double salarioBase;
 
-- Clase con más de una responsabilidad >> hace más de una cosa. 
-  - Si hace más de una cosa >> es posible que deba cambiar en más de una ocasión.
-     - Cambia mucho >> aumenta la complejidad y el riesgo de errores.
+    public String getNombre() { return nombre; }
+    public String getDepartamento() { return departamento; }
+    public double getSalarioBase() { return salarioBase; }
+}
 
-||
-|-|
-Cada clase debe tener una única responsabilidad bien definida y limitada
-Cualquier cambio necesario en esa responsabilidad solo debería requerir cambios en la propia clase, sin afectar a otras partes del sistema.
+class CalculadorSalario {
+    public double calcular(Empleado empleado) {
+        if (empleado.getDepartamento().equals("Ventas"))
+            return empleado.getSalarioBase() + 200;
+        return empleado.getSalarioBase();
+    }
+}
 
-De esta manera, se pueden mantener las clases de forma independiente y se reduce el acoplamiento entre ellas, lo que facilita el mantenimiento, la reutilización y la evolución del sistema.
+class RepositorioEmpleado {
+    public void guardar(Empleado empleado) { ... }
+    public Empleado buscar(String nombre) { ... }
+}
+```
 
-## Ejemplos
+Cuando Contabilidad cambia las reglas de nómina, solo se modifica `CalculadorSalario`. Cuando IT migra la base de datos, solo se toca `RepositorioEmpleado`. `Empleado` permanece estable.
 
-- [Ejemplo con empleado y salario](SOLID_S_ejemplosEmpleadoSalario.md)
-- [Ejemplo con una biblioteca](SOLID_S_ejemploBibliotecaPrestamo.md)
+**Para identificar violaciones:** pregunta "¿qué actores podrían pedir un cambio en esta clase?". Si la respuesta incluye más de uno, hay más de una responsabilidad.
 
+- [Ver ejemplo con empleado y salario](SOLID_S_ejemplosEmpleadoSalario.md)
+- [Ver ejemplo con biblioteca](SOLID_S_ejemploBibliotecaPrestamo.md)
 
-## Cohesión
+## Compromiso
 
-- *Cohesión:* Grado en que los subelementos dentro de un módulo están relacionados entre sí.
-- *Tipos de cohesión:* Desde coincidental (la menos deseada) hasta funcional (la más deseada).
+Separar responsabilidades añade clases. Si la clase es pequeña y sus responsabilidades cambian siempre juntas porque las origina el mismo actor, la división genera indirección sin beneficio real.
 
-|Tipo de cohesión|Descripción|Ejemplo|
-|-|-|-|
-|Coincidente   | Las tareas de un módulo están agrupadas arbitrariamente y no tienen relación entre sí. | Un módulo que tiene funciones de cálculo matemático junto a funciones de lectura de archivos. |
-|Lógica        | Las funciones del módulo están agrupadas por su tipo, pero solo se ejecuta una según una condición. | Un módulo que contiene funciones para diferentes operaciones de impresión, donde una condición determina si se imprime en PDF, papel o fax. |
-|Temporal      | Las funciones de un módulo están agrupadas porque se ejecutan en el mismo tiempo, como durante la inicialización. | Un módulo que contiene funciones para inicializar las configuraciones de red, pantalla y sonido al arrancar un sistema. |
-|Procedimental | Las funciones están relacionadas porque se ejecutan en un orden secuencial específico. | Un módulo que valida un formulario, lo guarda y luego envía una confirmación al usuario en un flujo ordenado. |
-|Comunicacional| Las funciones están relacionadas porque utilizan los mismos datos o recursos de entrada/salida. | Un módulo que contiene funciones para validar, calcular e imprimir un informe financiero usando la misma fuente de datos. |
-|Secuencial    | Las funciones están relacionadas porque la salida de una es la entrada de otra.    | Un módulo que procesa datos en tres etapas: lectura, transformación y escritura. La salida de una etapa alimenta a la siguiente. |
-|Funcional     | Todas las funciones del módulo están orientadas a una única tarea claramente definida. | Un módulo dedicado a la autenticación de usuarios que tiene funciones para verificar credenciales, generar tokens y mantener sesiones activas. |
+El SRP no prescribe "una clase, un método". Prescribe una sola fuente de cambio.
 
-Estos tipos de cohesión van desde la menos deseada (coincidental o accidental) hasta la más deseada (funcional).
+## *#2Think*
+
+```java
+class Pedido {
+    private List<Articulo> articulos;
+    private Cliente cliente;
+
+    public double calcularTotal() { ... }
+    public void enviarConfirmacion() { ... }  // envía email al cliente
+    public String generarFacturaPDF() { ... }
+}
+```
+
+- ¿Cuántas razones de cambio tiene esta clase?
+- ¿Qué actores podrían pedir modificaciones a cada método?
+- Si `enviarConfirmacion()` cambia porque se migra de email a SMS, ¿debería afectar a `calcularTotal()`?
