@@ -52,7 +52,7 @@ class Animal {
 }
 
 // Uso
-Cliente client = new Animal("Pájaro");
+Cliente cliente = new Animal("Pájaro");
 ```
 </td>
 </tr>
@@ -126,7 +126,7 @@ class Pajaro {
 }
 
 // Uso
-Cliente client = new Pajaro(); // o new Perro();
+Cliente cliente = new Pajaro(); // o new Perro();
 ```
 
 </td>
@@ -214,7 +214,7 @@ class Pajaro extends Animal {
 }
 
 // Uso
-Animal animal = zoologico.getAnimal();
+Cliente cliente = zoologico.getAnimal();
 ```
 
 </td>
