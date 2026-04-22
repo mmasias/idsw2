@@ -1,0 +1,42 @@
+@startuml
+
+abstract class Animal {
+    + {abstract} aceptar(visitante: VisitanteAnimal)
+}
+
+class Perro extends Animal {
+    + aceptar(visitante: VisitanteAnimal)
+    + moverCola()
+}
+
+class Pajaro extends Animal {
+    + aceptar(visitante: VisitanteAnimal)
+    + posarseEnMano()
+    + cantarFeliz()
+}
+
+interface VisitanteAnimal {
+    + visitar(perro: Perro)
+    + visitar(pajaro: Pajaro)
+}
+
+class CuidadorAnimal {
+    + visitar(perro: Perro)
+    + visitar(pajaro: Pajaro)
+    + cuidar(animal: Animal)
+}
+
+CuidadorAnimal .u.|> VisitanteAnimal
+Animal .l.> VisitanteAnimal : aceptar()
+
+Perro -r[hidden]- Pajaro
+
+note right of Pajaro::aceptar
+  visitante.visitar(this)
+end note
+
+note left of CuidadorAnimal::cuidar
+  animal.aceptar(this)
+end note
+
+@enduml
