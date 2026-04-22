@@ -1,0 +1,27 @@
+@startuml
+skinparam classAttributeIconSize 0
+
+class Animal {
+    - cabeza: Cabeza
+    - cuerpo: Cuerpo
+    - extremidades: Extremidades[]
+    - alas: Alas
+    - cola: Cola
+    - tipo: String
+    + Animal(tipo: String)
+    + moverse()
+    + comunicarse()
+    + comer()
+}
+
+class Cliente {
+}
+
+Cliente ..> Animal : new Animal("Pájaro")
+
+note left of Animal::moverse
+  if (tipo.equals("Perro")) { ... }
+  else if (tipo.equals("Pájaro")) { ... }
+end note
+
+@enduml

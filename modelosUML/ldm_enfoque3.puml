@@ -1,0 +1,35 @@
+@startuml
+skinparam classAttributeIconSize 0
+
+abstract class Animal {
+    - cabeza: Cabeza
+    - cuerpo: Cuerpo
+    + respirar()
+    + dormir()
+    + {abstract} moverse()
+    + {abstract} comunicarse()
+    + {abstract} comer()
+}
+
+class Perro extends Animal {
+    - patas: Extremidades[]
+    - cola: Cola
+    + moverse()
+    + comunicarse()
+    + comer()
+}
+
+class Pajaro extends Animal {
+    - alas: Alas
+    - cola: Cola
+    + moverse()
+    + comunicarse()
+    + comer()
+}
+
+class Cliente {
+}
+
+Cliente ..> Animal : zoologico.getAnimal()
+
+@enduml

@@ -1,0 +1,32 @@
+@startuml
+skinparam classAttributeIconSize 0
+
+class Perro {
+    - cabeza: Cabeza
+    - cuerpo: Cuerpo
+    - patas: Extremidades[]
+    - cola: Cola
+    + Perro()
+    + moverse()
+    + comunicarse()
+    + comer()
+}
+
+class Pajaro {
+    - cabeza: Cabeza
+    - cuerpo: Cuerpo
+    - alas: Alas
+    - cola: Cola
+    + Pajaro()
+    + moverse()
+    + comunicarse()
+    + comer()
+}
+
+class Cliente {
+}
+
+Cliente ..> Perro : new Perro()
+Cliente ..> Pajaro : new Pajaro()
+
+@enduml

@@ -1,0 +1,39 @@
+@startuml
+skinparam classAttributeIconSize 0
+
+abstract class Animal {
+    + {abstract} moverse()
+    + {abstract} comunicarse()
+    + {abstract} comer()
+}
+
+class Perro extends Animal {
+    + moverse()
+    + comunicarse()
+    + comer()
+    + moverCola()
+}
+
+class Pajaro extends Animal {
+    + moverse()
+    + comunicarse()
+    + comer()
+    + posarseEnMano()
+    + cantarFeliz()
+}
+
+class Cuidador {
+    + alimentar(Animal)
+}
+
+Cuidador ..> Animal : alimentar(animal)
+
+note left of Cuidador::alimentar
+  if (animal instanceof Pajaro) {
+    ((Pajaro) animal).posarseEnMano()
+  } else {
+    ((Perro) animal).moverCola()
+  }
+end note
+
+@enduml
