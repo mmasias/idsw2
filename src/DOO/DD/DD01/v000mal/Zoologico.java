@@ -8,12 +8,12 @@ public class Zoologico {
         Animal perro = new Animal("Perro");
         Animal pajaro = new Animal("Pajaro");
         
-        System.out.println("=== Cuidando al perro ===");
+        System.out.println("Cuidando al perro");
         perro.moverse();
         perro.comunicarse();
         cuidador.alimentar(perro);
         
-        System.out.println("=== Cuidando al pájaro ===");
+        System.out.println("Cuidando al pájaro");
         pajaro.moverse();
         pajaro.comunicarse();
         cuidador.alimentar(pajaro);

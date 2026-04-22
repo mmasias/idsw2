@@ -1,0 +1,24 @@
+@startuml
+skinparam sequenceMessageAlign center
+
+participant "PedidoFisico\n(ref. declarada: Pedido)" as PF
+participant "ProcesadorEnvios" as Envios
+participant "ProcesadorFacturacion" as Fact
+participant "ProcesadorNotificaciones" as Notif
+
+== ProcesadorEnvios ==
+Envios -> PF: pedido.aceptar(this)
+PF -> Envios: visitante.visitar(this)
+Envios -> Envios: procesa envío
+
+== ProcesadorFacturacion ==
+Fact -> PF: pedido.aceptar(this)
+PF -> Fact: visitante.visitar(this)
+Fact -> Fact: calcula factura
+
+== ProcesadorNotificaciones ==
+Notif -> PF: pedido.aceptar(this)
+PF -> Notif: visitante.visitar(this)
+Notif -> Notif: envía notificación
+
+@enduml

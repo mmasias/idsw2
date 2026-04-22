@@ -1,0 +1,32 @@
+@startuml
+skinparam sequenceMessageAlign center
+
+participant "ProcesadorEnvios" as Procesador
+participant "PedidoFisico\n(ref. declarada: Pedido)" as PF
+
+== pedido es PedidoFisico ==
+Procesador -> PF: pedido.aceptar(this)
+note right
+  1er despacho — polimorfismo dinámico:
+  Java ejecuta PedidoFisico.aceptar()
+  según el tipo concreto en runtime
+end note
+
+PF -> Procesador: procesador.procesarEnvioFisico(this)
+note right
+  2do despacho — sobrecarga estática:
+  Java resuelve procesarEnvioFisico()
+  porque this es PedidoFisico en compilación
+end note
+
+note over Procesador, PF
+  Limitación: aceptar(ProcesadorEnvios) acopla
+  Pedido a una clase concreta, no a una interfaz
+end note
+
+== pedido es PedidoDigital ==
+create participant "PedidoDigital\n(ref. declarada: Pedido)" as PD
+Procesador -> PD: pedido.aceptar(this)
+PD -> Procesador: procesador.procesarEnvioDigital(this)
+
+@enduml

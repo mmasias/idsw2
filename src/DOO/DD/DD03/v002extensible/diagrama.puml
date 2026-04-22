@@ -1,0 +1,61 @@
+@startuml
+skinparam classAttributeIconSize 0
+
+interface VisitantePedido {
+    + visitar(pf: PedidoFisico)
+    + visitar(pd: PedidoDigital)
+    + visitar(ps: PedidoSuscripcion)
+}
+
+abstract class Pedido {
+    - id: String
+    - cliente: String
+    - total: double
+    + {abstract} aceptar(visitante: VisitantePedido)
+}
+
+class PedidoFisico {
+    - direccionEnvio: String
+    - peso: double
+    + aceptar(visitante: VisitantePedido)
+}
+
+class PedidoDigital {
+    - email: String
+    + aceptar(visitante: VisitantePedido)
+}
+
+class PedidoSuscripcion {
+    - duracionMeses: int
+    + aceptar(visitante: VisitantePedido)
+}
+
+class ProcesadorEnvios {
+    + visitar(pf: PedidoFisico)
+    + visitar(pd: PedidoDigital)
+    + visitar(ps: PedidoSuscripcion)
+}
+
+class ProcesadorFacturacion {
+    + visitar(pf: PedidoFisico)
+    + visitar(pd: PedidoDigital)
+    + visitar(ps: PedidoSuscripcion)
+}
+
+class ProcesadorNotificaciones {
+    + visitar(pf: PedidoFisico)
+    + visitar(pd: PedidoDigital)
+    + visitar(ps: PedidoSuscripcion)
+}
+
+Pedido <|-- PedidoFisico
+Pedido <|-- PedidoDigital
+Pedido <|-- PedidoSuscripcion
+
+ProcesadorEnvios ..|> VisitantePedido
+ProcesadorFacturacion ..|> VisitantePedido
+ProcesadorNotificaciones ..|> VisitantePedido
+
+Pedido ..> VisitantePedido
+
+@enduml

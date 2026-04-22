@@ -1,0 +1,43 @@
+@startuml
+skinparam classAttributeIconSize 0
+
+abstract class Pedido {
+    - id: String
+    - cliente: String
+    - total: double
+    + {abstract} aceptar(procesador: ProcesadorEnvios)
+}
+
+class PedidoFisico {
+    - direccionEnvio: String
+    - peso: double
+    + aceptar(procesador: ProcesadorEnvios)
+}
+
+class PedidoDigital {
+    - email: String
+    + aceptar(procesador: ProcesadorEnvios)
+}
+
+class PedidoSuscripcion {
+    - duracionMeses: int
+    + aceptar(procesador: ProcesadorEnvios)
+}
+
+class ProcesadorEnvios {
+    + procesar(pedido: Pedido)
+    + procesarEnvioFisico(pf: PedidoFisico)
+    + procesarEnvioDigital(pd: PedidoDigital)
+    + procesarActivacionSuscripcion(ps: PedidoSuscripcion)
+}
+
+Pedido <|-- PedidoFisico
+Pedido <|-- PedidoDigital
+Pedido <|-- PedidoSuscripcion
+
+ProcesadorEnvios ..> Pedido : primer despacho
+PedidoFisico --> ProcesadorEnvios : segundo despacho
+PedidoDigital --> ProcesadorEnvios : segundo despacho
+PedidoSuscripcion --> ProcesadorEnvios : segundo despacho
+
+@enduml

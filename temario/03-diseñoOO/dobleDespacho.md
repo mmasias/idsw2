@@ -13,7 +13,6 @@ La técnica delega en el propio objeto la responsabilidad de "saber qué tipo so
 
 </div>
 
-
 ```java
 abstract class Animal {
     void respirar() { /* ... */ }
@@ -68,8 +67,6 @@ class CuidadorAnimal implements VisitanteAnimal {
 }
 ```
 
-
-
 ### Cómo funciona
 
 Cuando `cuidar` llama a `animal.aceptar(this)`:
@@ -108,4 +105,4 @@ class Veterinario implements VisitanteAnimal {
 
 ---
 
-[🗒️ El mismo patrón con otro dominio](../../src/DOO/DD/DD02/README.md)
+[🗒️ Aspiradora/Celda — el mismo patrón](../../src/DOO/DD/DD02/README.md) · [🗒️ Sistema de pedidos — con múltiples visitantes](../../src/DOO/DD/DD03/README.md)

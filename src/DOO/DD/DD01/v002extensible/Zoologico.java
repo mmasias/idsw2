@@ -9,22 +9,22 @@ public class Zoologico {
         Animal perro = new Perro();
         Animal pajaro = new Pajaro();
         
-        System.out.println("=== Cuidando al perro ===");
+        System.out.println("Cuidando al perro");
         perro.respirar();
         perro.moverse();
         perro.comunicarse();
         cuidador.cuidar(perro);
         
-        System.out.println("=== Examinando al perro ===");
+        System.out.println("Examinando al perro");
         veterinario.examinar(perro);
         
-        System.out.println("=== Cuidando al pájaro ===");
+        System.out.println("Cuidando al pájaro");
         pajaro.respirar();
         pajaro.moverse();
         pajaro.comunicarse();
         cuidador.cuidar(pajaro);
         
-        System.out.println("=== Examinando al pájaro ===");
+        System.out.println("Examinando al pájaro");
         veterinario.examinar(pajaro);
     }
 }

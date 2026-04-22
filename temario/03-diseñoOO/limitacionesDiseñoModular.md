@@ -2,15 +2,14 @@
 
 Este ejemplo ilustra perfectamente el desafío de encontrar el equilibrio adecuado en la modularización:
 
-## Enfoque 1: Una única clase asume toda la responsabilidad
-
+## Enfoque 1: una única clase asume toda la responsabilidad
 
 <table>
 
 <tr>
 <td  valign=top>
 
-![](/images/modelosUML/ldm_enfoque1.svg)
+![Enfoque 1 — God class con condicionales por tipo](/images/modelosUML/ldm_enfoque1.svg)
 </td><td>
 
 ```java
@@ -68,7 +67,7 @@ Cliente cliente = new Animal("Pájaro");
 
 > Estadio 1 — ***God class con condicionales por tipo***
 
-## Enfoque 2: Una clase por cada tipo de elemento
+## Enfoque 2: una clase por cada tipo de elemento
 
 <table>
 
@@ -143,7 +142,7 @@ Cliente cliente = new Pajaro(); // o new Perro();
 > Estadio 2 — ***Clases concretas sin abstracción común.***
 
 
-## Enfoque 3: Jerarquía de clases
+## Enfoque 3: jerarquía de clases
 
 Una mejor solución podría ser:
 
@@ -286,6 +285,8 @@ Estadio 3|Jerarquía con clase abstracta.|Introduce el nivel de abstracción cor
 Estadio 3 — trampa|`instanceof` + casting en el cliente|La abstracción queda saboteada desde fuera. Viola LSP: si el consumidor discrimina por tipo concreto, el polimorfismo no está funcionando. Escala igual de mal que el Estadio 1.
 
 </div>
+
+[🗒️ Aspiradora/Celda — el mismo patrón](../../src/DOO/DD/DD02/README.md) · [🗒️ Sistema de pedidos — con múltiples visitantes](../../src/DOO/DD/DD03/README.md)
 
 <div align=right>
 

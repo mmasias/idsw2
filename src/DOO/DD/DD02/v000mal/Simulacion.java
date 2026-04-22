@@ -25,13 +25,13 @@ public class Simulacion {
         
         mundo.generarSuciedad(30);
         
-        int filaAsp, columnaAsp;
+        int filaAspiradora, columnaAspiradora;
         do {
-            filaAsp = random.nextInt(mundo.filas);
-            columnaAsp = random.nextInt(mundo.columnas);
-        } while (!mundo.posicionAccesible(filaAsp, columnaAsp));
+            filaAspiradora = random.nextInt(mundo.filas);
+            columnaAspiradora = random.nextInt(mundo.columnas);
+        } while (!mundo.posicionAccesible(filaAspiradora, columnaAspiradora));
         
-        this.aspiradora = new Aspiradora(filaAsp, columnaAsp);
+        this.aspiradora = new Aspiradora(filaAspiradora, columnaAspiradora);
         
         this.gato = null;
     }
