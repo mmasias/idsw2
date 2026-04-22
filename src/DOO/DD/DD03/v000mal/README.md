@@ -4,7 +4,7 @@
 
 <div align=center>
 
-|![](diagrama.svg)
+|![Diagrama v000mal — instanceof + casting](diagrama.svg)
 |-
 
 </div>
@@ -12,14 +12,14 @@
 ```java
 public void procesar(Pedido pedido) {
     if (pedido instanceof PedidoFisico) {
-        PedidoFisico pf = (PedidoFisico) pedido;
-        procesarEnvioFisico(pf);
+        PedidoFisico pedidoFisico = (PedidoFisico) pedido;
+        procesarEnvioFisico(pedidoFisico);
     } else if (pedido instanceof PedidoDigital) {
-        PedidoDigital pd = (PedidoDigital) pedido;
-        procesarEnvioDigital(pd);
+        PedidoDigital pedidoDigital = (PedidoDigital) pedido;
+        procesarEnvioDigital(pedidoDigital);
     } else if (pedido instanceof PedidoSuscripcion) {
-        PedidoSuscripcion ps = (PedidoSuscripcion) pedido;
-        procesarActivacionSuscripcion(ps);
+        PedidoSuscripcion pedidoSuscripcion = (PedidoSuscripcion) pedido;
+        procesarActivacionSuscripcion(pedidoSuscripcion);
     }
 }
 ```

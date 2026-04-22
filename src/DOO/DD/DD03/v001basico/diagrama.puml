@@ -26,9 +26,9 @@ class PedidoSuscripcion {
 
 class ProcesadorEnvios {
     + procesar(pedido: Pedido)
-    + procesarEnvioFisico(pf: PedidoFisico)
-    + procesarEnvioDigital(pd: PedidoDigital)
-    + procesarActivacionSuscripcion(ps: PedidoSuscripcion)
+    + procesarEnvioFisico(pedidoFisico: PedidoFisico)
+    + procesarEnvioDigital(pedidoDigital: PedidoDigital)
+    + procesarActivacionSuscripcion(pedidoSuscripcion: PedidoSuscripcion)
 }
 
 Pedido <|-- PedidoFisico

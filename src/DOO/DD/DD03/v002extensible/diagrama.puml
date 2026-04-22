@@ -2,9 +2,9 @@
 skinparam classAttributeIconSize 0
 
 interface VisitantePedido {
-    + visitar(pf: PedidoFisico)
-    + visitar(pd: PedidoDigital)
-    + visitar(ps: PedidoSuscripcion)
+    + visitar(pedidoFisico: PedidoFisico)
+    + visitar(pedidoDigital: PedidoDigital)
+    + visitar(pedidoSuscripcion: PedidoSuscripcion)
 }
 
 abstract class Pedido {
@@ -31,21 +31,21 @@ class PedidoSuscripcion {
 }
 
 class ProcesadorEnvios {
-    + visitar(pf: PedidoFisico)
-    + visitar(pd: PedidoDigital)
-    + visitar(ps: PedidoSuscripcion)
+    + visitar(pedidoFisico: PedidoFisico)
+    + visitar(pedidoDigital: PedidoDigital)
+    + visitar(pedidoSuscripcion: PedidoSuscripcion)
 }
 
 class ProcesadorFacturacion {
-    + visitar(pf: PedidoFisico)
-    + visitar(pd: PedidoDigital)
-    + visitar(ps: PedidoSuscripcion)
+    + visitar(pedidoFisico: PedidoFisico)
+    + visitar(pedidoDigital: PedidoDigital)
+    + visitar(pedidoSuscripcion: PedidoSuscripcion)
 }
 
 class ProcesadorNotificaciones {
-    + visitar(pf: PedidoFisico)
-    + visitar(pd: PedidoDigital)
-    + visitar(ps: PedidoSuscripcion)
+    + visitar(pedidoFisico: PedidoFisico)
+    + visitar(pedidoDigital: PedidoDigital)
+    + visitar(pedidoSuscripcion: PedidoSuscripcion)
 }
 
 Pedido <|-- PedidoFisico
