@@ -282,7 +282,12 @@ Estadio 3 — trampa|`instanceof` + casting en el cliente|La abstracción queda 
 
 </div>
 
-[🗒️ Aspiradora/Celda — el mismo patrón](../../src/DOO/DD/DD02/README.md) · [🗒️ Sistema de pedidos — con múltiples visitantes](../../src/DOO/DD/DD03/README.md)
+> Otros ejemplos
+> 
+> ||||
+> |-|-|-|
+> [Aspiradora/Celda](../../src/DOO/DD/DD02/README.md)|[Sistema de pedidos](../../src/DOO/DD/DD03/README.md)|Mundo
+
 
 <div align=right>
 
