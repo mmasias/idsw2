@@ -232,17 +232,9 @@ Cliente cliente = zoologico.getAnimal();
 </table>
 
 
-### Problemas identificados
+### Aún hay problemas!!!
 
 En el diseño con herencia propuesto, un cliente podría intentar diferenciar el comportamiento según el tipo concreto:
-
-<table>
-
-<tr>
-<td valign=top>
-
-![Estadio 3 trampa — instanceof en el cliente](/images/modelosUML/ldm_enfoque3trampa.svg)
-</td><td>
 
 ```java
 public class Cuidador {
@@ -261,10 +253,12 @@ public class Cuidador {
 }
 ```
 
-</td>
-</tr>
+<div align=center>
 
-</table>
+|![Estadio 3 trampa — instanceof en el cliente](/images/modelosUML/ldm_enfoque3trampa.svg)
+|-|
+
+</div>
 
 Este enfoque presenta varios problemas:
 
