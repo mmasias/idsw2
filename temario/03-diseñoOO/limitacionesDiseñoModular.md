@@ -10,6 +10,15 @@ Este ejemplo ilustra perfectamente el desafío de encontrar el equilibrio adecua
 <td  valign=top>
 
 ![Enfoque 1 — God class con condicionales por tipo](/images/modelosUML/ldm_enfoque1.svg)
+
+### Problemas identificados
+
+- **Baja cohesión**: La clase tiene múltiples responsabilidades.
+- **Clase grande**: Propenso a crecer con nuevos subtipos.
+- **Validaciones por tipo**: Uso de condicionales en lugar del polimorfismo.
+
+> Estadio 1 — ***God class con condicionales por tipo***
+
 </td><td>
 
 ```java
@@ -58,15 +67,6 @@ Cliente cliente = new Animal("Pájaro");
 
 </table>
 
-
-### Problemas identificados
-
-- **Baja cohesión**: La clase tiene múltiples responsabilidades.
-- **Clase grande**: Propenso a crecer con nuevos subtipos.
-- **Validaciones por tipo**: Uso de condicionales en lugar del polimorfismo.
-
-> Estadio 1 — ***God class con condicionales por tipo***
-
 ## Enfoque 2: una clase por cada tipo de elemento
 
 <table>
@@ -75,6 +75,15 @@ Cliente cliente = new Animal("Pájaro");
 <td valign=top>
 
 ![Enfoque 2 — Clases sin abstracción común](/images/modelosUML/ldm_enfoque2.svg)
+
+### Problemas identificados
+
+- **Alto acoplamiento**: Clientes conocen *todas* las clases derivadas.
+- **DRY**: Código duplicado en las clases (moverse, comunicarse).
+- **Dificultad para extensión**: Cada nuevo tipo requiere una clase *completa* nueva.
+
+> Estadio 2 — ***Clases concretas sin abstracción común.***
+
 </td><td>
 
 ```java
@@ -133,15 +142,6 @@ Cliente cliente = new Pajaro(); // o new Perro();
 
 </table>
 
-### Problemas identificados
-
-- **Alto acoplamiento**: Clientes conocen *todas* las clases derivadas.
-- **DRY**: Código duplicado en las clases (moverse, comunicarse).
-- **Dificultad para extensión**: Cada nuevo tipo requiere una clase *completa* nueva.
-
-> Estadio 2 — ***Clases concretas sin abstracción común.***
-
-
 ## Enfoque 3: jerarquía de clases
 
 Una mejor solución podría ser:
@@ -152,6 +152,16 @@ Una mejor solución podría ser:
 <td valign=top>
 
 ![Enfoque 3 — Jerarquía con clase abstracta](/images/modelosUML/ldm_enfoque3.svg)
+
+### Ventajas
+
+- **Alta cohesión**: Cada clase tiene una responsabilidad clara
+- **Bajo acoplamiento**: Los clientes trabajan con la abstracción (Animal)
+- **DRY**: Código común centralizado en la clase base
+- **Flexibilidad**: Soporta polimorfismo y extensibilidad
+
+> Estadio 3 — ***Jerarquía con clase abstracta.***
+
 </td><td>
 
 ```java
@@ -221,14 +231,6 @@ Cliente cliente = zoologico.getAnimal();
 
 </table>
 
-### Ventajas
-
-- **Alta cohesión**: Cada clase tiene una responsabilidad clara
-- **Bajo acoplamiento**: Los clientes trabajan con la abstracción (Animal)
-- **DRY**: Código común centralizado en la clase base
-- **Flexibilidad**: Soporta polimorfismo y extensibilidad
-
-> Estadio 3 — ***Jerarquía con clase abstracta.***
 
 ### Problemas identificados
 
