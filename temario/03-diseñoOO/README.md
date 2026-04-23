@@ -91,4 +91,4 @@ SOLID no debe verse como una panacea ni como un conjunto de reglas rígidas, sin
 
 El verdadero valor de SOLID está en su contribución a sistemas más mantenibles y adaptables, no en su aplicación ciega.
 
-> 2Think: [Luis Fernandez acerca de SOLID](https://www.youtube.com/watch?v=YqSV_RuWRV0)
+> 2Think: [Luis Fernandez acerca de SOLID](https://youtu.be/YqSV_RuWRV0?si=n3q4XM6_aElYRB9s&t=6)
