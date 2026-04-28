@@ -25,4 +25,4 @@
 |**Métodos sobreescritos**|`calcularTasaMatricula()` se sobreescribe para proporcionar lógica específica|
 ||`generarInforme()` extiende el comportamiento base y añade información específica|
 
-### [*Pero...*](limitacionesOCP.md)
+### [*Pero...*](limitaciones.md)

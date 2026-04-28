@@ -1,0 +1,59 @@
+@startuml
+
+abstract class EvaluadorBecas {
+ + {abstract} evaluar(alumno: Alumno)
+}
+
+class EvaluadorAcademico {
+ + evaluar(alumno: Alumno)
+}
+class EvaluadorSocioeconomico {
+ + evaluar(alumno: Alumno)
+}
+class EvaluadorDeportes {
+ + evaluar(alumno: Alumno)
+}
+class EvaluadorInternacional {
+ + evaluar(alumno: Alumno)
+}
+
+EvaluadorBecas <|-- EvaluadorAcademico
+EvaluadorBecas <|-- EvaluadorSocioeconomico
+EvaluadorBecas <|-- EvaluadorDeportes
+EvaluadorBecas <|-- EvaluadorInternacional
+
+Alumno <|-- AlumnoErasmus
+Alumno <|-- AlumnoVirtual
+Alumno <|-- AlumnoInvestigador
+Alumno <|-- AlumnoDeportista
+Alumno <|-- AlumnoDiscapacidad
+
+EvaluadorAcademico ..> Alumno : else
+EvaluadorAcademico ..> AlumnoErasmus : instanceof
+EvaluadorAcademico ..> AlumnoVirtual : instanceof
+EvaluadorAcademico ..> AlumnoInvestigador : instanceof
+EvaluadorAcademico ..> AlumnoDeportista : instanceof
+EvaluadorAcademico ..> AlumnoDiscapacidad : instanceof
+
+EvaluadorSocioeconomico ..> Alumno : else
+EvaluadorSocioeconomico ..> AlumnoErasmus : instanceof
+EvaluadorSocioeconomico ..> AlumnoVirtual : instanceof
+EvaluadorSocioeconomico ..> AlumnoInvestigador : instanceof
+EvaluadorSocioeconomico ..> AlumnoDeportista : instanceof
+EvaluadorSocioeconomico ..> AlumnoDiscapacidad : instanceof
+
+EvaluadorDeportes ..> Alumno : else
+EvaluadorDeportes ..> AlumnoErasmus : instanceof
+EvaluadorDeportes ..> AlumnoVirtual : instanceof
+EvaluadorDeportes ..> AlumnoInvestigador : instanceof
+EvaluadorDeportes ..> AlumnoDeportista : instanceof
+EvaluadorDeportes ..> AlumnoDiscapacidad : instanceof
+
+EvaluadorInternacional ..> Alumno : else
+EvaluadorInternacional ..> AlumnoErasmus : instanceof
+EvaluadorInternacional ..> AlumnoVirtual : instanceof
+EvaluadorInternacional ..> AlumnoInvestigador : instanceof
+EvaluadorInternacional ..> AlumnoDeportista : instanceof
+EvaluadorInternacional ..> AlumnoDiscapacidad : instanceof
+
+@enduml

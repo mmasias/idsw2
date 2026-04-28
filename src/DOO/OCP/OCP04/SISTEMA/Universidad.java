@@ -10,7 +10,7 @@ public class Universidad {
         System.out.println("Informe de matrícula:");
         System.out.println(alumno.generarInforme());
 
-        new EvaluadorBecas().evaluarSolicitud(alumno);
+        new EvaluadorBecas().evaluar(alumno);
 
         System.out.println("=".repeat(25));
     }

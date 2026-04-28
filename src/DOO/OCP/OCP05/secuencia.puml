@@ -1,0 +1,21 @@
+@startuml
+participant Cliente
+participant "alumno\n<<AlumnoErasmus>>" as AE
+participant "evaluador\n<<EvaluadorAcademico>>" as EA
+
+Cliente -> AE : alumno.solicitarBeca(evaluador)
+note right
+  1er despacho
+  polimorfismo dinamico:
+  AlumnoErasmus.solicitarBeca() se ejecuta
+end note
+
+AE -> EA : evaluador.evaluar(this)
+note right
+  2do despacho
+  this tiene tipo estatico AlumnoErasmus
+  la sobrecarga evaluar(AlumnoErasmus)
+  se resuelve en compilacion
+end note
+
+@enduml

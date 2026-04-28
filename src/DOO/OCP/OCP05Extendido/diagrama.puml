@@ -1,0 +1,40 @@
+@startuml
+skinparam classAttributeIconSize 0
+
+interface EvaluadorBecas {
+    + evaluar(alumno: Alumno)
+    + evaluar(alumnoErasmus: AlumnoErasmus)
+    + evaluar(alumnoVirtual: AlumnoVirtual)
+    + evaluar(alumnoInvestigador: AlumnoInvestigador)
+    + evaluar(alumnoDeportista: AlumnoDeportista)
+    + evaluar(alumnoDiscapacidad: AlumnoDiscapacidad)
+}
+
+class Alumno {
+    + solicitarBeca(evaluador: EvaluadorBecas)
+}
+class AlumnoErasmus { }
+class AlumnoVirtual { }
+class AlumnoInvestigador { }
+class AlumnoDeportista { }
+class AlumnoDiscapacidad { }
+
+class EvaluadorAcademico { }
+class EvaluadorSocioeconomico { }
+class EvaluadorDeportes { }
+class EvaluadorInternacional { }
+
+Alumno <|-- AlumnoErasmus
+Alumno <|-- AlumnoVirtual
+Alumno <|-- AlumnoInvestigador
+Alumno <|-- AlumnoDeportista
+Alumno <|-- AlumnoDiscapacidad
+
+EvaluadorAcademico     .u.|> EvaluadorBecas
+EvaluadorSocioeconomico .u.|> EvaluadorBecas
+EvaluadorDeportes      .u.|> EvaluadorBecas
+EvaluadorInternacional .u.|> EvaluadorBecas
+
+Alumno ..> EvaluadorBecas
+
+@enduml

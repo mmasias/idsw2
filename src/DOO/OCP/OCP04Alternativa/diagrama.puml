@@ -1,0 +1,42 @@
+@startuml
+skinparam classAttributeIconSize 0
+
+abstract class EvaluadorBecas {
+    + {abstract} evaluar(alumno: Alumno)
+}
+
+class EvaluadorAcademico {
+    + evaluar(alumno: Alumno)
+}
+
+class EvaluadorSocioeconomico {
+    + evaluar(alumno: Alumno)
+}
+
+abstract class Alumno {
+    - id: String
+    - nombre: String
+}
+
+class AlumnoErasmus {
+    - paisOrigen: String
+}
+
+class AlumnoVirtual {
+    - requiereExamenesPresenciales: boolean
+}
+
+EvaluadorBecas <|-- EvaluadorAcademico
+EvaluadorBecas <|-- EvaluadorSocioeconomico
+
+Alumno <|-- AlumnoErasmus
+Alumno <|-- AlumnoVirtual
+
+EvaluadorAcademico ..> Alumno : else
+EvaluadorAcademico ..> AlumnoErasmus : instanceof
+EvaluadorAcademico ..> AlumnoVirtual : instanceof
+EvaluadorSocioeconomico ..> Alumno : else
+EvaluadorSocioeconomico ..> AlumnoErasmus : instanceof
+EvaluadorSocioeconomico ..> AlumnoVirtual : instanceof
+
+@enduml

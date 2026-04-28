@@ -1,7 +1,7 @@
 package DOO.OCP.OCP04.SISTEMA;
 
 public class EvaluadorBecas {
-    public void evaluarSolicitud(Alumno alumno) {
+    public void evaluar(Alumno alumno) {
         System.out.println("Evaluando solicitud de beca para: " + alumno.getNombre());
         
         if (alumno instanceof AlumnoErasmus) {

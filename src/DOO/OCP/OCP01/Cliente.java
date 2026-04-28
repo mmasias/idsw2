@@ -1,7 +1,6 @@
 package DOO.OCP.OCP01;
 
-import DOO.OCP.OCP01.SISTEMA.Alumno;
-import DOO.OCP.OCP01.SISTEMA.Universidad;
+import DOO.OCP.OCP01.SISTEMA.*;
 
 class Cliente {
     public static void main(String[] args) {
