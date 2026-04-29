@@ -1,10 +1,10 @@
-# OCP07 💥
+# OCP07 - Requisitos++
 
 OCP05Extendido funciona con elegancia: cinco tipos de alumno, cuatro evaluadores, cero `instanceof`. El doble despacho hace su trabajo en silencio.
 
 Llega un nuevo requisito.
 
-## El requisito inocente
+## Un requisito
 
 La universidad quiere incorporar alumnos honorarios - académicos visitantes, asistentes no matriculados en el sentido tradicional. Necesitan estar en el sistema, pero no son elegibles para becas.
 
@@ -23,7 +23,7 @@ Compila. Parece razonable. Se despliega.
 
 Ya vimos este patrón antes: [herencia por limitación](../../../../temario/01-diseño/02-relacionesClases.md). Y ya sabíamos que no era deseable.
 
-## El sistema revienta
+## El sistema
 
 La primera vez que `Universidad` procesa un `AlumnoHonorario`, la excepción sube. El sistema que eliminó el `instanceof` en cinco iteraciones revienta en el primer caso real.
 
