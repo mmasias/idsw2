@@ -21,7 +21,7 @@ class AlumnoHonorario extends Alumno {
 
 Compila. Parece razonable. Se despliega.
 
-Ya vimos este patrón antes: [herencia por limitación](../../../../temario/01-diseño/02-relacionesClases.md). Y ya sabíamos que no era deseable.
+Ya vimos este patrón antes: [herencia por limitación](../../../../temario/01-diseño/02-relacionesClases.md#relaciones-por-transmisi%C3%B3n). Y ya sabíamos que no era deseable.
 
 ## El sistema
 
@@ -58,6 +58,6 @@ El `instanceof` ha vuelto. Hay tres salidas posibles:
 
 |Sacar `AlumnoHonorario` de la jerarquía|Renegociar el contrato de la base|Camino C - Composición|
 |-|-|-|
-No extiende `Alumno`. Es una clase independiente que `Universidad` gestiona por separado. Si realmente no comparte el contrato, quizá no debería estar en la jerarquía. Pero implica duplicar toda la lógica de "estar en el sistema".|`solicitarBeca()` en `Alumno` pasa a ser un no-op por defecto. `AlumnoHonorario` hereda sin sobreescribir, no explota. Pero el contrato queda debilitado para todos: el evaluador ya no puede asumir que será llamado.|La capacidad de solicitar beca se extrae como pieza componible. `Alumno` la delega. `AlumnoHonorario` recibe una implementación nula: no lanza, no hace nada, no viola el contrato. El sistema de OCP05Extendido queda intacto.
+No extiende `Alumno`. Es una clase independiente que `Universidad` gestiona por separado. Si realmente no comparte el contrato, quizá no debería estar en la jerarquía. Pero implica duplicar toda la lógica de "estar en el sistema".|`solicitarBeca()` en `Alumno` pasa a ser un [no-op](https://es.wikipedia.org/wiki/NOP) por defecto. `AlumnoHonorario` hereda sin sobreescribir, no explota. Pero el contrato queda debilitado para todos: el evaluador ya no puede asumir que será llamado.|La capacidad de solicitar beca se extrae como pieza componible. `Alumno` la delega. `AlumnoHonorario` recibe una implementación nula: no lanza, no hace nada, no viola el contrato. El sistema de OCP05Extendido queda intacto.
 
 > Sigue en [OCP08](../OCP08/README.md)
