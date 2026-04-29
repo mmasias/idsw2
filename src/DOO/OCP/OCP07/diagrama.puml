@@ -1,0 +1,56 @@
+@startuml
+skinparam classAttributeIconSize 0
+
+interface EvaluadorBecas {
+    + evaluar(alumno: Alumno)
+    + evaluar(alumnoErasmus: AlumnoErasmus)
+    + evaluar(alumnoVirtual: AlumnoVirtual)
+    + evaluar(alumnoInvestigador: AlumnoInvestigador)
+    + evaluar(alumnoDeportista: AlumnoDeportista)
+    + evaluar(alumnoDiscapacidad: AlumnoDiscapacidad)
+}
+
+class Alumno {
+    + solicitarBeca(evaluador: EvaluadorBecas)
+}
+class AlumnoErasmus { }
+class AlumnoVirtual { }
+class AlumnoInvestigador { }
+class AlumnoDeportista { }
+class AlumnoDiscapacidad { }
+
+class AlumnoHonorario {
+    + solicitarBeca(evaluador: EvaluadorBecas)
+}
+note right of AlumnoHonorario
+  throw UnsupportedOperationException
+end note
+
+class EvaluadorAcademico { }
+class EvaluadorSocioeconomico { }
+class EvaluadorDeportes { }
+class EvaluadorInternacional { }
+
+class Universidad {
+    + procesarSolicitudBeca(alumno, evaluador)
+}
+note right of Universidad
+  if (!(alumno instanceof AlumnoHonorario))
+end note
+
+Alumno <|-- AlumnoErasmus
+Alumno <|-- AlumnoVirtual
+Alumno <|-- AlumnoInvestigador
+Alumno <|-- AlumnoDeportista
+Alumno <|-- AlumnoDiscapacidad
+Alumno <|-- AlumnoHonorario
+
+EvaluadorAcademico      .u.|> EvaluadorBecas
+EvaluadorSocioeconomico .u.|> EvaluadorBecas
+EvaluadorDeportes       .u.|> EvaluadorBecas
+EvaluadorInternacional  .u.|> EvaluadorBecas
+
+Alumno ..> EvaluadorBecas
+Universidad ..> AlumnoHonorario : instanceof
+
+@enduml
