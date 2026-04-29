@@ -17,6 +17,8 @@
   - [x] [Acoplamiento](temario/02-diseñoModular/acoplamiento.md)
   - [x] [Tamaño](temario/02-diseñoModular/tamaño.md)
 - [x] [Diseño orientado a objetos](temario/03-diseñoOO/README.md)
+  - [ ] Limitaciones del diseño modular
+  - [ ] El doble despachos
 
 ## Iteraciones
 
