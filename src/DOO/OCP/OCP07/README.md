@@ -1,4 +1,4 @@
-# OCP07 - cuando LSP falla
+# OCP07 💥
 
 OCP05Extendido funciona con elegancia: cinco tipos de alumno, cuatro evaluadores, cero `instanceof`. El doble despacho hace su trabajo en silencio.
 
