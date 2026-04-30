@@ -32,4 +32,11 @@ Java resuelve qué `aceptar` invocar según el tipo concreto de `pedido` (polimo
 
 El problema que queda: `Pedido` está acoplado a `ProcesadorEnvios` directamente. Si aparece `ProcesadorFacturacion`, hay que añadir un `aceptar(ProcesadorFacturacion)` en cada subclase de `Pedido`. La jerarquía crece con cada procesador nuevo.
 
+<div align=center>
+
+|![](/images/src/DOO/DD/DD03/v001basico/siPero.svg)
+|-
+
+</div>
+
 > Sigue en [v002extensible](../v002extensible/README.md)

@@ -1,0 +1,75 @@
+@startuml
+
+abstract class Pedido {
+  -id: String
+  -cliente: String
+  -total: double
+  +aceptar(procesador: ProcesadorEnvios)
+  +aceptar(facturador: ProcesadorFacturacion)
+  +aceptar(notificador: ProcesadorNotificaciones)
+}
+
+class PedidoFisico {
+  -direccionEnvio: String
+  -peso: double
+  +aceptar(procesador: ProcesadorEnvios)
+  +aceptar(facturador: ProcesadorFacturacion)
+  +aceptar(notificador: ProcesadorNotificaciones)
+}
+
+class PedidoDigital {
+  -email: String
+  +aceptar(procesador: ProcesadorEnvios)
+  +aceptar(facturador: ProcesadorFacturacion)
+  +aceptar(notificador: ProcesadorNotificaciones)
+}
+
+class PedidoSuscripcion {
+  -duracionMeses: int
+  +aceptar(procesador: ProcesadorEnvios)
+  +aceptar(facturador: ProcesadorFacturacion)
+  +aceptar(notificador: ProcesadorNotificaciones)
+}
+
+class ProcesadorEnvios {
+  +procesar(pedido: Pedido)
+  +procesarEnvioFisico(p: PedidoFisico)
+  +procesarEnvioDigital(p: PedidoDigital)
+  +procesarActivacionSuscripcion(p: PedidoSuscripcion)
+}
+
+class ProcesadorFacturacion {
+  +facturar(pedido: Pedido)
+  +facturarFisico(p: PedidoFisico)
+  +facturarDigital(p: PedidoDigital)
+  +facturarSuscripcion(p: PedidoSuscripcion)
+}
+
+class ProcesadorNotificaciones {
+  +notificar(pedido: Pedido)
+  +notificarEnvioFisico(p: PedidoFisico)
+  +notificarDescargaDigital(p: PedidoDigital)
+  +notificarActivacionSuscripcion(p: PedidoSuscripcion)
+}
+
+Pedido <|-- PedidoFisico
+Pedido <|-- PedidoDigital
+Pedido <|-- PedidoSuscripcion
+
+PedidoFisico --> ProcesadorEnvios : segundo despacho
+PedidoDigital --> ProcesadorEnvios : segundo despacho
+PedidoSuscripcion --> ProcesadorEnvios : segundo despacho
+
+PedidoFisico --> ProcesadorFacturacion : segundo despacho
+PedidoDigital --> ProcesadorFacturacion : segundo despacho
+PedidoSuscripcion --> ProcesadorFacturacion : segundo despacho
+
+PedidoFisico --> ProcesadorNotificaciones : segundo despacho
+PedidoDigital --> ProcesadorNotificaciones : segundo despacho
+PedidoSuscripcion --> ProcesadorNotificaciones : segundo despacho
+
+ProcesadorEnvios --> Pedido : primer despacho
+ProcesadorFacturacion --> Pedido : primer despacho
+ProcesadorNotificaciones --> Pedido : primer despacho
+
+@enduml
